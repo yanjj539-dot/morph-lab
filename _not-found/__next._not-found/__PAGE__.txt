@@ -1,6 +1,5 @@
 1:"$Sreact.fragment"
-2:I[22016,["/morph-lab/_next/static/chunks/0l1c204o7p~kz.js","/morph-lab/_next/static/chunks/0d3shmwh5_nmn.js"],""]
-3:I[97367,["/morph-lab/_next/static/chunks/0l1c204o7p~kz.js","/morph-lab/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"id":"main-content","className":"not-found-page page-shell","children":[["$","p",null,{"className":"section-label","children":"404 / PAGE NOT FOUND"}],["$","h1",null,{"children":"THIS PAGE IS NOT PART OF THE CURRENT SYSTEM."}],["$","p",null,{"children":"页面可能已经移动，或这个实验尚未发布。返回首页可以重新进入 MORPH//LAB 的作品与方法。"}],["$","$L2",null,{"className":"not-found-link","href":"/","children":"Back to home"}]]}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"uSvIpcLqPJems3FdM9Mc9"}
-5:null
+2:I[97367,["/morph-lab/_next/static/chunks/15ws19qu9m_0q.js","/morph-lab/_next/static/chunks/0dbhjjzl8qfwv.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"id":"main-content","className":"not-found-page page-shell","children":[["$","p",null,{"className":"section-label","children":"404 / PAGE NOT FOUND"}],["$","h1",null,{"children":"THIS PAGE IS NOT PART OF THE CURRENT SYSTEM."}],["$","p",null,{"children":"页面可能已经移动，或这个实验尚未发布。返回首页可以重新进入 MORPH//LAB 的作品与方法。"}],["$","a",null,{"className":"not-found-link","href":"/morph-lab/","children":"Back to home"}]]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"-ziSqfWzaKuo6R4cr9M1x"}
+4:null
