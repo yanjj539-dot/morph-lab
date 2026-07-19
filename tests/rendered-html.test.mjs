@@ -124,3 +124,22 @@ test("ships real project assets and the responsive scroll journey", async () => 
     ].map((path) => access(new URL(path, import.meta.url))),
   );
 });
+
+test("supports a repository-scoped GitHub Pages static export", async () => {
+  const [nextConfig, layout, sitemap, siteData, packageJson] = await Promise.all([
+      readFile(new URL("../next.config.ts", import.meta.url), "utf8"),
+      readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+      readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8"),
+      readFile(new URL("../app/data/site.ts", import.meta.url), "utf8"),
+      readFile(new URL("../package.json", import.meta.url), "utf8"),
+    ]);
+
+  assert.match(nextConfig, /GITHUB_PAGES/);
+  assert.match(nextConfig, /output:\s*isGitHubPages\s*\?\s*"export"/);
+  assert.match(nextConfig, /basePath/);
+  assert.match(packageJson, /"build:pages"/);
+  assert.doesNotMatch(layout, /next\/headers/);
+  assert.doesNotMatch(sitemap, /next\/headers/);
+  assert.match(siteData, /withBasePath/);
+  await access(new URL("../public/.nojekyll", import.meta.url));
+});

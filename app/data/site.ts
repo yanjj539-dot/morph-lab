@@ -1,3 +1,5 @@
+import { withBasePath } from "../lib/paths";
+
 export interface ProjectAsset {
   src: string;
   alt: string;
@@ -60,14 +62,14 @@ export const projects: Project[] = [
       "一套把人格、语气、颜色和视觉标本组织成可浏览系统的实验。重点不是给人贴标签，而是建立一组可以比较、筛选和延展的抽象角色。",
     assets: [
       {
-        src: "/images/persona-home.webp",
+        src: withBasePath("/images/persona-home.webp"),
         alt: "Abstract Persona System 的移动端首页界面",
         width: 900,
         height: 1600,
         tone: "paper",
       },
       {
-        src: "/images/persona-result.webp",
+        src: withBasePath("/images/persona-result.webp"),
         alt: "Abstract Persona System 的人格结果海报",
         width: 1200,
         height: 1600,
@@ -88,28 +90,28 @@ export const projects: Project[] = [
       "多个小型网页作品的连续实验：从产品感封面、笔记型内容、食品品牌页面到单位换算工具，验证不同内容如何形成自己的界面节奏。",
     assets: [
       {
-        src: "/images/web-aeroform.webp",
+        src: withBasePath("/images/web-aeroform.webp"),
         alt: "Aeroform 作品封面",
         width: 1600,
         height: 1000,
         tone: "paper",
       },
       {
-        src: "/images/web-field-notes.webp",
+        src: withBasePath("/images/web-field-notes.webp"),
         alt: "Field Notes 作品封面",
         width: 1600,
         height: 1000,
         tone: "blue",
       },
       {
-        src: "/images/web-smoke-fruit.webp",
+        src: withBasePath("/images/web-smoke-fruit.webp"),
         alt: "Smoke Fruit Sauce 作品封面",
         width: 1600,
         height: 1000,
         tone: "coral",
       },
       {
-        src: "/images/web-units.webp",
+        src: withBasePath("/images/web-units.webp"),
         alt: "Units 工具作品封面",
         width: 1600,
         height: 1000,
@@ -130,7 +132,7 @@ export const projects: Project[] = [
       "一个围绕情绪输入与柔性反馈制作的实体交互原型。ESP32 连接光环、传感器与声音反馈，让数字情绪不只停留在屏幕上。",
     assets: [
       {
-        src: "/images/device-tree-hole.webp",
+        src: withBasePath("/images/device-tree-hole.webp"),
         alt: "情绪互动装置的硬件结构与展示图",
         width: 1600,
         height: 1000,
