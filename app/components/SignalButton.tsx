@@ -1,41 +1,29 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import type { ReactNode } from "react";
 
 type SignalButtonProps = {
   href: string;
   children: ReactNode;
-  variant?: "signal" | "line";
+  variant?: "primary" | "line";
   className?: string;
 };
-
-function setSignal(active: boolean) {
-  window.dispatchEvent(
-    new CustomEvent("morph-core:signal-boost", {
-      detail: { active, intensity: active ? 1 : 0 },
-    }),
-  );
-}
 
 export function SignalButton({
   href,
   children,
-  variant = "signal",
+  variant = "primary",
   className = "",
 }: SignalButtonProps) {
   return (
     <Link
       href={href}
       className={`signal-button signal-button--${variant} ${className}`.trim()}
-      onPointerEnter={() => setSignal(true)}
-      onPointerLeave={() => setSignal(false)}
-      onFocus={() => setSignal(true)}
-      onBlur={() => setSignal(false)}
     >
-      <span className="signal-button__track" aria-hidden="true" />
       <span className="signal-button__label">{children}</span>
+      <ArrowUpRight className="signal-button__icon" size={16} strokeWidth={1.8} aria-hidden="true" />
     </Link>
   );
 }
-

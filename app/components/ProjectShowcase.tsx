@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { PointerEvent } from "react";
-import { projects } from "../data/site";
+import { projects, workflowSteps } from "../data/site";
 
 function moveProjectCursor(event: PointerEvent<HTMLAnchorElement>) {
   const rect = event.currentTarget.getBoundingClientRect();
@@ -10,6 +10,22 @@ function moveProjectCursor(event: PointerEvent<HTMLAnchorElement>) {
   event.currentTarget.style.setProperty("--cursor-y", `${event.clientY - rect.top}px`);
 }
 
+function WorkflowDiagram() {
+  return (
+    <div className="workflow-diagram" aria-label="AI design workflow from materials to release">
+      {workflowSteps.map((step, index) => (
+        <div className="workflow-node" key={step}>
+          <span className="workflow-node__index">{String(index + 1).padStart(2, "0")}</span>
+          <span className="workflow-node__label">{step}</span>
+        </div>
+      ))}
+      <div className="workflow-review">
+        <span>Quality gate</span>
+        <p>Human judgement stays in the loop before every release.</p>
+      </div>
+    </div>
+  );
+}
 export function ProjectShowcase({ limit }: { limit?: number }) {
   const visibleProjects = typeof limit === "number" ? projects.slice(0, limit) : projects;
 
@@ -22,20 +38,29 @@ export function ProjectShowcase({ limit }: { limit?: number }) {
           id={project.id}
         >
           <div className="project-visual-wrap">
-            <picture className="project-picture">
-              <source srcSet={`${project.image}.avif`} type="image/avif" />
-              <source srcSet={`${project.image}.webp`} type="image/webp" />
-              <img
-                src={`${project.image}.jpg`}
-                alt={project.imageAlt}
-                width={project.ratio === "portrait" ? 1200 : 1600}
-                height={project.ratio === "portrait" ? 1500 : 1000}
-                loading={index === 0 ? "eager" : "lazy"}
-                fetchPriority={index === 0 ? "high" : "auto"}
-                data-project-image
-                data-project-zoom={index === 1 ? "1.035" : "1.05"}
-              />
-            </picture>
+            {project.assets.length > 0 ? (
+              <div className="project-gallery" data-gallery-count={project.assets.length}>
+                {project.assets.map((asset, assetIndex) => (
+                  <picture
+                    className={`project-picture project-picture--${asset.tone ?? "paper"}`}
+                    key={asset.src}
+                  >
+                    <img
+                      src={asset.src}
+                      alt={asset.alt}
+                      width={asset.width}
+                      height={asset.height}
+                      loading={index === 0 && assetIndex === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 && assetIndex === 0 ? "high" : "auto"}
+                      data-project-image
+                      data-project-zoom={assetIndex === 0 ? "1.035" : "1.02"}
+                    />
+                  </picture>
+                ))}
+              </div>
+            ) : (
+              <WorkflowDiagram />
+            )}
             <Link
               className="project-cursor"
               href={`/work#${project.id}`}
@@ -53,9 +78,14 @@ export function ProjectShowcase({ limit }: { limit?: number }) {
             <h3>{project.title}</h3>
             <p className="project-subtitle">{project.subtitle}</p>
             <p className="project-description">{project.description}</p>
-            <ul>
+            <ul className="project-services" aria-label={`${project.title} disciplines`}>
               {project.services.map((service) => (
                 <li key={service}>{service}</li>
+              ))}
+            </ul>
+            <ul className="project-evidence" aria-label={`${project.title} real project evidence`}>
+              {project.evidence.map((item) => (
+                <li key={item}>{item}</li>
               ))}
             </ul>
           </div>

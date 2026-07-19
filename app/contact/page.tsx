@@ -20,7 +20,7 @@ export default function ContactPage() {
         <div className="page-hero__support" data-motion-reveal>
           <p>请先告诉我们真正想改变什么，而不只是想制作什么。</p>
           <p>
-            适合讨论：AI 视觉方向、创意网站、生成式识别、Agent 工作流与实验型数字原型。
+            适合讨论：创意网站、AI 视觉方向、交互系统、Agent 工作流与可以运行的实验型原型。
           </p>
         </div>
       </header>
@@ -31,9 +31,9 @@ export default function ContactPage() {
           <h2 id="contact-form-title">DESCRIBE THE<br />SYSTEM YOU NEED.</h2>
           <dl>
             <div><dt>Email</dt><dd><a href="mailto:hello@morphlab.design">hello@morphlab.design</a></dd></div>
-            <div><dt>Response</dt><dd>Usually within 2 working days</dd></div>
-            <div><dt>Timezone</dt><dd>Asia / Tokyo + Shanghai</dd></div>
             <div><dt>Language</dt><dd>中文 / English</dd></div>
+            <div><dt>Good fit</dt><dd>AI design systems, editorial websites, interactive prototypes</dd></div>
+            <div><dt>First step</dt><dd>A clear question, existing materials and what the first version should prove</dd></div>
           </dl>
         </div>
         <ContactForm />

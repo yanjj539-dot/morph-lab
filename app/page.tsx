@@ -1,168 +1,123 @@
-import { CapabilityAccordion } from "./components/CapabilityAccordion";
-import { FaqAccordion } from "./components/FaqAccordion";
-import LiveGenerativeSystem from "./components/LiveGenerativeSystem";
-import MorphCore from "./components/MorphCore";
 import { ProjectShowcase } from "./components/ProjectShowcase";
+import ScrollJourney from "./components/ScrollJourney";
 import { SignalButton } from "./components/SignalButton";
-import { processSteps } from "./data/site";
+import { aboutPoints, practices, projects } from "./data/site";
 
 export default function Home() {
   return (
     <main id="main-content">
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-visual" aria-hidden="true">
-          <MorphCore />
-        </div>
-        <div className="hero-grid page-shell">
-          <div className="hero-status motion-reveal">
-            <p><span className="status-dot" aria-hidden="true" /> MORPH SYSTEM / ONLINE</p>
-            <p>GENERATIVE DESIGN LAB</p>
-            <p>TOKYO — DIGITAL SPACE</p>
+      <section className="hero hero--editorial" aria-labelledby="hero-title">
+        <div className="page-shell hero-grid">
+          <div className="hero-kicker" data-motion-reveal>
+            <span>MORPH//LAB</span>
+            <span>AI DESIGN / INTERACTIVE SYSTEMS</span>
           </div>
           <div className="hero-copy">
             <h1 id="hero-title" data-motion-mask>
-              <span>DESIGNING</span>
-              <span>INTELLIGENCE</span>
-              <span>INTO FORM</span>
+              <span>DESIGN, SYSTEMS,</span>
+              <span>AND DIGITAL EXPERIMENTS.</span>
             </h1>
             <div className="hero-support" data-motion-reveal>
-              <p className="hero-title-zh">让智能成为一种<br />可以被感知的形态</p>
+              <p className="hero-title-zh">把模型、界面与视觉实验，做成真正可以运行的作品。</p>
               <p className="hero-description">
-                我们将人工智能、视觉系统、交互设计与前端技术结合，构建小而精、可以真实运行的数字体验。
+                一个小型创意实验室，连接 AI 视觉系统、交互网页、实体原型和可部署的前端工程。
               </p>
               <div className="hero-actions">
-                <SignalButton href="#capabilities">Explore the Systems</SignalButton>
-                <SignalButton href="/work" variant="line">View Selected Work</SignalButton>
+                <SignalButton href="#practice">See the practice</SignalButton>
+                <SignalButton href="#selected-work" variant="line">View real work</SignalButton>
               </div>
             </div>
           </div>
-          <a className="scroll-cue" href="#manifesto">
-            <span>SCROLL TO ENTER THE SYSTEM</span>
+          <div className="hero-composition" aria-hidden="true">
+            <div className="hero-card hero-card--note">
+              <span>Observe</span>
+              <p>materials / constraints / tone</p>
+            </div>
+            <div className="hero-card hero-card--system">
+              <span>Structure</span>
+              <p>rules / layout / rhythm</p>
+            </div>
+            <div className="hero-card hero-card--release">
+              <span>Release</span>
+              <p>browser QA / deploy / iterate</p>
+            </div>
+          </div>
+          <a className="scroll-cue" href="#process">
+            <span>SCROLL THROUGH THE PROCESS</span>
             <span aria-hidden="true">↓</span>
           </a>
         </div>
       </section>
 
-      <section className="manifesto page-section page-shell" id="manifesto">
-        <div className="section-kicker" data-motion-reveal>
-          <span>01 / MANIFESTO</span>
-          <span>POSITION / 2026</span>
-        </div>
-        <h2 className="manifesto-title" data-motion-mask>
-          AI SHOULD NOT<br />LOOK LIKE AI.
-        </h2>
-        <div className="manifesto-grid">
-          <p className="manifesto-zh" data-motion-reveal>
-            好的 AI 设计，<br />不应该首先让人看见 AI。
-          </p>
-          <div className="manifesto-copy" data-motion-reveal>
-            <p>技术服务于体验，动效服务于信息，AI 服务于创意判断。</p>
-            <p>
-              我们不追求表面的未来感，也不堆砌生成式视觉符号。每个数字体验都应拥有自己的视觉逻辑、节奏与行为边界。
-            </p>
-          </div>
-        </div>
-      </section>
+      <ScrollJourney />
 
-      <section className="process page-section" aria-labelledby="process-title">
-        <div className="process-grid page-shell">
-          <div className="process-intro">
-            <p className="section-label">02 / PROCESS</p>
-            <h2 id="process-title" data-motion-mask>FROM SIGNAL<br />TO SYSTEM.</h2>
-            <p data-motion-reveal>四个阶段，一条连续链路。每一次交付都必须从判断走到运行。</p>
-          </div>
-          <div className="process-steps">
-            {processSteps.map((step) => (
-              <article
-                className="process-step"
-                key={step.index}
-                data-scroll-step
-                data-scroll-step-group="process"
-              >
-                <span className="process-number">{step.index}</span>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p className="process-title-zh">{step.titleZh}</p>
-                  <p>{step.description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="capabilities page-section page-shell" id="capabilities" aria-labelledby="capabilities-title">
+      <section className="practice page-section page-shell" id="practice" aria-labelledby="practice-title">
         <div className="section-kicker" data-motion-reveal>
-          <span>03 / CAPABILITIES</span>
-          <span>CONNECTED SYSTEM / 06</span>
+          <span>02 / PRACTICE</span>
+          <span>REAL OUTPUTS / RUNNING SYSTEMS</span>
         </div>
         <div className="section-heading-grid">
-          <h2 id="capabilities-title" data-motion-mask>CAPABILITIES AS A<br />CONNECTED SYSTEM</h2>
-          <p data-motion-reveal>不是独立服务卡片，而是一套从视觉判断到部署运行的连接系统。</p>
+          <h2 id="practice-title" data-motion-mask>WHAT I ACTUALLY MAKE</h2>
+          <p data-motion-reveal>
+            不把 AI 当成视觉标签，而是把它接入明确的设计判断、可测试界面和可交付工作流。
+          </p>
         </div>
-        <CapabilityAccordion />
+        <div className="practice-grid">
+          {practices.map((item, index) => (
+            <article className="practice-card" key={item.title} data-motion-reveal>
+              <span className="practice-card__index">{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.title}</h3>
+              <p className="practice-card__zh">{item.titleZh}</p>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section className="selected-work page-section" aria-labelledby="work-title">
+      <section className="selected-work page-section" id="selected-work" aria-labelledby="work-title">
         <div className="page-shell">
           <div className="section-kicker" data-motion-reveal>
-            <span>04 / SELECTED WORK</span>
-            <span>EXPERIMENTS / 2026</span>
+            <span>03 / SELECTED WORK</span>
+            <span>{String(projects.length).padStart(2, "0")} REAL PROJECTS</span>
           </div>
           <div className="section-heading-grid">
-            <h2 id="work-title" data-motion-mask>THREE SYSTEMS.<br />THREE WAYS TO SEE.</h2>
-            <p data-motion-reveal>虚构但可被真正制作的实验项目，用来展示不同的内容、交互与技术关系。</p>
+            <h2 id="work-title" data-motion-mask>SELECTED WORK, BUILT FROM REAL MATERIALS.</h2>
+            <p data-motion-reveal>
+              这里不放虚构案例。每个项目都来自已经存在的界面、图像、硬件原型或工作流实践。
+            </p>
           </div>
         </div>
         <ProjectShowcase />
       </section>
 
-      <section className="live-system page-section page-shell" aria-label="Live generative system experiment">
-        <div className="section-kicker" data-motion-reveal>
-          <span>05 / LIVE SYSTEM</span>
-          <span>INPUT / POINTER + CLICK</span>
-        </div>
-        <LiveGenerativeSystem />
-      </section>
-
-      <section className="about page-section page-shell" aria-labelledby="about-title">
+      <section className="about page-section page-shell" id="about" aria-labelledby="about-title">
         <div className="about-grid">
-          <h2 id="about-title" data-motion-mask>A SMALL LAB<br />FOR PRECISE<br />EXPERIMENTS</h2>
+          <div>
+            <p className="section-label" data-motion-reveal>04 / ABOUT</p>
+            <h2 id="about-title" data-motion-mask>A SMALL LAB FOR REAL DIGITAL EXPERIMENTS.</h2>
+          </div>
           <div className="about-copy" data-motion-reveal>
-            <p>
-              MORPH//LAB 是一个围绕人工智能、视觉设计、交互体验和创意技术建立的实验型工作室。
-            </p>
-            <p>
-              我们关注的不是如何制造更多内容，而是如何建立更准确、更克制、更有辨识度的数字体验。
-            </p>
+            {aboutPoints.map((point) => (
+              <p key={point}>{point}</p>
+            ))}
             <SignalButton href="/studio" variant="line">Read the studio notes</SignalButton>
           </div>
         </div>
-        <dl className="lab-metrics">
-          <div data-motion-reveal><dt>04</dt><dd>DESIGN SYSTEMS</dd></div>
-          <div data-motion-reveal><dt>12</dt><dd>INTERACTIVE PROTOTYPES</dd></div>
-          <div data-motion-reveal><dt>27</dt><dd>VISUAL EXPERIMENTS</dd></div>
-          <div data-motion-reveal><dt>∞</dt><dd>POSSIBLE FORMS</dd></div>
+        <dl className="lab-metrics" aria-label="MORPH//LAB working focus">
+          <div data-motion-reveal><dt>65</dt><dd>PERSONAS STRUCTURED</dd></div>
+          <div data-motion-reveal><dt>08</dt><dd>PERSONA FAMILIES</dd></div>
+          <div data-motion-reveal><dt>04</dt><dd>DIGITAL WEB DIRECTIONS</dd></div>
+          <div data-motion-reveal><dt>ESP32</dt><dd>PHYSICAL INTERACTION LOOP</dd></div>
         </dl>
       </section>
 
-      <section className="faq page-section page-shell" aria-labelledby="faq-title">
-        <div className="section-kicker" data-motion-reveal>
-          <span>06 / FAQ</span>
-          <span>WORKING TOGETHER</span>
-        </div>
-        <div className="faq-grid">
-          <h2 id="faq-title" data-motion-mask>QUESTIONS,<br />BEFORE WE BEGIN.</h2>
-          <FaqAccordion />
-        </div>
-      </section>
-
-      <section className="final-cta" aria-labelledby="cta-title">
-        <div className="cta-core" aria-hidden="true"><span /><span /><span /><span /></div>
+      <section className="final-cta final-cta--paper" aria-labelledby="cta-title">
         <div className="page-shell final-cta__inner">
-          <p className="section-label">07 / NEXT SYSTEM</p>
-          <h2 id="cta-title" data-motion-mask>LET&apos;S BUILD A SYSTEM<br />THAT DOESN&apos;T EXIST YET.</h2>
-          <p data-motion-reveal>一起构建一个尚未存在的数字系统。</p>
+          <p className="section-label" data-motion-reveal>05 / NEXT RELEASE</p>
+          <h2 id="cta-title" data-motion-mask>LET&apos;S MAKE THE NEXT ONE REAL.</h2>
+          <p data-motion-reveal>
+            带着一个问题、一组材料，或一个还没完全成形的想法开始。目标是把它做成可运行的作品。
+          </p>
           <SignalButton href="/contact" className="final-cta__button">START A CONVERSATION</SignalButton>
         </div>
       </section>

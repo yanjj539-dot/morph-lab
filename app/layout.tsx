@@ -8,8 +8,8 @@ import "./globals.css";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#141716",
-  colorScheme: "dark",
+  themeColor: "#f6f5ef",
+  colorScheme: "light",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,14 +19,19 @@ export async function generateMetadata(): Promise<Metadata> {
     requestHeaders.get("host") ??
     "morph-lab.local";
   const forwardedProtocol = requestHeaders.get("x-forwarded-proto");
-  const protocol = forwardedProtocol ?? (host.includes("localhost") ? "http" : "https");
+  const isLocalHost =
+    host.includes("localhost") ||
+    host.startsWith("127.0.0.1") ||
+    host.startsWith("[::1]") ||
+    host.startsWith("::1");
+  const protocol = forwardedProtocol ?? (isLocalHost ? "http" : "https");
   const origin = `${protocol}://${host}`;
 
   return {
     metadataBase: new URL(origin),
-    title: "MORPH//LAB — AI Design and Interactive Systems",
+    title: "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments",
     description:
-      "MORPH//LAB / 形态智能实验室，将人工智能、视觉系统、交互设计与创意前端结合成可真实运行的数字体验。",
+      "MORPH//LAB 把模型、界面与视觉实验，做成真正可以运行的作品：AI design workflows, interactive systems and digital portfolio experiments.",
     applicationName: "MORPH//LAB",
     authors: [{ name: "MORPH//LAB" }],
     creator: "MORPH//LAB",
@@ -41,22 +46,22 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: "zh_CN",
       url: origin,
       siteName: "MORPH//LAB",
-      title: "MORPH//LAB — AI Design and Interactive Systems",
+      title: "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments",
       description:
-        "Designing intelligence into form through visual systems, interaction and creative technology.",
+        "A calm blue-and-paper studio site for real AI design, interactive systems and digital experiments.",
       images: [
         {
           url: `${origin}/og.png`,
           width: 1200,
           height: 630,
-          alt: "MORPH//LAB modular kinetic design system",
+          alt: "MORPH//LAB blue editorial homepage for design systems and digital experiments",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "MORPH//LAB — AI Design and Interactive Systems",
-      description: "Designing intelligence into form.",
+      title: "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments",
+      description: "Design, systems, and digital experiments made into real running work.",
       images: [`${origin}/og.png`],
     },
   };
@@ -71,7 +76,7 @@ const structuredData = {
       name: "MORPH//LAB",
       alternateName: "形态智能实验室",
       description:
-        "An experimental studio for AI visual direction, interactive web design and creative frontend systems.",
+        "An experimental studio for AI design workflows, interactive systems and digital portfolio experiments.",
       email: "hello@morphlab.design",
     },
     {

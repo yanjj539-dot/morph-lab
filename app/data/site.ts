@@ -1,12 +1,9 @@
-export interface Capability {
-  id: string;
-  index: string;
-  title: string;
-  titleZh: string;
-  description: string;
-  detail: string;
-  tags: string[];
-  icon: "direction" | "interaction" | "identity" | "frontend" | "workflow" | "prototype";
+export interface ProjectAsset {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  tone?: "paper" | "blue" | "coral";
 }
 
 export interface Project {
@@ -15,184 +12,153 @@ export interface Project {
   title: string;
   subtitle: string;
   description: string;
-  image: string;
-  imageAlt: string;
+  assets: ProjectAsset[];
   services: string[];
   year: string;
   ratio: "landscape" | "portrait" | "wide";
+  evidence: string[];
 }
 
-export const processSteps = [
+export const practices = [
   {
-    index: "01",
-    title: "Decode",
-    titleZh: "解码问题",
-    description: "理解内容、用户、限制与真正需要改变的结果。",
+    title: "AI visual systems",
+    titleZh: "AI 视觉系统",
+    description: "为批量图像、人格视觉和品牌语气建立明确约束，让生成结果保持同一套审美判断。",
   },
   {
-    index: "02",
-    title: "Construct",
-    titleZh: "建立系统",
-    description: "把判断转化为视觉语言、信息结构与可复用规则。",
+    title: "Interactive websites",
+    titleZh: "交互网站",
+    description: "把作品集、产品页和研究笔记做成可以浏览、可以部署、可以复用的数字界面。",
   },
   {
-    index: "03",
-    title: "Animate",
-    titleZh: "组织运动",
-    description: "用节奏、反馈和空间关系解释信息，而不是装饰信息。",
+    title: "Physical interaction prototypes",
+    titleZh: "实体交互原型",
+    description: "用 ESP32、传感器、声音与光效，把情绪反馈和硬件行为接到真实体验里。",
   },
   {
-    index: "04",
-    title: "Deploy",
-    titleZh: "投入运行",
-    description: "将概念交付为可访问、可维护、可验证的数字产品。",
+    title: "Agent-assisted workflow",
+    titleZh: "Agent 辅助工作流",
+    description: "让模型参与整理、初稿、检查和交付，但保留人的方向判断和质量门槛。",
   },
 ] as const;
 
-export const capabilities: Capability[] = [
-  {
-    id: "visual-direction",
-    index: "01",
-    title: "AI Visual Direction",
-    titleZh: "AI 视觉方向",
-    description: "让生成能力服从明确的审美判断。",
-    detail:
-      "从素材语法、构图系统到批量生成规则，建立可持续复用的视觉方向，而不是依赖偶然的单张结果。",
-    tags: ["ART DIRECTION", "GEN SYSTEM"],
-    icon: "direction",
-  },
-  {
-    id: "interactive-web",
-    index: "02",
-    title: "Interactive Web Design",
-    titleZh: "交互网页设计",
-    description: "让滚动、状态与内容形成连续叙事。",
-    detail:
-      "用响应式布局、动效时间线和可访问交互构建具备作品感、同时能够真实投入使用的品牌体验。",
-    tags: ["UX", "MOTION"],
-    icon: "interaction",
-  },
-  {
-    id: "generative-identity",
-    index: "03",
-    title: "Generative Identity",
-    titleZh: "生成式识别系统",
-    description: "把品牌从静态标志扩展成一套行为规则。",
-    detail:
-      "以变量、约束与实时输入定义视觉身份，使每次输出保持一致性，同时保留足够的变化空间。",
-    tags: ["IDENTITY", "VARIABLE"],
-    icon: "identity",
-  },
-  {
-    id: "creative-frontend",
-    index: "04",
-    title: "Creative Frontend",
-    titleZh: "创意前端",
-    description: "在设计精度与工程质量之间建立同一套标准。",
-    detail:
-      "从语义 HTML、设计令牌到 Canvas、WebGL 与性能降级，让视觉概念能够稳定构建、部署和维护。",
-    tags: ["TYPESCRIPT", "WEBGL"],
-    icon: "frontend",
-  },
-  {
-    id: "agent-workflow",
-    index: "05",
-    title: "Agent Workflow Design",
-    titleZh: "Agent 工作流设计",
-    description: "把重复操作重构为可观察、可接管的流程。",
-    detail:
-      "为素材整理、内容维护与设计生产搭建人机协同链路，保留审批节点、质量门槛与失败恢复。",
-    tags: ["AGENT", "AUTOMATION"],
-    icon: "workflow",
-  },
-  {
-    id: "prototyping",
-    index: "06",
-    title: "Experimental Prototyping",
-    titleZh: "实验性原型",
-    description: "用小而完整的原型验证未知体验。",
-    detail:
-      "针对新交互、生成逻辑和空间界面快速建立可运行原型，以真实反馈替代抽象讨论。",
-    tags: ["PROTOTYPE", "RESEARCH"],
-    icon: "prototype",
-  },
-];
+export const workflowSteps = [
+  "Material intake",
+  "Model-assisted structure",
+  "Human design judgement",
+  "Prototype / browser QA",
+  "Release package",
+] as const;
 
 export const projects: Project[] = [
   {
-    id: "synthetic-memory-archive",
+    id: "abstract-persona-system",
     index: "01",
-    title: "Synthetic Memory Archive",
-    subtitle: "合成记忆档案",
+    title: "Abstract Persona System",
+    subtitle: "65 personas / 8 families",
     description:
-      "一个将照片、声音与文字重新编排为可探索时间层的数字档案。AI 负责发现关联，观看者决定记忆如何被阅读。",
-    image: "/images/project-memory",
-    imageAlt:
-      "深色数字档案工作台上叠放着半透明记忆面板、低饱和照片碎片和扫描时间轴",
-    services: ["AI DIRECTION", "ARCHIVE UX", "INTERACTION"],
-    year: "2026",
-    ratio: "landscape",
-  },
-  {
-    id: "emotional-species-atlas",
-    index: "02",
-    title: "Emotional Species Atlas",
-    subtitle: "情绪物种图鉴",
-    description:
-      "把行为与情绪信号转译成不断演化的抽象物种。每个标本不是人格标签，而是一段可被观察的关系。",
-    image: "/images/project-species",
-    imageAlt:
-      "实验档案中的抽象情绪标本，由半透明薄膜、石墨丝线和蓝色精密节点组成",
-    services: ["GENERATIVE ART", "DATA POETICS", "WEBGL"],
+      "一套把人格、语气、颜色和视觉标本组织成可浏览系统的实验。重点不是给人贴标签，而是建立一组可以比较、筛选和延展的抽象角色。",
+    assets: [
+      {
+        src: "/images/persona-home.webp",
+        alt: "Abstract Persona System 的移动端首页界面",
+        width: 900,
+        height: 1600,
+        tone: "paper",
+      },
+      {
+        src: "/images/persona-result.webp",
+        alt: "Abstract Persona System 的人格结果海报",
+        width: 1200,
+        height: 1600,
+        tone: "coral",
+      },
+    ],
+    services: ["PERSONA SYSTEM", "VISUAL TAXONOMY", "MOBILE UI"],
     year: "2026",
     ratio: "portrait",
+    evidence: ["65 personas", "8 families", "result poster system"],
   },
   {
-    id: "autonomous-design-operator",
-    index: "03",
-    title: "Autonomous Design Operator",
-    subtitle: "自主设计操作员",
+    id: "digital-portfolio-experiments",
+    index: "02",
+    title: "Digital Portfolio Experiments",
+    subtitle: "Aeroform / Field Notes / Smoke Fruit Sauce / Units",
     description:
-      "一个帮助设计团队整理素材、生成版式和维护内容的 Agent 工作台。自动化负责周转，人保留最终判断。",
-    image: "/images/project-operator",
-    imageAlt:
-      "深色设计工作台上分布着模块化任务轨道、流程节点、材料样本和实时状态灯",
-    services: ["AGENT UX", "SYSTEM DESIGN", "FRONTEND"],
+      "多个小型网页作品的连续实验：从产品感封面、笔记型内容、食品品牌页面到单位换算工具，验证不同内容如何形成自己的界面节奏。",
+    assets: [
+      {
+        src: "/images/web-aeroform.webp",
+        alt: "Aeroform 作品封面",
+        width: 1600,
+        height: 1000,
+        tone: "paper",
+      },
+      {
+        src: "/images/web-field-notes.webp",
+        alt: "Field Notes 作品封面",
+        width: 1600,
+        height: 1000,
+        tone: "blue",
+      },
+      {
+        src: "/images/web-smoke-fruit.webp",
+        alt: "Smoke Fruit Sauce 作品封面",
+        width: 1600,
+        height: 1000,
+        tone: "coral",
+      },
+      {
+        src: "/images/web-units.webp",
+        alt: "Units 工具作品封面",
+        width: 1600,
+        height: 1000,
+        tone: "blue",
+      },
+    ],
+    services: ["WEB DESIGN", "FRONTEND", "EDITORIAL SYSTEM"],
     year: "2026",
     ratio: "wide",
+    evidence: ["Aeroform", "Field Notes", "Smoke Fruit Sauce", "Units"],
+  },
+  {
+    id: "emotional-interaction-device",
+    index: "03",
+    title: "Emotional Interaction Device",
+    subtitle: "ESP32 / light ring / sensors / sound",
+    description:
+      "一个围绕情绪输入与柔性反馈制作的实体交互原型。ESP32 连接光环、传感器与声音反馈，让数字情绪不只停留在屏幕上。",
+    assets: [
+      {
+        src: "/images/device-tree-hole.webp",
+        alt: "情绪互动装置的硬件结构与展示图",
+        width: 1600,
+        height: 1000,
+        tone: "paper",
+      },
+    ],
+    services: ["ESP32", "SENSOR FEEDBACK", "SOUND + LIGHT"],
+    year: "2026",
+    ratio: "landscape",
+    evidence: ["ESP32 prototype", "light ring", "sensor input", "sound feedback"],
+  },
+  {
+    id: "ai-design-workflow",
+    index: "04",
+    title: "AI Design Workflow",
+    subtitle: "from materials to reviewed release",
+    description:
+      "一条把资料理解、模型辅助、人工判断、浏览器质检和部署打通的工作流。AI 负责加速周转，人负责边界、取舍和最终质量。",
+    assets: [],
+    services: ["AGENT WORKFLOW", "QA LOOP", "DEPLOYMENT"],
+    year: "2026",
+    ratio: "wide",
+    evidence: ["material intake", "human review", "browser QA", "release"],
   },
 ];
 
-export const faqs = [
-  {
-    question: "你们只做视觉设计吗？",
-    answer:
-      "不是。视觉只是系统的一层。我们同时处理信息结构、交互逻辑、动效、前端实现与上线后的可维护性。",
-  },
-  {
-    question: "AI 在项目中具体参与什么？",
-    answer:
-      "它可以参与研究整理、视觉探索、内容变体和生产自动化，但方向、取舍、质量判断与最终责任由人承担。",
-  },
-  {
-    question: "是否可以完成从设计到前端开发？",
-    answer:
-      "可以。我们偏好从概念到部署保持同一套设计标准，让交互细节不会在交接中被稀释。",
-  },
-  {
-    question: "可以制作 Three.js 和创意动效吗？",
-    answer:
-      "可以。我们会先判断 3D 或动效是否真正服务叙事，再为桌面、移动端与低性能设备设计分级体验。",
-  },
-  {
-    question: "项目通常如何开始？",
-    answer:
-      "从一次目标解码开始：确认受众、内容、限制、成功标准和最值得验证的风险，再决定原型的最小完整形态。",
-  },
-  {
-    question: "是否接受实验性学生项目合作？",
-    answer:
-      "接受方向清晰、愿意共同研究并能形成真实输出的合作。请在来信中说明问题、已有材料与希望验证的假设。",
-  },
+export const aboutPoints = [
+  "MORPH//LAB 关注模型、界面、视觉系统和实体交互之间的连接。",
+  "项目尺度保持小而完整：先判断，再组织，再原型，最后交付可以运行的版本。",
+  "审美目标不是制造 AI 感，而是让技术退到体验之后。",
 ] as const;
-

@@ -39,7 +39,6 @@ export function MotionController() {
         if (prefersReducedMotion) {
           gsap.set(
             [
-              "[data-motion-mask]",
               "[data-motion-reveal]",
               ".motion-reveal",
               "[data-project-image]",
@@ -71,25 +70,6 @@ export function MotionController() {
         }
 
         gsap.utils
-          .toArray<HTMLElement>("[data-motion-mask]")
-          .forEach((element) => {
-            gsap.fromTo(
-              element,
-              { clipPath: "inset(0 0 100% 0)" },
-              {
-                clipPath: "inset(0 0 0% 0)",
-                duration: 1.05,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: element,
-                  start: "top 82%",
-                  once: true,
-                },
-              },
-            );
-          });
-
-        gsap.utils
           .toArray<HTMLElement>("[data-motion-reveal], .motion-reveal")
           .forEach((element) => {
             const distance = Number(element.dataset.motionY ?? 24);
@@ -113,18 +93,6 @@ export function MotionController() {
               },
             );
           });
-
-        gsap.utils.toArray<HTMLElement>("[data-scroll-step]").forEach((step) => {
-          ScrollTrigger.create({
-            trigger: step,
-            start: "top center",
-            end: "bottom center",
-            onEnter: () => setActiveStep(step),
-            onEnterBack: () => setActiveStep(step),
-            onLeave: () => step.classList.remove("is-active"),
-            onLeaveBack: () => step.classList.remove("is-active"),
-          });
-        });
 
         if (isDesktop) {
           gsap.utils
@@ -166,9 +134,6 @@ export function MotionController() {
         context.revert();
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         document.documentElement.classList.remove("motion-reduced");
-        document
-          .querySelectorAll<HTMLElement>("[data-scroll-step].is-active")
-          .forEach((step) => step.classList.remove("is-active"));
       };
     };
 
@@ -182,15 +147,4 @@ export function MotionController() {
   }, []);
 
   return null;
-}
-
-function setActiveStep(step: HTMLElement) {
-  const groupName = step.dataset.scrollStepGroup;
-  const selector = groupName
-    ? `[data-scroll-step][data-scroll-step-group="${CSS.escape(groupName)}"]`
-    : "[data-scroll-step]";
-
-  document
-    .querySelectorAll<HTMLElement>(selector)
-    .forEach((candidate) => candidate.classList.toggle("is-active", candidate === step));
 }

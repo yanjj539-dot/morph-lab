@@ -21,7 +21,7 @@ export default function StudioPage() {
       <header className="page-hero page-shell studio-hero">
         <div className="section-kicker">
           <span>INDEX / 02</span>
-          <span>STUDIO NOTES</span>
+          <span>INDEPENDENT DESIGN LAB</span>
         </div>
         <h1 data-motion-mask>A SMALL LAB<br />FOR PRECISE<br />EXPERIMENTS.</h1>
         <div className="page-hero__support" data-motion-reveal>
@@ -60,17 +60,21 @@ export default function StudioPage() {
         </ol>
       </section>
 
-      <section className="studio-data page-section page-shell" aria-labelledby="data-title">
-        <div>
-          <p className="section-label">LAB STATE</p>
-          <h2 id="data-title" data-motion-mask>SMALL ENOUGH<br />TO STAY CURIOUS.</h2>
+      <section className="studio-lab-note page-section page-shell" aria-labelledby="lab-note-title">
+        <div className="section-heading-grid">
+          <div>
+            <p className="section-label">LAB STATE</p>
+            <h2 id="lab-note-title" data-motion-mask>SMALL ENOUGH<br />TO STAY SPECIFIC.</h2>
+          </div>
+          <div className="studio-lab-note__copy" data-motion-reveal>
+            <p>
+              The lab is intentionally independent: project shape follows the question, not a fixed service menu.
+            </p>
+            <p>
+              工作方式保持轻量，但判断不轻量。每次合作都会先定义材料、约束、可验证结果与上线后的真实使用情境。
+            </p>
+          </div>
         </div>
-        <dl>
-          <div><dt>04</dt><dd>DESIGN SYSTEMS</dd></div>
-          <div><dt>12</dt><dd>INTERACTIVE PROTOTYPES</dd></div>
-          <div><dt>27</dt><dd>VISUAL EXPERIMENTS</dd></div>
-          <div><dt>∞</dt><dd>POSSIBLE FORMS</dd></div>
-        </dl>
       </section>
 
       <section className="privacy page-section page-shell" id="privacy" aria-labelledby="privacy-title">

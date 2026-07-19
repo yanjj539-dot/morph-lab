@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 export function ContactForm() {
   const [status, setStatus] = useState("填写后将打开你的邮件应用，不会在网页中储存信息。");
@@ -33,11 +34,12 @@ export function ContactForm() {
       </div>
       <div className="form-row">
         <label htmlFor="project">Project / 项目类型</label>
-        <select id="project" name="project" defaultValue="Interactive web system">
-          <option>Interactive web system</option>
+        <select id="project" name="project" defaultValue="Creative / editorial website">
+          <option>Creative / editorial website</option>
           <option>AI visual direction</option>
+          <option>Interactive system</option>
           <option>Agent workflow design</option>
-          <option>Experimental prototype</option>
+          <option>Hardware or experimental prototype</option>
           <option>Other</option>
         </select>
       </div>
@@ -46,10 +48,10 @@ export function ContactForm() {
         <textarea id="message" name="message" rows={7} required />
       </div>
       <button className="form-submit" type="submit">
-        <span>Compose email</span><span aria-hidden="true">↗</span>
+        <span>Compose email</span>
+        <ArrowUpRight size={17} strokeWidth={1.8} aria-hidden="true" />
       </button>
       <p className="form-status" aria-live="polite">{status}</p>
     </form>
   );
 }
-

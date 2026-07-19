@@ -5,7 +5,7 @@ import { SignalButton } from "../components/SignalButton";
 export const metadata: Metadata = {
   title: "Selected Work — MORPH//LAB",
   description:
-    "Three experimental MORPH//LAB systems exploring memory, emotion and autonomous design operations.",
+    "Four real MORPH//LAB projects across persona systems, digital portfolios, emotional interaction devices and AI design workflows.",
   alternates: { canonical: "/work" },
 };
 
@@ -19,9 +19,9 @@ export default function WorkPage() {
         </div>
         <h1 data-motion-mask>SYSTEMS FOR<br />UNFAMILIAR QUESTIONS.</h1>
         <div className="page-hero__support" data-motion-reveal>
-          <p>三个实验项目，分别处理记忆、情绪与设计生产。</p>
+          <p>四个真实项目，分别处理人格系统、数字作品集、情绪交互装置与 AI 设计工作流。</p>
           <p>
-            每个项目都从具体问题出发：先建立清楚的内容规则，再决定视觉、交互与技术如何参与。
+            每个项目都从具体问题出发：先建立清楚的内容规则，再决定界面、动效、生成能力与硬件如何参与。
           </p>
         </div>
       </header>
