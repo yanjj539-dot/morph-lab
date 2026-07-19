@@ -141,5 +141,14 @@ test("supports a repository-scoped GitHub Pages static export", async () => {
   assert.doesNotMatch(layout, /next\/headers/);
   assert.doesNotMatch(sitemap, /next\/headers/);
   assert.match(siteData, /withBasePath/);
+  for (const componentPath of [
+    "../app/components/SiteHeader.tsx",
+    "../app/components/SiteFooter.tsx",
+    "../app/components/SignalButton.tsx",
+    "../app/components/ProjectShowcase.tsx",
+  ]) {
+    const component = await readFile(new URL(componentPath, import.meta.url), "utf8");
+    assert.doesNotMatch(component, /next\/link/);
+  }
   await access(new URL("../public/.nojekyll", import.meta.url));
 });

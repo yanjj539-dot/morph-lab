@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { withBasePath } from "./lib/paths";
 
 export default function NotFound() {
   return (
@@ -8,9 +8,9 @@ export default function NotFound() {
       <p>
         页面可能已经移动，或这个实验尚未发布。返回首页可以重新进入 MORPH//LAB 的作品与方法。
       </p>
-      <Link className="not-found-link" href="/">
+      <a className="not-found-link" href={withBasePath("/")}>
         Back to home
-      </Link>
+      </a>
     </main>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { withBasePath } from "../lib/paths";
 
 const FOOTER_LINKS = [
   { href: "/work", label: "Work" },
@@ -13,14 +13,14 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-brand">
-        <Link href="/">MORPH//LAB</Link>
+        <a href={withBasePath("/")}>MORPH//LAB</a>
         <p>Design, systems, and digital experiments.</p>
       </div>
       <div className="footer-links" aria-label="Footer">
         {FOOTER_LINKS.map((item) => (
-          <Link key={item.href} href={item.href}>
+          <a key={item.href} href={withBasePath(item.href)}>
             {item.label}
-          </Link>
+          </a>
         ))}
         <a href="mailto:hello@morphlab.design">Email</a>
       </div>

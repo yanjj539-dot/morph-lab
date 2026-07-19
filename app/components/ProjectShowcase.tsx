@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import type { PointerEvent } from "react";
 import { projects, workflowSteps } from "../data/site";
+import { withBasePath } from "../lib/paths";
 
 function moveProjectCursor(event: PointerEvent<HTMLAnchorElement>) {
   const rect = event.currentTarget.getBoundingClientRect();
@@ -61,14 +61,14 @@ export function ProjectShowcase({ limit }: { limit?: number }) {
             ) : (
               <WorkflowDiagram />
             )}
-            <Link
+            <a
               className="project-cursor"
-              href={`/work#${project.id}`}
+              href={withBasePath(`/work#${project.id}`)}
               aria-label={`View ${project.title} case study`}
               onPointerMove={moveProjectCursor}
             >
               <span>View case study</span>
-            </Link>
+            </a>
           </div>
           <div className="project-copy" data-motion-reveal>
             <div className="project-meta">

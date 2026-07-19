@@ -5,6 +5,15 @@ export const siteUrl = (
 ).replace(/\/$/, "");
 
 export function withBasePath(path: string) {
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  return `${basePath}${normalizedPath}`;
+  if (!path.startsWith("/")) return path;
+
+  const [, pathname, suffix] = path.match(/^([^?#]*)(.*)$/) ?? ["", path, ""];
+  const needsTrailingSlash =
+    Boolean(basePath) &&
+    pathname !== "/" &&
+    !pathname.endsWith("/") &&
+    !pathname.split("/").at(-1)?.includes(".");
+  const pagesPath = needsTrailingSlash ? `${pathname}/` : pathname;
+
+  return `${basePath}${pagesPath}${suffix}`;
 }

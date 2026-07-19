@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { ReactNode } from "react";
+import { withBasePath } from "../lib/paths";
 
 type SignalButtonProps = {
   href: string;
@@ -18,12 +18,12 @@ export function SignalButton({
   className = "",
 }: SignalButtonProps) {
   return (
-    <Link
-      href={href}
+    <a
+      href={withBasePath(href)}
       className={`signal-button signal-button--${variant} ${className}`.trim()}
     >
       <span className="signal-button__label">{children}</span>
       <ArrowUpRight className="signal-button__icon" size={16} strokeWidth={1.8} aria-hidden="true" />
-    </Link>
+    </a>
   );
 }
