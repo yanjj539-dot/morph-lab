@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://yanjj539-dot.github.io/morph-lab/sitemap.xml
