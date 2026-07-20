@@ -1,2 +1,3 @@
-:HL["/morph-lab/_next/static/chunks/13rf.r8~j71n8.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"-ziSqfWzaKuo6R4cr9M1x"}
+:HL["/morph-lab/_next/static/chunks/0m2670iccxe_p.css","style"]
+:HL["/morph-lab/images/morph-hero-materials-v1.webp","image",{"fetchPriority":"high"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"TQz956SxxJX3eHel1KzGc"}
