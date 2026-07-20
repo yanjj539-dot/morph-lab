@@ -1,5 +1,8 @@
+/* Static <img> URLs are base-path-prefixed explicitly for GitHub Pages. */
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import { SignalButton } from "../components/SignalButton";
+import { withBasePath } from "../lib/paths";
 
 export const metadata: Metadata = {
   title: "Studio — MORPH//LAB",
@@ -31,6 +34,22 @@ export default function StudioPage() {
           </p>
         </div>
       </header>
+
+      <figure className="studio-portrait page-shell" data-motion-reveal>
+        <div className="studio-portrait__frame">
+          <img
+            src={withBasePath("/images/morph-studio-workbench-v1.webp")}
+            alt="纸张档案、界面模型、传感器灯环与线缆组成的 MORPH//LAB 独立实验台概念配图"
+            width={1600}
+            height={1000}
+            loading="lazy"
+          />
+        </div>
+        <figcaption>
+          <span>STUDIO PLATE / MATERIALS, INTERFACE, DEVICE</span>
+          <span>AI-GENERATED / HUMAN-CURATED / 2026</span>
+        </figcaption>
+      </figure>
 
       <section className="studio-statement page-section page-shell" aria-labelledby="position-title">
         <p className="section-label">POSITION / 2026</p>

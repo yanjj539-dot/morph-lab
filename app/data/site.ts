@@ -151,7 +151,15 @@ export const projects: Project[] = [
     subtitle: "from materials to reviewed release",
     description:
       "一条把资料理解、模型辅助、人工判断、浏览器质检和部署打通的工作流。AI 负责加速周转，人负责边界、取舍和最终质量。",
-    assets: [],
+    assets: [
+      {
+        src: withBasePath("/images/morph-workflow-quality-gate-v1.webp"),
+        alt: "材料输入、结构整理、人工评审、浏览器质检与发布包组成的五阶段 AI 设计工作流概念配图",
+        width: 1600,
+        height: 1000,
+        tone: "blue",
+      },
+    ],
     services: ["AGENT WORKFLOW", "QA LOOP", "DEPLOYMENT"],
     year: "2026",
     ratio: "wide",
