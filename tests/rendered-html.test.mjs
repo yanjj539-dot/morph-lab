@@ -83,6 +83,8 @@ test("server-renders every public route with independent metadata", async () => 
 test("ships real project assets and the responsive scroll journey", async () => {
   const packageJson = await readFile(new URL("../package.json", import.meta.url), "utf8");
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const studio = await readFile(new URL("../app/studio/page.tsx", import.meta.url), "utf8");
+  const siteData = await readFile(new URL("../app/data/site.ts", import.meta.url), "utf8");
   const journey = await readFile(
     new URL("../app/components/ScrollJourney.tsx", import.meta.url),
     "utf8",
@@ -94,6 +96,18 @@ test("ships real project assets and the responsive scroll journey", async () => 
   assert.doesNotMatch(packageJson, /react-loading-skeleton|drizzle/);
   assert.match(page, /<ScrollJourney \/>/);
   assert.doesNotMatch(page, /<MorphCore \/>|<LiveGenerativeSystem \/>/);
+  assert.match(
+    page,
+    /src=\{withBasePath\("\/images\/morph-hero-materials-v1\.webp"\)\}/,
+  );
+  assert.match(
+    studio,
+    /src=\{withBasePath\("\/images\/morph-studio-workbench-v1\.webp"\)\}/,
+  );
+  assert.match(
+    siteData,
+    /src:\s*withBasePath\("\/images\/morph-workflow-quality-gate-v1\.webp"\)/,
+  );
 
   assert.match(journey, /prefers-reduced-motion/);
   assert.match(journey, /setDrawRange/);
@@ -121,6 +135,9 @@ test("ships real project assets and the responsive scroll journey", async () => 
       "../public/images/web-smoke-fruit.webp",
       "../public/images/web-units.webp",
       "../public/images/device-tree-hole.webp",
+      "../public/images/morph-hero-materials-v1.webp",
+      "../public/images/morph-studio-workbench-v1.webp",
+      "../public/images/morph-workflow-quality-gate-v1.webp",
     ].map((path) => access(new URL(path, import.meta.url))),
   );
 });
