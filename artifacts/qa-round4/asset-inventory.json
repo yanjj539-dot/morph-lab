@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "round": 4,
+  "stages": {
+    "observe": {
+      "primary": {
+        "count": 2,
+        "names": [
+          "OBS_research_table",
+          "OBS_scanner_body"
+        ]
+      },
+      "secondary": {
+        "count": 5,
+        "names": [
+          "OBS_monitor_frame",
+          "OBS_folder",
+          "OBS_material_tray",
+          "OBS_papers",
+          "OBS_output_assembly"
+        ]
+      },
+      "tertiary": {
+        "count": 12,
+        "names": [
+          "OBS_lid_hinge_0",
+          "OBS_scanner_screw_0",
+          "OBS_paper_guide_0",
+          "OBS_tray_divider_0",
+          "OBS_clip_0",
+          "OBS_table_leg_-2.65_-1.25",
+          "OBS_table_seam",
+          "OBS_control_recess",
+          "OBS_control_key_0",
+          "OBS_status_window",
+          "OBS_scanner_rail",
+          "OBS_folder_tab"
+        ]
+      }
+    },
+    "structure": {
+      "primary": {
+        "count": 2,
+        "names": [
+          "STR_console",
+          "STR_grid_board"
+        ]
+      },
+      "secondary": {
+        "count": 5,
+        "names": [
+          "STR_panels",
+          "STR_token_dock",
+          "STR_type_ruler",
+          "STR_control_strip",
+          "STR_booklet"
+        ]
+      },
+      "tertiary": {
+        "count": 12,
+        "names": [
+          "STR_mount_rail_0",
+          "STR_card_clip_0",
+          "STR_base_bolt_0",
+          "STR_token_slot_0",
+          "STR_pin_0",
+          "STR_console_seam",
+          "STR_connector_0",
+          "STR_ruler_track",
+          "STR_phase_chip",
+          "STR_grid_h_0",
+          "STR_grid_v_0",
+          "STR_booklet_band"
+        ]
+      }
+    },
+    "prototype": {
+      "primary": {
+        "count": 2,
+        "names": [
+          "PRO_test_bench",
+          "PRO_keyboard"
+        ]
+      },
+      "secondary": {
+        "count": 6,
+        "names": [
+          "PRO_monitor_frame",
+          "PRO_phone_frame",
+          "PRO_tablet_frame",
+          "PRO_esp32_board",
+          "PRO_sensor",
+          "PRO_light_ring"
+        ]
+      },
+      "tertiary": {
+        "count": 12,
+        "names": [
+          "PRO_monitor_vent_0",
+          "PRO_monitor_hinge",
+          "PRO_phone_backrail",
+          "PRO_rubber_foot_0",
+          "PRO_sensor_slot_0",
+          "PRO_pin_0",
+          "PRO_board_screw_1",
+          "PRO_key_0_0",
+          "PRO_bench_seam",
+          "PRO_tablet_hinge",
+          "PRO_phone_stand",
+          "PRO_trackpad"
+        ]
+      }
+    },
+    "release": {
+      "primary": {
+        "count": 2,
+        "names": [
+          "REL_delivery_station",
+          "REL_archive_box"
+        ]
+      },
+      "secondary": {
+        "count": 6,
+        "names": [
+          "REL_monitor_frame",
+          "REL_laptop_base",
+          "REL_phone_frame",
+          "REL_project_rack",
+          "REL_qa_panel",
+          "REL_final_panel"
+        ]
+      },
+      "tertiary": {
+        "count": 12,
+        "names": [
+          "REL_laptop_hinge",
+          "REL_laptop_key_0",
+          "REL_archive_corner_0",
+          "REL_archive_latch",
+          "REL_cable_channel",
+          "REL_station_bolt_0",
+          "REL_qr_0_0",
+          "REL_package_safety_guide_0",
+          "REL_status_tag_0",
+          "REL_station_seam",
+          "REL_phone_stand",
+          "REL_project_card_0"
+        ]
+      }
+    }
+  }
+}

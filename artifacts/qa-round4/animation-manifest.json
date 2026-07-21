@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "timeline": {
+    "frameStart": 0,
+    "frameEnd": 120,
+    "fps": 24,
+    "durationSeconds": 5.0
+  },
+  "stages": {
+    "observe": {
+      "clipName": "OBSERVE_ACTION",
+      "durationFrames": 120,
+      "durationSeconds": 5.0,
+      "animatedParentNames": [
+        "OBS_crop_frame",
+        "OBS_output_assembly",
+        "OBS_papers",
+        "OBS_scan_beam"
+      ],
+      "events": [
+        {
+          "name": "material_arrival",
+          "frameRange": [
+            0,
+            28
+          ],
+          "offsetFrames": 0,
+          "offsetMilliseconds": 0,
+          "classification": "primary",
+          "animatedParentName": "OBS_papers"
+        },
+        {
+          "name": "scanner_beam",
+          "frameRange": [
+            32,
+            70
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "OBS_scan_beam"
+        },
+        {
+          "name": "output_card",
+          "frameRange": [
+            74,
+            102
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "OBS_output_assembly"
+        },
+        {
+          "name": "crop_marking",
+          "frameRange": [
+            106,
+            120
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "OBS_crop_frame"
+        }
+      ]
+    },
+    "structure": {
+      "clipName": "STRUCTURE_ACTION",
+      "durationFrames": 120,
+      "durationSeconds": 5.0,
+      "animatedParentNames": [
+        "STR_connectors",
+        "STR_final_panel",
+        "STR_panels",
+        "STR_tokens"
+      ],
+      "events": [
+        {
+          "name": "panels_attach",
+          "frameRange": [
+            0,
+            36
+          ],
+          "offsetFrames": 0,
+          "offsetMilliseconds": 0,
+          "classification": "primary",
+          "animatedParentName": "STR_panels"
+        },
+        {
+          "name": "token_seats",
+          "frameRange": [
+            40,
+            68
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "STR_tokens"
+        },
+        {
+          "name": "connectors_establish",
+          "frameRange": [
+            72,
+            96
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "STR_connectors"
+        },
+        {
+          "name": "wireframe_final_panel_resolves",
+          "frameRange": [
+            100,
+            120
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "STR_final_panel"
+        }
+      ]
+    },
+    "prototype": {
+      "clipName": "PROTOTYPE_ACTION",
+      "durationFrames": 120,
+      "durationSeconds": 5.0,
+      "animatedParentNames": [
+        "PRO_cursor",
+        "PRO_light_ring",
+        "PRO_phone_device",
+        "PRO_sensor",
+        "PRO_ui_layer"
+      ],
+      "events": [
+        {
+          "name": "monitor_ui_starts",
+          "frameRange": [
+            0,
+            28
+          ],
+          "offsetFrames": 0,
+          "offsetMilliseconds": 0,
+          "classification": "primary",
+          "animatedParentName": "PRO_ui_layer"
+        },
+        {
+          "name": "cursor_moves",
+          "frameRange": [
+            32,
+            56
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "PRO_cursor"
+        },
+        {
+          "name": "phone_syncs",
+          "frameRange": [
+            60,
+            80
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "PRO_phone_device"
+        },
+        {
+          "name": "sensor_triggers",
+          "frameRange": [
+            84,
+            100
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "PRO_sensor"
+        },
+        {
+          "name": "light_ring_responds",
+          "frameRange": [
+            104,
+            120
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "PRO_light_ring"
+        }
+      ]
+    },
+    "release": {
+      "clipName": "RELEASE_ACTION",
+      "durationFrames": 120,
+      "durationSeconds": 5.0,
+      "animatedParentNames": [
+        "REL_devices",
+        "REL_final_panel",
+        "REL_package_lid",
+        "REL_qa_rows",
+        "REL_version"
+      ],
+      "events": [
+        {
+          "name": "qa_rows_pass",
+          "frameRange": [
+            0,
+            28
+          ],
+          "offsetFrames": 0,
+          "offsetMilliseconds": 0,
+          "classification": "primary",
+          "animatedParentName": "REL_qa_rows"
+        },
+        {
+          "name": "draft_becomes_live",
+          "frameRange": [
+            32,
+            52
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "REL_version"
+        },
+        {
+          "name": "devices_synchronize",
+          "frameRange": [
+            56,
+            76
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "REL_devices"
+        },
+        {
+          "name": "package_closes_after_safe",
+          "frameRange": [
+            80,
+            104
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "REL_package_lid"
+        },
+        {
+          "name": "final_panel_opens",
+          "frameRange": [
+            108,
+            120
+          ],
+          "offsetFrames": 4,
+          "offsetMilliseconds": 167,
+          "classification": "secondary",
+          "animatedParentName": "REL_final_panel"
+        }
+      ]
+    }
+  }
+}

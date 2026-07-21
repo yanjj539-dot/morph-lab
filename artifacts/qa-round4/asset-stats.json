@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "limits": {
+    "perAssetBytes": 1500000,
+    "totalBytes": 5000000
+  },
+  "totalBytes": 1303444,
+  "assets": [
+    {
+      "stage": "observe",
+      "boundsMin": [
+        -3.56603,
+        -1.9,
+        -0.0
+      ],
+      "boundsMax": [
+        3.2,
+        1.9,
+        3.12
+      ],
+      "collisionProxy": "collection-aabb",
+      "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\observe.glb",
+      "bytes": 265340,
+      "nodes": 68,
+      "meshes": 62,
+      "materials": 14,
+      "triangles": 15302,
+      "animations": [
+        "OBSERVE_OUTPUT_CARD",
+        "OBSERVE_CROP_MARKING",
+        "OBSERVE_MATERIAL_ARRIVAL",
+        "OBSERVE_ACTION"
+      ],
+      "animationDurationsSeconds": {
+        "OBSERVE_OUTPUT_CARD": 5.0,
+        "OBSERVE_CROP_MARKING": 5.0,
+        "OBSERVE_MATERIAL_ARRIVAL": 5.0,
+        "OBSERVE_ACTION": 5.0
+      },
+      "extensionsUsed": [
+        "KHR_draco_mesh_compression",
+        "KHR_materials_transmission",
+        "KHR_materials_ior"
+      ],
+      "glbVersion": 2,
+      "declaredLength": 265340
+    },
+    {
+      "stage": "structure",
+      "boundsMin": [
+        -3.375,
+        -1.8,
+        0.0
+      ],
+      "boundsMax": [
+        3.3,
+        1.8,
+        3.705
+      ],
+      "collisionProxy": "collection-aabb",
+      "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\structure.glb",
+      "bytes": 347412,
+      "nodes": 95,
+      "meshes": 89,
+      "materials": 13,
+      "triangles": 18350,
+      "animations": [
+        "STRUCTURE_CONNECTORS",
+        "STRUCTURE_FINAL_PANEL",
+        "STRUCTURE_ACTION",
+        "STRUCTURE_TOKEN_SEATS"
+      ],
+      "animationDurationsSeconds": {
+        "STRUCTURE_CONNECTORS": 5.0,
+        "STRUCTURE_FINAL_PANEL": 5.0,
+        "STRUCTURE_ACTION": 5.0,
+        "STRUCTURE_TOKEN_SEATS": 5.0
+      },
+      "extensionsUsed": [
+        "KHR_draco_mesh_compression",
+        "KHR_materials_transmission",
+        "KHR_materials_ior"
+      ],
+      "glbVersion": 2,
+      "declaredLength": 347412
+    },
+    {
+      "stage": "prototype",
+      "boundsMin": [
+        -3.3,
+        -1.925,
+        0.0
+      ],
+      "boundsMax": [
+        3.3,
+        1.925,
+        2.89048
+      ],
+      "collisionProxy": "collection-aabb",
+      "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\prototype.glb",
+      "bytes": 407880,
+      "nodes": 104,
+      "meshes": 99,
+      "materials": 13,
+      "triangles": 20522,
+      "animations": [
+        "PROTOTYPE_CURSOR",
+        "PROTOTYPE_LIGHT_RING",
+        "PROTOTYPE_SENSOR",
+        "PROTOTYPE_ACTION",
+        "PROTOTYPE_PHONE_SYNC"
+      ],
+      "animationDurationsSeconds": {
+        "PROTOTYPE_CURSOR": 5.0,
+        "PROTOTYPE_LIGHT_RING": 5.0,
+        "PROTOTYPE_SENSOR": 5.0,
+        "PROTOTYPE_ACTION": 5.0,
+        "PROTOTYPE_PHONE_SYNC": 5.0
+      },
+      "extensionsUsed": [
+        "KHR_draco_mesh_compression",
+        "KHR_materials_transmission",
+        "KHR_materials_ior"
+      ],
+      "glbVersion": 2,
+      "declaredLength": 407880
+    },
+    {
+      "stage": "release",
+      "boundsMin": [
+        -3.5,
+        -2.01,
+        0.0
+      ],
+      "boundsMax": [
+        3.35,
+        1.95,
+        2.71
+      ],
+      "collisionProxy": "collection-aabb",
+      "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\release.glb",
+      "bytes": 282812,
+      "nodes": 86,
+      "meshes": 80,
+      "materials": 14,
+      "triangles": 12742,
+      "animations": [
+        "RELEASE_FINAL_PANEL",
+        "RELEASE_PACKAGE_CLOSE",
+        "RELEASE_QA_ROWS",
+        "RELEASE_DRAFT_TO_LIVE",
+        "RELEASE_ACTION"
+      ],
+      "animationDurationsSeconds": {
+        "RELEASE_FINAL_PANEL": 5.0,
+        "RELEASE_PACKAGE_CLOSE": 5.0,
+        "RELEASE_QA_ROWS": 5.0,
+        "RELEASE_DRAFT_TO_LIVE": 5.0,
+        "RELEASE_ACTION": 5.0
+      },
+      "extensionsUsed": [
+        "KHR_draco_mesh_compression",
+        "KHR_materials_transmission",
+        "KHR_materials_ior"
+      ],
+      "glbVersion": 2,
+      "declaredLength": 282812
+    }
+  ],
+  "status": "pass",
+  "failures": []
+}

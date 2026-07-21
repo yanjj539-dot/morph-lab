@@ -16,6 +16,8 @@ import {
   ROUND2_STAGE_ORDER,
   ROUND3_STAGE_ASSETS,
   ROUND3_STAGE_ORDER,
+  ROUND4_STAGE_ASSETS,
+  ROUND4_STAGE_ORDER,
   type StageAssetManifest,
 } from "./assetManifest";
 
@@ -27,6 +29,7 @@ export type LoadedStageModel = {
 
 export type Round2ModelMap = Record<JourneyStageId, Group>;
 export type Round3ModelMap = Record<JourneyStageId, LoadedStageModel>;
+export type Round4ModelMap = Record<JourneyStageId, LoadedStageModel>;
 
 export type StageModelLoadOptions = {
   signal?: AbortSignal;
@@ -133,6 +136,17 @@ export function loadRound3Models(
     ROUND3_STAGE_ASSETS,
     ROUND3_STAGE_ORDER,
     "Round3",
+    options,
+  );
+}
+
+export function loadRound4Models(
+  options: StageModelLoadOptions = {},
+): Promise<Round4ModelMap> {
+  return loadStageModels(
+    ROUND4_STAGE_ASSETS,
+    ROUND4_STAGE_ORDER,
+    "Round4",
     options,
   );
 }

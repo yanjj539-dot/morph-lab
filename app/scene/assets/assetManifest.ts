@@ -19,6 +19,44 @@ export type TextureBinding = {
 
 export const DRACO_DECODER_PATH = withBasePath("/draco/gltf/");
 
+export const ROUND4_STAGE_ORDER: readonly JourneyStageId[] = [
+  "observe",
+  "structure",
+  "prototype",
+  "release",
+] as const;
+
+export const ROUND4_STAGE_ASSETS: Record<JourneyStageId, StageAssetManifest> = {
+  observe: {
+    id: "observe",
+    modelUrl: withBasePath("/models/round-4/observe.glb"),
+    rootPosition: [-6, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "OBSERVE_ACTION",
+  },
+  structure: {
+    id: "structure",
+    modelUrl: withBasePath("/models/round-4/structure.glb"),
+    rootPosition: [-2, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "STRUCTURE_ACTION",
+  },
+  prototype: {
+    id: "prototype",
+    modelUrl: withBasePath("/models/round-4/prototype.glb"),
+    rootPosition: [2, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "PROTOTYPE_ACTION",
+  },
+  release: {
+    id: "release",
+    modelUrl: withBasePath("/models/round-4/release.glb"),
+    rootPosition: [6, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "RELEASE_ACTION",
+  },
+};
+
 export const ROUND3_STAGE_ORDER: readonly JourneyStageId[] = [
   "observe",
   "structure",
@@ -166,4 +204,8 @@ export const ROUND2_TEXTURE_BINDINGS: readonly TextureBinding[] = [
 
 export const ROUND3_TEXTURE_BINDINGS: readonly TextureBinding[] = [
   ...ROUND2_TEXTURE_BINDINGS,
+] as const;
+
+export const ROUND4_TEXTURE_BINDINGS: readonly TextureBinding[] = [
+  ...ROUND3_TEXTURE_BINDINGS,
 ] as const;
