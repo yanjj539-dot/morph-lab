@@ -82,7 +82,6 @@ export function createScreenMaterial(
     roughness: 0.31,
     metalness: 0,
     emissive: new Color("#ffffff"),
-    emissiveMap: texture,
     emissiveIntensity: 0.16,
     polygonOffset: true,
     polygonOffsetFactor: -1,

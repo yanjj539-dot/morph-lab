@@ -208,6 +208,16 @@ test("screen and print shaders consume each surface borderRadius", () => {
   }
 });
 
+test("screen emission stays restrained without an untransformed emissive map", () => {
+  const screenConfig = SCREEN_MANIFEST.find((config) => config.kind === "screen");
+  assert.ok(screenConfig);
+  const { material } = createScreenMaterial(new Texture(), screenConfig);
+
+  assert.equal(material.emissiveMap, null);
+  assert.ok(material.emissiveIntensity > 0);
+  assert.ok(material.emissiveIntensity <= 0.16);
+});
+
 test("Round 2 texture loading keeps original binding URLs and legacy single-layer surfaces", async () => {
   const [{ applyRound2Textures }, { ROUND2_TEXTURE_BINDINGS }] = await Promise.all([
     import("../app/scene/assets/loadTextures.ts"),
