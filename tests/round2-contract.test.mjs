@@ -246,3 +246,50 @@ test("round 2 ships a modular, pausable, disposable Three.js runtime", async () 
     ].map((path) => access(new URL(path, import.meta.url))),
   );
 });
+
+test("round 2 wires the split ScrollJourney shell to the Three runtime only on capable desktop motion paths", async () => {
+  const [scrollJourney, journeyProgress, journeyLabels, journeyFallback] = await Promise.all(
+    [
+      "../app/components/ScrollJourney/ScrollJourney.tsx",
+      "../app/components/ScrollJourney/JourneyProgress.tsx",
+      "../app/components/ScrollJourney/JourneyLabels.tsx",
+      "../app/components/ScrollJourney/JourneyFallback.tsx",
+    ].map((path) => readFile(new URL(path, import.meta.url), "utf8")),
+  );
+
+  assert.match(scrollJourney, /import\(\s*["'][^"']*createJourneyScene["']\s*\)/);
+  assert.match(scrollJourney, /matchMedia\(["']\(min-width:\s*1024px\)["']\)/);
+  assert.match(scrollJourney, /matchMedia\(["']\(prefers-reduced-motion:\s*reduce\)["']\)/);
+  assert.match(scrollJourney, /desktopQuery\.matches\s*&&\s*!reducedMotionQuery\.matches/);
+  assert.match(scrollJourney, /canUseWebGL\(\)/);
+  assert.match(scrollJourney, /AbortController/);
+  assert.match(scrollJourney, /\.abort\(\)/);
+  assert.match(scrollJourney, /labelHost/);
+  assert.match(scrollJourney, /onReady/);
+  assert.match(scrollJourney, /onError/);
+  assert.match(scrollJourney, /loading|isLoading/);
+  assert.match(scrollJourney, /fallback|isFallback/);
+  assert.match(scrollJourney, /error|hasError/);
+  assert.match(scrollJourney, /setProgress/);
+  assert.doesNotMatch(scrollJourney, /BoxGeometry|PCFSoftShadowMap/);
+
+  assert.match(journeyProgress, /<button\b/);
+  assert.match(journeyProgress, /type=["']button["']/);
+  assert.match(journeyProgress, /aria-current/);
+  assert.match(journeyProgress, /JOURNEY_STAGE_PROGRESS/);
+  assert.match(journeyProgress, /scrollToStage|onStageSelect|onSelectStage/);
+  assert.match(journeyLabels, /labelHost|round2-projected-label/);
+  assert.match(journeyFallback, /JOURNEY_STAGES/);
+  assert.match(journeyFallback, /fallbackSrc/);
+});
+
+test("round 2 keeps global motion cleanup scoped to MotionController-owned triggers", async () => {
+  const motionController = await readFile(
+    new URL("../app/components/MotionController.tsx", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(motionController, /gsap\.context/);
+  assert.match(motionController, /context\.revert\(\)/);
+  assert.doesNotMatch(motionController, /ScrollTrigger\.getAll\(\)\.forEach\([\s\S]*?kill/);
+});

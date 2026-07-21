@@ -66,8 +66,10 @@ export function createProjectedLabels(
       for (const label of labels) {
         projected.copy(label.anchor).project(camera);
 
-        const x = (projected.x * 0.5 + 0.5) * width;
-        const y = (-projected.y * 0.5 + 0.5) * height;
+        const projectedX = (projected.x * 0.5 + 0.5) * width;
+        const projectedY = (-projected.y * 0.5 + 0.5) * height;
+        const x = Math.min(width - 80, Math.max(80, projectedX));
+        const y = Math.min(height - 32, Math.max(32, projectedY));
         const visible = projected.z > -1 && projected.z < 1;
         const opacity = visible ? activeOpacity(label.id, progress) : 0;
 

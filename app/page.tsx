@@ -34,30 +34,18 @@ export default function Home() {
           <div className="hero-composition">
             <figure className="hero-art" data-motion-reveal>
               <img
-                src={withBasePath("/images/morph-hero-materials-v1.webp")}
-                alt="纸张、界面原型、蓝色校准件和硬件组件组成的 MORPH//LAB 实验材料台概念配图"
+                src={withBasePath("/fallback/round-2/observe.webp")}
+                alt="MORPH//LAB Observe 阶段的 Blender 工作台，包含输入材料、扫描组件与项目界面"
                 width={1600}
                 height={1000}
                 loading="eager"
                 fetchPriority="high"
               />
               <figcaption>
-                <span>LAB PLATE / 001</span>
-                <span>HUMAN-CURATED STUDY</span>
+                <span>SCENE PLATE / OBSERVE</span>
+                <span>BLENDER-AUTHORED / REAL-TIME MATCH</span>
               </figcaption>
             </figure>
-            <div className="hero-card hero-card--note">
-              <span>Observe</span>
-              <p>materials / constraints / tone</p>
-            </div>
-            <div className="hero-card hero-card--system">
-              <span>Structure</span>
-              <p>rules / layout / rhythm</p>
-            </div>
-            <div className="hero-card hero-card--release">
-              <span>Release</span>
-              <p>browser QA / deploy / iterate</p>
-            </div>
           </div>
           <a className="scroll-cue" href="#process">
             <span>SCROLL THROUGH THE PROCESS</span>

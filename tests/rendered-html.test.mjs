@@ -86,21 +86,19 @@ test("ships real project assets and the responsive scroll journey", async () => 
   const studio = await readFile(new URL("../app/studio/page.tsx", import.meta.url), "utf8");
   const siteData = await readFile(new URL("../app/data/site.ts", import.meta.url), "utf8");
   const journeyData = await readFile(new URL("../app/data/journey.ts", import.meta.url), "utf8");
-  const journey = await readFile(
-    new URL("../app/components/ScrollJourney.tsx", import.meta.url),
-    "utf8",
-  );
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
   assert.match(packageJson, /"three"/);
   assert.match(packageJson, /"gsap"/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton|drizzle/);
+  assert.match(page, /import ScrollJourney from "\.\/components\/ScrollJourney"/);
   assert.match(page, /<ScrollJourney \/>/);
   assert.doesNotMatch(page, /<MorphCore \/>|<LiveGenerativeSystem \/>/);
   assert.match(
     page,
-    /src=\{withBasePath\("\/images\/morph-hero-materials-v1\.webp"\)\}/,
+    /src=\{withBasePath\("\/fallback\/round-2\/observe\.webp"\)\}/,
   );
+  assert.doesNotMatch(page, /hero-card|hero-card--note|hero-card--system|hero-card--release/);
   assert.match(
     studio,
     /src=\{withBasePath\("\/images\/morph-studio-workbench-v1\.webp"\)\}/,
@@ -113,19 +111,10 @@ test("ships real project assets and the responsive scroll journey", async () => 
   assert.match(journeyData, /export type JourneyStage/);
   assert.match(journeyData, /export const JOURNEY_STAGE_PROGRESS = \[0\.08, 0\.36, 0\.63, 0\.9\] as const/);
   assert.match(journeyData, /export const JOURNEY_STAGES/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/images\/morph-hero-materials-v1\.webp"\)/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/images\/morph-studio-workbench-v1\.webp"\)/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/images\/web-aeroform\.webp"\)/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/images\/morph-workflow-quality-gate-v1\.webp"\)/);
-
-  assert.match(journey, /prefers-reduced-motion/);
-  assert.match(journey, /setDrawRange/);
-  assert.match(journey, /Math\.min\([^\n]*1\.5/);
-  assert.match(journey, /cancelAnimationFrame/);
-  assert.match(journey, /renderer\.dispose\(\)/);
-  assert.match(journey, /forceContextLoss\(\)/);
-  assert.match(journey, /disconnect\(\)/);
-  assert.doesNotMatch(journey, /AdditiveBlending|Math\.random\(/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-2\/observe\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-2\/structure\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-2\/prototype\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-2\/release\.webp"\)/);
 
   assert.match(css, /--color-sky:\s*#bfd4f5/i);
   assert.match(css, /--color-paper:\s*#f6f5ef/i);
@@ -144,10 +133,58 @@ test("ships real project assets and the responsive scroll journey", async () => 
       "../public/images/web-smoke-fruit.webp",
       "../public/images/web-units.webp",
       "../public/images/device-tree-hole.webp",
-      "../public/images/morph-hero-materials-v1.webp",
       "../public/images/morph-studio-workbench-v1.webp",
       "../public/images/morph-workflow-quality-gate-v1.webp",
+      "../public/fallback/round-2/observe.webp",
+      "../public/fallback/round-2/structure.webp",
+      "../public/fallback/round-2/prototype.webp",
+      "../public/fallback/round-2/release.webp",
     ].map((path) => access(new URL(path, import.meta.url))),
+  );
+});
+
+test("ships the split round 2 ScrollJourney component surface", async () => {
+  await assert.rejects(
+    access(new URL("../app/components/ScrollJourney.tsx", import.meta.url)),
+    /ENOENT/,
+  );
+
+  const [
+    scrollJourney,
+    journeyUi,
+    journeyProgress,
+    journeyLabels,
+    journeyFallback,
+    index,
+    css,
+  ] = await Promise.all(
+    [
+      "../app/components/ScrollJourney/ScrollJourney.tsx",
+      "../app/components/ScrollJourney/JourneyUI.tsx",
+      "../app/components/ScrollJourney/JourneyProgress.tsx",
+      "../app/components/ScrollJourney/JourneyLabels.tsx",
+      "../app/components/ScrollJourney/JourneyFallback.tsx",
+      "../app/components/ScrollJourney/index.ts",
+      "../app/globals.css",
+    ].map((path) => readFile(new URL(path, import.meta.url), "utf8")),
+  );
+
+  assert.match(index, /export\s+\{\s*default\s*\}\s+from\s+["']\.\/ScrollJourney["']/);
+  assert.match(scrollJourney, /JourneyUI/);
+  assert.match(scrollJourney, /JourneyProgress/);
+  assert.match(scrollJourney, /JourneyLabels/);
+  assert.match(scrollJourney, /JourneyFallback/);
+  assert.match(journeyUi, /JOURNEY_STAGES/);
+  assert.match(journeyProgress, /<button\b/);
+  assert.match(journeyProgress, /type=["']button["']/);
+  assert.match(journeyProgress, /aria-current/);
+  assert.match(journeyProgress, /JOURNEY_STAGE_PROGRESS/);
+  assert.match(journeyLabels, /labelHost|round2-projected-label|aria-hidden/);
+  assert.match(journeyFallback, /fallbackSrc/);
+  assert.match(journeyFallback, /alt=/);
+  assert.match(
+    css,
+    /\.(?:journey-progress|scroll-journey)[^{]*(?:button|__button)[\s\S]*?min-(?:height|width):\s*(?:44px|2\.75rem)/,
   );
 });
 

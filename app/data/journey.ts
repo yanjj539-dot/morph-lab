@@ -24,7 +24,7 @@ export const JOURNEY_STAGES: readonly JourneyStage[] = [
     body: "先拆解真实内容、语气、视觉资产和使用场景，不急着套模板。",
     details: ["content audit", "reference map", "interaction notes"],
     labelText: "01 / OBSERVE",
-    fallbackSrc: withBasePath("/images/morph-hero-materials-v1.webp"),
+    fallbackSrc: withBasePath("/fallback/round-2/observe.webp"),
   },
   {
     id: "structure",
@@ -34,7 +34,7 @@ export const JOURNEY_STAGES: readonly JourneyStage[] = [
     body: "把模型输出、界面层级、组件节奏和品牌语言整理成可执行结构。",
     details: ["information architecture", "design tokens", "component rhythm"],
     labelText: "02 / STRUCTURE",
-    fallbackSrc: withBasePath("/images/morph-studio-workbench-v1.webp"),
+    fallbackSrc: withBasePath("/fallback/round-2/structure.webp"),
   },
   {
     id: "prototype",
@@ -44,7 +44,7 @@ export const JOURNEY_STAGES: readonly JourneyStage[] = [
     body: "用前端、WebGL、传感器或自动化流程快速验证交互是否成立。",
     details: ["live interface", "motion test", "device loop"],
     labelText: "03 / PROTOTYPE",
-    fallbackSrc: withBasePath("/images/web-aeroform.webp"),
+    fallbackSrc: withBasePath("/fallback/round-2/prototype.webp"),
   },
   {
     id: "release",
@@ -54,6 +54,6 @@ export const JOURNEY_STAGES: readonly JourneyStage[] = [
     body: "删除装饰性噪音，保留叙事、性能、可访问性和可部署结果。",
     details: ["production build", "browser QA", "deployment notes"],
     labelText: "04 / RELEASE",
-    fallbackSrc: withBasePath("/images/morph-workflow-quality-gate-v1.webp"),
+    fallbackSrc: withBasePath("/fallback/round-2/release.webp"),
   },
 ] as const;
