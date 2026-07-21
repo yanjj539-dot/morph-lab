@@ -31,7 +31,7 @@ import {
 } from "./assetManifest";
 import { type Round2ModelMap } from "./loadModels";
 
-type TextureRuntimeOptions = {
+export type TextureRuntimeOptions = {
   maxAnisotropy?: number;
   signal?: AbortSignal;
 };
@@ -133,8 +133,11 @@ function projectSurfaceKind(meshName: string): ProjectSurfaceKind {
 type SurfaceReplacement = {
   mesh: Mesh;
   previous: Mesh["material"];
-  overlay?: Mesh;
-  contentTexture?: Texture;
+  previousRenderOrder: number;
+  previousCastShadow: boolean;
+  previousReceiveShadow: boolean;
+  overlays: Mesh[];
+  contentTextures: Texture[];
 };
 
 function firstMaterial(source: Mesh["material"]): Material {
@@ -165,35 +168,100 @@ function installConfiguredSurface(
   config: ScreenConfig,
 ): SurfaceReplacement {
   const previous = mesh.material;
+  const previousRenderOrder = mesh.renderOrder;
+  const previousCastShadow = mesh.castShadow;
+  const previousReceiveShadow = mesh.receiveShadow;
   const contentTexture = texture.clone();
-  const created = config.kind === "screen"
-    ? createScreenMaterial(contentTexture, config)
-    : createPrintedSurface(contentTexture, config);
-  const contentMaterial = created.material;
+  let contentMaterial: MeshStandardMaterial;
+  let glassMaterial: Material | null = null;
+  if (config.kind === "screen") {
+    const created = createScreenMaterial(contentTexture, config);
+    contentMaterial = created.material;
+    glassMaterial = created.glassMaterial;
+  } else {
+    contentMaterial = createPrintedSurface(contentTexture, config).material;
+  }
   contentMaterial.polygonOffsetUnits = -Math.max(1, Math.round(config.contentDepthOffset * 1000));
 
   mesh.material = createSurfaceBaseMaterial(previous, config.kind);
   mesh.renderOrder = 1;
-  const overlay = mesh.clone(false) as Mesh;
-  overlay.name = `${mesh.name}__content`;
-  overlay.material = contentMaterial;
-  overlay.renderOrder = config.renderOrder;
-  overlay.castShadow = false;
-  overlay.receiveShadow = false;
-  mesh.parent?.add(overlay);
+  const contentOverlay = mesh.clone(false) as Mesh;
+  contentOverlay.name = `${mesh.name}__content`;
+  contentOverlay.material = contentMaterial;
+  contentOverlay.renderOrder = config.renderOrder;
+  contentOverlay.castShadow = false;
+  contentOverlay.receiveShadow = false;
+  contentOverlay.translateZ(config.contentDepthOffset);
+  contentOverlay.userData.surfaceDepthOffset = config.contentDepthOffset;
+  mesh.parent?.add(contentOverlay);
+  const overlays = [contentOverlay];
+
+  if (glassMaterial) {
+    const glassOverlay = mesh.clone(false) as Mesh;
+    glassOverlay.name = `${mesh.name}__glass`;
+    glassOverlay.material = glassMaterial;
+    glassOverlay.renderOrder = 3;
+    glassOverlay.castShadow = false;
+    glassOverlay.receiveShadow = false;
+    glassOverlay.translateZ(config.glassDepthOffset);
+    glassOverlay.userData.surfaceDepthOffset = config.glassDepthOffset;
+    mesh.parent?.add(glassOverlay);
+    overlays.push(glassOverlay);
+  }
 
   if (config.kind === "screen") {
     mesh.castShadow = false;
     mesh.receiveShadow = false;
   }
 
-  return { mesh, previous, overlay, contentTexture };
+  return {
+    mesh,
+    previous,
+    previousRenderOrder,
+    previousCastShadow,
+    previousReceiveShadow,
+    overlays,
+    contentTextures: [contentTexture],
+  };
+}
+
+function createLegacyReplacement(mesh: Mesh): SurfaceReplacement {
+  return {
+    mesh,
+    previous: mesh.material,
+    previousRenderOrder: mesh.renderOrder,
+    previousCastShadow: mesh.castShadow,
+    previousReceiveShadow: mesh.receiveShadow,
+    overlays: [],
+    contentTextures: [],
+  };
+}
+
+function rollbackSurfaceReplacement(replacement: SurfaceReplacement): void {
+  const {
+    mesh,
+    previous,
+    previousRenderOrder,
+    previousCastShadow,
+    previousReceiveShadow,
+    overlays,
+  } = replacement;
+  disposeReplacedMaterial(mesh.material);
+  mesh.material = previous;
+  mesh.renderOrder = previousRenderOrder;
+  mesh.castShadow = previousCastShadow;
+  mesh.receiveShadow = previousReceiveShadow;
+  for (const overlay of overlays) {
+    overlay.removeFromParent();
+    disposeReplacedMaterial(overlay.material);
+  }
 }
 
 async function applyProjectTextures(
   models: Round2ModelMap,
   bindings: readonly TextureBinding[],
   options: TextureRuntimeOptions,
+  useScreenManifest: boolean,
 ): Promise<readonly Texture[]> {
   const textureLoader = new TextureLoader();
   const loadedTextures: Texture[] = [];
@@ -207,7 +275,9 @@ async function applyProjectTextures(
         loadBindingTexture(
           textureLoader,
           binding,
-          findScreenConfig(binding.stage as JourneyStageId, binding.meshName)?.source ?? binding.textureUrl,
+          (useScreenManifest
+            ? findScreenConfig(binding.stage as JourneyStageId, binding.meshName)?.source
+            : undefined) ?? binding.textureUrl,
           maxAnisotropy,
           loadedTextures,
           texturePromises,
@@ -233,32 +303,29 @@ async function applyProjectTextures(
         );
       }
 
-      const config = findScreenConfig(binding.stage as JourneyStageId, binding.meshName);
+      const config = useScreenManifest
+        ? findScreenConfig(binding.stage as JourneyStageId, binding.meshName)
+        : undefined;
       if (config) {
         const replacement = installConfiguredSurface(mesh, texture, config);
-        if (replacement.contentTexture) loadedTextures.push(replacement.contentTexture);
+        loadedTextures.push(...replacement.contentTextures);
         replacedMaterials.push(replacement);
       } else {
+        const replacement = createLegacyReplacement(mesh);
         const previous = configureProjectSurface(
           mesh,
           texture,
           projectSurfaceKind(binding.meshName),
         );
-        replacedMaterials.push({ mesh, previous });
+        replacement.previous = previous;
+        replacedMaterials.push(replacement);
       }
     }
 
     disposeDetachedMaterials(models, replacedMaterials);
     return loadedTextures;
   } catch (error) {
-    for (const { mesh, previous, overlay } of replacedMaterials) {
-      disposeReplacedMaterial(mesh.material);
-      mesh.material = previous;
-      if (overlay) {
-        overlay.removeFromParent();
-        disposeReplacedMaterial(overlay.material);
-      }
-    }
+    for (const replacement of replacedMaterials) rollbackSurfaceReplacement(replacement);
     disposeLoadedTextures(loadedTextures);
     throw error;
   }
@@ -268,7 +335,14 @@ export function applyRound2Textures(
   models: Round2ModelMap,
   options: TextureRuntimeOptions = {},
 ): Promise<readonly Texture[]> {
-  return applyProjectTextures(models, ROUND2_TEXTURE_BINDINGS, options);
+  return applyProjectTextures(models, ROUND2_TEXTURE_BINDINGS, options, false);
+}
+
+export function applyScreenManifestTextures(
+  models: Round2ModelMap,
+  options: TextureRuntimeOptions = {},
+): Promise<readonly Texture[]> {
+  return applyProjectTextures(models, ROUND3_TEXTURE_BINDINGS, options, true);
 }
 
 export async function applyRound3Textures(
@@ -288,11 +362,7 @@ export async function applyRound3Textures(
 
     options.scene.environment = compressed.neutralStudioEnv;
     options.scene.environmentIntensity = options.quality.tier === "high" ? 0.78 : 0.62;
-    const projectTextures = await applyProjectTextures(
-      models,
-      ROUND3_TEXTURE_BINDINGS,
-      options,
-    );
+    const projectTextures = await applyScreenManifestTextures(models, options);
 
     return [...Object.values(compressed), ...projectTextures];
   } catch (error) {

@@ -19,6 +19,8 @@ export type Rect = {
   height: number;
 };
 
+export type Point2 = { x: number; y: number };
+
 export type UvTransform = {
   scale: { x: number; y: number };
   offset: { x: number; y: number };
@@ -52,6 +54,39 @@ function safeRect(safeArea: number): Rect {
   return { x: safeArea, y: safeArea, width: size, height: size };
 }
 
+export function isUvInsideRoundedRect(
+  point: Point2,
+  rect: Rect,
+  borderRadius: number,
+): boolean {
+  if (
+    point.x < rect.x ||
+    point.x > rect.x + rect.width ||
+    point.y < rect.y ||
+    point.y > rect.y + rect.height
+  ) {
+    return false;
+  }
+
+  const radius = Math.min(
+    Math.max(0, borderRadius),
+    rect.width / 2,
+    rect.height / 2,
+  );
+  if (radius === 0) return true;
+  const nearestX = Math.min(
+    rect.x + rect.width - radius,
+    Math.max(rect.x + radius, point.x),
+  );
+  const nearestY = Math.min(
+    rect.y + rect.height - radius,
+    Math.max(rect.y + radius, point.y),
+  );
+  const deltaX = point.x - nearestX;
+  const deltaY = point.y - nearestY;
+  return deltaX * deltaX + deltaY * deltaY <= radius * radius + Number.EPSILON;
+}
+
 export function fitUv(input: UvFitInput): UvFitResult {
   const { source, fit, rotation } = input;
   assertPositive(source.width, "source.width");
@@ -69,16 +104,31 @@ export function fitUv(input: UvFitInput): UvFitResult {
   const positionY = clampUnit(input.positionY);
 
   if (fit === "cover") {
-    const cropScale = sourceAspect > targetAspect
+    if (input.scale < 1) {
+      throw new Error("cover scale must be at least 1 so the source continues to cover the surface.");
+    }
+    const baseCropScale = sourceAspect > targetAspect
       ? { x: targetAspect / sourceAspect, y: 1 }
       : { x: 1, y: sourceAspect / targetAspect };
+    const cropWindow = {
+      x: baseCropScale.x / input.scale,
+      y: baseCropScale.y / input.scale,
+    };
+    const windowOffset = {
+      x: (1 - cropWindow.x) * positionX,
+      y: (1 - cropWindow.y) * positionY,
+    };
+    const cropScale = {
+      x: cropWindow.x / usableSafeRect.width,
+      y: cropWindow.y / usableSafeRect.height,
+    };
 
     return {
       crop: {
         scale: cropScale,
         offset: {
-          x: (1 - cropScale.x) * positionX,
-          y: (1 - cropScale.y) * positionY,
+          x: windowOffset.x - usableSafeRect.x * cropScale.x,
+          y: windowOffset.y - usableSafeRect.y * cropScale.y,
         },
       },
       content: null,
