@@ -9,8 +9,11 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "build:pages": "next build",
+    "assets:round2": "\"D:\\\\blender.exe\" --background --python scripts/blender/build_round2_assets.py",
     "start": "vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
+    "test:round2": "node --test tests/round2-contract.test.mjs",
+    "qa:round2": "node scripts/qa-round2.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
   },
   "dependencies": {

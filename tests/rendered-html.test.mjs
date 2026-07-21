@@ -85,6 +85,7 @@ test("ships real project assets and the responsive scroll journey", async () => 
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const studio = await readFile(new URL("../app/studio/page.tsx", import.meta.url), "utf8");
   const siteData = await readFile(new URL("../app/data/site.ts", import.meta.url), "utf8");
+  const journeyData = await readFile(new URL("../app/data/journey.ts", import.meta.url), "utf8");
   const journey = await readFile(
     new URL("../app/components/ScrollJourney.tsx", import.meta.url),
     "utf8",
@@ -108,6 +109,14 @@ test("ships real project assets and the responsive scroll journey", async () => 
     siteData,
     /src:\s*withBasePath\("\/images\/morph-workflow-quality-gate-v1\.webp"\)/,
   );
+  assert.match(journeyData, /export type JourneyStageId/);
+  assert.match(journeyData, /export type JourneyStage/);
+  assert.match(journeyData, /export const JOURNEY_STAGE_PROGRESS = \[0\.08, 0\.36, 0\.63, 0\.9\] as const/);
+  assert.match(journeyData, /export const JOURNEY_STAGES/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/images\/morph-hero-materials-v1\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/images\/morph-studio-workbench-v1\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/images\/web-aeroform\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/images\/morph-workflow-quality-gate-v1\.webp"\)/);
 
   assert.match(journey, /prefers-reduced-motion/);
   assert.match(journey, /setDrawRange/);
