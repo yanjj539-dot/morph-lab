@@ -132,7 +132,6 @@ export function MotionController() {
         lenis?.destroy();
         lenis = null;
         context.revert();
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         document.documentElement.classList.remove("motion-reduced");
       };
     };

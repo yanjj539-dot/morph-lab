@@ -4,7 +4,7 @@ import { extname, resolve, sep } from "node:path";
 import worker from "../dist/server/index.js";
 
 const host = "127.0.0.1";
-const port = 5191;
+const port = Number(process.env.QA_PORT ?? 5191);
 const clientRoot = resolve("dist/client");
 const publicRoot = resolve("public");
 

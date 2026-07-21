@@ -1,0 +1,116 @@
+{
+  "generatedAt": "2026-07-21T08:18:11.121Z",
+  "baseUrl": "http://127.0.0.1:64008",
+  "desktop": {
+    "glbCount": 4,
+    "canvasStats": {
+      "observe": {
+        "deviation": 30.69,
+        "entropy": 3.34
+      },
+      "structure": {
+        "deviation": 38.65,
+        "entropy": 4.66
+      },
+      "prototype": {
+        "deviation": 64.28,
+        "entropy": 5.05
+      },
+      "release": {
+        "deviation": 46.41,
+        "entropy": 3.68
+      }
+    }
+  },
+  "progressButtons": {
+    "before": 846,
+    "after": 4248
+  },
+  "mobile": {
+    "glbCount": 0
+  },
+  "reducedMotion": {
+    "glbCount": 0
+  },
+  "viewports": [
+    {
+      "width": 1920,
+      "scrollWidth": 1920,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 430,
+      "scrollWidth": 430,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    }
+  ],
+  "videos": {
+    "desktop": {
+      "bytes": 1139552,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "format": {
+        "duration": "8.160000"
+      }
+    },
+    "mobile": {
+      "bytes": 1202315,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "format": {
+        "duration": "7.040000"
+      }
+    }
+  },
+  "lighthouse": {
+    "desktop": {
+      "performance": 97,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "mobile": {
+      "performance": 73,
+      "accessibility": 96,
+      "best-practices": 96,
+      "seo": 100
+    }
+  }
+}

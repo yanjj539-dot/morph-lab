@@ -41,3 +41,10 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+/.superpowers/
+
+# Round 2 QA working files (final screenshots, MP4s, reports, and summaries stay tracked)
+/artifacts/qa-round2/*-canvas.png
+/artifacts/qa-round2/*.webm
+/artifacts/qa-round2/video-source/
+/artifacts/qa-round2/qa-server*.log

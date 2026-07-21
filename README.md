@@ -32,8 +32,18 @@ npm run dev
 ```bash
 npm run lint
 npx tsc --noEmit
+npm run test:round2
 npm test
 ```
+
+完整浏览器质检会生成四阶段截图、七视口截图、桌面/移动录屏、Canvas 像素统计与 Lighthouse 报告：
+
+```bash
+npx playwright install chromium
+npm run qa:round2
+```
+
+结果写入 `artifacts/qa-round2/`。桌面 3D 仅在 `min-width: 1024px`、允许动态效果且 WebGL 可用时加载；移动端、Reduced Motion 与加载失败路径使用四张 Blender 静态关键帧。
 
 GitHub Pages 静态构建：
 
