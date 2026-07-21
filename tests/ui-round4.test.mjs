@@ -63,6 +63,10 @@ test("Journey uses Round 4 scenes while preserving the zero-GLB fallback gate", 
   assert.match(journeyComponent, /!isDesktop\s*\|\|\s*prefersReducedMotion/);
   assert.match(journeyComponent, /import\(["']\.\.\/\.\.\/scene\/createJourneyScene["']\)/);
   assert.match(journeyFallback, /fallback\/round-4\/journey-observe\.webp/);
+  assert.match(
+    journeyFallback,
+    /className=["']journey-fallback__stages["'][\s\S]*?aria-hidden=\{state === ["']ready["'] \|\| state === ["']loading["']\}/,
+  );
   assert.match(journeyScene, /searchParams\.get\(["']qaProgress["']\)/);
   assert.match(journeyUi, /state\s*!==\s*["']ready["']\s*&&\s*state\s*!==\s*["']loading["']/);
   assert.match(styles, /scroll-journey\[data-state=["']loading["']\]\s+\.journey-ui__stage-copy/);

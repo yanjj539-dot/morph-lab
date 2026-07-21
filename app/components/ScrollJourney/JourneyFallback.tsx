@@ -33,7 +33,10 @@ export function JourneyFallback({ state }: JourneyFallbackProps) {
         </p>
       ) : null}
 
-      <div className="journey-fallback__stages">
+      <div
+        className="journey-fallback__stages"
+        aria-hidden={state === "ready" || state === "loading"}
+      >
         {JOURNEY_STAGES.map((stage, index) => (
           <article
             id={`journey-stage-${stage.id}`}
