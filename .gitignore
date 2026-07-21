@@ -56,3 +56,10 @@ next-env.d.ts
 /artifacts/qa-round3/*.webm
 /artifacts/qa-round3/video-source/
 /artifacts/qa-round3/qa-server*.log
+
+# Round 4 QA working files (final evidence remains tracked)
+/artifacts/qa-round4/reference-frames/probe.png
+/artifacts/qa-round4/reference-frames/test-*.png
+/artifacts/qa-round4/*.webm
+/artifacts/qa-round4/video-source/
+/artifacts/qa-round4/qa-server*.log
