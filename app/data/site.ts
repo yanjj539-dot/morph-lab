@@ -26,7 +26,7 @@ export interface Project {
 
 export const practices = [
   {
-    title: "AI visual systems",
+    title: "AI Visual Systems",
     titleZh: "AI 视觉系统",
     description: "为批量图像、人格视觉和品牌语气建立明确约束，让生成结果保持同一套审美判断。",
     projectId: "abstract-persona-system",
@@ -39,7 +39,7 @@ export const practices = [
     },
   },
   {
-    title: "Interactive websites",
+    title: "Interactive Websites",
     titleZh: "交互网站",
     description: "把作品集、产品页和研究笔记做成可以浏览、可以部署、可以复用的数字界面。",
     projectId: "digital-portfolio-experiments",
@@ -52,7 +52,7 @@ export const practices = [
     },
   },
   {
-    title: "Physical interaction prototypes",
+    title: "Physical Prototypes",
     titleZh: "实体交互原型",
     description: "用 ESP32、传感器、声音与光效，把情绪反馈和硬件行为接到真实体验里。",
     projectId: "emotional-interaction-device",
@@ -65,7 +65,7 @@ export const practices = [
     },
   },
   {
-    title: "Agent-assisted workflow",
+    title: "Agent Workflows",
     titleZh: "Agent 辅助工作流",
     description: "让模型参与整理、初稿、检查和交付，但保留人的方向判断和质量门槛。",
     projectId: "ai-design-workflow",

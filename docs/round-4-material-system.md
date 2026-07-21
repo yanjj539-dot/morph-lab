@@ -17,7 +17,7 @@
 | Signal Blue | `#3158d4` | 0.42 | 0.00 | 1.46 | 0.00 | Opaque accent; also matches legacy Cobalt names |
 | Printed Paper | `#ffffff` | 0.90 | 0.00 | 1.45 | 0.00 | sRGB map, non-emissive |
 
-Normal strength is deliberately restrained: ceramic 0.015, plastic/metal 0.035, paper 0.05, and rubber 0.055. The former metal `studioOrm` roughness assignment was removed because its frequency created a visible grid/wire impression. Real KTX2 normal, AO, printed-image, and environment textures remain in the existing loading/disposal path.
+Normal strength is deliberately restrained: ceramic 0.015, plastic/metal 0.035, paper 0.05, and rubber 0.055. The former metal `studioOrm` roughness assignment was removed because its frequency created a visible grid/wire impression. Real KTX2 normal, AO, printed-image, and environment textures remain in the existing loading/disposal path. Authored tangent attributes now ship in every Round 4 primitive. Known software rasterizers such as SwiftShader and llvmpipe retain AO/environment response but skip the unstable compressed-normal shader branch, preventing the visible stipple artifact seen in headless QA while hardware renderers keep the full normal system.
 
 Legacy authored names are routed into the same ten-profile system rather than creating hidden eleventh-hour materials: `MAT_BlackInk` uses the matte Black Rubber response, `MAT_Passed` uses Signal Blue as the status color, and `MAT_ShadowGrey` uses Soft Grey Metal. The focused test reads all four shipped GLBs and fails if any exported material name has no explicit route.
 

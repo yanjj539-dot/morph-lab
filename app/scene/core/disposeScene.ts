@@ -77,7 +77,11 @@ function disposeMaterialTextures(
   }
 }
 
-export function disposeScene(scene: Object3D, renderer: WebGLRenderer) {
+export function disposeScene(
+  scene: Object3D,
+  renderer: WebGLRenderer,
+  extraTextures: Iterable<Texture> = [],
+) {
   const geometries = new Set<BufferGeometry>();
   const materials = new Set<Material>();
   const textures = new Set<Texture>();
@@ -118,6 +122,10 @@ export function disposeScene(scene: Object3D, renderer: WebGLRenderer) {
   for (const material of materials) {
     disposeMaterialTextures(material, textures, imageBitmaps);
     material.dispose();
+  }
+
+  for (const texture of extraTextures) {
+    disposeTexture(texture, textures, imageBitmaps);
   }
 
   renderer.dispose();

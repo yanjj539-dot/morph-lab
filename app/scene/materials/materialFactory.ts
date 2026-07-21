@@ -24,6 +24,10 @@ export type Round4MaterialProfile = Readonly<{
   fallbackOpacity?: number;
 }>;
 
+export type Round4MaterialRuntimeOptions = Readonly<{
+  normalMapsEnabled?: boolean;
+}>;
+
 export const ROUND4_RENDER_ORDER_POLICY = Object.freeze({
   printedSurface: 1,
   screenContent: 2,
@@ -145,7 +149,10 @@ export function applyRound4MaterialSystem(
   root: Object3D,
   textures: Round3TextureSet,
   quality: SceneQualitySettings,
+  options: Round4MaterialRuntimeOptions = {},
 ): void {
+  const normalMapsEnabled = options.normalMapsEnabled ?? true;
+
   root.traverse((object) => {
     if (!(object instanceof Mesh)) return;
     configureAcrylicObject(object, ROUND4_MATERIAL_PROFILES.frostedAcrylic);
@@ -171,25 +178,25 @@ export function applyRound4MaterialSystem(
       } else if (route === "paper") {
         const profile = ROUND4_MATERIAL_PROFILES.paper;
         applyProfile(object, material, profile);
-        material.normalMap = textures.paperNormal;
+        material.normalMap = normalMapsEnabled ? textures.paperNormal : null;
         material.aoMap = textures.studioOrm;
       } else if (route === "softGreyMetal") {
         const profile = ROUND4_MATERIAL_PROFILES.softGreyMetal;
         applyProfile(object, material, profile);
-        material.normalMap = textures.metalBrushedNormal;
+        material.normalMap = normalMapsEnabled ? textures.metalBrushedNormal : null;
         material.roughnessMap = null;
       } else if (route === "blackRubber") {
         const profile = ROUND4_MATERIAL_PROFILES.blackRubber;
         applyProfile(object, material, profile);
-        material.normalMap = textures.rubberNormal;
+        material.normalMap = normalMapsEnabled ? textures.rubberNormal : null;
       } else if (route === "coolWhiteCeramic") {
         const profile = ROUND4_MATERIAL_PROFILES.coolWhiteCeramic;
         applyProfile(object, material, profile);
-        material.normalMap = textures.plasticNormal;
+        material.normalMap = normalMapsEnabled ? textures.plasticNormal : null;
       } else if (route === "warmWhitePlastic") {
         const profile = ROUND4_MATERIAL_PROFILES.warmWhitePlastic;
         applyProfile(object, material, profile);
-        material.normalMap = textures.plasticNormal;
+        material.normalMap = normalMapsEnabled ? textures.plasticNormal : null;
         material.aoMap = textures.studioOrm;
       } else if (route === "coralAccent") {
         applyProfile(object, material, ROUND4_MATERIAL_PROFILES.coralAccent);
@@ -206,6 +213,7 @@ export function applyRound3MaterialSystem(
   root: Object3D,
   textures: Round3TextureSet,
   quality: SceneQualitySettings,
+  options: Round4MaterialRuntimeOptions = {},
 ): void {
-  applyRound4MaterialSystem(root, textures, quality);
+  applyRound4MaterialSystem(root, textures, quality, options);
 }

@@ -1,6 +1,7 @@
 /* Static <img> URLs are base-path-prefixed explicitly for GitHub Pages. */
 /* eslint-disable @next/next/no-img-element */
 import { ArrowDownRight } from "lucide-react";
+import { HeroScene } from "./components/HeroScene";
 import { ProjectShowcase } from "./components/ProjectShowcase";
 import ScrollJourney from "./components/ScrollJourney";
 import { SignalButton } from "./components/SignalButton";
@@ -22,35 +23,28 @@ export default function Home() {
           </div>
           <div className="hero-copy">
             <h1 id="hero-title" data-motion-mask>
-              <span>DESIGN, SYSTEMS,</span>
-              <span>AND DIGITAL EXPERIMENTS.</span>
+              <span>DESIGN SYSTEMS</span>
+              <span>MADE TO MOVE.</span>
             </h1>
             <div className="hero-support" data-motion-reveal>
-              <p className="hero-title-zh">把模型、界面与视觉实验，做成真正可以运行的作品。</p>
+              <p className="hero-title-zh">把模型、界面与交互，做成可以真实运行的作品。</p>
               <p className="hero-description">
-                一个小型创意实验室，连接 AI 视觉系统、交互网页、实体原型和可部署的前端工程。
+                AI 视觉系统、交互网页、实体原型与可部署前端，在同一套设计判断里完成。
               </p>
               <div className="hero-actions">
-                <SignalButton href="#practice">See the practice</SignalButton>
+                <span data-hero-observe-pulse>
+                  <SignalButton href="#practice">See the practice</SignalButton>
+                </span>
                 <SignalButton href="#selected-work" variant="line">View real work</SignalButton>
               </div>
             </div>
           </div>
           <div className="hero-composition">
-            <figure className="hero-art" data-motion-reveal>
-              <img
-                src={withBasePath("/fallback/round-3/observe.webp")}
-                alt="MORPH//LAB Observe 阶段的 Blender 工作台，包含输入材料、扫描组件与项目界面"
-                width={1600}
-                height={1000}
-                loading="eager"
-                fetchPriority="high"
-              />
-              <figcaption>
-                <span>SCENE PLATE / OBSERVE</span>
-                <span>BLENDER-AUTHORED / REAL-TIME MATCH</span>
-              </figcaption>
-            </figure>
+            <HeroScene
+              fallbackSrc={withBasePath("/fallback/round-4/hero-observe.webp")}
+              mobileFallbackSrc={withBasePath("/fallback/round-4/observe.webp")}
+              fallbackAlt="MORPH//LAB Observe 阶段的 Blender 工作台，包含材料、扫描器、屏幕与输出卡片"
+            />
           </div>
           <a className="scroll-cue" href="#process">
             <span>SCROLL THROUGH THE PROCESS</span>
@@ -82,9 +76,10 @@ export default function Home() {
           {practices.map((item, index) => (
             <a
               className="practice-row"
-              href={`#${item.projectId}`}
+              href={withBasePath(`/work#${item.projectId}`)}
               key={item.title}
               data-motion-reveal
+              data-page-transition
               aria-label={`${item.titleZh}：查看对应项目`}
             >
               <span className="practice-row__rail" aria-hidden="true">
@@ -161,18 +156,18 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="about-process" aria-label="MORPH//LAB working materials">
+        <div className="about-process" aria-label="MORPH//LAB evidenced working materials">
           <figure className="about-process__primary" data-project-mask>
             <img
-              src={withBasePath("/images/morph-studio-workbench-v1.webp")}
-              alt="MORPH//LAB 工作台上的纸张样本、实体原型、ESP32 与灯环"
+              src={withBasePath("/fallback/round-4/wireframe.webp")}
+              alt="Round 4 Prototype 工作台的真实 Blender 网格线框渲染"
               width={1600}
               height={1000}
               loading="lazy"
             />
             <figcaption>
-              <span>01 / MATERIAL BENCH</span>
-              <span>Paper, device shell, ESP32</span>
+              <span>01 / AUTHORED GEOMETRY</span>
+              <span>Blender wireframe / real scene mesh</span>
             </figcaption>
           </figure>
           <figure className="about-process__detail" data-project-mask>
@@ -184,8 +179,34 @@ export default function Home() {
               loading="lazy"
             />
             <figcaption>
-              <span>02 / BUILD DETAIL</span>
-              <span>Measure, test, revise</span>
+              <span>02 / DESIGN PROCESS</span>
+              <span>Material, measure, revise</span>
+            </figcaption>
+          </figure>
+          <figure className="about-process__detail about-process__detail--device" data-project-mask>
+            <img
+              src={withBasePath("/images/device-tree-hole.webp")}
+              alt="ESP32、传感器、灯环与外壳组成的真实实体交互原型"
+              width={1600}
+              height={1000}
+              loading="lazy"
+            />
+            <figcaption>
+              <span>03 / ESP32 PROTOTYPE</span>
+              <span>Sensor, light, sound loop</span>
+            </figcaption>
+          </figure>
+          <figure className="about-process__detail about-process__detail--bench" data-project-mask>
+            <img
+              src={withBasePath("/images/morph-studio-workbench-v1.webp")}
+              alt="MORPH//LAB 工作台上的纸张样本、实体原型、ESP32 与灯环"
+              width={1600}
+              height={1000}
+              loading="lazy"
+            />
+            <figcaption>
+              <span>04 / WORKBENCH</span>
+              <span>Paper, device shell, ESP32</span>
             </figcaption>
           </figure>
         </div>

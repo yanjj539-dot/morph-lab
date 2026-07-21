@@ -39,9 +39,9 @@ test("server-renders the finished MORPH//LAB homepage", async () => {
     html,
     /<title>MORPH\/\/LAB — AI Design, Interactive Systems and Digital Experiments<\/title>/i,
   );
-  assert.match(html, /DESIGN, SYSTEMS,/);
-  assert.match(html, /DIGITAL EXPERIMENTS/);
-  assert.match(html, /把模型、界面与视觉实验/);
+  assert.match(html, /DESIGN SYSTEMS/);
+  assert.match(html, /MADE TO MOVE\./);
+  assert.match(html, /把模型、界面与交互，做成可以真实运行的作品。/);
   assert.match(html, /OBSERVE/);
   assert.match(html, /STRUCTURE/);
   assert.match(html, /PROTOTYPE/);
@@ -55,6 +55,9 @@ test("server-renders the finished MORPH//LAB homepage", async () => {
   assert.match(html, /跳到主要内容/);
   assert.match(html, /https:\/\/morph-lab\.test\/og\.png/);
   assert.match(html, /application\/ld\+json/);
+  assert.match(html, /\/fallback\/round-4\/hero-observe\.webp/);
+  assert.match(html, /\/fallback\/round-4\/observe\.webp/);
+  assert.match(html, /media="\(max-width: 1023px\), \(prefers-reduced-motion: reduce\)"/);
   assert.doesNotMatch(html, /MORPH SYSTEM \/ ONLINE/);
   assert.doesNotMatch(html, /AI SHOULD NOT LOOK LIKE AI/);
   assert.doesNotMatch(html, /Synthetic Memory Archive/);
@@ -94,10 +97,9 @@ test("ships real project assets and the responsive scroll journey", async () => 
   assert.match(page, /import ScrollJourney from "\.\/components\/ScrollJourney"/);
   assert.match(page, /<ScrollJourney \/>/);
   assert.doesNotMatch(page, /<MorphCore \/>|<LiveGenerativeSystem \/>/);
-  assert.match(
-    page,
-    /src=\{withBasePath\("\/fallback\/round-3\/observe\.webp"\)\}/,
-  );
+  assert.match(page, /<HeroScene\b/);
+  assert.match(page, /fallbackSrc=\{withBasePath\("\/fallback\/round-4\/hero-observe\.webp"\)\}/);
+  assert.match(page, /mobileFallbackSrc=\{withBasePath\("\/fallback\/round-4\/observe\.webp"\)\}/);
   assert.doesNotMatch(page, /hero-card|hero-card--note|hero-card--system|hero-card--release/);
   assert.match(
     studio,
@@ -111,10 +113,11 @@ test("ships real project assets and the responsive scroll journey", async () => 
   assert.match(journeyData, /export type JourneyStage/);
   assert.match(journeyData, /export const JOURNEY_STAGE_PROGRESS = \[0\.08, 0\.36, 0\.63, 0\.9\] as const/);
   assert.match(journeyData, /export const JOURNEY_STAGES/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-3\/observe\.webp"\)/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-3\/structure\.webp"\)/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-3\/prototype\.webp"\)/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-3\/release\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-4\/observe\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-4\/structure\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-4\/prototype\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-4\/release\.webp"\)/);
+  assert.match(css, /\.hero-scene__fallback/);
 
   assert.match(css, /--color-sky:\s*#bfd4f5/i);
   assert.match(css, /--color-paper:\s*#f6f5ef/i);
@@ -135,10 +138,13 @@ test("ships real project assets and the responsive scroll journey", async () => 
       "../public/images/device-tree-hole.webp",
       "../public/images/morph-studio-workbench-v1.webp",
       "../public/images/morph-workflow-quality-gate-v1.webp",
-      "../public/fallback/round-3/observe.webp",
-      "../public/fallback/round-3/structure.webp",
-      "../public/fallback/round-3/prototype.webp",
-      "../public/fallback/round-3/release.webp",
+      "../public/fallback/round-4/hero-observe.webp",
+      "../public/fallback/round-4/journey-observe.webp",
+      "../public/fallback/round-4/observe.webp",
+      "../public/fallback/round-4/structure.webp",
+      "../public/fallback/round-4/prototype.webp",
+      "../public/fallback/round-4/release.webp",
+      "../public/fallback/round-4/wireframe.webp",
     ].map((path) => access(new URL(path, import.meta.url))),
   );
 });
@@ -181,6 +187,7 @@ test("ships the split ScrollJourney component surface", async () => {
   assert.match(journeyProgress, /JOURNEY_STAGE_PROGRESS/);
   assert.match(journeyLabels, /labelHost|round2-projected-label|aria-hidden/);
   assert.match(journeyFallback, /fallbackSrc/);
+  assert.match(journeyFallback, /journey-observe\.webp/);
   assert.match(journeyFallback, /alt=/);
   assert.match(
     css,

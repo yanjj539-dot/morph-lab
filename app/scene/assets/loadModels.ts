@@ -151,6 +151,19 @@ export function loadRound4Models(
   );
 }
 
+export async function loadRound4StageModel(
+  stage: JourneyStageId,
+  options: StageModelLoadOptions = {},
+): Promise<LoadedStageModel> {
+  const models = await loadStageModels(
+    ROUND4_STAGE_ASSETS,
+    [stage],
+    "Round4Hero",
+    options,
+  );
+  return models[stage];
+}
+
 // Kept for asset inspection and Round 2 regression tooling.
 export async function loadRound2Models(
   options: Round2ModelLoadOptions = {},

@@ -343,14 +343,16 @@ h3 {
   position: relative;
   min-height: 94svh;
   overflow: clip;
-  background: var(--color-sky);
+  background: var(--color-paper);
 }
 
 .hero-grid {
   position: relative;
   z-index: 1;
   display: grid;
+  grid-template-columns: minmax(20rem, 0.78fr) minmax(32rem, 1.22fr);
   grid-template-rows: auto 1fr auto;
+  column-gap: clamp(2rem, 5vw, 6rem);
   min-height: 94svh;
   padding-top: 7.5rem;
   padding-bottom: 2rem;
@@ -365,19 +367,21 @@ h3 {
 .hero-copy {
   position: relative;
   z-index: 2;
+  grid-column: 1;
+  grid-row: 2;
   display: grid;
   align-content: center;
   width: 100%;
-  min-height: 64vh;
+  min-height: 58vh;
   padding-block: clamp(3.5rem, 7vw, 7rem);
 }
 
 .hero-copy h1 {
-  max-width: none;
+  max-width: 9ch;
   margin-bottom: 0;
-  font-size: 5.25rem;
+  font-size: clamp(3.8rem, 6vw, 7.4rem);
   font-weight: 600;
-  line-height: 0.9;
+  line-height: 0.86;
   text-transform: uppercase;
 }
 
@@ -387,9 +391,8 @@ h3 {
 
 .hero-support {
   display: grid;
-  grid-template-columns: minmax(14rem, 0.8fr) minmax(16rem, 1fr);
-  gap: 1.5rem clamp(2rem, 7vw, 7rem);
-  width: min(49rem, 100%);
+  gap: 1rem;
+  width: min(32rem, 100%);
   margin-top: clamp(2.25rem, 4vw, 4rem);
 }
 
@@ -406,24 +409,38 @@ h3 {
 }
 
 .hero-actions {
-  grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
+}
+
+.hero-actions > span {
+  display: flex;
 }
 
 .hero-composition {
-  position: absolute;
-  z-index: 0;
-  inset: 0 calc(50% - 50vw);
-  pointer-events: none;
+  position: relative;
+  z-index: 1;
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  min-width: 0;
+}
+
+.hero-scene,
+.hero-art {
+  position: relative;
+  width: 100%;
+  margin: 0;
 }
 
 .hero-art {
-  position: absolute;
-  inset: 0;
-  margin: 0;
+  aspect-ratio: 8 / 5;
+  overflow: hidden;
+  border: 1px solid rgba(17, 19, 24, 0.18);
+  background: #e6ecef;
+  box-shadow: 0 2rem 5rem rgba(49, 88, 212, 0.1);
 }
 
 .hero-art img {
@@ -431,7 +448,33 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 54%;
+  object-position: 50% 50%;
+}
+
+.hero-scene__fallback {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  transition: opacity 420ms var(--ease-out);
+}
+
+.hero-scene__canvas {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 420ms var(--ease-out);
+}
+
+.hero-scene[data-state="ready"] .hero-scene__fallback {
+  opacity: 0;
+}
+
+.hero-scene[data-state="ready"] .hero-scene__canvas {
+  opacity: 1;
 }
 
 .hero-art figcaption,
@@ -447,9 +490,10 @@ h3 {
 
 .hero-art figcaption {
   position: absolute;
-  right: var(--page-margin);
-  bottom: 2rem;
-  left: auto;
+  z-index: 3;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  left: 0.8rem;
   padding: 0.45rem 0.55rem;
   background: rgba(246, 245, 239, 0.82);
 }
@@ -466,10 +510,27 @@ h3 {
   font-weight: 700;
 }
 
+.scroll-cue::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-coral);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: scroll-cue-draw 1.2s 500ms var(--ease-out) forwards;
+}
+
+@keyframes scroll-cue-draw {
+  to { transform: scaleX(1); }
+}
+
 /* Four-stage scroll journey */
 .scroll-journey {
   position: relative;
-  background: var(--color-sky);
+  background: #e6ecef;
 }
 
 .scroll-journey__pin {
@@ -477,7 +538,7 @@ h3 {
   min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
-  background: var(--color-sky);
+  background: #e6ecef;
 }
 
 .scroll-journey__intro {
@@ -557,7 +618,8 @@ h3 {
   border-left: 2px solid var(--color-coral);
 }
 
-.scroll-journey[data-state="ready"] .journey-ui__stage-copy {
+.scroll-journey[data-state="ready"] .journey-ui__stage-copy,
+.scroll-journey[data-state="loading"] .journey-ui__stage-copy {
   display: block;
 }
 
@@ -712,7 +774,7 @@ h3 {
 }
 
 .scroll-journey[data-state="loading"] .journey-fallback__figure img {
-  opacity: 0.72;
+  opacity: 1;
 }
 
 .scroll-journey[data-state="loading"] .journey-fallback__figure figcaption,
@@ -954,6 +1016,19 @@ h3 {
   font-weight: 600;
   line-height: 1.05;
   text-transform: uppercase;
+}
+
+.journey-fallback__status.is-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .practice-row__zh {
@@ -1327,7 +1402,8 @@ h3 {
 
 .about-process {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.55fr);
+  grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(12rem, 0.5fr));
+  grid-template-rows: repeat(2, minmax(13rem, auto));
   gap: 0.8rem;
   margin-top: clamp(4rem, 8vw, 7rem);
   padding-block: 0.8rem;
@@ -1343,11 +1419,27 @@ h3 {
 }
 
 .about-process__primary {
-  aspect-ratio: 16 / 9;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  min-height: 34rem;
 }
 
 .about-process__detail {
-  aspect-ratio: 4 / 5;
+  grid-column: 2 / 4;
+  grid-row: 1;
+  aspect-ratio: 16 / 8;
+}
+
+.about-process__detail--device {
+  grid-column: 2;
+  grid-row: 2;
+  aspect-ratio: 4 / 3;
+}
+
+.about-process__detail--bench {
+  grid-column: 3;
+  grid-row: 2;
+  aspect-ratio: 4 / 3;
 }
 
 .about-process img {
@@ -1357,7 +1449,7 @@ h3 {
 }
 
 .about-process__detail img {
-  object-position: 64% 50%;
+  object-position: 50% 50%;
 }
 
 .about-process figcaption {
@@ -1988,6 +2080,16 @@ h3 {
 }
 
 @media (max-width: 1023px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    min-height: auto;
+  }
+
   .practice-row {
     grid-template-columns: 3rem minmax(11rem, 0.42fr) minmax(0, 1fr) 1.5rem;
     gap: 1.25rem;
@@ -2002,7 +2104,10 @@ h3 {
   }
 
   .hero-copy {
+    grid-column: 1;
+    grid-row: 2;
     width: 100%;
+    min-height: 0;
   }
 
   .hero-copy h1 {
@@ -2015,6 +2120,18 @@ h3 {
 
   .hero-art figcaption {
     display: none;
+  }
+
+  .hero-composition {
+    grid-column: 1;
+    grid-row: 3;
+    width: min(52rem, 100%);
+    margin: 0 auto clamp(2.5rem, 7vw, 5rem);
+  }
+
+  .scroll-cue {
+    grid-column: 1;
+    grid-row: 4;
   }
 
   .hero-support {
@@ -2273,12 +2390,12 @@ h3 {
   }
 
   .hero-grid {
-    min-height: 92svh;
+    min-height: auto;
     padding-top: 6.5rem;
   }
 
   .hero-copy {
-    min-height: 68vh;
+    min-height: 0;
     padding-block: 3rem;
   }
 
@@ -2422,11 +2539,15 @@ h3 {
 
   .about-process {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
     margin-top: 3.5rem;
   }
 
   .about-process__primary,
   .about-process__detail {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 0;
     aspect-ratio: 16 / 10;
   }
 

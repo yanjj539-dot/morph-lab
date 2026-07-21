@@ -7,6 +7,7 @@ import {
   MeshStandardMaterial,
   PlaneGeometry,
   Scene,
+  Texture,
   TubeGeometry,
   Vector3,
 } from "three";
@@ -19,10 +20,10 @@ import {
 import {
   disposeLoadedStageModels,
   getStageRoots,
-  loadRound3Models,
+  loadRound4Models,
   type Round2ModelMap,
 } from "./assets/loadModels";
-import { applyRound3Textures } from "./assets/loadTextures";
+import { applyRound4Textures } from "./assets/loadTextures";
 import { createBlenderClipController } from "./animation/blenderClipController";
 import {
   createCameraTimeline,
@@ -92,7 +93,14 @@ function configureModelShadows(models: Round2ModelMap, enabled: boolean): void {
 function getFrozenQaProgress(): number | null {
   if (typeof window === "undefined") return null;
 
-  const qaStage = new URLSearchParams(window.location.search).get("qaStage");
+  const searchParams = new URLSearchParams(window.location.search);
+  const qaProgress = searchParams.get("qaProgress");
+  if (qaProgress !== null) {
+    const parsedProgress = Number.parseFloat(qaProgress);
+    if (Number.isFinite(parsedProgress)) return clamp01(parsedProgress);
+  }
+
+  const qaStage = searchParams.get("qaStage");
   const index = JOURNEY_STAGES.findIndex((stage) => stage.id === qaStage);
   return index < 0 ? null : JOURNEY_STAGE_PROGRESS[index];
 }
@@ -112,8 +120,8 @@ export async function createJourneyScene({
   const quality = getQualitySettings();
   const renderer = createRenderer(canvasHost, quality);
   const scene = new Scene();
-  scene.background = new Color("#bfd4f5");
-  scene.fog = new Fog("#bfd4f5", 10, 28);
+  scene.background = new Color("#e6ecef");
+  scene.fog = new Fog("#e6ecef", 10, 28);
 
   const cameraRig = createCameraRig();
   const cameraTimeline = createCameraTimeline();
@@ -128,7 +136,7 @@ export async function createJourneyScene({
 
   const floorGeometry = new PlaneGeometry(26, 12);
   const floorMaterial = new MeshStandardMaterial({
-    color: "#eef2f8",
+    color: "#ede9df",
     roughness: 0.92,
     metalness: 0,
   });
@@ -142,8 +150,8 @@ export async function createJourneyScene({
   const routeCurve = new CatmullRomCurve3([...ROUTE_POINTS], false, "catmullrom", 0.34);
   const routeGeometry = new TubeGeometry(routeCurve, 160, 0.026, 6, false);
   const routeMaterial = new MeshStandardMaterial({
-    color: "#ff7157",
-    emissive: "#ff7157",
+    color: "#ff6b5f",
+    emissive: "#ff6b5f",
     emissiveIntensity: 0.08,
     roughness: 0.58,
   });
@@ -166,6 +174,7 @@ export async function createJourneyScene({
   let stageTimelines: ReturnType<typeof createStageTimelines> | null = null;
   let projectedLabels: ReturnType<typeof createProjectedLabels> | null = null;
   let resizeObserver: ResizeObserver | null = null;
+  let loadedTextures: readonly Texture[] = [];
 
   function updateStageBoundary(nextProgress: number): void {
     const nextStage = stageIndexForProgress(nextProgress);
@@ -262,7 +271,8 @@ export async function createJourneyScene({
     stageTimelines = null;
     clipController?.dispose();
     clipController = null;
-    disposeScene(scene, renderer);
+    disposeScene(scene, renderer, loadedTextures);
+    loadedTextures = [];
     scene.clear();
   }
 
@@ -276,7 +286,7 @@ export async function createJourneyScene({
       );
     }
 
-    const loadedModels = await loadRound3Models({ signal });
+    const loadedModels = await loadRound4Models({ signal });
     if (disposed) {
       disposeLoadedStageModels(loadedModels);
       throw new Error("Journey scene was disposed while loading models.");
@@ -287,7 +297,7 @@ export async function createJourneyScene({
       scene.add(models[stage.id as JourneyStageId]);
     }
     configureModelShadows(models, quality.shadows);
-    await applyRound3Textures(models, {
+    loadedTextures = await applyRound4Textures(models, {
       maxAnisotropy: Math.min(
         quality.anisotropy,
         renderer.capabilities.getMaxAnisotropy(),

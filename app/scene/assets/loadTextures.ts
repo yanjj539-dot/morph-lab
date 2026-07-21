@@ -15,6 +15,10 @@ import type { SceneQualitySettings } from "../core/qualityManager";
 import { applyRound3MaterialSystem } from "../materials/materialFactory";
 import { loadRound3CompressedTextures } from "../materials/loadCompressedTextures";
 import {
+  getWebGLRendererDescription,
+  supportsStableCompressedNormals,
+} from "../materials/normalMapPolicy";
+import {
   configureProjectSurface,
   type ProjectSurfaceKind,
 } from "../materials/screenMaterial";
@@ -27,6 +31,7 @@ import {
 import {
   ROUND2_TEXTURE_BINDINGS,
   ROUND3_TEXTURE_BINDINGS,
+  ROUND4_TEXTURE_BINDINGS,
   type TextureBinding,
 } from "./assetManifest";
 import { type Round2ModelMap } from "./loadModels";
@@ -41,6 +46,8 @@ export type Round3TextureRuntimeOptions = TextureRuntimeOptions & {
   renderer: WebGLRenderer;
   scene: Scene;
 };
+
+type StageRootMap = Partial<Record<JourneyStageId, Object3D>>;
 
 function findMeshByName(root: Object3D, meshName: string): Mesh | null {
   const object = root.getObjectByName(meshName);
@@ -57,12 +64,13 @@ function disposeReplacedMaterial(material: Mesh["material"]): void {
 }
 
 function disposeDetachedMaterials(
-  models: Round2ModelMap,
+  models: StageRootMap,
   replacements: readonly { previous: Mesh["material"] }[],
 ): void {
   const activeMaterials = new Set<Material>();
   const activeTextures = new Set<Texture>();
   for (const root of Object.values(models)) {
+    if (!root) continue;
     root.traverse((object) => {
       if (!(object instanceof Mesh)) return;
       const materials = Array.isArray(object.material) ? object.material : [object.material];
@@ -258,7 +266,7 @@ function rollbackSurfaceReplacement(replacement: SurfaceReplacement): void {
 }
 
 async function applyProjectTextures(
-  models: Round2ModelMap,
+  models: StageRootMap,
   bindings: readonly TextureBinding[],
   options: TextureRuntimeOptions,
   useScreenManifest: boolean,
@@ -296,6 +304,9 @@ async function applyProjectTextures(
 
     for (const [binding, texture] of loadedBindings) {
       const stageRoot = models[binding.stage as JourneyStageId];
+      if (!stageRoot) {
+        throw new Error(`Texture stage "${binding.stage}" was not loaded.`);
+      }
       const mesh = findMeshByName(stageRoot, binding.meshName);
       if (!mesh) {
         throw new Error(
@@ -349,6 +360,14 @@ export async function applyRound3Textures(
   models: Round2ModelMap,
   options: Round3TextureRuntimeOptions,
 ): Promise<readonly Texture[]> {
+  return applyAuthoredTextures(models, ROUND3_TEXTURE_BINDINGS, options);
+}
+
+async function applyAuthoredTextures(
+  models: StageRootMap,
+  bindings: readonly TextureBinding[],
+  options: Round3TextureRuntimeOptions,
+): Promise<readonly Texture[]> {
   const maxAnisotropy = Math.max(1, options.maxAnisotropy ?? 4);
   const compressed = await loadRound3CompressedTextures(options.renderer, {
     maxAnisotropy,
@@ -356,13 +375,19 @@ export async function applyRound3Textures(
   });
 
   try {
+    const normalMapsEnabled = supportsStableCompressedNormals(
+      getWebGLRendererDescription(options.renderer),
+    );
     for (const root of Object.values(models)) {
-      applyRound3MaterialSystem(root, compressed, options.quality);
+      if (!root) continue;
+      applyRound3MaterialSystem(root, compressed, options.quality, {
+        normalMapsEnabled,
+      });
     }
 
     options.scene.environment = compressed.neutralStudioEnv;
     options.scene.environmentIntensity = options.quality.tier === "high" ? 0.78 : 0.62;
-    const projectTextures = await applyScreenManifestTextures(models, options);
+    const projectTextures = await applyProjectTextures(models, bindings, options, true);
 
     return [...Object.values(compressed), ...projectTextures];
   } catch (error) {
@@ -370,4 +395,23 @@ export async function applyRound3Textures(
     disposeLoadedTextures(Object.values(compressed));
     throw error;
   }
+}
+
+export function applyRound4Textures(
+  models: Round2ModelMap,
+  options: Round3TextureRuntimeOptions,
+): Promise<readonly Texture[]> {
+  return applyAuthoredTextures(models, ROUND4_TEXTURE_BINDINGS, options);
+}
+
+export function applyRound4StageTextures(
+  stage: JourneyStageId,
+  root: Object3D,
+  options: Round3TextureRuntimeOptions,
+): Promise<readonly Texture[]> {
+  const models = { [stage]: root } as StageRootMap;
+  const bindings = ROUND4_TEXTURE_BINDINGS.filter(
+    (binding) => binding.stage === stage,
+  );
+  return applyAuthoredTextures(models, bindings, options);
 }

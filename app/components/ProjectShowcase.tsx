@@ -92,6 +92,7 @@ export function ProjectShowcase({ limit }: { limit?: number }) {
               className="project-cursor"
               href={withBasePath(`/work#${project.id}`)}
               aria-label={`View ${project.title} case study`}
+              data-page-transition
               onPointerMove={moveProjectCursor}
               onPointerLeave={resetProjectCursor}
             >

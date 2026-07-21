@@ -436,6 +436,7 @@ def export_stage(stage: str, collection: bpy.types.Collection, materials: dict[s
             export_optimize_animation_size=True, export_optimize_animation_keep_anim_object=True,
             export_anim_slide_to_zero=False, export_bake_animation=False, export_extras=True,
             export_cameras=False, export_lights=False,
+            export_tangents=True,
             export_draco_mesh_compression_enable=True, export_draco_mesh_compression_level=6,
         )
         return output

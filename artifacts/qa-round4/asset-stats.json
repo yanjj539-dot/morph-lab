@@ -4,7 +4,7 @@
     "perAssetBytes": 1500000,
     "totalBytes": 5000000
   },
-  "totalBytes": 1303760,
+  "totalBytes": 1703808,
   "assets": [
     {
       "stage": "observe",
@@ -20,7 +20,7 @@
       ],
       "collisionProxy": "collection-aabb",
       "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\observe.glb",
-      "bytes": 265368,
+      "bytes": 340720,
       "nodes": 68,
       "meshes": 62,
       "materials": 14,
@@ -43,7 +43,7 @@
         "KHR_materials_ior"
       ],
       "glbVersion": 2,
-      "declaredLength": 265368,
+      "declaredLength": 340720,
       "sceneRootNames": [
         "ROOT_OBSERVE"
       ],
@@ -64,7 +64,7 @@
       ],
       "collisionProxy": "collection-aabb",
       "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\structure.glb",
-      "bytes": 347436,
+      "bytes": 465252,
       "nodes": 95,
       "meshes": 89,
       "materials": 13,
@@ -87,7 +87,7 @@
         "KHR_materials_ior"
       ],
       "glbVersion": 2,
-      "declaredLength": 347436,
+      "declaredLength": 465252,
       "sceneRootNames": [
         "ROOT_STRUCTURE"
       ],
@@ -108,7 +108,7 @@
       ],
       "collisionProxy": "collection-aabb",
       "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\prototype.glb",
-      "bytes": 408020,
+      "bytes": 524688,
       "nodes": 104,
       "meshes": 99,
       "materials": 13,
@@ -133,7 +133,7 @@
         "KHR_materials_ior"
       ],
       "glbVersion": 2,
-      "declaredLength": 408020,
+      "declaredLength": 524688,
       "sceneRootNames": [
         "ROOT_PROTOTYPE"
       ],
@@ -154,7 +154,7 @@
       ],
       "collisionProxy": "collection-aabb",
       "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\release.glb",
-      "bytes": 282936,
+      "bytes": 373148,
       "nodes": 86,
       "meshes": 80,
       "materials": 14,
@@ -179,7 +179,7 @@
         "KHR_materials_ior"
       ],
       "glbVersion": 2,
-      "declaredLength": 282936,
+      "declaredLength": 373148,
       "sceneRootNames": [
         "ROOT_RELEASE"
       ],

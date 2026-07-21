@@ -48,15 +48,19 @@ const EXPECTED_PROFILES = {
   printedPaper: ["ffffff", 0.9, 0, 1.45, 0],
 };
 
-async function readGlbMaterialNames(stage) {
+async function readGlbDocument(stage) {
   const buffer = await readFile(
     new URL(`../public/models/round-4/${stage}.glb`, import.meta.url),
   );
   assert.equal(buffer.toString("ascii", 0, 4), "glTF", `${stage} is not a GLB`);
   const jsonLength = buffer.readUInt32LE(12);
-  const document = JSON.parse(
+  return JSON.parse(
     buffer.subarray(20, 20 + jsonLength).toString("utf8").replace(/\0+$/u, ""),
   );
+}
+
+async function readGlbMaterialNames(stage) {
+  const document = await readGlbDocument(stage);
   return [...new Set((document.materials ?? []).map((material) => material.name))];
 }
 
@@ -97,6 +101,21 @@ test("every authored Round 4 GLB material resolves to an explicit runtime route"
   assert.equal(resolveRound4MaterialRoute("MAT_BlackInk"), "blackRubber");
   assert.equal(resolveRound4MaterialRoute("MAT_Passed"), "signalBlue");
   assert.equal(resolveRound4MaterialRoute("MAT_ShadowGrey"), "softGreyMetal");
+});
+
+test("every Round 4 primitive exports tangent space for stable compressed normal maps", async () => {
+  for (const stage of ["observe", "structure", "prototype", "release"]) {
+    const document = await readGlbDocument(stage);
+    for (const mesh of document.meshes ?? []) {
+      for (const primitive of mesh.primitives ?? []) {
+        assert.notEqual(
+          primitive.attributes?.TANGENT,
+          undefined,
+          `${stage}:${mesh.name ?? "unnamed"} has no authored tangent attribute`,
+        );
+      }
+    }
+  }
 });
 
 test("print, content, glass, and acrylic keep the explicit transparency order", () => {

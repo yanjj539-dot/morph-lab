@@ -180,7 +180,7 @@ export default function ScrollJourney() {
 
         sceneControllerRef.current = controller;
         const trigger = ScrollTrigger.create({
-          id: "round-3-journey",
+          id: "round-4-journey",
           trigger: section,
           start: "top top",
           end: "+=420%",
@@ -212,8 +212,14 @@ export default function ScrollJourney() {
       cleanupExperience();
       const search = new URLSearchParams(window.location.search);
       const isQaCapture = search.has("qaStage") || search.has("qaProgress");
+      const isDesktop = desktopQuery.matches;
+      const prefersReducedMotion = reducedMotionQuery.matches;
+      if (!isDesktop || prefersReducedMotion) {
+        void initializeExperience();
+        return;
+      }
       const shouldDeferScene =
-        desktopQuery.matches && !reducedMotionQuery.matches && !isQaCapture;
+        !isQaCapture;
 
       if (!shouldDeferScene) {
         void initializeExperience();
