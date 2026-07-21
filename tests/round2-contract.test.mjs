@@ -293,3 +293,23 @@ test("round 2 keeps global motion cleanup scoped to MotionController-owned trigg
   assert.match(motionController, /context\.revert\(\)/);
   assert.doesNotMatch(motionController, /ScrollTrigger\.getAll\(\)\.forEach\([\s\S]*?kill/);
 });
+
+test("round 2 ships a repeatable browser, video, canvas, and Lighthouse QA runner", async () => {
+  const [packageJson, qaRunner, qaServer] = await Promise.all([
+    readFile(new URL("../package.json", import.meta.url), "utf8"),
+    readFile(new URL("../scripts/qa-round2.mjs", import.meta.url), "utf8"),
+    readFile(new URL("../scripts/qa-server.mjs", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(packageJson, /"qa:round2"/);
+  assert.match(packageJson, /"@playwright\/test"/);
+  assert.match(packageJson, /"lighthouse"/);
+  assert.match(packageJson, /"sharp"/);
+  assert.match(qaRunner, /chromium\.launch/);
+  assert.match(qaRunner, /\.endsWith\("\.glb"\)/);
+  assert.match(qaRunner, /reducedMotion:\s*"reduce"/);
+  assert.match(qaRunner, /sharp\(path\)\.stats\(\)/);
+  assert.match(qaRunner, /ffmpeg/);
+  assert.match(qaRunner, /runLighthouse/);
+  assert.match(qaServer, /process\.env\.QA_PORT/);
+});

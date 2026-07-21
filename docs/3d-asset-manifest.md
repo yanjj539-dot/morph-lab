@@ -105,3 +105,12 @@ Combined Round 2 GLB payload is 749,212 bytes after Draco compression. Combined 
 ## Acceptance record
 
 All four stages passed static visual review and contract validation. Each stage records its actual byte size, object count, triangle count, render path, and screenshot result above; no weak or missing asset was relabeled final.
+
+## Browser acceptance record
+
+- Desktop runtime requested exactly four GLBs and reached the `ready` state without console, page, request, or HTTP errors.
+- Mobile `390x844` and desktop Reduced Motion requested zero GLBs and rendered all four static stages without a WebGL canvas.
+- Canvas screenshots passed nonblank pixel checks: channel deviation `30.69-64.28`, entropy `3.34-5.05`.
+- Seven viewports (`1920x1080`, `1440x900`, `1280x800`, `1024x768`, `768x1024`, `430x932`, `390x844`) had no horizontal overflow.
+- Lighthouse: desktop `97 / 100 / 96 / 100`; mobile `73 / 96 / 96 / 100` for performance, accessibility, best practices, and SEO.
+- Evidence: `artifacts/qa-round2/qa-summary.md`, four deterministic stage screenshots, two MP4 recordings, and both Lighthouse JSON reports.
