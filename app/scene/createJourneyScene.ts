@@ -200,6 +200,17 @@ export async function createJourneyScene({
     cameraRig.setPose(cameraSample, 1 - Math.exp(-12 * deltaSeconds));
     cameraRig.rig.updateMatrixWorld(true);
     cameraRig.camera.getWorldPosition(cameraWorldPosition);
+    scene.userData.cameraPose = {
+      progress,
+      position: cameraWorldPosition.toArray(),
+      target: cameraSample.target.toArray(),
+      fov: cameraSample.fov,
+      yaw: cameraSample.yaw,
+      pitch: cameraSample.pitch,
+      dollyDistance: cameraSample.dollyDistance,
+      roll: cameraSample.roll,
+      nearPlane: cameraRig.camera.near,
+    };
     scene.userData.cameraClearance = cameraCollision.inspect(
       cameraWorldPosition,
       cameraRig.camera.near,

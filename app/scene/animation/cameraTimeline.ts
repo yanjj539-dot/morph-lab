@@ -10,6 +10,8 @@ export type CameraKeyframe = {
   fov: number;
   yaw: number;
   pitch: number;
+  dollyDistance: number;
+  roll: number;
 };
 
 export type CameraTimelineSample = {
@@ -18,6 +20,8 @@ export type CameraTimelineSample = {
   fov: number;
   yaw: number;
   pitch: number;
+  dollyDistance: number;
+  roll: number;
 };
 
 type TimedCurveSegment = {
@@ -27,7 +31,28 @@ type TimedCurveSegment = {
   targetCurve: CatmullRomCurve3;
   positionArcLength: number;
   targetArcLength: number;
+  easingName: CameraSegmentEasing;
+  ease: (progress: number) => number;
 };
+
+export const MAX_CAMERA_ROLL = 0.026;
+
+type CameraSegmentEasing =
+  | "smoothstep"
+  | "smootherstep"
+  | "settle"
+  | "hold";
+
+const SEGMENT_EASINGS: readonly CameraSegmentEasing[] = [
+  "smoothstep",
+  "smootherstep",
+  "settle",
+  "smootherstep",
+  "smoothstep",
+  "settle",
+  "smootherstep",
+  "hold",
+];
 
 export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
   {
@@ -38,6 +63,8 @@ export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
     fov: 36,
     yaw: -0.03,
     pitch: -0.04,
+    dollyDistance: 0.24,
+    roll: 0,
   },
   {
     t: 0.2,
@@ -47,6 +74,8 @@ export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
     fov: 33,
     yaw: 0.02,
     pitch: -0.02,
+    dollyDistance: -0.08,
+    roll: 0.008,
   },
   {
     t: 0.29,
@@ -56,6 +85,8 @@ export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
     fov: 34,
     yaw: 0.06,
     pitch: 0,
+    dollyDistance: 0.08,
+    roll: -0.012,
   },
   {
     t: 0.45,
@@ -65,6 +96,8 @@ export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
     fov: 31,
     yaw: -0.02,
     pitch: 0.03,
+    dollyDistance: -0.12,
+    roll: 0.008,
   },
   {
     t: 0.54,
@@ -74,6 +107,8 @@ export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
     fov: 32,
     yaw: 0.05,
     pitch: 0.01,
+    dollyDistance: 0.05,
+    roll: -0.006,
   },
   {
     t: 0.68,
@@ -83,6 +118,8 @@ export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
     fov: 29,
     yaw: -0.04,
     pitch: 0.04,
+    dollyDistance: -0.3,
+    roll: 0.018,
   },
   {
     t: 0.77,
@@ -92,6 +129,8 @@ export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
     fov: 32,
     yaw: 0.04,
     pitch: 0,
+    dollyDistance: 0.1,
+    roll: 0.006,
   },
   {
     t: 0.93,
@@ -101,6 +140,8 @@ export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
     fov: 37,
     yaw: -0.02,
     pitch: -0.02,
+    dollyDistance: 0.28,
+    roll: -0.008,
   },
   {
     t: 1,
@@ -110,12 +151,15 @@ export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
     fov: 38,
     yaw: 0,
     pitch: 0,
+    dollyDistance: 0.34,
+    roll: 0,
   },
 ] as const;
 
 export type CameraTimeline = {
   sample: (progress: number, output: CameraTimelineSample) => CameraTimelineSample;
   readonly segmentArcLengths: readonly number[];
+  readonly segmentEasings: readonly CameraSegmentEasing[];
 };
 
 function makeVector(tuple: readonly [number, number, number]): Vector3 {
@@ -133,6 +177,25 @@ function findSegment(
   return segments[index];
 }
 
+function smootherstep(progress: number): number {
+  const t = clamp01(progress);
+  return t * t * t * (t * (t * 6 - 15) + 10);
+}
+
+function segmentEase(name: CameraSegmentEasing, progress: number): number {
+  const t = clamp01(progress);
+  switch (name) {
+    case "smootherstep":
+      return smootherstep(t);
+    case "settle":
+      return smoothstep(smootherstep(t));
+    case "hold":
+      return smootherstep(smoothstep(t));
+    default:
+      return smoothstep(t);
+  }
+}
+
 function createTimedSegments(): TimedCurveSegment[] {
   const positions = CAMERA_KEYFRAMES.map((keyframe) => makeVector(keyframe.position));
   const targets = CAMERA_KEYFRAMES.map((keyframe) => makeVector(keyframe.target));
@@ -142,6 +205,7 @@ function createTimedSegments(): TimedCurveSegment[] {
 
   return CAMERA_KEYFRAMES.slice(0, -1).map((from, index) => {
     const to = CAMERA_KEYFRAMES[index + 1];
+    const easingName = SEGMENT_EASINGS[index];
     const midpointT = (index + 0.5) / segmentCount;
     const positionCurve = new CatmullRomCurve3(
       [makeVector(from.position), positionGuide.getPoint(midpointT), makeVector(to.position)],
@@ -163,6 +227,8 @@ function createTimedSegments(): TimedCurveSegment[] {
       targetCurve,
       positionArcLength: positionCurve.getLength(),
       targetArcLength: targetCurve.getLength(),
+      easingName,
+      ease: (progress) => segmentEase(easingName, progress),
     };
   });
 }
@@ -187,7 +253,7 @@ export function createCameraTimeline(): CameraTimeline {
       const segment = findSegment(segments, t);
       const duration = Math.max(Number.EPSILON, segment.to.t - segment.from.t);
       const localProgress = clamp01((t - segment.from.t) / duration);
-      const eased = smoothstep(localProgress);
+      const eased = segment.ease(localProgress);
 
       sampleByArcLength(
         segment.positionCurve,
@@ -204,9 +270,19 @@ export function createCameraTimeline(): CameraTimeline {
       output.fov = lerp(segment.from.fov, segment.to.fov, eased);
       output.yaw = lerp(segment.from.yaw, segment.to.yaw, eased);
       output.pitch = lerp(segment.from.pitch, segment.to.pitch, eased);
+      output.dollyDistance = lerp(
+        segment.from.dollyDistance,
+        segment.to.dollyDistance,
+        eased,
+      );
+      output.roll = Math.max(
+        -MAX_CAMERA_ROLL,
+        Math.min(MAX_CAMERA_ROLL, lerp(segment.from.roll, segment.to.roll, eased)),
+      );
       return output;
     },
     segmentArcLengths: segments.map((segment) => segment.positionArcLength),
+    segmentEasings: segments.map((segment) => segment.easingName),
   };
 }
 
@@ -217,5 +293,7 @@ export function createCameraTimelineSample(): CameraTimelineSample {
     fov: CAMERA_KEYFRAMES[0].fov,
     yaw: CAMERA_KEYFRAMES[0].yaw,
     pitch: CAMERA_KEYFRAMES[0].pitch,
+    dollyDistance: CAMERA_KEYFRAMES[0].dollyDistance,
+    roll: CAMERA_KEYFRAMES[0].roll,
   };
 }
