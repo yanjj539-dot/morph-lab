@@ -3,7 +3,14 @@ import { existsSync } from "node:fs";
 import { extname } from "node:path";
 import { registerHooks } from "node:module";
 import test from "node:test";
-import { BoxGeometry, Group, Mesh, MeshBasicMaterial, Vector3 } from "three";
+import {
+  BoxGeometry,
+  Group,
+  Mesh,
+  MeshBasicMaterial,
+  Quaternion,
+  Vector3,
+} from "three";
 
 registerHooks({
   resolve(specifier, context, nextResolve) {
@@ -33,6 +40,10 @@ function makeStageRoot() {
   const root = new Group();
   root.add(new Mesh(new BoxGeometry(1, 1, 1), new MeshBasicMaterial()));
   return root;
+}
+
+function stageOpacity(root) {
+  return root.children[0].material.opacity;
 }
 
 test("round 4 camera rig nests dolly after yaw and pitch while retaining cameraRoot", () => {
@@ -69,6 +80,31 @@ test("dolly changes world position while yaw, pitch, and roll continue looking a
   assert.ok(dollyDirection.dot(baselineDirection) > 0.999999);
 });
 
+test("authored yaw and pitch change world camera composition without losing target alignment", () => {
+  const rig = createCameraRig();
+  const position = new Vector3(-4.65, 3.1, 5.55);
+  const target = new Vector3(-3.95, 0.72, -1.75);
+  const pose = { position, target, dollyDistance: 0.08, roll: -0.012 };
+
+  rig.setPose({ ...pose, yaw: 0, pitch: 0 }, 1);
+  updateWorld(rig);
+  const neutralPosition = rig.camera.getWorldPosition(new Vector3());
+
+  rig.setPose({ ...pose, yaw: 0.12, pitch: -0.08 }, 1);
+  updateWorld(rig);
+  const authoredPosition = rig.camera.getWorldPosition(new Vector3());
+  const authoredDirection = worldDirection(rig.camera);
+
+  assert.ok(
+    authoredPosition.distanceTo(neutralPosition) > 0.5,
+    "yaw/pitch pivots visibly recompose the shot",
+  );
+  assert.ok(
+    authoredDirection.dot(target.clone().sub(authoredPosition).normalize()) > 0.999999,
+    "pivoted camera still looks at the authored target",
+  );
+});
+
 test("roll is quaternion-interpolated, clamped, and does not turn the camera away from its target", () => {
   const rig = createCameraRig();
   const position = new Vector3(2, 2.12, 4.1);
@@ -90,6 +126,43 @@ test("roll is quaternion-interpolated, clamped, and does not turn the camera awa
   assert.ok(directionBefore.dot(directionAfter) > 0.999999);
   assert.ok(directionAfter.dot(target.clone().sub(worldPosition).normalize()) > 0.999999);
   assert.ok(upBefore.dot(upAfter) < 0.9999, "roll changes the camera frame around its view axis");
+});
+
+test("roll quaternion approaches its target continuously across damped frames", () => {
+  const rig = createCameraRig();
+  const position = new Vector3(2, 2.12, 4.1);
+  const target = new Vector3(2.25, 0.82, -1.72);
+  const pose = {
+    position,
+    target,
+    yaw: -0.04,
+    pitch: 0.04,
+    dollyDistance: -0.3,
+  };
+  const targetRoll = new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), 0.026);
+
+  rig.setPose({ ...pose, roll: 0 }, 1);
+  let previous = rig.camera.quaternion.clone();
+  let previousDistance = previous.angleTo(targetRoll);
+
+  for (let frame = 0; frame < 4; frame += 1) {
+    rig.setPose({ ...pose, roll: 0.026 }, 0.25);
+    updateWorld(rig);
+    const next = rig.camera.quaternion.clone();
+    const nextDistance = next.angleTo(targetRoll);
+    const worldPosition = rig.camera.getWorldPosition(new Vector3());
+
+    assert.ok(nextDistance < previousDistance, "each damped frame approaches authored roll");
+    assert.ok(previous.dot(next) > 0, "damped roll quaternion stays on one hemisphere");
+    assert.ok(
+      worldDirection(rig.camera).dot(target.clone().sub(worldPosition).normalize()) > 0.999999,
+      "damped roll preserves target direction",
+    );
+    previous = next;
+    previousDistance = nextDistance;
+  }
+
+  assert.ok(previousDistance > 0, "damping does not snap to the final roll in one frame");
 });
 
 test("timeline samples authored dolly and roll with nonuniform easing and continuous quaternions", () => {
@@ -135,7 +208,7 @@ test("camera inspector returns 41 finite Round 4 states by default", () => {
   }
 });
 
-test("stage crossfade overlap stays inside the authored eight-to-twelve percent windows", () => {
+test("all adjacent stages keep their authored ten-percent crossfade windows", () => {
   const roots = {
     observe: makeStageRoot(),
     structure: makeStageRoot(),
@@ -143,17 +216,62 @@ test("stage crossfade overlap stays inside the authored eight-to-twelve percent 
     release: makeStageRoot(),
   };
   const timeline = createStageTimelines(roots);
+  const transitions = [
+    {
+      outgoing: "observe",
+      incoming: "structure",
+      incomingStart: 0.18,
+      incomingEnd: 0.28,
+      outgoingStart: 0.2,
+      outgoingEnd: 0.3,
+    },
+    {
+      outgoing: "structure",
+      incoming: "prototype",
+      incomingStart: 0.44,
+      incomingEnd: 0.54,
+      outgoingStart: 0.46,
+      outgoingEnd: 0.56,
+    },
+    {
+      outgoing: "prototype",
+      incoming: "release",
+      incomingStart: 0.69,
+      incomingEnd: 0.79,
+      outgoingStart: 0.7,
+      outgoingEnd: 0.8,
+    },
+  ];
 
-  timeline.update(0.2);
-  assert.equal(roots.observe.visible, true);
-  assert.equal(roots.structure.visible, true);
-  timeline.update(0.28);
-  assert.equal(roots.observe.visible, true);
-  assert.equal(roots.structure.visible, true);
-  timeline.update(0.3);
-  assert.equal(roots.observe.visible, false);
+  for (const transition of transitions) {
+    const outgoing = roots[transition.outgoing];
+    const incoming = roots[transition.incoming];
+    assert.ok(Math.abs(transition.incomingEnd - transition.incomingStart - 0.1) < 1e-9);
+    assert.ok(Math.abs(transition.outgoingEnd - transition.outgoingStart - 0.1) < 1e-9);
 
-  const overlap = 0.28 - 0.2;
-  assert.ok(overlap >= 0.08 && overlap <= 0.12);
+    timeline.update(transition.incomingStart);
+    assert.equal(stageOpacity(incoming), 0, "incoming stage starts transparent");
+    assert.equal(stageOpacity(outgoing), 1, "outgoing stage starts opaque");
+
+    timeline.update(transition.outgoingStart);
+    assert.equal(stageOpacity(outgoing), 1, "outgoing fade starts opaque");
+    assert.ok(stageOpacity(incoming) > 0, "incoming stage overlaps before fade-out");
+
+    timeline.update((transition.outgoingStart + transition.outgoingEnd) / 2);
+    assert.ok(stageOpacity(outgoing) > 0 && stageOpacity(outgoing) < 1);
+    assert.ok(stageOpacity(incoming) > 0 && stageOpacity(incoming) < 1);
+    assert.equal(outgoing.visible, true);
+    assert.equal(incoming.visible, true);
+
+    timeline.update(transition.incomingEnd);
+    assert.equal(stageOpacity(incoming), 1, "incoming stage finishes opaque");
+    assert.ok(stageOpacity(outgoing) > 0, "outgoing stage remains during overlap tail");
+
+    timeline.update(transition.outgoingEnd);
+    assert.equal(stageOpacity(outgoing), 0, "outgoing stage finishes transparent");
+    assert.equal(stageOpacity(incoming), 1, "incoming stage remains opaque");
+    assert.equal(outgoing.visible, false);
+    assert.equal(incoming.visible, true);
+  }
   timeline.reset();
 });

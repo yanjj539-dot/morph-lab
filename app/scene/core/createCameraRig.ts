@@ -72,8 +72,6 @@ export function createCameraRig(width = 1, height = 1): CameraRig {
   const lookAtMatrix = new Matrix4();
   const targetYawQuaternion = new Quaternion();
   const targetPitchQuaternion = new Quaternion();
-  const parentRotation = new Quaternion();
-  const inverseParentRotation = new Quaternion();
   const targetDollyQuaternion = new Quaternion();
   const targetRollQuaternion = new Quaternion();
   let initialized = false;
@@ -100,11 +98,7 @@ export function createCameraRig(width = 1, height = 1): CameraRig {
     const blend = initialized ? Math.max(0, Math.min(1, damping)) : 1;
     yawPivot.quaternion.slerp(targetYawQuaternion, blend);
     pitchPivot.quaternion.slerp(targetPitchQuaternion, blend);
-    parentRotation.copy(yawPivot.quaternion).multiply(pitchPivot.quaternion);
-    inverseParentRotation.copy(parentRotation).invert();
-    localDollyPosition
-      .subVectors(positionVector, targetVector)
-      .applyQuaternion(inverseParentRotation);
+    localDollyPosition.subVectors(positionVector, targetVector);
     cameraDolly.position.copy(localDollyPosition);
     lookAtMatrix.lookAt(localDollyPosition, localTargetVector, cameraDolly.up);
     targetDollyQuaternion.setFromRotationMatrix(lookAtMatrix);
