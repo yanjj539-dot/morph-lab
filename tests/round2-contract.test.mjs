@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { execFile } from "node:child_process";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
+import { promisify } from "node:util";
+
+const execFileAsync = promisify(execFile);
 
 const stages = ["observe", "structure", "prototype", "release"];
 
@@ -133,4 +137,112 @@ test("round 2 manifest records final measured assets and animation controls", as
     const image = await readFile(new URL(`../${imagePath}`, import.meta.url));
     assert.ok(image.byteLength > 0, `${imagePath} exists`);
   }
+});
+
+test("round 2 ships a modular, pausable, disposable Three.js runtime", async () => {
+  const [
+    assetManifest,
+    modelLoader,
+    textureLoader,
+    renderer,
+    cameraRig,
+    cameraTimeline,
+    stageTimelines,
+    visibility,
+    disposal,
+    runtime,
+  ] = await Promise.all(
+    [
+      "../app/scene/assets/assetManifest.ts",
+      "../app/scene/assets/loadModels.ts",
+      "../app/scene/assets/loadTextures.ts",
+      "../app/scene/core/createRenderer.ts",
+      "../app/scene/core/createCameraRig.ts",
+      "../app/scene/animation/cameraTimeline.ts",
+      "../app/scene/animation/stageTimelines.ts",
+      "../app/scene/interaction/visibilityController.ts",
+      "../app/scene/core/disposeScene.ts",
+      "../app/scene/createJourneyScene.ts",
+    ].map((path) => readFile(new URL(path, import.meta.url), "utf8")),
+  );
+
+  for (const stage of stages) {
+    assert.match(assetManifest, new RegExp(`withBasePath\\(\"/models/round-2/${stage}\\.glb\"\\)`));
+  }
+  assert.match(modelLoader, /GLTFLoader/);
+  assert.match(modelLoader, /DRACOLoader/);
+  assert.match(modelLoader, /setDecoderPath/);
+  assert.match(modelLoader, /Promise\.allSettled/);
+  assert.match(modelLoader, /AbortSignal/);
+  assert.match(textureLoader, /SRGBColorSpace/);
+  assert.match(textureLoader, /flipY\s*=\s*false/);
+  assert.match(textureLoader, /anisotropy/);
+  assert.match(textureLoader, /Map<string, Promise<Texture>>/);
+  assert.match(textureLoader, /disposeDetachedMaterials/);
+  assert.match(renderer, /Math\.min\([^\n]*1\.5/);
+  assert.match(renderer, /PCFShadowMap/);
+  for (const rigNode of ["CameraRig", "CameraRoot", "YawPivot", "PitchPivot"]) {
+    assert.match(cameraRig, new RegExp(rigNode));
+  }
+  assert.match(cameraTimeline, /CatmullRomCurve3/);
+  assert.match(cameraTimeline, /CAMERA_KEYFRAMES/);
+  for (const control of ["OBS_scan_beam", "STR_connectors", "PRO_light_ring", "REL_qa_rows"]) {
+    assert.match(stageTimelines, new RegExp(control));
+  }
+  assert.match(visibility, /visibilitychange/);
+  assert.match(visibility, /IntersectionObserver/);
+  assert.match(visibility, /document\.hidden/);
+  assert.match(disposal, /geometry\.dispose\(\)/);
+  assert.match(disposal, /material\.dispose\(\)/);
+  assert.match(disposal, /texture\.dispose\(\)/);
+  assert.match(disposal, /ImageBitmap/);
+  assert.match(disposal, /renderer\.dispose\(\)/);
+  assert.match(disposal, /forceContextLoss\(\)/);
+  assert.match(runtime, /setProgress/);
+  assert.match(runtime, /scrollToStage/);
+  assert.match(runtime, /onStageChange/);
+  assert.match(runtime, /setDrawRange/);
+  assert.match(runtime, /signal\?: AbortSignal/);
+  assert.match(runtime, /removeEventListener\("abort"/);
+  assert.doesNotMatch(runtime, /BoxGeometry/);
+
+  const cameraRigUrl = new URL(
+    "../app/scene/core/createCameraRig.ts",
+    import.meta.url,
+  ).href;
+  const cameraBehaviorScript = `
+    const { createCameraRig } = await import(${JSON.stringify(cameraRigUrl)});
+    const { Vector3 } = await import("three");
+    const rig = createCameraRig();
+    const position = new Vector3(-7.35, 4.25, 7.6);
+    const target = new Vector3(-6, 0.45, -1.55);
+    rig.setPose({ position, target, fov: 36, yaw: 0.06, pitch: 0.04 });
+    rig.rig.updateMatrixWorld(true);
+    const worldPosition = new Vector3();
+    const worldDirection = new Vector3();
+    rig.camera.getWorldPosition(worldPosition);
+    rig.camera.getWorldDirection(worldDirection);
+    const expectedDirection = target.clone().sub(worldPosition).normalize();
+    console.log(worldDirection.dot(expectedDirection));
+  `;
+  const { stdout } = await execFileAsync(
+    process.execPath,
+    [
+      "--no-warnings",
+      "--experimental-strip-types",
+      "--input-type=module",
+      "-e",
+      cameraBehaviorScript,
+    ],
+    { cwd: new URL("..", import.meta.url) },
+  );
+  assert.ok(Number(stdout.trim()) > 0.999999, "camera rig looks at the authored target");
+
+  await Promise.all(
+    [
+      "../public/draco/gltf/draco_decoder.js",
+      "../public/draco/gltf/draco_decoder.wasm",
+      "../public/draco/gltf/draco_wasm_wrapper.js",
+    ].map((path) => access(new URL(path, import.meta.url))),
+  );
 });

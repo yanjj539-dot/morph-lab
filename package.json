@@ -14,7 +14,7 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "test:round2": "node --test tests/round2-contract.test.mjs",
     "qa:round2": "node scripts/qa-round2.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern public/draco"
   },
   "dependencies": {
     "gsap": "^3.15.0",
