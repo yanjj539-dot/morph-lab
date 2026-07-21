@@ -96,7 +96,7 @@ test("ships real project assets and the responsive scroll journey", async () => 
   assert.doesNotMatch(page, /<MorphCore \/>|<LiveGenerativeSystem \/>/);
   assert.match(
     page,
-    /src=\{withBasePath\("\/fallback\/round-2\/observe\.webp"\)\}/,
+    /src=\{withBasePath\("\/fallback\/round-3\/observe\.webp"\)\}/,
   );
   assert.doesNotMatch(page, /hero-card|hero-card--note|hero-card--system|hero-card--release/);
   assert.match(
@@ -111,10 +111,10 @@ test("ships real project assets and the responsive scroll journey", async () => 
   assert.match(journeyData, /export type JourneyStage/);
   assert.match(journeyData, /export const JOURNEY_STAGE_PROGRESS = \[0\.08, 0\.36, 0\.63, 0\.9\] as const/);
   assert.match(journeyData, /export const JOURNEY_STAGES/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-2\/observe\.webp"\)/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-2\/structure\.webp"\)/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-2\/prototype\.webp"\)/);
-  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-2\/release\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-3\/observe\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-3\/structure\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-3\/prototype\.webp"\)/);
+  assert.match(journeyData, /fallbackSrc:\s*withBasePath\("\/fallback\/round-3\/release\.webp"\)/);
 
   assert.match(css, /--color-sky:\s*#bfd4f5/i);
   assert.match(css, /--color-paper:\s*#f6f5ef/i);
@@ -135,15 +135,15 @@ test("ships real project assets and the responsive scroll journey", async () => 
       "../public/images/device-tree-hole.webp",
       "../public/images/morph-studio-workbench-v1.webp",
       "../public/images/morph-workflow-quality-gate-v1.webp",
-      "../public/fallback/round-2/observe.webp",
-      "../public/fallback/round-2/structure.webp",
-      "../public/fallback/round-2/prototype.webp",
-      "../public/fallback/round-2/release.webp",
+      "../public/fallback/round-3/observe.webp",
+      "../public/fallback/round-3/structure.webp",
+      "../public/fallback/round-3/prototype.webp",
+      "../public/fallback/round-3/release.webp",
     ].map((path) => access(new URL(path, import.meta.url))),
   );
 });
 
-test("ships the split round 2 ScrollJourney component surface", async () => {
+test("ships the split ScrollJourney component surface", async () => {
   await assert.rejects(
     access(new URL("../app/components/ScrollJourney.tsx", import.meta.url)),
     /ENOENT/,

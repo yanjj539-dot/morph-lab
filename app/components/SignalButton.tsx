@@ -9,6 +9,7 @@ type SignalButtonProps = {
   children: ReactNode;
   variant?: "primary" | "line";
   className?: string;
+  hoverLabel?: ReactNode;
 };
 
 export function SignalButton({
@@ -16,13 +17,26 @@ export function SignalButton({
   children,
   variant = "primary",
   className = "",
+  hoverLabel,
 }: SignalButtonProps) {
   return (
     <a
       href={withBasePath(href)}
-      className={`signal-button signal-button--${variant} ${className}`.trim()}
+      className={`signal-button signal-button--${variant} ${hoverLabel ? "signal-button--swap" : ""} ${className}`.trim()}
     >
-      <span className="signal-button__label">{children}</span>
+      <span className="signal-button__label-frame">
+        <span className="signal-button__label signal-button__label--primary">
+          {children}
+        </span>
+        {hoverLabel ? (
+          <span
+            className="signal-button__label signal-button__label--alternate"
+            aria-hidden="true"
+          >
+            {hoverLabel}
+          </span>
+        ) : null}
+      </span>
       <ArrowUpRight className="signal-button__icon" size={16} strokeWidth={1.8} aria-hidden="true" />
     </a>
   );

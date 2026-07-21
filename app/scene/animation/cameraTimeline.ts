@@ -1,4 +1,4 @@
-import { CatmullRomCurve3, PerspectiveCamera, Vector3 } from "three";
+import { CatmullRomCurve3, Vector3 } from "three";
 
 import { clamp01, lerp, smoothstep } from "./progressMath";
 
@@ -18,6 +18,15 @@ export type CameraTimelineSample = {
   fov: number;
   yaw: number;
   pitch: number;
+};
+
+type TimedCurveSegment = {
+  from: CameraKeyframe;
+  to: CameraKeyframe;
+  positionCurve: CatmullRomCurve3;
+  targetCurve: CatmullRomCurve3;
+  positionArcLength: number;
+  targetArcLength: number;
 };
 
 export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
@@ -106,72 +115,98 @@ export const CAMERA_KEYFRAMES: readonly CameraKeyframe[] = [
 
 export type CameraTimeline = {
   sample: (progress: number, output: CameraTimelineSample) => CameraTimelineSample;
-  applyToCamera: (
-    progress: number,
-    camera: PerspectiveCamera,
-    output: CameraTimelineSample,
-  ) => CameraTimelineSample;
+  readonly segmentArcLengths: readonly number[];
 };
 
 function makeVector(tuple: readonly [number, number, number]): Vector3 {
   return new Vector3(tuple[0], tuple[1], tuple[2]);
 }
 
-function findSegment(progress: number): number {
+function findSegment(
+  segments: readonly TimedCurveSegment[],
+  progress: number,
+): TimedCurveSegment {
   let index = 0;
-
-  while (
-    index < CAMERA_KEYFRAMES.length - 2 &&
-    progress > CAMERA_KEYFRAMES[index + 1].t
-  ) {
+  while (index < segments.length - 1 && progress > segments[index].to.t) {
     index += 1;
   }
+  return segments[index];
+}
 
-  return index;
+function createTimedSegments(): TimedCurveSegment[] {
+  const positions = CAMERA_KEYFRAMES.map((keyframe) => makeVector(keyframe.position));
+  const targets = CAMERA_KEYFRAMES.map((keyframe) => makeVector(keyframe.target));
+  const positionGuide = new CatmullRomCurve3(positions, false, "catmullrom", 0.34);
+  const targetGuide = new CatmullRomCurve3(targets, false, "catmullrom", 0.34);
+  const segmentCount = CAMERA_KEYFRAMES.length - 1;
+
+  return CAMERA_KEYFRAMES.slice(0, -1).map((from, index) => {
+    const to = CAMERA_KEYFRAMES[index + 1];
+    const midpointT = (index + 0.5) / segmentCount;
+    const positionCurve = new CatmullRomCurve3(
+      [makeVector(from.position), positionGuide.getPoint(midpointT), makeVector(to.position)],
+      false,
+      "catmullrom",
+      0.34,
+    );
+    const targetCurve = new CatmullRomCurve3(
+      [makeVector(from.target), targetGuide.getPoint(midpointT), makeVector(to.target)],
+      false,
+      "catmullrom",
+      0.34,
+    );
+
+    return {
+      from,
+      to,
+      positionCurve,
+      targetCurve,
+      positionArcLength: positionCurve.getLength(),
+      targetArcLength: targetCurve.getLength(),
+    };
+  });
+}
+
+function sampleByArcLength(
+  curve: CatmullRomCurve3,
+  arcLength: number,
+  progress: number,
+  output: Vector3,
+): void {
+  const distance = arcLength * clamp01(progress);
+  const curveT = curve.getUtoTmapping(progress, distance);
+  curve.getPoint(curveT, output);
 }
 
 export function createCameraTimeline(): CameraTimeline {
-  const positionCurve = new CatmullRomCurve3(
-    CAMERA_KEYFRAMES.map((keyframe) => makeVector(keyframe.position)),
-    false,
-    "catmullrom",
-    0.34,
-  );
-  const targetCurve = new CatmullRomCurve3(
-    CAMERA_KEYFRAMES.map((keyframe) => makeVector(keyframe.target)),
-    false,
-    "catmullrom",
-    0.34,
-  );
+  const segments = createTimedSegments();
 
   return {
     sample(progress, output) {
       const t = clamp01(progress);
-      const index = findSegment(t);
-      const from = CAMERA_KEYFRAMES[index];
-      const to = CAMERA_KEYFRAMES[index + 1];
-      const localProgress = (t - from.t) / (to.t - from.t);
+      const segment = findSegment(segments, t);
+      const duration = Math.max(Number.EPSILON, segment.to.t - segment.from.t);
+      const localProgress = clamp01((t - segment.from.t) / duration);
       const eased = smoothstep(localProgress);
-      const curveProgress = (index + eased) / (CAMERA_KEYFRAMES.length - 1);
 
-      positionCurve.getPoint(curveProgress, output.position);
-      targetCurve.getPoint(curveProgress, output.target);
-
-      output.fov = lerp(from.fov, to.fov, eased);
-      output.yaw = lerp(from.yaw, to.yaw, eased);
-      output.pitch = lerp(from.pitch, to.pitch, eased);
-
+      sampleByArcLength(
+        segment.positionCurve,
+        segment.positionArcLength,
+        eased,
+        output.position,
+      );
+      sampleByArcLength(
+        segment.targetCurve,
+        segment.targetArcLength,
+        eased,
+        output.target,
+      );
+      output.fov = lerp(segment.from.fov, segment.to.fov, eased);
+      output.yaw = lerp(segment.from.yaw, segment.to.yaw, eased);
+      output.pitch = lerp(segment.from.pitch, segment.to.pitch, eased);
       return output;
     },
-
-    applyToCamera(progress, camera, output) {
-      this.sample(progress, output);
-      camera.position.copy(output.position);
-      camera.fov = output.fov;
-      camera.lookAt(output.target);
-      camera.updateProjectionMatrix();
-      return output;
-    },
+    segmentArcLengths: segments.map((segment) => segment.positionArcLength),
   };
 }
 

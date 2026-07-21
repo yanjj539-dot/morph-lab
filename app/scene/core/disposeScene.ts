@@ -2,6 +2,7 @@ import {
   BufferGeometry,
   Material,
   Object3D,
+  Scene,
   Texture,
   WebGLRenderer,
 } from "three";
@@ -102,6 +103,13 @@ export function disposeScene(scene: Object3D, renderer: WebGLRenderer) {
       }
     }
   });
+
+  if (scene instanceof Scene) {
+    disposeTexture(scene.background, textures, imageBitmaps);
+    disposeTexture(scene.environment, textures, imageBitmaps);
+    scene.background = null;
+    scene.environment = null;
+  }
 
   for (const geometry of geometries) {
     geometry.dispose();

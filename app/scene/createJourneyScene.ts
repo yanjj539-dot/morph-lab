@@ -3,6 +3,7 @@ import {
   Color,
   Fog,
   Mesh,
+  MeshPhysicalMaterial,
   MeshStandardMaterial,
   PlaneGeometry,
   Scene,
@@ -15,21 +16,29 @@ import {
   JOURNEY_STAGES,
   type JourneyStageId,
 } from "../data/journey";
-import { loadRound2Models, type Round2ModelMap } from "./assets/loadModels";
-import { applyRound2Textures } from "./assets/loadTextures";
+import {
+  disposeLoadedStageModels,
+  getStageRoots,
+  loadRound3Models,
+  type Round2ModelMap,
+} from "./assets/loadModels";
+import { applyRound3Textures } from "./assets/loadTextures";
+import { createBlenderClipController } from "./animation/blenderClipController";
 import {
   createCameraTimeline,
   createCameraTimelineSample,
 } from "./animation/cameraTimeline";
 import { clamp01, stageIndexForProgress } from "./animation/progressMath";
 import { createStageTimelines } from "./animation/stageTimelines";
+import { createCameraCollisionInspector } from "./collision/cameraCollision";
 import { createCameraRig } from "./core/createCameraRig";
-import { createLights } from "./core/createLights";
 import { createRenderer } from "./core/createRenderer";
 import { disposeScene } from "./core/disposeScene";
 import { getQualitySettings } from "./core/qualityManager";
+import { inspectCameraTimeline } from "./debug/cameraPathInspector";
 import { createProjectedLabels } from "./interaction/projectedLabels";
 import { createVisibilityController } from "./interaction/visibilityController";
+import { createStudioLightRig } from "./lighting/studioLightRig";
 
 export type JourneySceneController = {
   setProgress(progress: number): void;
@@ -64,8 +73,18 @@ function configureModelShadows(models: Round2ModelMap, enabled: boolean): void {
   for (const root of Object.values(models)) {
     root.traverse((object) => {
       if (!(object instanceof Mesh)) return;
-      object.receiveShadow = enabled;
-      object.castShadow = enabled && !SHADOW_DETAIL_PATTERN.test(object.name);
+      const materials = Array.isArray(object.material)
+        ? object.material
+        : [object.material];
+      const isTransmissive = materials.some(
+        (material) =>
+          material.transparent ||
+          material.opacity < 0.999 ||
+          (material instanceof MeshPhysicalMaterial && material.transmission > 0),
+      );
+      object.receiveShadow = enabled && !isTransmissive;
+      object.castShadow =
+        enabled && !isTransmissive && !SHADOW_DETAIL_PATTERN.test(object.name);
     });
   }
 }
@@ -99,8 +118,13 @@ export async function createJourneyScene({
   const cameraRig = createCameraRig();
   const cameraTimeline = createCameraTimeline();
   const cameraSample = createCameraTimelineSample();
+  const cameraWorldPosition = new Vector3();
+  const cameraCollision = createCameraCollisionInspector();
+  const cameraPathReport = inspectCameraTimeline(cameraTimeline);
+  scene.userData.cameraPathReport = cameraPathReport;
   scene.add(cameraRig.rig);
-  scene.add(createLights(quality));
+  const lightRig = createStudioLightRig(quality);
+  scene.add(lightRig.group);
 
   const floorGeometry = new PlaneGeometry(26, 12);
   const floorMaterial = new MeshStandardMaterial({
@@ -135,8 +159,10 @@ export async function createJourneyScene({
   let progress = frozenQaProgress ?? 0;
   let activeStage = -1;
   let animationFrameId = 0;
+  let previousFrameTime = 0;
   let disposed = false;
   let ready = false;
+  let clipController: ReturnType<typeof createBlenderClipController> | null = null;
   let stageTimelines: ReturnType<typeof createStageTimelines> | null = null;
   let projectedLabels: ReturnType<typeof createProjectedLabels> | null = null;
   let resizeObserver: ResizeObserver | null = null;
@@ -162,10 +188,22 @@ export async function createJourneyScene({
   function renderFrame(time: number): void {
     animationFrameId = 0;
     if (disposed || !ready || !visibility.isVisible()) return;
+    const deltaSeconds = previousFrameTime
+      ? Math.min(0.05, Math.max(0, (time - previousFrameTime) * 0.001))
+      : 1 / 60;
+    previousFrameTime = time;
 
+    clipController?.update(progress);
     stageTimelines?.update(progress, time * 0.001);
+    lightRig.update(progress);
     cameraTimeline.sample(progress, cameraSample);
-    cameraRig.setPose(cameraSample);
+    cameraRig.setPose(cameraSample, 1 - Math.exp(-12 * deltaSeconds));
+    cameraRig.rig.updateMatrixWorld(true);
+    cameraRig.camera.getWorldPosition(cameraWorldPosition);
+    scene.userData.cameraClearance = cameraCollision.inspect(
+      cameraWorldPosition,
+      cameraRig.camera.near,
+    ).clearance;
 
     const routeCount = Math.max(
       6,
@@ -188,6 +226,7 @@ export async function createJourneyScene({
     if (!animationFrameId) return;
     window.cancelAnimationFrame(animationFrameId);
     animationFrameId = 0;
+    previousFrameTime = 0;
   }
 
   const visibility = createVisibilityController(canvasHost, {
@@ -210,6 +249,8 @@ export async function createJourneyScene({
     projectedLabels = null;
     stageTimelines?.reset();
     stageTimelines = null;
+    clipController?.dispose();
+    clipController = null;
     disposeScene(scene, renderer);
     scene.clear();
   }
@@ -218,23 +259,39 @@ export async function createJourneyScene({
   if (signal?.aborted) dispose();
 
   try {
-    const models = await loadRound2Models({ signal });
-    if (disposed) throw new Error("Journey scene was disposed while loading models.");
+    if (cameraPathReport.summary.high > 0 || cameraPathReport.summary.medium > 0) {
+      throw new Error(
+        `Camera path intersects authored proxies at ${cameraPathReport.collisions.length} samples.`,
+      );
+    }
+
+    const loadedModels = await loadRound3Models({ signal });
+    if (disposed) {
+      disposeLoadedStageModels(loadedModels);
+      throw new Error("Journey scene was disposed while loading models.");
+    }
+    const models = getStageRoots(loadedModels);
 
     for (const stage of JOURNEY_STAGES) {
       scene.add(models[stage.id as JourneyStageId]);
     }
     configureModelShadows(models, quality.shadows);
-    await applyRound2Textures(models, {
+    await applyRound3Textures(models, {
       maxAnisotropy: Math.min(
         quality.anisotropy,
         renderer.capabilities.getMaxAnisotropy(),
       ),
+      quality,
+      renderer,
+      scene,
       signal,
     });
     if (disposed) throw new Error("Journey scene was disposed while loading textures.");
 
+    clipController = createBlenderClipController(loadedModels);
+    clipController.update(progress);
     stageTimelines = createStageTimelines(models);
+    stageTimelines.update(progress);
     projectedLabels = createProjectedLabels(labelHost);
     resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(canvasHost);

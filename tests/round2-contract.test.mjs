@@ -88,7 +88,7 @@ test("round 2 manifest records final measured assets and animation controls", as
 
   for (const stage of stages) {
     const stageRow = manifest.split("\n").find((line) => line.startsWith(`| \`${stage}.glb\``));
-    assert.match(stageRow, /\| final \|$/, `${stage} final table status`);
+    assert.match(stageRow.trimEnd(), /\| final \|$/, `${stage} final table status`);
     const stageCells = stageRow.split("|").map((cell) => cell.trim()).filter(Boolean);
     const listedControls = [...stageCells[4].matchAll(/`([^`]+)`/g)].map((match) => match[1]);
     const heading = `### \`${stage}.glb\` - final`;

@@ -10,10 +10,14 @@
     "build": "vinext build",
     "build:pages": "next build",
     "assets:round2": "\"D:\\\\blender.exe\" --background --python scripts/blender/build_round2_assets.py",
+    "assets:round3": "\"D:\\\\blender.exe\" --background --python scripts/blender/build_round3_assets.py",
+    "geometry:round3": "\"D:\\\\blender.exe\" --background --python scripts/blender/check_round3_geometry.py",
     "start": "vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "test:round2": "node --test tests/round2-contract.test.mjs",
+    "test:round3": "node --test tests/round3-contract.test.mjs",
     "qa:round2": "npm run build && node scripts/qa-round2.mjs",
+    "qa:round3": "npm run build && node scripts/qa-round3.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern public/draco"
   },
   "dependencies": {
