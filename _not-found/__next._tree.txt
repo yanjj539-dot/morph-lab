@@ -1,2 +1,2 @@
-:HL["/morph-lab/_next/static/chunks/0m2670iccxe_p.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"TQz956SxxJX3eHel1KzGc"}
+:HL["/morph-lab/_next/static/chunks/10t68w7ap6m48.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"vTRssjbmN2GdiW5HG7CDr"}
