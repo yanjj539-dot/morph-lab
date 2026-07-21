@@ -19,6 +19,8 @@
 
 Normal strength is deliberately restrained: ceramic 0.015, plastic/metal 0.035, paper 0.05, and rubber 0.055. The former metal `studioOrm` roughness assignment was removed because its frequency created a visible grid/wire impression. Real KTX2 normal, AO, printed-image, and environment textures remain in the existing loading/disposal path.
 
+Legacy authored names are routed into the same ten-profile system rather than creating hidden eleventh-hour materials: `MAT_BlackInk` uses the matte Black Rubber response, `MAT_Passed` uses Signal Blue as the status color, and `MAT_ShadowGrey` uses Soft Grey Metal. The focused test reads all four shipped GLBs and fails if any exported material name has no explicit route.
+
 ## Surface order and depth policy
 
 | Surface | Render order | Depth write | Emission |
@@ -28,7 +30,7 @@ Normal strength is deliberately restrained: ceramic 0.015, plastic/metal 0.035, 
 | Screen glass | 3 | false | 0.00 |
 | Frosted acrylic | 3 | false | 0.00 |
 
-The screen content layer is the only emissive surface. Glass and acrylic use physical transmission and real authored geometric separation; neither layer uses a polygon-offset workaround. Shared materials are configured per mesh so every transparent mesh receives the correct render order.
+The screen content layer is the only emissive surface. Glass and acrylic use physical transmission and real authored geometric separation. Render order and depth-write policy are the primary controls; the existing screen/print overlay factories retain a small polygon-offset as a secondary rasterization guard. Shared materials are configured per mesh so every transparent mesh receives the correct render order.
 
 ## Studio light rig
 

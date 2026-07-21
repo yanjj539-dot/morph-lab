@@ -87,12 +87,33 @@ const PRINTED_PAPER_PATTERN = /(?:runtime.?print|printed.?paper)/i;
 const PAPER_PATTERN = /(?:paper|print|card|label)/i;
 const PLASTIC_PATTERN = /(?:plastic|warm.?white)/i;
 const CERAMIC_PATTERN = /ceramic/i;
-const METAL_PATTERN = /(?:metal|aluminium|aluminum|steel)/i;
-const RUBBER_PATTERN = /(?:rubber|tire|tyre)/i;
+const METAL_PATTERN = /(?:metal|aluminium|aluminum|steel|shadow.?grey)/i;
+const RUBBER_PATTERN = /(?:rubber|tire|tyre|black.?ink)/i;
 const SCREEN_GLASS_PATTERN = /screen.?glass/i;
 const SCREEN_CONTENT_PATTERN = /(?:screen.?content|runtime.?screen)/i;
 const CORAL_PATTERN = /coral.?accent/i;
-const SIGNAL_BLUE_PATTERN = /(?:signal.?blue|cobalt.?accent)/i;
+const SIGNAL_BLUE_PATTERN = /(?:signal.?blue|cobalt.?accent|passed)/i;
+
+export type Round4MaterialRoute =
+  | keyof typeof ROUND4_MATERIAL_PROFILES
+  | "screenContent";
+
+export function resolveRound4MaterialRoute(
+  materialName: string,
+): Round4MaterialRoute | null {
+  if (SCREEN_CONTENT_PATTERN.test(materialName)) return "screenContent";
+  if (SCREEN_GLASS_PATTERN.test(materialName)) return "screenGlass";
+  if (PRINTED_PAPER_PATTERN.test(materialName)) return "printedPaper";
+  if (/(?:frosted.?acrylic|acrylic)/i.test(materialName)) return "frostedAcrylic";
+  if (PAPER_PATTERN.test(materialName)) return "paper";
+  if (METAL_PATTERN.test(materialName)) return "softGreyMetal";
+  if (RUBBER_PATTERN.test(materialName)) return "blackRubber";
+  if (CERAMIC_PATTERN.test(materialName)) return "coolWhiteCeramic";
+  if (PLASTIC_PATTERN.test(materialName)) return "warmWhitePlastic";
+  if (CORAL_PATTERN.test(materialName)) return "coralAccent";
+  if (SIGNAL_BLUE_PATTERN.test(materialName)) return "signalBlue";
+  return null;
+}
 
 function applyProfile(
   mesh: Mesh,
@@ -133,45 +154,46 @@ export function applyRound4MaterialSystem(
     for (const material of materials) {
       if (!(material instanceof MeshStandardMaterial)) continue;
       material.envMapIntensity = quality.tier === "high" ? 0.68 : 0.52;
+      const route = resolveRound4MaterialRoute(material.name);
 
-      if (isAcrylicMaterial(material)) continue;
-      if (SCREEN_CONTENT_PATTERN.test(material.name)) {
+      if (isAcrylicMaterial(material) || route === "frostedAcrylic") continue;
+      if (route === "screenContent") {
         material.depthWrite = ROUND4_SCREEN_CONTENT_POLICY.depthWrite;
         material.emissiveIntensity = ROUND4_SCREEN_CONTENT_POLICY.emissiveIntensity;
         object.renderOrder = ROUND4_SCREEN_CONTENT_POLICY.renderOrder;
-      } else if (SCREEN_GLASS_PATTERN.test(material.name)) {
+      } else if (route === "screenGlass") {
         applyProfile(object, material, ROUND4_MATERIAL_PROFILES.screenGlass);
         material.polygonOffset = false;
         object.castShadow = false;
         object.receiveShadow = false;
-      } else if (PRINTED_PAPER_PATTERN.test(material.name)) {
+      } else if (route === "printedPaper") {
         applyProfile(object, material, ROUND4_MATERIAL_PROFILES.printedPaper);
-      } else if (PAPER_PATTERN.test(material.name)) {
+      } else if (route === "paper") {
         const profile = ROUND4_MATERIAL_PROFILES.paper;
         applyProfile(object, material, profile);
         material.normalMap = textures.paperNormal;
         material.aoMap = textures.studioOrm;
-      } else if (METAL_PATTERN.test(material.name)) {
+      } else if (route === "softGreyMetal") {
         const profile = ROUND4_MATERIAL_PROFILES.softGreyMetal;
         applyProfile(object, material, profile);
         material.normalMap = textures.metalBrushedNormal;
         material.roughnessMap = null;
-      } else if (RUBBER_PATTERN.test(material.name)) {
+      } else if (route === "blackRubber") {
         const profile = ROUND4_MATERIAL_PROFILES.blackRubber;
         applyProfile(object, material, profile);
         material.normalMap = textures.rubberNormal;
-      } else if (CERAMIC_PATTERN.test(material.name)) {
+      } else if (route === "coolWhiteCeramic") {
         const profile = ROUND4_MATERIAL_PROFILES.coolWhiteCeramic;
         applyProfile(object, material, profile);
         material.normalMap = textures.plasticNormal;
-      } else if (PLASTIC_PATTERN.test(material.name)) {
+      } else if (route === "warmWhitePlastic") {
         const profile = ROUND4_MATERIAL_PROFILES.warmWhitePlastic;
         applyProfile(object, material, profile);
         material.normalMap = textures.plasticNormal;
         material.aoMap = textures.studioOrm;
-      } else if (CORAL_PATTERN.test(material.name)) {
+      } else if (route === "coralAccent") {
         applyProfile(object, material, ROUND4_MATERIAL_PROFILES.coralAccent);
-      } else if (SIGNAL_BLUE_PATTERN.test(material.name)) {
+      } else if (route === "signalBlue") {
         applyProfile(object, material, ROUND4_MATERIAL_PROFILES.signalBlue);
       }
 

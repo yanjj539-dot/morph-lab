@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { registerHooks } from "node:module";
 import test from "node:test";
 
@@ -19,6 +20,7 @@ const {
   ROUND4_RENDER_ORDER_POLICY,
   ROUND4_SCREEN_CONTENT_POLICY,
   applyRound4MaterialSystem,
+  resolveRound4MaterialRoute,
 } = await import("../app/scene/materials/materialFactory.ts");
 const { createStageLightSample, sampleStageLightState, ROUND4_STAGE_LIGHT_STATES } =
   await import("../app/scene/lighting/stageLightStates.ts");
@@ -46,6 +48,18 @@ const EXPECTED_PROFILES = {
   printedPaper: ["ffffff", 0.9, 0, 1.45, 0],
 };
 
+async function readGlbMaterialNames(stage) {
+  const buffer = await readFile(
+    new URL(`../public/models/round-4/${stage}.glb`, import.meta.url),
+  );
+  assert.equal(buffer.toString("ascii", 0, 4), "glTF", `${stage} is not a GLB`);
+  const jsonLength = buffer.readUInt32LE(12);
+  const document = JSON.parse(
+    buffer.subarray(20, 20 + jsonLength).toString("utf8").replace(/\0+$/u, ""),
+  );
+  return [...new Set((document.materials ?? []).map((material) => material.name))];
+}
+
 test("Round 4 material inventory is complete, finite, and visually distinct", () => {
   assert.deepEqual(Object.keys(ROUND4_MATERIAL_PROFILES), Object.keys(EXPECTED_PROFILES));
 
@@ -67,6 +81,22 @@ test("Round 4 material inventory is complete, finite, and visually distinct", ()
   );
   assert.ok(ROUND4_MATERIAL_PROFILES.softGreyMetal.metalness > 0.6);
   assert.ok(ROUND4_MATERIAL_PROFILES.blackRubber.roughness > 0.8);
+});
+
+test("every authored Round 4 GLB material resolves to an explicit runtime route", async () => {
+  for (const stage of ["observe", "structure", "prototype", "release"]) {
+    for (const materialName of await readGlbMaterialNames(stage)) {
+      assert.notEqual(
+        resolveRound4MaterialRoute(materialName),
+        null,
+        `${stage}:${materialName} bypasses the Round 4 material system`,
+      );
+    }
+  }
+
+  assert.equal(resolveRound4MaterialRoute("MAT_BlackInk"), "blackRubber");
+  assert.equal(resolveRound4MaterialRoute("MAT_Passed"), "signalBlue");
+  assert.equal(resolveRound4MaterialRoute("MAT_ShadowGrey"), "softGreyMetal");
 });
 
 test("print, content, glass, and acrylic keep the explicit transparency order", () => {
