@@ -16,6 +16,7 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "test:round2": "node --test tests/round2-contract.test.mjs",
     "test:round3": "node --test tests/round3-contract.test.mjs",
+    "test:page-transition": "npm run build && node --test tests/page-transition-round4.browser.test.mjs",
     "qa:round2": "npm run build && node scripts/qa-round2.mjs",
     "qa:round3": "npm run build && node scripts/qa-round3.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern public/draco"

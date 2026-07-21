@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import vm from "node:vm";
 
 const root = new URL("../", import.meta.url);
 
@@ -15,6 +16,36 @@ async function read(path) {
 
 async function loadPolicy() {
   return import(new URL("../app/lib/pageTransitionPolicy.ts", import.meta.url));
+}
+
+function runBootScript(script, { href, marker, now }) {
+  let storedMarker = marker;
+  const classes = new Set();
+  const FakeDate = class extends Date {
+    static now() {
+      return now;
+    }
+  };
+
+  vm.runInNewContext(script, {
+    Date: FakeDate,
+    document: {
+      documentElement: {
+        classList: {
+          add: (...names) => names.forEach((name) => classes.add(name)),
+        },
+      },
+    },
+    sessionStorage: {
+      getItem: () => storedMarker,
+      removeItem: () => {
+        storedMarker = null;
+      },
+    },
+    window: { location: { href } },
+  });
+
+  return { classes, storedMarker };
 }
 
 test("transition policy handles native forward pointer and keyboard navigation", async () => {
@@ -101,6 +132,70 @@ test("transition timing stays within the default and Reduced Motion budgets", as
   assert.ok(policy.PAGE_TRANSITION_REDUCED_MS <= 120);
   assert.equal(policy.navigationDelayForMotion(false), policy.PAGE_TRANSITION_OUT_MS);
   assert.equal(policy.navigationDelayForMotion(true), 0);
+});
+
+test("incoming markers require an exact fresh destination", async () => {
+  const {
+    PAGE_TRANSITION_MARKER_TTL_MS,
+    parsePageTransitionMarker,
+  } = await loadPolicy();
+  const currentHref = "https://morph.test/morph-lab/work/?view=grid#selected";
+  const now = 1_000_000;
+  const validMarker = {
+    href: currentHref,
+    createdAt: now - PAGE_TRANSITION_MARKER_TTL_MS + 1,
+  };
+
+  assert.deepEqual(
+    parsePageTransitionMarker(JSON.stringify(validMarker), currentHref, now),
+    validMarker,
+  );
+
+  for (const marker of [
+    null,
+    "not-json",
+    JSON.stringify(null),
+    JSON.stringify({}),
+    JSON.stringify({ href: currentHref, createdAt: "recent" }),
+    JSON.stringify({ href: `${currentHref}-other`, createdAt: now }),
+    JSON.stringify({ href: currentHref, createdAt: now - PAGE_TRANSITION_MARKER_TTL_MS - 1 }),
+    JSON.stringify({ href: currentHref, createdAt: now + 1 }),
+  ]) {
+    assert.equal(parsePageTransitionMarker(marker, currentHref, now), null, marker ?? "null");
+  }
+});
+
+test("boot validation only exposes the incoming layer for a valid marker", async () => {
+  const {
+    PAGE_TRANSITION_BOOT_SCRIPT,
+    PAGE_TRANSITION_INCOMING_CLASS,
+    PAGE_TRANSITION_MARKER_TTL_MS,
+  } = await loadPolicy();
+  const href = "https://morph.test/morph-lab/work/";
+  const now = 2_000_000;
+  const validMarker = JSON.stringify({ href, createdAt: now - 1 });
+  const valid = runBootScript(PAGE_TRANSITION_BOOT_SCRIPT, {
+    href,
+    marker: validMarker,
+    now,
+  });
+
+  assert.equal(valid.classes.has(PAGE_TRANSITION_INCOMING_CLASS), true);
+  assert.equal(valid.storedMarker, validMarker);
+
+  for (const marker of [
+    "malformed",
+    JSON.stringify({ href: `${href}other`, createdAt: now }),
+    JSON.stringify({ href, createdAt: now - PAGE_TRANSITION_MARKER_TTL_MS - 1 }),
+  ]) {
+    const invalid = runBootScript(PAGE_TRANSITION_BOOT_SCRIPT, {
+      href,
+      marker,
+      now,
+    });
+    assert.equal(invalid.classes.has(PAGE_TRANSITION_INCOMING_CLASS), false, marker);
+    assert.equal(invalid.storedMarker, null, marker);
+  }
 });
 
 test("shared layer preserves native URL semantics and resets after pageshow", async () => {

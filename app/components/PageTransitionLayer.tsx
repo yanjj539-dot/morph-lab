@@ -4,27 +4,22 @@ import { useEffect, useRef } from "react";
 
 import {
   navigationDelayForMotion,
+  PAGE_TRANSITION_BOOT_SCRIPT,
+  PAGE_TRANSITION_ENTERING_CLASS,
+  PAGE_TRANSITION_INCOMING_CLASS,
   PAGE_TRANSITION_IN_MS,
+  PAGE_TRANSITION_LEAVING_CLASS,
   PAGE_TRANSITION_REDUCED_MS,
+  PAGE_TRANSITION_SESSION_KEY,
+  PAGE_TRANSITION_STATE_CLASSES,
+  parsePageTransitionMarker,
   shouldInterceptPageTransition,
 } from "../lib/pageTransitionPolicy";
-
-const SESSION_KEY = "morph-lab:page-transition";
-const LEAVING_CLASS = "page-transition-leaving";
-const INCOMING_CLASS = "page-transition-incoming";
-const ENTERING_CLASS = "page-transition-entering";
-const STATE_CLASSES = [LEAVING_CLASS, INCOMING_CLASS, ENTERING_CLASS] as const;
-
-const BOOT_SCRIPT = `try{if(sessionStorage.getItem(${JSON.stringify(
-  SESSION_KEY,
-)})){document.documentElement.classList.add(${JSON.stringify(
-  INCOMING_CLASS,
-)})}}catch{}`;
 
 function storeIncomingMarker(destination: URL): void {
   try {
     sessionStorage.setItem(
-      SESSION_KEY,
+      PAGE_TRANSITION_SESSION_KEY,
       JSON.stringify({ href: destination.href, createdAt: Date.now() }),
     );
   } catch {
@@ -34,9 +29,25 @@ function storeIncomingMarker(destination: URL): void {
 
 function clearIncomingMarker(): void {
   try {
-    sessionStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(PAGE_TRANSITION_SESSION_KEY);
   } catch {
     // Storage can be unavailable in hardened browsing modes.
+  }
+}
+
+function readValidIncomingMarker(): boolean {
+  try {
+    const marker = parsePageTransitionMarker(
+      sessionStorage.getItem(PAGE_TRANSITION_SESSION_KEY),
+      window.location.href,
+      Date.now(),
+    );
+    if (marker) return true;
+    clearIncomingMarker();
+    return false;
+  } catch {
+    clearIncomingMarker();
+    return false;
   }
 }
 
@@ -71,7 +82,7 @@ export function PageTransitionLayer() {
       timersRef.current.clear();
       for (const frame of framesRef.current) window.cancelAnimationFrame(frame);
       framesRef.current.clear();
-      root.classList.remove(...STATE_CLASSES);
+      root.classList.remove(...PAGE_TRANSITION_STATE_CLASSES);
       delete root.dataset.pageTransitionState;
       navigatingRef.current = false;
     };
@@ -80,7 +91,10 @@ export function PageTransitionLayer() {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const revealIncomingPage = () => {
-      if (!root.classList.contains(INCOMING_CLASS)) {
+      if (
+        !root.classList.contains(PAGE_TRANSITION_INCOMING_CLASS) ||
+        !readValidIncomingMarker()
+      ) {
         clearTransitionState();
         return;
       }
@@ -93,8 +107,8 @@ export function PageTransitionLayer() {
 
       scheduleFrame(() => {
         scheduleFrame(() => {
-          root.classList.remove(INCOMING_CLASS);
-          root.classList.add(ENTERING_CLASS);
+          root.classList.remove(PAGE_TRANSITION_INCOMING_CLASS);
+          root.classList.add(PAGE_TRANSITION_ENTERING_CLASS);
           root.dataset.pageTransitionState = "entering";
           scheduleTimer(clearTransitionState, revealDuration);
         });
@@ -126,8 +140,8 @@ export function PageTransitionLayer() {
       if (navigatingRef.current) return;
       navigatingRef.current = true;
       storeIncomingMarker(destination);
-      root.classList.remove(INCOMING_CLASS, ENTERING_CLASS);
-      root.classList.add(LEAVING_CLASS);
+      root.classList.remove(PAGE_TRANSITION_INCOMING_CLASS, PAGE_TRANSITION_ENTERING_CLASS);
+      root.classList.add(PAGE_TRANSITION_LEAVING_CLASS);
       root.dataset.pageTransitionState = "leaving";
 
       const delay = navigationDelayForMotion(prefersReducedMotion());
@@ -157,7 +171,7 @@ export function PageTransitionLayer() {
 
   return (
     <>
-      <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
+      <script dangerouslySetInnerHTML={{ __html: PAGE_TRANSITION_BOOT_SCRIPT }} />
       <div className="page-transition-layer" aria-hidden="true">
         <span className="page-transition-layer__mark">MORPH//LAB</span>
         <span className="page-transition-layer__line" />
