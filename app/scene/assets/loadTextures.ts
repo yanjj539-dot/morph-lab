@@ -1,6 +1,7 @@
 import {
   Material,
   Mesh,
+  MeshStandardMaterial,
   Object3D,
   Scene,
   SRGBColorSpace,
@@ -17,6 +18,12 @@ import {
   configureProjectSurface,
   type ProjectSurfaceKind,
 } from "../materials/screenMaterial";
+import { createPrintedSurface } from "../materials/createPrintedSurface";
+import { createScreenMaterial } from "../materials/createScreenMaterial";
+import {
+  findScreenConfig,
+  type ScreenConfig,
+} from "../materials/screenManifest";
 import {
   ROUND2_TEXTURE_BINDINGS,
   ROUND3_TEXTURE_BINDINGS,
@@ -93,16 +100,17 @@ function disposeDetachedMaterials(
 async function loadBindingTexture(
   loader: TextureLoader,
   binding: TextureBinding,
+  textureUrl: string,
   maxAnisotropy: number,
   loadedTextures: Texture[],
   texturePromises: Map<string, Promise<Texture>>,
   signal?: AbortSignal,
 ): Promise<[TextureBinding, Texture]> {
   signal?.throwIfAborted();
-  let texturePromise = texturePromises.get(binding.textureUrl);
+  let texturePromise = texturePromises.get(textureUrl);
 
   if (!texturePromise) {
-    texturePromise = loader.loadAsync(binding.textureUrl).then((texture) => {
+    texturePromise = loader.loadAsync(textureUrl).then((texture) => {
       loadedTextures.push(texture);
       texture.colorSpace = SRGBColorSpace;
       texture.flipY = false;
@@ -110,7 +118,7 @@ async function loadBindingTexture(
       texture.needsUpdate = true;
       return texture;
     });
-    texturePromises.set(binding.textureUrl, texturePromise);
+    texturePromises.set(textureUrl, texturePromise);
   }
 
   const texture = await texturePromise;
@@ -122,6 +130,66 @@ function projectSurfaceKind(meshName: string): ProjectSurfaceKind {
   return /^(?:PRINT_|REL_project_image_)/.test(meshName) ? "print" : "screen";
 }
 
+type SurfaceReplacement = {
+  mesh: Mesh;
+  previous: Mesh["material"];
+  overlay?: Mesh;
+  contentTexture?: Texture;
+};
+
+function firstMaterial(source: Mesh["material"]): Material {
+  return Array.isArray(source) ? source[0] : source;
+}
+
+function createSurfaceBaseMaterial(
+  previous: Mesh["material"],
+  kind: ProjectSurfaceKind,
+): MeshStandardMaterial {
+  const source = firstMaterial(previous);
+  const material = new MeshStandardMaterial({
+    color: kind === "screen" ? "#101116" : "#eeeae1",
+    roughness: kind === "screen" ? 0.5 : 0.91,
+    metalness: 0,
+  });
+  material.name = kind === "screen" ? "MAT_RuntimeScreenBase" : "MAT_RuntimePrintBase";
+  material.opacity = source.opacity;
+  material.transparent = source.transparent;
+  material.side = source.side;
+  material.depthWrite = true;
+  return material;
+}
+
+function installConfiguredSurface(
+  mesh: Mesh,
+  texture: Texture,
+  config: ScreenConfig,
+): SurfaceReplacement {
+  const previous = mesh.material;
+  const contentTexture = texture.clone();
+  const created = config.kind === "screen"
+    ? createScreenMaterial(contentTexture, config)
+    : createPrintedSurface(contentTexture, config);
+  const contentMaterial = created.material;
+  contentMaterial.polygonOffsetUnits = -Math.max(1, Math.round(config.contentDepthOffset * 1000));
+
+  mesh.material = createSurfaceBaseMaterial(previous, config.kind);
+  mesh.renderOrder = 1;
+  const overlay = mesh.clone(false) as Mesh;
+  overlay.name = `${mesh.name}__content`;
+  overlay.material = contentMaterial;
+  overlay.renderOrder = config.renderOrder;
+  overlay.castShadow = false;
+  overlay.receiveShadow = false;
+  mesh.parent?.add(overlay);
+
+  if (config.kind === "screen") {
+    mesh.castShadow = false;
+    mesh.receiveShadow = false;
+  }
+
+  return { mesh, previous, overlay, contentTexture };
+}
+
 async function applyProjectTextures(
   models: Round2ModelMap,
   bindings: readonly TextureBinding[],
@@ -130,7 +198,7 @@ async function applyProjectTextures(
   const textureLoader = new TextureLoader();
   const loadedTextures: Texture[] = [];
   const texturePromises = new Map<string, Promise<Texture>>();
-  const replacedMaterials: Array<{ mesh: Mesh; previous: Mesh["material"] }> = [];
+  const replacedMaterials: SurfaceReplacement[] = [];
   const maxAnisotropy = Math.max(1, options.maxAnisotropy ?? 4);
 
   try {
@@ -139,6 +207,7 @@ async function applyProjectTextures(
         loadBindingTexture(
           textureLoader,
           binding,
+          findScreenConfig(binding.stage as JourneyStageId, binding.meshName)?.source ?? binding.textureUrl,
           maxAnisotropy,
           loadedTextures,
           texturePromises,
@@ -164,20 +233,31 @@ async function applyProjectTextures(
         );
       }
 
-      const previous = configureProjectSurface(
-        mesh,
-        texture,
-        projectSurfaceKind(binding.meshName),
-      );
-      replacedMaterials.push({ mesh, previous });
+      const config = findScreenConfig(binding.stage as JourneyStageId, binding.meshName);
+      if (config) {
+        const replacement = installConfiguredSurface(mesh, texture, config);
+        if (replacement.contentTexture) loadedTextures.push(replacement.contentTexture);
+        replacedMaterials.push(replacement);
+      } else {
+        const previous = configureProjectSurface(
+          mesh,
+          texture,
+          projectSurfaceKind(binding.meshName),
+        );
+        replacedMaterials.push({ mesh, previous });
+      }
     }
 
     disposeDetachedMaterials(models, replacedMaterials);
     return loadedTextures;
   } catch (error) {
-    for (const { mesh, previous } of replacedMaterials) {
+    for (const { mesh, previous, overlay } of replacedMaterials) {
       disposeReplacedMaterial(mesh.material);
       mesh.material = previous;
+      if (overlay) {
+        overlay.removeFromParent();
+        disposeReplacedMaterial(overlay.material);
+      }
     }
     disposeLoadedTextures(loadedTextures);
     throw error;

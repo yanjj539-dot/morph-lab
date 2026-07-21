@@ -37,6 +37,10 @@ export function applyRound3MaterialSystem(
       if (isAcrylicMaterial(material)) continue;
       if (SCREEN_GLASS_PATTERN.test(material.name)) {
         configureScreenGlass(object);
+        object.renderOrder = 3;
+        material.polygonOffset = true;
+        material.polygonOffsetFactor = -2;
+        material.polygonOffsetUnits = -2;
         continue;
       }
 
