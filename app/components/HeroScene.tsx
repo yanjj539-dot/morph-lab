@@ -44,8 +44,9 @@ export function HeroScene({
   const [state, setState] = useState<HeroSceneState>("fallback");
 
   useEffect(() => {
+    const root = rootRef.current;
     const canvasHost = canvasHostRef.current;
-    if (!canvasHost) return;
+    if (!root || !canvasHost) return;
 
     const desktopQuery = window.matchMedia(DESKTOP_QUERY);
     const reducedMotionQuery = window.matchMedia(REDUCED_MOTION_QUERY);
@@ -54,8 +55,7 @@ export function HeroScene({
     let generation = 0;
     let started = false;
 
-    const intentEvents = ["pointermove", "keydown", "scroll", "touchstart"] as const;
-
+    const globalIntentEvents = ["scroll"] as const;
     const updateExitProgress = () => {
       const hero = rootRef.current?.closest<HTMLElement>(".hero");
       if (!hero) return;
@@ -66,9 +66,11 @@ export function HeroScene({
     };
 
     const removeIntentListeners = () => {
-      for (const eventName of intentEvents) {
+      for (const eventName of globalIntentEvents) {
         window.removeEventListener(eventName, startFromIntent);
       }
+      root.removeEventListener("pointerenter", startFromIntent);
+      root.removeEventListener("touchstart", startFromIntent);
     };
 
     const cleanupScene = () => {
@@ -144,12 +146,20 @@ export function HeroScene({
       }
 
       setState("fallback");
-      for (const eventName of intentEvents) {
+      for (const eventName of globalIntentEvents) {
         window.addEventListener(eventName, startFromIntent, {
           once: true,
           passive: true,
         });
       }
+      root.addEventListener("pointerenter", startFromIntent, {
+        once: true,
+        passive: true,
+      });
+      root.addEventListener("touchstart", startFromIntent, {
+        once: true,
+        passive: true,
+      });
     };
 
     const handlePulse = (event: globalThis.PointerEvent) => {

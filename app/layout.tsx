@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { MotionController } from "./components/MotionController";
+import { PageTransitionLayer } from "./components/PageTransitionLayer";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { siteUrl } from "./lib/paths";
@@ -75,8 +76,9 @@ const structuredData = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" suppressHydrationWarning>
       <body>
+        <PageTransitionLayer />
         <a className="skip-link" href="#main-content">
           跳到主要内容
         </a>
