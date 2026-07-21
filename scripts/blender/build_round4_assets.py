@@ -199,6 +199,24 @@ def add_print_substrates(stage: str, collection: bpy.types.Collection, materials
         substrate["physicalSubstrate"] = True
 
 
+def finalize_root_hierarchy(stage: str, collection: bpy.types.Collection) -> bpy.types.Object:
+    root = bpy.data.objects[f"ROOT_{stage.upper()}"]
+    for obj in list(collection.objects):
+        if obj == root or obj.parent is not None or obj.get("export_role") == "render_label":
+            continue
+        r3.parent_keep_world(obj, root)
+    bpy.context.view_layer.update()
+    for obj in collection.all_objects:
+        if obj == root or obj.get("export_role") == "render_label":
+            continue
+        ancestor = obj.parent
+        while ancestor is not None and ancestor != root:
+            ancestor = ancestor.parent
+        if ancestor != root:
+            raise RuntimeError(f"Round 4 object is outside {root.name}: {obj.name}")
+    return root
+
+
 def add_round4_details(stage: str, collection: bpy.types.Collection, materials: dict[str, bpy.types.Material]) -> None:
     if stage == "structure":
         for index in range(3):
@@ -393,6 +411,7 @@ def prepare_stage(stage: str) -> tuple[bpy.types.Collection, dict[str, bpy.types
     add_round4_details(stage, collection, materials)
     add_screen_layers(stage, collection, materials)
     add_print_substrates(stage, collection, materials)
+    finalize_root_hierarchy(stage, collection)
     bpy.context.view_layer.update()
     clean_geometry(collection)
     author_actions(stage)
@@ -481,6 +500,17 @@ def read_glb_stats(path: Path) -> dict[str, object]:
             accessor = accessors[sampler["input"]]
             maximum = max(maximum, float(accessor.get("max", [0.0])[0]))
         animation_durations[animation.get("name", "")] = round(maximum, 6)
+    nodes = document.get("nodes", [])
+    scene_index = int(document.get("scene", 0))
+    scene_roots = document.get("scenes", [{}])[scene_index].get("nodes", [])
+    reachable: set[int] = set()
+    pending = list(scene_roots)
+    while pending:
+        node_index = pending.pop()
+        if node_index in reachable:
+            continue
+        reachable.add(node_index)
+        pending.extend(nodes[node_index].get("children", []))
     return {
         "bytes": len(payload),
         "nodes": len(document.get("nodes", [])),
@@ -492,6 +522,9 @@ def read_glb_stats(path: Path) -> dict[str, object]:
         "extensionsUsed": document.get("extensionsUsed", []),
         "glbVersion": 2,
         "declaredLength": declared_length,
+        "sceneRootNames": [nodes[index].get("name", "") for index in scene_roots],
+        "sceneNodeCount": len(reachable),
+        "unreachableNodeCount": len(nodes) - len(reachable),
     }
 
 

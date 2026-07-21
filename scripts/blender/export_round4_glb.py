@@ -31,6 +31,11 @@ def main() -> None:
         duration = float(result["animationDurationsSeconds"].get(expected, 0.0))
         if abs(duration - 5.0) > 0.001:
             failures.append(f"{stage_name} primary clip duration is {duration}, expected 5.0 seconds")
+        expected_root = f"ROOT_{stage_name.upper()}"
+        if result["sceneRootNames"] != [expected_root]:
+            failures.append(f"{stage_name} scene roots are {result['sceneRootNames']}, expected [{expected_root}]")
+        if int(result["unreachableNodeCount"]) != 0:
+            failures.append(f"{stage_name} has {result['unreachableNodeCount']} nodes outside its scene root")
     if not stage and total_bytes >= TOTAL_LIMIT:
         failures.append(f"total exceeds {TOTAL_LIMIT} bytes")
     report = {

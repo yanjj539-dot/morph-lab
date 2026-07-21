@@ -14,6 +14,11 @@
           3.2,
           1.9,
           0.96
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -28,6 +33,11 @@
           -2.53,
           -1.13,
           0.72
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -42,6 +52,11 @@
           -2.53,
           1.37,
           0.72
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -56,6 +71,11 @@
           2.77,
           -1.13,
           0.72
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -70,6 +90,11 @@
           2.77,
           1.37,
           0.72
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -84,6 +109,11 @@
           1.025,
           0.875,
           1.24
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -98,6 +128,11 @@
           0.8,
           0.51,
           1.2875
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -112,6 +147,11 @@
           0.9,
           0.68,
           1.4
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -126,6 +166,11 @@
           0.75,
           1.4675,
           1.3375
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -140,6 +185,12 @@
           2.71,
           0.81,
           2.63
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -154,6 +205,12 @@
           2.59,
           0.615,
           2.5
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -168,6 +225,12 @@
           1.93,
           0.99,
           1.67
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -182,6 +245,12 @@
           2.31,
           0.975,
           1.07
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -196,6 +265,12 @@
           -2.06218,
           0.05152,
           1.0375
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_papers",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -210,6 +285,12 @@
           -1.61745,
           -0.2239,
           1.0625
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_papers",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -224,6 +305,12 @@
           -2.17396,
           0.73256,
           1.0875
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_papers",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -238,6 +325,12 @@
           -2.27,
           -0.56,
           1.38
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_papers",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -252,6 +345,12 @@
           0.725,
           -1.0225,
           1.84
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -266,6 +365,13 @@
           0.62,
           -1.082,
           1.74
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_output_card",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -280,6 +386,11 @@
           -1.57215,
           1.86693,
           1.135
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -294,6 +405,11 @@
           -2.59,
           1.69,
           1.19
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -308,6 +424,11 @@
           1.3,
           1.75,
           1.19
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -322,6 +443,11 @@
           0.41307,
           1.63856,
           1.2525
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -336,6 +462,11 @@
           0.57761,
           1.63693,
           1.2585
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -350,6 +481,11 @@
           0.74,
           1.63,
           1.2645
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -364,6 +500,11 @@
           0.97761,
           1.63693,
           1.2705
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -378,6 +519,11 @@
           1.21307,
           1.63856,
           1.2765
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -392,6 +538,11 @@
           -0.10542,
           -1.2082,
           1.175
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -406,6 +557,11 @@
           -2.592,
           -1.032,
           1.248
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -420,6 +576,11 @@
           -2.292,
           -1.032,
           1.248
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -434,6 +595,11 @@
           -1.992,
           -1.032,
           1.248
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -448,6 +614,11 @@
           2.51,
           0.395,
           3.12
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -462,6 +633,12 @@
           2.86,
           -0.44,
           1.45
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_operator",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -476,6 +653,12 @@
           2.88,
           -0.42,
           1.7
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_operator",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -490,6 +673,13 @@
           0.74,
           -1.0725,
           1.8675
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_crop_frame",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -504,6 +694,13 @@
           0.74,
           -1.0725,
           1.0875
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_crop_frame",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -518,6 +715,13 @@
           -0.4225,
           -1.0725,
           1.85
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_crop_frame",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -532,6 +736,13 @@
           0.7575,
           -1.0725,
           1.85
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_crop_frame",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -546,6 +757,11 @@
           0.98,
           0.825,
           1.4625
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -560,6 +776,11 @@
           -1.07,
           0.825,
           1.415
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -574,6 +795,11 @@
           0.79,
           0.825,
           1.415
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -588,6 +814,11 @@
           0.86,
           -0.6,
           1.2875
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -602,6 +833,11 @@
           0.425,
           -0.685,
           1.314
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -616,6 +852,11 @@
           0.595,
           -0.685,
           1.314
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -630,6 +871,11 @@
           0.765,
           -0.685,
           1.314
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -644,6 +890,11 @@
           -1.04,
           0.26,
           1.405
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -658,6 +909,11 @@
           0.62,
           0.26,
           1.405
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -672,6 +928,11 @@
           0.2925,
           1.7,
           1.26
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -686,6 +947,11 @@
           0.5325,
           1.7,
           1.26
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -700,6 +966,11 @@
           0.7725,
           1.7,
           1.26
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -714,6 +985,11 @@
           1.0125,
           1.7,
           1.26
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -728,6 +1004,11 @@
           -1.325,
           -0.535,
           1.2825
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -742,6 +1023,11 @@
           0.895,
           -0.535,
           1.2825
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -756,6 +1042,11 @@
           -1.325,
           0.785,
           1.2825
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -770,6 +1061,11 @@
           0.895,
           0.785,
           1.2825
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -784,6 +1080,11 @@
           2.7,
           1.459,
           0.992
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -798,6 +1099,11 @@
           -0.77,
           -0.6625,
           1.34
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -812,6 +1118,12 @@
           2.59,
           0.621,
           2.5
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -826,6 +1138,12 @@
           2.59,
           0.609,
           2.5
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -840,6 +1158,12 @@
           -2.27,
           -0.554,
           1.38
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_papers",
+          "ROOT_OBSERVE"
         ]
       },
       {
@@ -854,6 +1178,13 @@
           0.62,
           -1.076,
           1.74
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_output_card",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
         ]
       }
     ],
@@ -870,6 +1201,11 @@
           3.15,
           1.8,
           0.3
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -884,6 +1220,11 @@
           2.675,
           0.84,
           3.705
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -898,6 +1239,11 @@
           2.875,
           1.1,
           0.57
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -912,6 +1258,11 @@
           -2.291,
           0.5825,
           3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -926,6 +1277,11 @@
           -1.716,
           0.5825,
           3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -940,6 +1296,11 @@
           -1.141,
           0.5825,
           3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -954,6 +1315,11 @@
           -0.566,
           0.5825,
           3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -968,6 +1334,11 @@
           0.009,
           0.5825,
           3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -982,6 +1353,11 @@
           0.584,
           0.5825,
           3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -996,6 +1372,11 @@
           1.159,
           0.5825,
           3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1010,6 +1391,11 @@
           1.734,
           0.5825,
           3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1024,6 +1410,11 @@
           2.309,
           0.5825,
           3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1038,6 +1429,11 @@
           2.425,
           0.5825,
           0.739
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1052,6 +1448,11 @@
           2.425,
           0.5825,
           1.259
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1066,6 +1467,11 @@
           2.425,
           0.5825,
           1.779
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1080,6 +1486,11 @@
           2.425,
           0.5825,
           2.299
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1094,6 +1505,11 @@
           2.425,
           0.5825,
           2.819
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1108,6 +1524,11 @@
           2.425,
           0.5825,
           3.339
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1122,6 +1543,12 @@
           -1.025,
           0.4575,
           2.89
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_panels",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1136,6 +1563,12 @@
           0.525,
           0.4575,
           2.89
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_panels",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1150,6 +1583,12 @@
           2.275,
           0.4575,
           2.94
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_panels",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1164,6 +1603,12 @@
           -0.45,
           0.4575,
           1.79
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_panels",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1178,6 +1623,12 @@
           1.95,
           0.4575,
           1.54
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_system_device",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1192,6 +1643,12 @@
           2.14,
           0.372,
           2.8
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_system_device",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1206,6 +1663,12 @@
           -1.39,
           0.385,
           2.6
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_panels",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1220,6 +1683,11 @@
           -2.04,
           0.395,
           3.18
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1234,6 +1702,11 @@
           -2.14,
           0.2975,
           1.125
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1248,6 +1721,11 @@
           -2.09,
           0.2975,
           1.475
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1262,6 +1740,11 @@
           -2.03,
           0.2975,
           1.825
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1276,6 +1759,11 @@
           -1.96,
           0.2975,
           2.175
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1290,6 +1778,11 @@
           -1.89,
           0.2975,
           2.525
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1304,6 +1797,12 @@
           -1.02,
           -0.77,
           0.64
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_tokens",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1318,6 +1817,12 @@
           -0.5,
           -0.77,
           0.64
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_tokens",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1332,6 +1837,12 @@
           0.02,
           -0.77,
           0.64
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_tokens",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1346,6 +1857,12 @@
           0.54,
           -0.77,
           0.64
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_tokens",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1360,6 +1877,12 @@
           1.06,
           -0.77,
           0.64
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_tokens",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1374,6 +1897,11 @@
           1.475,
           -0.51,
           0.35
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1388,6 +1916,11 @@
           3.05172,
           -0.4024,
           0.42
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1402,6 +1935,11 @@
           2.19453,
           -0.40382,
           0.51
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1416,6 +1954,11 @@
           -1.825,
           -0.675,
           0.44
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1430,6 +1973,11 @@
           -3.0,
           -0.83,
           0.505
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1444,6 +1992,11 @@
           -2.68,
           -0.83,
           0.505
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1458,6 +2011,11 @@
           -2.36,
           -0.83,
           0.505
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1472,6 +2030,11 @@
           -2.04,
           -0.83,
           0.505
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1486,6 +2049,11 @@
           -1.945,
           0.35,
           0.985
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1500,6 +2068,11 @@
           -0.645,
           0.35,
           0.985
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1514,6 +2087,11 @@
           0.655,
           0.35,
           0.985
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1528,6 +2106,11 @@
           1.955,
           0.35,
           0.985
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1542,6 +2125,11 @@
           -1.945,
           0.35,
           2.785
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1556,6 +2144,11 @@
           -0.645,
           0.35,
           2.785
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1570,6 +2163,11 @@
           0.655,
           0.35,
           2.785
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1584,6 +2182,11 @@
           1.955,
           0.35,
           2.785
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1598,6 +2201,11 @@
           2.28,
           0.385,
           2.84
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1612,6 +2220,12 @@
           3.28,
           -0.39,
           0.79
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_operator",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1626,6 +2240,12 @@
           3.3,
           -0.37,
           1.04
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_operator",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1640,6 +2260,11 @@
           -2.3925,
           0.49,
           3.37
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1654,6 +2279,11 @@
           -1.1725,
           0.49,
           3.37
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1668,6 +2298,11 @@
           0.0275,
           0.49,
           3.37
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1682,6 +2317,11 @@
           1.2275,
           0.49,
           3.37
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1696,6 +2336,11 @@
           2.4475,
           0.49,
           3.37
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1710,6 +2355,11 @@
           -2.01,
           0.33,
           1.08
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1724,6 +2374,11 @@
           -0.96,
           0.33,
           1.08
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1738,6 +2393,11 @@
           0.09,
           0.33,
           1.08
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1752,6 +2412,11 @@
           1.14,
           0.33,
           1.08
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1766,6 +2431,11 @@
           2.19,
           0.33,
           1.08
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1780,6 +2450,11 @@
           -2.01,
           0.33,
           2.93
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1794,6 +2469,11 @@
           -0.96,
           0.33,
           2.93
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1808,6 +2488,11 @@
           0.09,
           0.33,
           2.93
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1822,6 +2507,11 @@
           1.14,
           0.33,
           2.93
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1836,6 +2526,11 @@
           2.19,
           0.33,
           2.93
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1850,6 +2545,11 @@
           -0.99,
           -0.71,
           0.3875
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1864,6 +2564,11 @@
           -0.47,
           -0.71,
           0.3875
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1878,6 +2583,11 @@
           0.05,
           -0.71,
           0.3875
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1892,6 +2602,11 @@
           0.57,
           -0.71,
           0.3875
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1906,6 +2621,11 @@
           1.09,
           -0.71,
           0.3875
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1920,6 +2640,11 @@
           -1.94,
           0.49,
           3.29
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1934,6 +2659,11 @@
           2.725,
           1.37,
           0.3325
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1948,6 +2678,11 @@
           -2.515,
           0.2125,
           0.625
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1962,6 +2697,11 @@
           2.585,
           0.2125,
           0.625
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1976,6 +2716,11 @@
           -2.515,
           0.8925,
           0.625
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -1990,6 +2735,11 @@
           2.585,
           0.8925,
           0.625
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -2004,6 +2754,11 @@
           -0.46,
           0.31,
           1.09
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -2018,6 +2773,11 @@
           0.09,
           0.31,
           1.61
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -2032,6 +2792,11 @@
           0.64,
           0.31,
           2.13
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -2046,6 +2811,12 @@
           2.14,
           0.378,
           2.8
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_system_device",
+          "ROOT_STRUCTURE"
         ]
       },
       {
@@ -2060,6 +2831,12 @@
           2.14,
           0.366,
           2.8
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_system_device",
+          "ROOT_STRUCTURE"
         ]
       }
     ],
@@ -2076,6 +2853,11 @@
           3.3,
           1.925,
           0.3
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2090,6 +2872,12 @@
           0.85,
           0.81,
           2.62
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2104,6 +2892,12 @@
           0.7,
           0.575,
           2.46
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2118,6 +2912,12 @@
           -0.46,
           1.09,
           1.15
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2132,6 +2932,12 @@
           0.075,
           1.075,
           0.41
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2146,6 +2952,12 @@
           1.91041,
           -0.45865,
           1.73
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2160,6 +2972,12 @@
           1.84,
           -0.625,
           1.61
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2174,6 +2992,12 @@
           1.94,
           0.005,
           0.41
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2188,6 +3012,12 @@
           2.95197,
           0.75278,
           1.61
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_tablet_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2202,6 +3032,12 @@
           2.84,
           0.575,
           1.48
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_tablet_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2216,6 +3052,11 @@
           0.275,
           -0.59,
           0.425
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2230,6 +3071,11 @@
           -1.47,
           -1.23,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2244,6 +3090,11 @@
           -1.28,
           -1.23,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2258,6 +3109,11 @@
           -1.09,
           -1.23,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2272,6 +3128,11 @@
           -0.9,
           -1.23,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2286,6 +3147,11 @@
           -0.71,
           -1.23,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2300,6 +3166,11 @@
           -0.52,
           -1.23,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2314,6 +3185,11 @@
           -0.33,
           -1.23,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2328,6 +3204,11 @@
           -0.14,
           -1.23,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2342,6 +3223,11 @@
           0.05,
           -1.23,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2356,6 +3242,11 @@
           -1.47,
           -1.05,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2370,6 +3261,11 @@
           -1.28,
           -1.05,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2384,6 +3280,11 @@
           -1.09,
           -1.05,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2398,6 +3299,11 @@
           -0.9,
           -1.05,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2412,6 +3318,11 @@
           -0.71,
           -1.05,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2426,6 +3337,11 @@
           -0.52,
           -1.05,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2440,6 +3356,11 @@
           -0.33,
           -1.05,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2454,6 +3375,11 @@
           -0.14,
           -1.05,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2468,6 +3394,11 @@
           0.05,
           -1.05,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2482,6 +3413,11 @@
           -1.47,
           -0.87,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2496,6 +3432,11 @@
           -1.28,
           -0.87,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2510,6 +3451,11 @@
           -1.09,
           -0.87,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2524,6 +3470,11 @@
           -0.9,
           -0.87,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2538,6 +3489,11 @@
           -0.71,
           -0.87,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2552,6 +3508,11 @@
           -0.52,
           -0.87,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2566,6 +3527,11 @@
           -0.33,
           -0.87,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2580,6 +3546,11 @@
           -0.14,
           -0.87,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2594,6 +3565,11 @@
           0.05,
           -0.87,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2608,6 +3584,11 @@
           -1.47,
           -0.69,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2622,6 +3603,11 @@
           -1.28,
           -0.69,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2636,6 +3622,11 @@
           -1.09,
           -0.69,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2650,6 +3641,11 @@
           -0.9,
           -0.69,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2664,6 +3660,11 @@
           -0.71,
           -0.69,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2678,6 +3679,11 @@
           -0.52,
           -0.69,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2692,6 +3698,11 @@
           -0.33,
           -0.69,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2706,6 +3717,11 @@
           -0.14,
           -0.69,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2720,6 +3736,11 @@
           0.05,
           -0.69,
           0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2734,6 +3755,11 @@
           1.225,
           -0.69,
           0.37
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2748,6 +3774,11 @@
           2.5516,
           -0.82,
           0.5744
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2762,6 +3793,11 @@
           -2.07,
           -0.26,
           0.43
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2776,6 +3812,11 @@
           -2.48,
           -0.49,
           0.535
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2790,6 +3831,11 @@
           -3.075,
           -0.875,
           0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2804,6 +3850,11 @@
           -2.795,
           -0.875,
           0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2818,6 +3869,11 @@
           -2.515,
           -0.875,
           0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2832,6 +3888,11 @@
           -2.235,
           -0.875,
           0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2846,6 +3907,11 @@
           -3.075,
           -0.375,
           0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2860,6 +3926,11 @@
           -2.795,
           -0.375,
           0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2874,6 +3945,11 @@
           -2.515,
           -0.375,
           0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2888,6 +3964,11 @@
           -2.235,
           -0.375,
           0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2902,6 +3983,11 @@
           -2.30269,
           0.59731,
           0.71
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2916,6 +4002,11 @@
           -1.9676,
           0.6332,
           1.9024
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2930,6 +4021,11 @@
           0.475,
           0.575,
           2.255
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2944,6 +4040,11 @@
           0.11,
           0.4575,
           1.45
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2958,6 +4059,12 @@
           2.96,
           -0.09,
           0.78
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_operator",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2972,6 +4079,12 @@
           2.98,
           -0.07,
           1.03
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_operator",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -2986,6 +4099,11 @@
           -1.16,
           0.839,
           2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3000,6 +4118,11 @@
           -0.96,
           0.839,
           2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3014,6 +4137,11 @@
           -0.76,
           0.839,
           2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3028,6 +4156,11 @@
           -0.56,
           0.839,
           2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3042,6 +4175,11 @@
           -0.36,
           0.839,
           2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3056,6 +4194,11 @@
           -0.16,
           0.839,
           2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3070,6 +4213,11 @@
           0.04,
           0.839,
           2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3084,6 +4232,11 @@
           0.24,
           0.839,
           2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3098,6 +4251,12 @@
           -0.43,
           1.08,
           1.0
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3112,6 +4271,12 @@
           1.76,
           -0.32,
           1.15
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3126,6 +4291,12 @@
           2.51,
           0.81,
           0.5
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_tablet_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3140,6 +4311,11 @@
           -2.625,
           1.455,
           0.33
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3154,6 +4330,11 @@
           -0.825,
           1.455,
           0.33
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3168,6 +4349,11 @@
           0.975,
           1.455,
           0.33
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3182,6 +4368,11 @@
           2.775,
           1.455,
           0.33
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3196,6 +4387,11 @@
           -2.425,
           0.105,
           0.4625
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3210,6 +4406,11 @@
           -2.425,
           0.105,
           0.5725
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3224,6 +4425,11 @@
           -2.425,
           0.105,
           0.6825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3238,6 +4444,11 @@
           2.775,
           1.49,
           0.3325
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3252,6 +4463,11 @@
           -2.165,
           -0.885,
           0.4725
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3266,6 +4482,11 @@
           -2.165,
           -0.345,
           0.4725
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3280,6 +4501,11 @@
           -1.12,
           1.38,
           0.47
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3294,6 +4520,11 @@
           -0.47,
           1.38,
           0.47
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3308,6 +4539,11 @@
           0.18,
           1.38,
           0.47
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3322,6 +4558,11 @@
           1.86,
           -0.6,
           0.572
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3336,6 +4577,11 @@
           1.99,
           -0.6,
           0.572
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3350,6 +4596,12 @@
           0.7,
           0.581,
           2.46
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3364,6 +4616,12 @@
           0.7,
           0.569,
           2.46
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3378,6 +4636,12 @@
           1.84,
           -0.619,
           1.61
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3392,6 +4656,12 @@
           1.84,
           -0.631,
           1.61
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3406,6 +4676,12 @@
           2.84,
           0.581,
           1.48
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_tablet_device",
+          "ROOT_PROTOTYPE"
         ]
       },
       {
@@ -3420,6 +4696,12 @@
           2.84,
           0.569,
           1.48
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_tablet_device",
+          "ROOT_PROTOTYPE"
         ]
       }
     ],
@@ -3436,6 +4718,11 @@
           3.35,
           1.95,
           0.32
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3450,6 +4737,12 @@
           -0.275,
           0.82,
           2.39
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3464,6 +4757,12 @@
           -0.41,
           0.605,
           2.25
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3478,6 +4777,12 @@
           -1.37,
           1.015,
           1.06
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3492,6 +4797,12 @@
           -0.89,
           1.01,
           0.415
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3506,6 +4817,11 @@
           1.675,
           0.635,
           0.47
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3520,6 +4836,12 @@
           1.675,
           0.64226,
           1.69802
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_laptop_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3534,6 +4856,12 @@
           1.56,
           0.49817,
           1.57798
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_laptop_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3548,6 +4876,12 @@
           2.57,
           -0.59,
           1.58
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_phone_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3562,6 +4896,12 @@
           2.505,
           -0.72,
           1.47
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_phone_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3576,6 +4916,12 @@
           2.59,
           -0.16,
           0.41
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_phone_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3590,6 +4936,11 @@
           2.8,
           1.155,
           2.405
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3604,6 +4955,11 @@
           2.66,
           1.035,
           2.265
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3618,6 +4974,12 @@
           -1.4,
           -0.52,
           2.16
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3632,6 +4994,12 @@
           -1.655,
           -0.685,
           1.88
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3646,6 +5014,12 @@
           -2.975,
           -0.725,
           1.835
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3660,6 +5034,12 @@
           -1.655,
           -0.685,
           1.52
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3674,6 +5054,12 @@
           -2.975,
           -0.725,
           1.475
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3688,6 +5074,12 @@
           -1.655,
           -0.685,
           1.16
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3702,6 +5094,12 @@
           -2.975,
           -0.725,
           1.115
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3716,6 +5114,12 @@
           -1.655,
           -0.685,
           0.8
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3730,6 +5134,12 @@
           -2.975,
           -0.725,
           0.755
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3744,6 +5154,11 @@
           0.525,
           -0.745,
           0.815
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3758,6 +5173,12 @@
           0.56,
           -0.71,
           0.99
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_package_lid",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3772,6 +5193,11 @@
           -0.075,
           -1.89,
           0.76
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3786,6 +5212,11 @@
           0.65473,
           -0.77865,
           1.06
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3800,6 +5231,11 @@
           1.9,
           -0.89,
           0.43
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3814,6 +5250,11 @@
           1.5084,
           -1.25216,
           0.975
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3828,6 +5269,12 @@
           1.44389,
           -1.31685,
           0.91
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_0",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3842,6 +5289,11 @@
           1.79055,
           -1.2061,
           1.09507
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3856,6 +5308,12 @@
           1.72886,
           -1.27045,
           1.02809
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_1",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3870,6 +5328,11 @@
           2.07106,
           -1.13332,
           1.21445
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3884,6 +5347,12 @@
           2.01191,
           -1.19986,
           1.14566
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_2",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3898,6 +5367,11 @@
           -1.305,
           -1.37,
           0.485
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3912,6 +5386,11 @@
           3.16,
           0.32,
           1.24
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3926,6 +5405,12 @@
           2.56,
           0.24,
           0.62
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3940,6 +5425,12 @@
           2.88,
           0.24,
           0.62
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3954,6 +5445,12 @@
           2.72,
           0.24,
           0.78
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3968,6 +5465,12 @@
           2.56,
           0.24,
           0.94
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3982,6 +5485,12 @@
           2.88,
           0.24,
           0.94
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -3996,6 +5505,12 @@
           2.72,
           0.24,
           1.1
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4010,6 +5525,12 @@
           3.04,
           0.24,
           0.78
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4024,6 +5545,12 @@
           3.04,
           0.24,
           1.1
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4038,6 +5565,11 @@
           -1.04,
           0.56,
           2.71
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4052,6 +5584,11 @@
           2.4,
           1.02,
           2.615
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4066,6 +5603,12 @@
           1.525,
           0.62,
           0.57
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_laptop_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4080,6 +5623,11 @@
           0.22,
           -0.16,
           0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4094,6 +5642,11 @@
           0.43,
           -0.16,
           0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4108,6 +5661,11 @@
           0.64,
           -0.16,
           0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4122,6 +5680,11 @@
           0.22,
           0.02,
           0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4136,6 +5699,11 @@
           0.43,
           0.02,
           0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4150,6 +5718,11 @@
           0.64,
           0.02,
           0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4164,6 +5737,11 @@
           0.22,
           0.2,
           0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4178,6 +5756,11 @@
           0.43,
           0.2,
           0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4192,6 +5775,11 @@
           0.64,
           0.2,
           0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4206,6 +5794,11 @@
           -0.84,
           -1.7,
           0.61
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4220,6 +5813,11 @@
           0.5,
           -1.7,
           0.61
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4234,6 +5832,11 @@
           -0.84,
           -0.8,
           0.61
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4248,6 +5851,11 @@
           0.5,
           -0.8,
           0.61
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4262,6 +5870,11 @@
           -0.425,
           1.33,
           0.46
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4276,6 +5889,11 @@
           2.8,
           1.49,
           0.3525
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4290,6 +5908,11 @@
           -3.015,
           -1.615,
           0.3525
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4304,6 +5927,11 @@
           3.085,
           -1.615,
           0.3525
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4318,6 +5946,11 @@
           -3.015,
           1.685,
           0.3525
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4332,6 +5965,11 @@
           3.085,
           1.685,
           0.3525
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4346,6 +5984,11 @@
           -0.54,
           -0.69,
           0.72
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4360,6 +6003,11 @@
           0.08,
           -0.69,
           0.72
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4374,6 +6022,11 @@
           0.7,
           -0.69,
           0.72
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4388,6 +6041,11 @@
           -1.98,
           1.255,
           0.54
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4402,6 +6060,11 @@
           -1.63,
           1.255,
           0.54
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4416,6 +6079,12 @@
           -0.41,
           0.611,
           2.25
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4430,6 +6099,12 @@
           -0.41,
           0.599,
           2.25
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4444,6 +6119,12 @@
           1.56,
           0.50413,
           1.57869
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_laptop_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4458,6 +6139,12 @@
           1.56,
           0.49221,
           1.57726
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_laptop_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4472,6 +6159,12 @@
           2.505,
           -0.714,
           1.47
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_phone_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4486,6 +6179,12 @@
           2.505,
           -0.726,
           1.47
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_phone_device",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4500,6 +6199,11 @@
           2.66,
           1.041,
           2.265
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4514,6 +6218,12 @@
           1.44461,
           -1.31089,
           0.91
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_0",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4528,6 +6238,12 @@
           1.7291,
           -1.26446,
           1.02839
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_1",
+          "ROOT_RELEASE"
         ]
       },
       {
@@ -4542,6 +6258,12 @@
           2.01167,
           -1.1939,
           1.14626
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_2",
+          "ROOT_RELEASE"
         ]
       }
     ]

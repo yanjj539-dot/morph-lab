@@ -4,6 +4,7 @@ import json
 import math
 import re
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 
 import bpy
@@ -26,14 +27,47 @@ PROXY_OBJECTS = {
     "release": ["REL_delivery_station", "REL_monitor_frame", "REL_qa_panel"],
 }
 
+@dataclass(frozen=True)
+class ExplicitAllowRule:
+    name: str
+    left: str
+    right: str
+    max_depth: float
+    reason: str
+
+    def matches(self, left: str, right: str) -> bool:
+        return bool(
+            (re.fullmatch(self.left, left) and re.fullmatch(self.right, right))
+            or (re.fullmatch(self.left, right) and re.fullmatch(self.right, left))
+        )
+
+
 ROUND4_ALLOW_RULES = [
-    (r"OBS_crop_frame_(top|bottom)", r"OBS_crop_frame_(left|right)", 0.025, "crop-frame-corner-joint", "intentional crop-marking frame corner joint"),
-    (r"OBS_scan_beam", r"OBS_lid_hinge_", 0.035, "scanner-beam-hinge-clearance", "scanner beam travels through the authored hinge envelope"),
-    (r"OBS_scan_beam", r"OBS_scanner_rail", 0.045, "scanner-beam-rail-contact", "scanner beam is physically seated in its guide rail"),
-    (r"STR_phase_chip", r"STR_mount_rail_", 0.016, "phase-chip-rail-seat", "phase chip seats against the system-wall mount rail"),
-    (r"PRO_phone_frame", r"PRO_device_button_", 0.025, "phone-button-seat", "device button is seated in the phone frame"),
-    (r"REL_archive_box", r"REL_package_safety_guide_", 0.085, "package-safety-guide-seat", "package safety guide attaches to archive box interior"),
-    (r"REL_cable_channel", r"REL_status_tag_", 0.025, "status-tag-channel-mount", "status tag mounts to the delivery-station cable channel"),
+    ExplicitAllowRule("crop-frame-corner-joint", r"OBS_crop_frame_(top|bottom)", r"OBS_crop_frame_(left|right)", 0.025, "intentional crop-marking frame corner joint"),
+    ExplicitAllowRule("scanner-beam-hinge-clearance", r"OBS_scan_beam", r"OBS_lid_hinge_[01]", 0.035, "scanner beam travels through the authored hinge envelope"),
+    ExplicitAllowRule("scanner-beam-rail-contact", r"OBS_scan_beam", r"OBS_scanner_rail", 0.045, "scanner beam is physically seated in its guide rail"),
+    ExplicitAllowRule("observe-control-key-seat", r"OBS_control_recess", r"OBS_control_key_[0-2]", 0.012, "control key is seated in the scanner control recess"),
+    ExplicitAllowRule("observe-control-fastener-seat", r"OBS_control_recess", r"OBS_scanner_screw_[0-3]", 0.012, "scanner fastener is seated at the control recess edge"),
+    ExplicitAllowRule("observe-control-bed-seat", r"OBS_control_recess", r"OBS_scanner_bed", 0.015, "control recess is attached to the scanner bed"),
+    ExplicitAllowRule("observe-output-crop-overlay", r"OBS_output_card", r"OBS_crop_frame_(top|bottom|left|right)", 0.012, "crop marking is attached to the output-card perimeter"),
+    ExplicitAllowRule("monitor-frame-support-joint", r"(OBS|PRO|REL)_monitor_frame", r"(OBS|PRO|REL)_monitor_(stem|hinge)", 0.185, "monitor frame is joined to its authored stem or hinge"),
+    ExplicitAllowRule("monitor-stand-joint", r"(OBS|PRO|REL)_monitor_stem", r"(OBS|PRO|REL)_monitor_(foot|hinge)", 0.185, "monitor stem is seated in its authored support"),
+    ExplicitAllowRule("monitor-layer-frame-seat", r"(OBS|PRO|REL)_monitor_(frame|hinge)", r"(SCREEN|BASE|GLASS)_(observe_inspection|prototype_monitor|release_monitor)", 0.012, "monitor screen layer is seated within the monitor frame"),
+    ExplicitAllowRule("prototype-phone-support-joint", r"PRO_phone_frame", r"PRO_phone_(stand|backrail)", 0.105, "Prototype phone frame is joined to its stand or back rail"),
+    ExplicitAllowRule("prototype-phone-layer-frame-seat", r"PRO_phone_frame", r"(SCREEN|BASE|GLASS)_prototype_phone", 0.012, "Prototype phone screen layer is seated within the frame"),
+    ExplicitAllowRule("prototype-phone-button-seat", r"PRO_device_button_[01]", r"(PRO_phone_frame|(SCREEN|BASE|GLASS)_prototype_phone)", 0.025, "Prototype phone button is seated at the frame edge"),
+    ExplicitAllowRule("prototype-tablet-hinge-joint", r"PRO_tablet_frame", r"PRO_tablet_hinge", 0.075, "Prototype tablet frame is joined to its hinge"),
+    ExplicitAllowRule("prototype-tablet-layer-frame-seat", r"PRO_tablet_frame", r"(SCREEN|BASE|GLASS)_prototype_tablet", 0.012, "Prototype tablet screen layer is seated within the frame"),
+    ExplicitAllowRule("prototype-cursor-monitor-layer", r"PRO_cursor", r"(SCREEN|GLASS)_prototype_monitor", 0.012, "Prototype cursor is an authored monitor-content overlay"),
+    ExplicitAllowRule("structure-phase-chip-rail-seat", r"STR_phase_chip", r"STR_mount_rail_[0-4]", 0.016, "phase chip seats against the system-wall mount rail"),
+    ExplicitAllowRule("structure-display-panel-seat", r"(SCREEN|BASE|GLASS)_structure_system", r"STR_(final_panel|mount_rail_3)", 0.012, "Structure display layers are attached to the final panel and display rail"),
+    ExplicitAllowRule("structure-panel-clip-seat", r"STR_final_panel", r"STR_(card_clip_9|panel_2)", 0.012, "Structure final panel is retained by its adjacent clip and panel"),
+    ExplicitAllowRule("structure-type-bar-clip-seat", r"STR_type_bar_0", r"STR_card_clip_0", 0.012, "type-ruler bar is retained by its authored card clip"),
+    ExplicitAllowRule("release-laptop-lid-joint", r"REL_devices", r"REL_laptop_hinge", 0.075, "Release laptop lid is joined to its hinge"),
+    ExplicitAllowRule("release-laptop-layer-lid-seat", r"REL_devices", r"(SCREEN|BASE|GLASS)_release_laptop", 0.125, "Release laptop screen layers are attached to the animated lid"),
+    ExplicitAllowRule("release-phone-stand-joint", r"REL_phone_frame", r"REL_phone_stand", 0.105, "Release phone frame is joined to its stand"),
+    ExplicitAllowRule("release-package-safety-guide-seat", r"REL_archive_box", r"REL_package_safety_guide_[0-2]", 0.085, "package safety guide attaches to archive box interior"),
+    ExplicitAllowRule("release-status-tag-channel-mount", r"REL_cable_channel", r"REL_status_tag_[01]", 0.025, "status tag mounts to the delivery-station cable channel"),
 ]
 
 
@@ -57,13 +91,21 @@ def bounds(vertices: list[Vector]) -> tuple[Vector, Vector]:
     )
 
 
-def bounds_payload(obj: bpy.types.Object) -> dict[str, object]:
+def bounds_payload(obj: bpy.types.Object, root: bpy.types.Object) -> dict[str, object]:
     points = [obj.matrix_world @ Vector(corner) for corner in obj.bound_box]
+    ancestors: list[str] = []
+    ancestor = obj.parent
+    while ancestor is not None:
+        ancestors.append(ancestor.name)
+        ancestor = ancestor.parent
     return {
         "name": obj.name,
         "collisionProxy": obj.get("collisionProxy", "evaluated-mesh"),
         "boundsMin": [round(min(point[index] for point in points), 5) for index in range(3)],
         "boundsMax": [round(max(point[index] for point in points), 5) for index in range(3)],
+        "stageRoot": root.name,
+        "rootOwned": root.name in ancestors,
+        "ancestorPath": ancestors,
     }
 
 
@@ -71,23 +113,40 @@ def overlap_depth(left: tuple[Vector, Vector], right: tuple[Vector, Vector]) -> 
     return tuple(min(left[1][index], right[1][index]) - max(left[0][index], right[0][index]) for index in range(3))
 
 
-def allow_contact(left: bpy.types.Object, right: bpy.types.Object, depth: float) -> tuple[bool, str | None, str]:
-    layer_names = (left.name, right.name)
-    if all(name.startswith(SURFACE_PREFIXES) for name in layer_names):
-        return True, "surface-layer-attachment", "authored base/content/glass or print substrate attachment"
-    if left.parent is not None and left.parent == right.parent and left.parent.get("assemblyRole") == "device":
-        return True, "device-parent-contact", f"intentional device assembly under {left.parent.name}"
-    for left_pattern, right_pattern, max_depth, rule_name, reason in ROUND4_ALLOW_RULES:
-        matches = ((re.search(left_pattern, left.name) and re.search(right_pattern, right.name))
-                   or (re.search(left_pattern, right.name) and re.search(right_pattern, left.name)))
-        if matches and depth <= max_depth:
-            return True, rule_name, reason
+def allow_contact(left: bpy.types.Object, right: bpy.types.Object, depth: float) -> tuple[bool, str | None, float | None, str]:
+    for rule in ROUND4_ALLOW_RULES:
+        if rule.matches(left.name, right.name) and depth <= rule.max_depth:
+            return True, rule.name, rule.max_depth, rule.reason
     for index, rule in enumerate(round3check.ALLOW_RULES):
         if rule.matches(left.name, right.name) and depth <= rule.max_depth:
-            return True, f"round3-physical-contact-{index:02d}", rule.reason
-    if depth <= 0.012:
-        return True, "layer-attachment-tolerance", "intentional attachment within 0.012 scene-unit seating tolerance"
-    return False, None, "unallowlisted solid intersection"
+            return True, f"round3-physical-contact-{index:02d}", rule.max_depth, rule.reason
+    return False, None, None, "unmatched contact: no explicit object/category pair rule"
+
+
+def allow_rule_manifest() -> list[dict[str, object]]:
+    rules = [
+        {
+            "name": rule.name,
+            "objectPatternA": rule.left,
+            "objectPatternB": rule.right,
+            "maxPenetrationDepth": rule.max_depth,
+            "reason": rule.reason,
+            "source": "round4",
+        }
+        for rule in ROUND4_ALLOW_RULES
+    ]
+    rules.extend(
+        {
+            "name": f"round3-physical-contact-{index:02d}",
+            "objectPatternA": rule.left,
+            "objectPatternB": rule.right,
+            "maxPenetrationDepth": rule.max_depth,
+            "reason": rule.reason,
+            "source": "round3-derived",
+        }
+        for index, rule in enumerate(round3check.ALLOW_RULES)
+    )
+    return rules
 
 
 def topology_audit(objects: list[bpy.types.Object]) -> dict[str, int]:
@@ -207,11 +266,31 @@ def environment_checks(stage: str, collection: bpy.types.Collection) -> dict[str
         obj.name for obj in collection.all_objects if obj.type == "MESH" and not obj.get("surfaceRole")
         and any(slot.material is not None and not slot.material.use_backface_culling for slot in obj.material_slots)
     ]
+    root = bpy.data.objects[f"ROOT_{stage.upper()}"]
+    root_offenders: list[str] = []
+    for obj in collection.all_objects:
+        if obj == root or obj.get("export_role") == "render_label":
+            continue
+        ancestor = obj.parent
+        while ancestor is not None and ancestor != root:
+            ancestor = ancestor.parent
+        if ancestor != root:
+            root_offenders.append(obj.name)
+    exported_top_level = [
+        obj.name for obj in collection.objects
+        if obj.get("export_role") != "render_label" and obj.parent is None
+    ]
     return {
         "cameraNearPlane": camera_result,
         "monitorPanelWorkbenchProxy": {"status": "pass" if not missing_proxies else "fail", "objects": PROXY_OBJECTS[stage], "missing": missing_proxies},
         "externalOcclusion": {"status": "pass" if not external_meshes else "fail", "externalMeshes": external_meshes},
         "internalSurfaceExposure": {"status": "pass" if not double_sided_solids else "fail", "doubleSidedSolids": double_sided_solids},
+        "stageRootOwnership": {
+            "status": "pass" if not root_offenders and exported_top_level == [root.name] else "fail",
+            "stageRoot": root.name,
+            "exportedTopLevelObjects": exported_top_level,
+            "offenders": sorted(root_offenders),
+        },
     }
 
 
@@ -222,7 +301,8 @@ def audit_stage(stage: str) -> tuple[list[dict[str, object]], list[dict[str, obj
     topology = topology_audit(objects)
     surfaces = surface_state(stage)
     environment = environment_checks(stage, collection)
-    collision_metadata = [bounds_payload(obj) for obj in objects]
+    root = bpy.data.objects[f"ROOT_{stage.upper()}"]
+    collision_metadata = [bounds_payload(obj, root) for obj in objects]
     unresolved: list[dict[str, object]] = []
     accepted: list[dict[str, object]] = []
 
@@ -248,10 +328,11 @@ def audit_stage(stage: str) -> tuple[list[dict[str, object]], list[dict[str, obj
                 left_tree, right_tree = left_snapshot[1], right_snapshot[1]
                 surface_hits = left_tree.overlap(right_tree) if left_tree is not None and right_tree is not None else []
                 minimum_depth = min(depths)
-                contained = minimum_depth > 0.02 and not surface_hits
+                both_surfaces = bool(left.get("surfaceRole")) and bool(right.get("surfaceRole"))
+                contained = minimum_depth > 0.02 and not surface_hits and not both_surfaces
                 if not surface_hits and not contained:
                     continue
-                allowed, allow_rule, reason = allow_contact(left, right, minimum_depth)
+                allowed, allow_rule, max_allowed_depth, reason = allow_contact(left, right, minimum_depth)
                 record = {
                     "stage": stage,
                     "progress": progress,
@@ -261,6 +342,7 @@ def audit_stage(stage: str) -> tuple[list[dict[str, object]], list[dict[str, obj
                     "severity": "low" if allowed else ("high" if minimum_depth > 0.025 else "medium"),
                     "collisionProxy": [left.get("collisionProxy", "evaluated-mesh"), right.get("collisionProxy", "evaluated-mesh")],
                     "allowRule": allow_rule,
+                    "maxAllowedDepth": max_allowed_depth,
                     "reason": reason,
                 }
                 (accepted if allowed else unresolved).append(record)
@@ -332,6 +414,7 @@ def main() -> None:
         },
         "intersections": intersections,
         "acceptedContacts": accepted,
+        "explicitAllowRules": allow_rule_manifest(),
         "topology": topology,
         "surfaceLayerChecks": surface_checks,
         "environmentChecks": environment,

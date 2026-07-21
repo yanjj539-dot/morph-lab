@@ -4,7 +4,7 @@
     "perAssetBytes": 1500000,
     "totalBytes": 5000000
   },
-  "totalBytes": 1303444,
+  "totalBytes": 1303760,
   "assets": [
     {
       "stage": "observe",
@@ -20,7 +20,7 @@
       ],
       "collisionProxy": "collection-aabb",
       "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\observe.glb",
-      "bytes": 265340,
+      "bytes": 265368,
       "nodes": 68,
       "meshes": 62,
       "materials": 14,
@@ -43,7 +43,12 @@
         "KHR_materials_ior"
       ],
       "glbVersion": 2,
-      "declaredLength": 265340
+      "declaredLength": 265368,
+      "sceneRootNames": [
+        "ROOT_OBSERVE"
+      ],
+      "sceneNodeCount": 68,
+      "unreachableNodeCount": 0
     },
     {
       "stage": "structure",
@@ -59,7 +64,7 @@
       ],
       "collisionProxy": "collection-aabb",
       "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\structure.glb",
-      "bytes": 347412,
+      "bytes": 347436,
       "nodes": 95,
       "meshes": 89,
       "materials": 13,
@@ -82,7 +87,12 @@
         "KHR_materials_ior"
       ],
       "glbVersion": 2,
-      "declaredLength": 347412
+      "declaredLength": 347436,
+      "sceneRootNames": [
+        "ROOT_STRUCTURE"
+      ],
+      "sceneNodeCount": 95,
+      "unreachableNodeCount": 0
     },
     {
       "stage": "prototype",
@@ -98,7 +108,7 @@
       ],
       "collisionProxy": "collection-aabb",
       "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\prototype.glb",
-      "bytes": 407880,
+      "bytes": 408020,
       "nodes": 104,
       "meshes": 99,
       "materials": 13,
@@ -106,16 +116,16 @@
       "animations": [
         "PROTOTYPE_CURSOR",
         "PROTOTYPE_LIGHT_RING",
+        "PROTOTYPE_PHONE_SYNC",
         "PROTOTYPE_SENSOR",
-        "PROTOTYPE_ACTION",
-        "PROTOTYPE_PHONE_SYNC"
+        "PROTOTYPE_ACTION"
       ],
       "animationDurationsSeconds": {
         "PROTOTYPE_CURSOR": 5.0,
         "PROTOTYPE_LIGHT_RING": 5.0,
+        "PROTOTYPE_PHONE_SYNC": 5.0,
         "PROTOTYPE_SENSOR": 5.0,
-        "PROTOTYPE_ACTION": 5.0,
-        "PROTOTYPE_PHONE_SYNC": 5.0
+        "PROTOTYPE_ACTION": 5.0
       },
       "extensionsUsed": [
         "KHR_draco_mesh_compression",
@@ -123,7 +133,12 @@
         "KHR_materials_ior"
       ],
       "glbVersion": 2,
-      "declaredLength": 407880
+      "declaredLength": 408020,
+      "sceneRootNames": [
+        "ROOT_PROTOTYPE"
+      ],
+      "sceneNodeCount": 104,
+      "unreachableNodeCount": 0
     },
     {
       "stage": "release",
@@ -139,24 +154,24 @@
       ],
       "collisionProxy": "collection-aabb",
       "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\release.glb",
-      "bytes": 282812,
+      "bytes": 282936,
       "nodes": 86,
       "meshes": 80,
       "materials": 14,
       "triangles": 12742,
       "animations": [
         "RELEASE_FINAL_PANEL",
+        "RELEASE_ACTION",
         "RELEASE_PACKAGE_CLOSE",
         "RELEASE_QA_ROWS",
-        "RELEASE_DRAFT_TO_LIVE",
-        "RELEASE_ACTION"
+        "RELEASE_DRAFT_TO_LIVE"
       ],
       "animationDurationsSeconds": {
         "RELEASE_FINAL_PANEL": 5.0,
+        "RELEASE_ACTION": 5.0,
         "RELEASE_PACKAGE_CLOSE": 5.0,
         "RELEASE_QA_ROWS": 5.0,
-        "RELEASE_DRAFT_TO_LIVE": 5.0,
-        "RELEASE_ACTION": 5.0
+        "RELEASE_DRAFT_TO_LIVE": 5.0
       },
       "extensionsUsed": [
         "KHR_draco_mesh_compression",
@@ -164,7 +179,12 @@
         "KHR_materials_ior"
       ],
       "glbVersion": 2,
-      "declaredLength": 282812
+      "declaredLength": 282936,
+      "sceneRootNames": [
+        "ROOT_RELEASE"
+      ],
+      "sceneNodeCount": 86,
+      "unreachableNodeCount": 0
     }
   ],
   "status": "pass",

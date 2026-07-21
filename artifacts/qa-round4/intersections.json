@@ -89,7 +89,7 @@
   "summary": {
     "high": 0,
     "medium": 0,
-    "low": 256,
+    "low": 250,
     "samples": 41,
     "meshCount": 324,
     "topologyErrors": 0,
@@ -109,8 +109,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "observe-control-key-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "control key is seated in the scanner control recess"
     },
     {
       "stage": "observe",
@@ -123,8 +124,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "observe-control-key-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "control key is seated in the scanner control recess"
     },
     {
       "stage": "observe",
@@ -137,8 +139,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "observe-control-key-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "control key is seated in the scanner control recess"
     },
     {
       "stage": "observe",
@@ -151,8 +154,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "observe-control-fastener-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "scanner fastener is seated at the control recess edge"
     },
     {
       "stage": "observe",
@@ -166,6 +170,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "crop-frame-corner-joint",
+      "maxAllowedDepth": 0.025,
       "reason": "intentional crop-marking frame corner joint"
     },
     {
@@ -180,6 +185,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "crop-frame-corner-joint",
+      "maxAllowedDepth": 0.025,
       "reason": "intentional crop-marking frame corner joint"
     },
     {
@@ -194,6 +200,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "crop-frame-corner-joint",
+      "maxAllowedDepth": 0.025,
       "reason": "intentional crop-marking frame corner joint"
     },
     {
@@ -208,6 +215,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "crop-frame-corner-joint",
+      "maxAllowedDepth": 0.025,
       "reason": "intentional crop-marking frame corner joint"
     },
     {
@@ -222,6 +230,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-11",
+      "maxAllowedDepth": 0.08,
       "reason": "folder tab connection"
     },
     {
@@ -236,6 +245,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-12",
+      "maxAllowedDepth": 0.12,
       "reason": "sample tray assembly"
     },
     {
@@ -250,6 +260,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-12",
+      "maxAllowedDepth": 0.12,
       "reason": "sample tray assembly"
     },
     {
@@ -264,6 +275,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-12",
+      "maxAllowedDepth": 0.12,
       "reason": "sample tray assembly"
     },
     {
@@ -278,6 +290,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-12",
+      "maxAllowedDepth": 0.12,
       "reason": "sample tray assembly"
     },
     {
@@ -291,8 +304,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under OBS_inspection_device"
+      "allowRule": "monitor-frame-support-joint",
+      "maxAllowedDepth": 0.185,
+      "reason": "monitor frame is joined to its authored stem or hinge"
     },
     {
       "stage": "observe",
@@ -305,8 +319,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under OBS_inspection_device"
+      "allowRule": "monitor-stand-joint",
+      "maxAllowedDepth": 0.185,
+      "reason": "monitor stem is seated in its authored support"
     },
     {
       "stage": "observe",
@@ -320,6 +335,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-07",
+      "maxAllowedDepth": 0.08,
       "reason": "scale figure joint"
     },
     {
@@ -333,8 +349,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "observe-output-crop-overlay",
+      "maxAllowedDepth": 0.012,
+      "reason": "crop marking is attached to the output-card perimeter"
     },
     {
       "stage": "observe",
@@ -347,8 +364,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "observe-output-crop-overlay",
+      "maxAllowedDepth": 0.012,
+      "reason": "crop marking is attached to the output-card perimeter"
     },
     {
       "stage": "observe",
@@ -361,8 +379,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "observe-output-crop-overlay",
+      "maxAllowedDepth": 0.012,
+      "reason": "crop marking is attached to the output-card perimeter"
     },
     {
       "stage": "observe",
@@ -375,8 +394,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "observe-output-crop-overlay",
+      "maxAllowedDepth": 0.012,
+      "reason": "crop marking is attached to the output-card perimeter"
     },
     {
       "stage": "observe",
@@ -390,6 +410,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-15",
+      "maxAllowedDepth": 0.06,
       "reason": "paper clip contact"
     },
     {
@@ -404,6 +425,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-15",
+      "maxAllowedDepth": 0.06,
       "reason": "paper clip contact"
     },
     {
@@ -418,6 +440,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-14",
+      "maxAllowedDepth": 0.08,
       "reason": "stacked research papers"
     },
     {
@@ -432,6 +455,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-15",
+      "maxAllowedDepth": 0.06,
       "reason": "paper clip contact"
     },
     {
@@ -446,6 +470,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-15",
+      "maxAllowedDepth": 0.06,
       "reason": "paper clip contact"
     },
     {
@@ -460,6 +485,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-15",
+      "maxAllowedDepth": 0.06,
       "reason": "paper clip contact"
     },
     {
@@ -474,6 +500,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-00",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Observe work surface"
     },
     {
@@ -488,6 +515,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-00",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Observe work surface"
     },
     {
@@ -502,6 +530,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-00",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Observe work surface"
     },
     {
@@ -516,6 +545,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-00",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Observe work surface"
     },
     {
@@ -530,6 +560,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "scanner-beam-hinge-clearance",
+      "maxAllowedDepth": 0.035,
       "reason": "scanner beam travels through the authored hinge envelope"
     },
     {
@@ -544,6 +575,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "scanner-beam-hinge-clearance",
+      "maxAllowedDepth": 0.035,
       "reason": "scanner beam travels through the authored hinge envelope"
     },
     {
@@ -557,8 +589,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "observe-control-bed-seat",
+      "maxAllowedDepth": 0.015,
+      "reason": "control recess is attached to the scanner bed"
     },
     {
       "stage": "observe",
@@ -572,6 +605,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-08",
+      "maxAllowedDepth": 0.22,
       "reason": "scanner assembly"
     },
     {
@@ -586,6 +620,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-08",
+      "maxAllowedDepth": 0.22,
       "reason": "scanner assembly"
     },
     {
@@ -600,6 +635,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-09",
+      "maxAllowedDepth": 0.08,
       "reason": "scanner lid hardware"
     },
     {
@@ -614,6 +650,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-09",
+      "maxAllowedDepth": 0.08,
       "reason": "scanner lid hardware"
     },
     {
@@ -628,6 +665,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-09",
+      "maxAllowedDepth": 0.08,
       "reason": "scanner lid hardware"
     },
     {
@@ -642,6 +680,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-09",
+      "maxAllowedDepth": 0.08,
       "reason": "scanner lid hardware"
     },
     {
@@ -656,6 +695,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "scanner-beam-rail-contact",
+      "maxAllowedDepth": 0.045,
       "reason": "scanner beam is physically seated in its guide rail"
     },
     {
@@ -670,6 +710,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-09",
+      "maxAllowedDepth": 0.08,
       "reason": "scanner lid hardware"
     },
     {
@@ -684,6 +725,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-13",
+      "maxAllowedDepth": 0.08,
       "reason": "overlapped material swatch fan"
     },
     {
@@ -698,6 +740,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-13",
+      "maxAllowedDepth": 0.08,
       "reason": "overlapped material swatch fan"
     },
     {
@@ -712,6 +755,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-13",
+      "maxAllowedDepth": 0.08,
       "reason": "overlapped material swatch fan"
     },
     {
@@ -726,6 +770,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-13",
+      "maxAllowedDepth": 0.08,
       "reason": "overlapped material swatch fan"
     },
     {
@@ -740,6 +785,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-13",
+      "maxAllowedDepth": 0.08,
       "reason": "overlapped material swatch fan"
     },
     {
@@ -754,6 +800,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-13",
+      "maxAllowedDepth": 0.08,
       "reason": "overlapped material swatch fan"
     },
     {
@@ -768,6 +815,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-13",
+      "maxAllowedDepth": 0.08,
       "reason": "overlapped material swatch fan"
     },
     {
@@ -782,6 +830,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-13",
+      "maxAllowedDepth": 0.08,
       "reason": "overlapped material swatch fan"
     },
     {
@@ -795,8 +844,9 @@
         "surface",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "structure-display-panel-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Structure display layers are attached to the final panel and display rail"
     },
     {
       "stage": "structure",
@@ -809,8 +859,9 @@
         "surface",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "structure-display-panel-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Structure display layers are attached to the final panel and display rail"
     },
     {
       "stage": "structure",
@@ -824,6 +875,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-22",
+      "maxAllowedDepth": 0.24,
       "reason": "board base assembly"
     },
     {
@@ -838,6 +890,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-22",
+      "maxAllowedDepth": 0.24,
       "reason": "board base assembly"
     },
     {
@@ -852,6 +905,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-22",
+      "maxAllowedDepth": 0.24,
       "reason": "board base assembly"
     },
     {
@@ -866,6 +920,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-22",
+      "maxAllowedDepth": 0.24,
       "reason": "board base assembly"
     },
     {
@@ -880,6 +935,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-23",
+      "maxAllowedDepth": 0.12,
       "reason": "booklet binding"
     },
     {
@@ -894,6 +950,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-01",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Structure console"
     },
     {
@@ -908,6 +965,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-01",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Structure console"
     },
     {
@@ -922,6 +980,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-01",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Structure console"
     },
     {
@@ -936,6 +995,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-01",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Structure console"
     },
     {
@@ -950,6 +1010,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-01",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Structure console"
     },
     {
@@ -964,6 +1025,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-01",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Structure console"
     },
     {
@@ -978,6 +1040,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-01",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Structure console"
     },
     {
@@ -991,8 +1054,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "structure-display-panel-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Structure display layers are attached to the final panel and display rail"
     },
     {
       "stage": "structure",
@@ -1005,8 +1069,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "structure-display-panel-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Structure display layers are attached to the final panel and display rail"
     },
     {
       "stage": "structure",
@@ -1019,8 +1084,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "structure-panel-clip-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Structure final panel is retained by its adjacent clip and panel"
     },
     {
       "stage": "structure",
@@ -1034,6 +1100,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-22",
+      "maxAllowedDepth": 0.24,
       "reason": "board base assembly"
     },
     {
@@ -1048,6 +1115,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1062,6 +1130,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1076,6 +1145,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1090,6 +1160,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1104,6 +1175,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1118,6 +1190,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1132,6 +1205,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1146,6 +1220,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1160,6 +1235,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1174,6 +1250,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1188,6 +1265,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1202,6 +1280,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1216,6 +1295,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1230,6 +1310,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1244,6 +1325,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1258,6 +1340,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1272,6 +1355,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1286,6 +1370,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1300,6 +1385,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1314,6 +1400,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1328,6 +1415,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1342,6 +1430,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1356,6 +1445,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1370,6 +1460,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1384,6 +1475,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1398,6 +1490,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1412,6 +1505,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1426,6 +1520,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1440,6 +1535,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1454,6 +1550,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1468,6 +1565,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1482,6 +1580,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1496,6 +1595,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1510,6 +1610,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1524,6 +1625,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1538,6 +1640,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1552,6 +1655,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1566,6 +1670,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1580,6 +1685,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1594,6 +1700,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1608,6 +1715,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1622,6 +1730,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1636,6 +1745,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1650,6 +1760,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1664,6 +1775,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1678,6 +1790,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1692,6 +1805,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1706,6 +1820,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1720,6 +1835,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1734,6 +1850,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1748,6 +1865,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1762,6 +1880,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1776,6 +1895,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1790,6 +1910,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-16",
+      "maxAllowedDepth": 0.04,
       "reason": "design grid crossing"
     },
     {
@@ -1804,6 +1925,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-26",
+      "maxAllowedDepth": 0.1,
       "reason": "type ruler guide assembly"
     },
     {
@@ -1817,8 +1939,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "structure-display-panel-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Structure display layers are attached to the final panel and display rail"
     },
     {
       "stage": "structure",
@@ -1832,6 +1955,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-07",
+      "maxAllowedDepth": 0.08,
       "reason": "scale figure joint"
     },
     {
@@ -1846,6 +1970,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -1860,6 +1985,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -1874,6 +2000,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -1888,6 +2015,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -1902,6 +2030,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -1916,6 +2045,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -1930,6 +2060,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -1943,8 +2074,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "structure-panel-clip-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Structure final panel is retained by its adjacent clip and panel"
     },
     {
       "stage": "structure",
@@ -1958,6 +2090,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -1972,6 +2105,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -1986,6 +2120,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -2000,6 +2135,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -2014,6 +2150,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -2028,6 +2165,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -2042,6 +2180,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-21",
+      "maxAllowedDepth": 0.14,
       "reason": "panel surface detail"
     },
     {
@@ -2055,7 +2194,8 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "phase-chip-rail-seat",
+      "allowRule": "structure-phase-chip-rail-seat",
+      "maxAllowedDepth": 0.016,
       "reason": "phase chip seats against the system-wall mount rail"
     },
     {
@@ -2070,6 +2210,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-27",
+      "maxAllowedDepth": 0.04,
       "reason": "phase chip retaining pin"
     },
     {
@@ -2084,6 +2225,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-26",
+      "maxAllowedDepth": 0.1,
       "reason": "type ruler guide assembly"
     },
     {
@@ -2098,6 +2240,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-25",
+      "maxAllowedDepth": 0.1,
       "reason": "type ruler track clearance"
     },
     {
@@ -2112,6 +2255,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-18",
+      "maxAllowedDepth": 0.22,
       "reason": "token dock assembly"
     },
     {
@@ -2126,6 +2270,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-19",
+      "maxAllowedDepth": 0.22,
       "reason": "token seated in slot"
     },
     {
@@ -2140,6 +2285,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-18",
+      "maxAllowedDepth": 0.22,
       "reason": "token dock assembly"
     },
     {
@@ -2154,6 +2300,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-19",
+      "maxAllowedDepth": 0.22,
       "reason": "token seated in slot"
     },
     {
@@ -2168,6 +2315,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-18",
+      "maxAllowedDepth": 0.22,
       "reason": "token dock assembly"
     },
     {
@@ -2182,6 +2330,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-19",
+      "maxAllowedDepth": 0.22,
       "reason": "token seated in slot"
     },
     {
@@ -2196,6 +2345,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-18",
+      "maxAllowedDepth": 0.22,
       "reason": "token dock assembly"
     },
     {
@@ -2210,6 +2360,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-19",
+      "maxAllowedDepth": 0.22,
       "reason": "token seated in slot"
     },
     {
@@ -2224,6 +2375,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-18",
+      "maxAllowedDepth": 0.22,
       "reason": "token dock assembly"
     },
     {
@@ -2238,6 +2390,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-19",
+      "maxAllowedDepth": 0.22,
       "reason": "token seated in slot"
     },
     {
@@ -2251,8 +2404,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "structure-type-bar-clip-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "type-ruler bar is retained by its authored card clip"
     },
     {
       "stage": "structure",
@@ -2266,6 +2420,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-25",
+      "maxAllowedDepth": 0.1,
       "reason": "type ruler track clearance"
     },
     {
@@ -2280,6 +2435,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-25",
+      "maxAllowedDepth": 0.1,
       "reason": "type ruler track clearance"
     },
     {
@@ -2294,6 +2450,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-25",
+      "maxAllowedDepth": 0.1,
       "reason": "type ruler track clearance"
     },
     {
@@ -2308,6 +2465,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-25",
+      "maxAllowedDepth": 0.1,
       "reason": "type ruler track clearance"
     },
     {
@@ -2322,6 +2480,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-25",
+      "maxAllowedDepth": 0.1,
       "reason": "type ruler track clearance"
     },
     {
@@ -2336,6 +2495,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-20",
+      "maxAllowedDepth": 0.16,
       "reason": "type scale assembly"
     },
     {
@@ -2349,8 +2509,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "prototype-cursor-monitor-layer",
+      "maxAllowedDepth": 0.012,
+      "reason": "Prototype cursor is an authored monitor-content overlay"
     },
     {
       "stage": "prototype",
@@ -2363,8 +2524,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "prototype-phone-button-seat",
+      "maxAllowedDepth": 0.025,
+      "reason": "Prototype phone button is seated at the frame edge"
     },
     {
       "stage": "prototype",
@@ -2377,8 +2539,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "prototype-phone-button-seat",
+      "maxAllowedDepth": 0.025,
+      "reason": "Prototype phone button is seated at the frame edge"
     },
     {
       "stage": "prototype",
@@ -2392,6 +2555,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-30",
+      "maxAllowedDepth": 0.16,
       "reason": "controller board assembly"
     },
     {
@@ -2406,6 +2570,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-30",
+      "maxAllowedDepth": 0.16,
       "reason": "controller board assembly"
     },
     {
@@ -2420,6 +2585,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-30",
+      "maxAllowedDepth": 0.16,
       "reason": "controller board assembly"
     },
     {
@@ -2434,6 +2600,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-30",
+      "maxAllowedDepth": 0.16,
       "reason": "controller board assembly"
     },
     {
@@ -2448,6 +2615,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-30",
+      "maxAllowedDepth": 0.16,
       "reason": "controller board assembly"
     },
     {
@@ -2462,6 +2630,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-30",
+      "maxAllowedDepth": 0.16,
       "reason": "controller board assembly"
     },
     {
@@ -2476,6 +2645,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-30",
+      "maxAllowedDepth": 0.16,
       "reason": "controller board assembly"
     },
     {
@@ -2490,6 +2660,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-30",
+      "maxAllowedDepth": 0.16,
       "reason": "controller board assembly"
     },
     {
@@ -2504,6 +2675,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-30",
+      "maxAllowedDepth": 0.16,
       "reason": "controller board assembly"
     },
     {
@@ -2517,8 +2689,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_monitor_device"
+      "allowRule": "monitor-frame-support-joint",
+      "maxAllowedDepth": 0.185,
+      "reason": "monitor frame is joined to its authored stem or hinge"
     },
     {
       "stage": "prototype",
@@ -2531,8 +2704,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_monitor_device"
+      "allowRule": "monitor-frame-support-joint",
+      "maxAllowedDepth": 0.185,
+      "reason": "monitor frame is joined to its authored stem or hinge"
     },
     {
       "stage": "prototype",
@@ -2545,8 +2719,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_monitor_device"
+      "allowRule": "monitor-layer-frame-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "monitor screen layer is seated within the monitor frame"
     },
     {
       "stage": "prototype",
@@ -2559,8 +2734,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_monitor_device"
+      "allowRule": "monitor-layer-frame-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "monitor screen layer is seated within the monitor frame"
     },
     {
       "stage": "prototype",
@@ -2573,8 +2749,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_monitor_device"
+      "allowRule": "monitor-stand-joint",
+      "maxAllowedDepth": 0.185,
+      "reason": "monitor stem is seated in its authored support"
     },
     {
       "stage": "prototype",
@@ -2587,8 +2764,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_monitor_device"
+      "allowRule": "monitor-stand-joint",
+      "maxAllowedDepth": 0.185,
+      "reason": "monitor stem is seated in its authored support"
     },
     {
       "stage": "prototype",
@@ -2602,6 +2780,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-07",
+      "maxAllowedDepth": 0.08,
       "reason": "scale figure joint"
     },
     {
@@ -2615,8 +2794,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_phone_device"
+      "allowRule": "prototype-phone-layer-frame-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Prototype phone screen layer is seated within the frame"
     },
     {
       "stage": "prototype",
@@ -2629,8 +2809,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_phone_device"
+      "allowRule": "prototype-phone-layer-frame-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Prototype phone screen layer is seated within the frame"
     },
     {
       "stage": "prototype",
@@ -2643,8 +2824,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "phone-button-seat",
-      "reason": "device button is seated in the phone frame"
+      "allowRule": "prototype-phone-button-seat",
+      "maxAllowedDepth": 0.025,
+      "reason": "Prototype phone button is seated at the frame edge"
     },
     {
       "stage": "prototype",
@@ -2657,8 +2839,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_phone_device"
+      "allowRule": "prototype-phone-support-joint",
+      "maxAllowedDepth": 0.105,
+      "reason": "Prototype phone frame is joined to its stand or back rail"
     },
     {
       "stage": "prototype",
@@ -2671,8 +2854,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_phone_device"
+      "allowRule": "prototype-phone-support-joint",
+      "maxAllowedDepth": 0.105,
+      "reason": "Prototype phone frame is joined to its stand or back rail"
     },
     {
       "stage": "prototype",
@@ -2685,8 +2869,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_phone_device"
+      "allowRule": "prototype-phone-layer-frame-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Prototype phone screen layer is seated within the frame"
     },
     {
       "stage": "prototype",
@@ -2700,6 +2885,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-32",
+      "maxAllowedDepth": 0.08,
       "reason": "sensor detail"
     },
     {
@@ -2714,6 +2900,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-32",
+      "maxAllowedDepth": 0.08,
       "reason": "sensor detail"
     },
     {
@@ -2727,8 +2914,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_tablet_device"
+      "allowRule": "prototype-tablet-layer-frame-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Prototype tablet screen layer is seated within the frame"
     },
     {
       "stage": "prototype",
@@ -2741,8 +2929,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_tablet_device"
+      "allowRule": "prototype-tablet-layer-frame-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Prototype tablet screen layer is seated within the frame"
     },
     {
       "stage": "prototype",
@@ -2755,8 +2944,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_tablet_device"
+      "allowRule": "prototype-tablet-hinge-joint",
+      "maxAllowedDepth": 0.075,
+      "reason": "Prototype tablet frame is joined to its hinge"
     },
     {
       "stage": "prototype",
@@ -2769,8 +2959,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_tablet_device"
+      "allowRule": "prototype-tablet-layer-frame-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "Prototype tablet screen layer is seated within the frame"
     },
     {
       "stage": "prototype",
@@ -2784,6 +2975,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-02",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Prototype bench"
     },
     {
@@ -2798,6 +2990,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-02",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Prototype bench"
     },
     {
@@ -2812,6 +3005,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-02",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Prototype bench"
     },
     {
@@ -2826,6 +3020,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-02",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Prototype bench"
     },
     {
@@ -2840,6 +3035,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-02",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Prototype bench"
     },
     {
@@ -2854,6 +3050,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-02",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Prototype bench"
     },
     {
@@ -2868,6 +3065,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-02",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Prototype bench"
     },
     {
@@ -2882,6 +3080,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-02",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Prototype bench"
     },
     {
@@ -2896,6 +3095,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-02",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Prototype bench"
     },
     {
@@ -2910,6 +3110,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-02",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Prototype bench"
     },
     {
@@ -2923,8 +3124,9 @@
         "surface",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
+      "allowRule": "prototype-cursor-monitor-layer",
+      "maxAllowedDepth": 0.012,
+      "reason": "Prototype cursor is an authored monitor-content overlay"
     },
     {
       "stage": "prototype",
@@ -2937,8 +3139,9 @@
         "surface",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under PRO_monitor_device"
+      "allowRule": "monitor-layer-frame-seat",
+      "maxAllowedDepth": 0.012,
+      "reason": "monitor screen layer is seated within the monitor frame"
     },
     {
       "stage": "prototype",
@@ -2951,22 +3154,9 @@
         "surface",
         "evaluated-mesh"
       ],
-      "allowRule": "layer-attachment-tolerance",
-      "reason": "intentional attachment within 0.012 scene-unit seating tolerance"
-    },
-    {
-      "stage": "release",
-      "progress": 0.0,
-      "objectA": "BASE_release_laptop",
-      "objectB": "GLASS_release_laptop",
-      "penetrationDepth": 0.105405,
-      "severity": "low",
-      "collisionProxy": [
-        "surface",
-        "surface"
-      ],
-      "allowRule": "surface-layer-attachment",
-      "reason": "authored base/content/glass or print substrate attachment"
+      "allowRule": "prototype-phone-button-seat",
+      "maxAllowedDepth": 0.025,
+      "reason": "Prototype phone button is seated at the frame edge"
     },
     {
       "stage": "release",
@@ -2980,6 +3170,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-37",
+      "maxAllowedDepth": 0.32,
       "reason": "archive package assembly"
     },
     {
@@ -2994,6 +3185,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-37",
+      "maxAllowedDepth": 0.32,
       "reason": "archive package assembly"
     },
     {
@@ -3008,6 +3200,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-37",
+      "maxAllowedDepth": 0.32,
       "reason": "archive package assembly"
     },
     {
@@ -3022,6 +3215,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-37",
+      "maxAllowedDepth": 0.32,
       "reason": "archive package assembly"
     },
     {
@@ -3036,6 +3230,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-37",
+      "maxAllowedDepth": 0.32,
       "reason": "archive package assembly"
     },
     {
@@ -3049,7 +3244,8 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "package-safety-guide-seat",
+      "allowRule": "release-package-safety-guide-seat",
+      "maxAllowedDepth": 0.085,
       "reason": "package safety guide attaches to archive box interior"
     },
     {
@@ -3063,7 +3259,8 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "package-safety-guide-seat",
+      "allowRule": "release-package-safety-guide-seat",
+      "maxAllowedDepth": 0.085,
       "reason": "package safety guide attaches to archive box interior"
     },
     {
@@ -3078,6 +3275,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-38",
+      "maxAllowedDepth": 0.16,
       "reason": "archive lid assembly"
     },
     {
@@ -3091,7 +3289,8 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "status-tag-channel-mount",
+      "allowRule": "release-status-tag-channel-mount",
+      "maxAllowedDepth": 0.025,
       "reason": "status tag mounts to the delivery-station cable channel"
     },
     {
@@ -3105,7 +3304,8 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "status-tag-channel-mount",
+      "allowRule": "release-status-tag-channel-mount",
+      "maxAllowedDepth": 0.025,
       "reason": "status tag mounts to the delivery-station cable channel"
     },
     {
@@ -3120,6 +3320,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-03",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Release station"
     },
     {
@@ -3134,6 +3335,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-03",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Release station"
     },
     {
@@ -3148,6 +3350,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-03",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Release station"
     },
     {
@@ -3162,6 +3365,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-03",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Release station"
     },
     {
@@ -3176,6 +3380,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-03",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Release station"
     },
     {
@@ -3190,6 +3395,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-03",
+      "maxAllowedDepth": 0.2,
       "reason": "object grounded on Release station"
     },
     {
@@ -3203,8 +3409,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under REL_laptop_device"
+      "allowRule": "release-laptop-layer-lid-seat",
+      "maxAllowedDepth": 0.125,
+      "reason": "Release laptop screen layers are attached to the animated lid"
     },
     {
       "stage": "release",
@@ -3217,8 +3424,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under REL_laptop_device"
+      "allowRule": "release-laptop-layer-lid-seat",
+      "maxAllowedDepth": 0.125,
+      "reason": "Release laptop screen layers are attached to the animated lid"
     },
     {
       "stage": "release",
@@ -3231,8 +3439,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under REL_laptop_device"
+      "allowRule": "release-laptop-lid-joint",
+      "maxAllowedDepth": 0.075,
+      "reason": "Release laptop lid is joined to its hinge"
     },
     {
       "stage": "release",
@@ -3245,8 +3454,9 @@
         "evaluated-mesh",
         "surface"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under REL_laptop_device"
+      "allowRule": "release-laptop-layer-lid-seat",
+      "maxAllowedDepth": 0.125,
+      "reason": "Release laptop screen layers are attached to the animated lid"
     },
     {
       "stage": "release",
@@ -3260,6 +3470,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-35",
+      "maxAllowedDepth": 0.16,
       "reason": "laptop base assembly"
     },
     {
@@ -3274,6 +3485,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-35",
+      "maxAllowedDepth": 0.16,
       "reason": "laptop base assembly"
     },
     {
@@ -3288,6 +3500,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-35",
+      "maxAllowedDepth": 0.16,
       "reason": "laptop base assembly"
     },
     {
@@ -3302,6 +3515,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-35",
+      "maxAllowedDepth": 0.16,
       "reason": "laptop base assembly"
     },
     {
@@ -3316,6 +3530,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-35",
+      "maxAllowedDepth": 0.16,
       "reason": "laptop base assembly"
     },
     {
@@ -3330,6 +3545,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-35",
+      "maxAllowedDepth": 0.16,
       "reason": "laptop base assembly"
     },
     {
@@ -3344,6 +3560,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-35",
+      "maxAllowedDepth": 0.16,
       "reason": "laptop base assembly"
     },
     {
@@ -3358,6 +3575,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-35",
+      "maxAllowedDepth": 0.16,
       "reason": "laptop base assembly"
     },
     {
@@ -3372,6 +3590,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-35",
+      "maxAllowedDepth": 0.16,
       "reason": "laptop base assembly"
     },
     {
@@ -3386,6 +3605,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-35",
+      "maxAllowedDepth": 0.16,
       "reason": "laptop base assembly"
     },
     {
@@ -3399,8 +3619,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under REL_monitor_device"
+      "allowRule": "monitor-frame-support-joint",
+      "maxAllowedDepth": 0.185,
+      "reason": "monitor frame is joined to its authored stem or hinge"
     },
     {
       "stage": "release",
@@ -3413,8 +3634,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under REL_monitor_device"
+      "allowRule": "monitor-stand-joint",
+      "maxAllowedDepth": 0.185,
+      "reason": "monitor stem is seated in its authored support"
     },
     {
       "stage": "release",
@@ -3427,8 +3649,9 @@
         "evaluated-mesh",
         "evaluated-mesh"
       ],
-      "allowRule": "device-parent-contact",
-      "reason": "intentional device assembly under REL_phone_device"
+      "allowRule": "release-phone-stand-joint",
+      "maxAllowedDepth": 0.105,
+      "reason": "Release phone frame is joined to its stand"
     },
     {
       "stage": "release",
@@ -3442,6 +3665,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3456,6 +3680,7 @@
         "surface"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3470,6 +3695,7 @@
         "surface"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3484,6 +3710,7 @@
         "surface"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3498,6 +3725,7 @@
         "surface"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3512,6 +3740,7 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3526,6 +3755,7 @@
         "surface"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3540,6 +3770,7 @@
         "surface"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3554,6 +3785,7 @@
         "surface"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3568,6 +3800,7 @@
         "surface"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3582,6 +3815,7 @@
         "surface"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
     },
     {
@@ -3596,49 +3830,8 @@
         "surface"
       ],
       "allowRule": "round3-physical-contact-40",
+      "maxAllowedDepth": 0.12,
       "reason": "project card stack"
-    },
-    {
-      "stage": "release",
-      "progress": 0.0,
-      "objectA": "REL_project_image_0",
-      "objectB": "SUBSTRATE_REL_project_image_0",
-      "penetrationDepth": 0.06587,
-      "severity": "low",
-      "collisionProxy": [
-        "surface",
-        "surface"
-      ],
-      "allowRule": "surface-layer-attachment",
-      "reason": "authored base/content/glass or print substrate attachment"
-    },
-    {
-      "stage": "release",
-      "progress": 0.0,
-      "objectA": "REL_project_image_1",
-      "objectB": "SUBSTRATE_REL_project_image_1",
-      "penetrationDepth": 0.03898,
-      "severity": "low",
-      "collisionProxy": [
-        "surface",
-        "surface"
-      ],
-      "allowRule": "surface-layer-attachment",
-      "reason": "authored base/content/glass or print substrate attachment"
-    },
-    {
-      "stage": "release",
-      "progress": 0.0,
-      "objectA": "REL_project_image_2",
-      "objectB": "SUBSTRATE_REL_project_image_2",
-      "penetrationDepth": 0.059925,
-      "severity": "low",
-      "collisionProxy": [
-        "surface",
-        "surface"
-      ],
-      "allowRule": "surface-layer-attachment",
-      "reason": "authored base/content/glass or print substrate attachment"
     },
     {
       "stage": "release",
@@ -3652,35 +3845,554 @@
         "evaluated-mesh"
       ],
       "allowRule": "round3-physical-contact-39",
+      "maxAllowedDepth": 0.16,
       "reason": "project rack contact"
+    }
+  ],
+  "explicitAllowRules": [
+    {
+      "name": "crop-frame-corner-joint",
+      "objectPatternA": "OBS_crop_frame_(top|bottom)",
+      "objectPatternB": "OBS_crop_frame_(left|right)",
+      "maxPenetrationDepth": 0.025,
+      "reason": "intentional crop-marking frame corner joint",
+      "source": "round4"
     },
     {
-      "stage": "release",
-      "progress": 0.0,
-      "objectA": "SCREEN_release_laptop",
-      "objectB": "BASE_release_laptop",
-      "penetrationDepth": 0.111361,
-      "severity": "low",
-      "collisionProxy": [
-        "surface",
-        "surface"
-      ],
-      "allowRule": "surface-layer-attachment",
-      "reason": "authored base/content/glass or print substrate attachment"
+      "name": "scanner-beam-hinge-clearance",
+      "objectPatternA": "OBS_scan_beam",
+      "objectPatternB": "OBS_lid_hinge_[01]",
+      "maxPenetrationDepth": 0.035,
+      "reason": "scanner beam travels through the authored hinge envelope",
+      "source": "round4"
     },
     {
-      "stage": "release",
-      "progress": 0.0,
-      "objectA": "SCREEN_release_laptop",
-      "objectB": "GLASS_release_laptop",
-      "penetrationDepth": 0.111361,
-      "severity": "low",
-      "collisionProxy": [
-        "surface",
-        "surface"
-      ],
-      "allowRule": "surface-layer-attachment",
-      "reason": "authored base/content/glass or print substrate attachment"
+      "name": "scanner-beam-rail-contact",
+      "objectPatternA": "OBS_scan_beam",
+      "objectPatternB": "OBS_scanner_rail",
+      "maxPenetrationDepth": 0.045,
+      "reason": "scanner beam is physically seated in its guide rail",
+      "source": "round4"
+    },
+    {
+      "name": "observe-control-key-seat",
+      "objectPatternA": "OBS_control_recess",
+      "objectPatternB": "OBS_control_key_[0-2]",
+      "maxPenetrationDepth": 0.012,
+      "reason": "control key is seated in the scanner control recess",
+      "source": "round4"
+    },
+    {
+      "name": "observe-control-fastener-seat",
+      "objectPatternA": "OBS_control_recess",
+      "objectPatternB": "OBS_scanner_screw_[0-3]",
+      "maxPenetrationDepth": 0.012,
+      "reason": "scanner fastener is seated at the control recess edge",
+      "source": "round4"
+    },
+    {
+      "name": "observe-control-bed-seat",
+      "objectPatternA": "OBS_control_recess",
+      "objectPatternB": "OBS_scanner_bed",
+      "maxPenetrationDepth": 0.015,
+      "reason": "control recess is attached to the scanner bed",
+      "source": "round4"
+    },
+    {
+      "name": "observe-output-crop-overlay",
+      "objectPatternA": "OBS_output_card",
+      "objectPatternB": "OBS_crop_frame_(top|bottom|left|right)",
+      "maxPenetrationDepth": 0.012,
+      "reason": "crop marking is attached to the output-card perimeter",
+      "source": "round4"
+    },
+    {
+      "name": "monitor-frame-support-joint",
+      "objectPatternA": "(OBS|PRO|REL)_monitor_frame",
+      "objectPatternB": "(OBS|PRO|REL)_monitor_(stem|hinge)",
+      "maxPenetrationDepth": 0.185,
+      "reason": "monitor frame is joined to its authored stem or hinge",
+      "source": "round4"
+    },
+    {
+      "name": "monitor-stand-joint",
+      "objectPatternA": "(OBS|PRO|REL)_monitor_stem",
+      "objectPatternB": "(OBS|PRO|REL)_monitor_(foot|hinge)",
+      "maxPenetrationDepth": 0.185,
+      "reason": "monitor stem is seated in its authored support",
+      "source": "round4"
+    },
+    {
+      "name": "monitor-layer-frame-seat",
+      "objectPatternA": "(OBS|PRO|REL)_monitor_(frame|hinge)",
+      "objectPatternB": "(SCREEN|BASE|GLASS)_(observe_inspection|prototype_monitor|release_monitor)",
+      "maxPenetrationDepth": 0.012,
+      "reason": "monitor screen layer is seated within the monitor frame",
+      "source": "round4"
+    },
+    {
+      "name": "prototype-phone-support-joint",
+      "objectPatternA": "PRO_phone_frame",
+      "objectPatternB": "PRO_phone_(stand|backrail)",
+      "maxPenetrationDepth": 0.105,
+      "reason": "Prototype phone frame is joined to its stand or back rail",
+      "source": "round4"
+    },
+    {
+      "name": "prototype-phone-layer-frame-seat",
+      "objectPatternA": "PRO_phone_frame",
+      "objectPatternB": "(SCREEN|BASE|GLASS)_prototype_phone",
+      "maxPenetrationDepth": 0.012,
+      "reason": "Prototype phone screen layer is seated within the frame",
+      "source": "round4"
+    },
+    {
+      "name": "prototype-phone-button-seat",
+      "objectPatternA": "PRO_device_button_[01]",
+      "objectPatternB": "(PRO_phone_frame|(SCREEN|BASE|GLASS)_prototype_phone)",
+      "maxPenetrationDepth": 0.025,
+      "reason": "Prototype phone button is seated at the frame edge",
+      "source": "round4"
+    },
+    {
+      "name": "prototype-tablet-hinge-joint",
+      "objectPatternA": "PRO_tablet_frame",
+      "objectPatternB": "PRO_tablet_hinge",
+      "maxPenetrationDepth": 0.075,
+      "reason": "Prototype tablet frame is joined to its hinge",
+      "source": "round4"
+    },
+    {
+      "name": "prototype-tablet-layer-frame-seat",
+      "objectPatternA": "PRO_tablet_frame",
+      "objectPatternB": "(SCREEN|BASE|GLASS)_prototype_tablet",
+      "maxPenetrationDepth": 0.012,
+      "reason": "Prototype tablet screen layer is seated within the frame",
+      "source": "round4"
+    },
+    {
+      "name": "prototype-cursor-monitor-layer",
+      "objectPatternA": "PRO_cursor",
+      "objectPatternB": "(SCREEN|GLASS)_prototype_monitor",
+      "maxPenetrationDepth": 0.012,
+      "reason": "Prototype cursor is an authored monitor-content overlay",
+      "source": "round4"
+    },
+    {
+      "name": "structure-phase-chip-rail-seat",
+      "objectPatternA": "STR_phase_chip",
+      "objectPatternB": "STR_mount_rail_[0-4]",
+      "maxPenetrationDepth": 0.016,
+      "reason": "phase chip seats against the system-wall mount rail",
+      "source": "round4"
+    },
+    {
+      "name": "structure-display-panel-seat",
+      "objectPatternA": "(SCREEN|BASE|GLASS)_structure_system",
+      "objectPatternB": "STR_(final_panel|mount_rail_3)",
+      "maxPenetrationDepth": 0.012,
+      "reason": "Structure display layers are attached to the final panel and display rail",
+      "source": "round4"
+    },
+    {
+      "name": "structure-panel-clip-seat",
+      "objectPatternA": "STR_final_panel",
+      "objectPatternB": "STR_(card_clip_9|panel_2)",
+      "maxPenetrationDepth": 0.012,
+      "reason": "Structure final panel is retained by its adjacent clip and panel",
+      "source": "round4"
+    },
+    {
+      "name": "structure-type-bar-clip-seat",
+      "objectPatternA": "STR_type_bar_0",
+      "objectPatternB": "STR_card_clip_0",
+      "maxPenetrationDepth": 0.012,
+      "reason": "type-ruler bar is retained by its authored card clip",
+      "source": "round4"
+    },
+    {
+      "name": "release-laptop-lid-joint",
+      "objectPatternA": "REL_devices",
+      "objectPatternB": "REL_laptop_hinge",
+      "maxPenetrationDepth": 0.075,
+      "reason": "Release laptop lid is joined to its hinge",
+      "source": "round4"
+    },
+    {
+      "name": "release-laptop-layer-lid-seat",
+      "objectPatternA": "REL_devices",
+      "objectPatternB": "(SCREEN|BASE|GLASS)_release_laptop",
+      "maxPenetrationDepth": 0.125,
+      "reason": "Release laptop screen layers are attached to the animated lid",
+      "source": "round4"
+    },
+    {
+      "name": "release-phone-stand-joint",
+      "objectPatternA": "REL_phone_frame",
+      "objectPatternB": "REL_phone_stand",
+      "maxPenetrationDepth": 0.105,
+      "reason": "Release phone frame is joined to its stand",
+      "source": "round4"
+    },
+    {
+      "name": "release-package-safety-guide-seat",
+      "objectPatternA": "REL_archive_box",
+      "objectPatternB": "REL_package_safety_guide_[0-2]",
+      "maxPenetrationDepth": 0.085,
+      "reason": "package safety guide attaches to archive box interior",
+      "source": "round4"
+    },
+    {
+      "name": "release-status-tag-channel-mount",
+      "objectPatternA": "REL_cable_channel",
+      "objectPatternB": "REL_status_tag_[01]",
+      "maxPenetrationDepth": 0.025,
+      "reason": "status tag mounts to the delivery-station cable channel",
+      "source": "round4"
+    },
+    {
+      "name": "round3-physical-contact-00",
+      "objectPatternA": "OBS_research_table$",
+      "objectPatternB": "^(OBS|SCREEN_observe|PRINT_observe)",
+      "maxPenetrationDepth": 0.2,
+      "reason": "object grounded on Observe work surface",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-01",
+      "objectPatternA": "STR_console$",
+      "objectPatternB": "^(STR|SCREEN_structure)",
+      "maxPenetrationDepth": 0.2,
+      "reason": "object grounded on Structure console",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-02",
+      "objectPatternA": "PRO_test_bench$",
+      "objectPatternB": "^(PRO|SCREEN_prototype)",
+      "maxPenetrationDepth": 0.2,
+      "reason": "object grounded on Prototype bench",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-03",
+      "objectPatternA": "REL_delivery_station$",
+      "objectPatternB": "^(REL|SCREEN_release|PRINT_release)",
+      "maxPenetrationDepth": 0.2,
+      "reason": "object grounded on Release station",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-04",
+      "objectPatternA": "_(research_table|console|test_bench|delivery_station)$",
+      "objectPatternB": "_(table_leg|rubber_foot|station_bolt|table_seam|console_seam|bench_seam|station_seam)",
+      "maxPenetrationDepth": 0.16,
+      "reason": "authored base connection",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-05",
+      "objectPatternA": "monitor_frame",
+      "objectPatternB": "monitor_(stem|hinge)|SCREEN_",
+      "maxPenetrationDepth": 0.18,
+      "reason": "monitor assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-06",
+      "objectPatternA": "monitor_stem",
+      "objectPatternB": "monitor_foot",
+      "maxPenetrationDepth": 0.16,
+      "reason": "monitor stand joint",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-07",
+      "objectPatternA": "operator_body",
+      "objectPatternB": "operator_head",
+      "maxPenetrationDepth": 0.08,
+      "reason": "scale figure joint",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-08",
+      "objectPatternA": "scanner_body",
+      "objectPatternB": "scanner_(bed|lid|rail|screw)|control_|paper_guide|status_window",
+      "maxPenetrationDepth": 0.22,
+      "reason": "scanner assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-09",
+      "objectPatternA": "scanner_lid",
+      "objectPatternB": "lid_hinge|paper_guide|scanner_rail",
+      "maxPenetrationDepth": 0.08,
+      "reason": "scanner lid hardware",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-10",
+      "objectPatternA": "scan_beam",
+      "objectPatternB": "paper_guide",
+      "maxPenetrationDepth": 0.04,
+      "reason": "scan beam travels inside guide rails",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-11",
+      "objectPatternA": "folder",
+      "objectPatternB": "folder_tab",
+      "maxPenetrationDepth": 0.08,
+      "reason": "folder tab connection",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-12",
+      "objectPatternA": "material_tray",
+      "objectPatternB": "tray_divider|swatch",
+      "maxPenetrationDepth": 0.12,
+      "reason": "sample tray assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-13",
+      "objectPatternA": "swatch_",
+      "objectPatternB": "swatch_|tray_divider",
+      "maxPenetrationDepth": 0.08,
+      "reason": "overlapped material swatch fan",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-14",
+      "objectPatternA": "OBS_paper_",
+      "objectPatternB": "OBS_paper_|PRINT_observe_persona",
+      "maxPenetrationDepth": 0.08,
+      "reason": "stacked research papers",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-15",
+      "objectPatternA": "OBS_clip_",
+      "objectPatternB": "OBS_clip_|OBS_paper_",
+      "maxPenetrationDepth": 0.06,
+      "reason": "paper clip contact",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-16",
+      "objectPatternA": "grid_[hv]_",
+      "objectPatternB": "grid_[hv]_",
+      "maxPenetrationDepth": 0.04,
+      "reason": "design grid crossing",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-17",
+      "objectPatternA": "grid_board",
+      "objectPatternB": "grid_[hv]_|mount_rail|base_bolt|card_clip|panel_|SCREEN_structure|phase_chip|pin_",
+      "maxPenetrationDepth": 0.24,
+      "reason": "design board mounted detail",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-18",
+      "objectPatternA": "token_dock",
+      "objectPatternB": "token_|token_slot",
+      "maxPenetrationDepth": 0.22,
+      "reason": "token dock assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-19",
+      "objectPatternA": "STR_token_\\d",
+      "objectPatternB": "token_slot",
+      "maxPenetrationDepth": 0.22,
+      "reason": "token seated in slot",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-20",
+      "objectPatternA": "type_ruler",
+      "objectPatternB": "type_bar|ruler_track",
+      "maxPenetrationDepth": 0.16,
+      "reason": "type scale assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-21",
+      "objectPatternA": "panel_",
+      "objectPatternB": "connector_|phase_chip|SCREEN_structure|card_clip|mount_rail|type_ruler|ruler_track",
+      "maxPenetrationDepth": 0.14,
+      "reason": "panel surface detail",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-22",
+      "objectPatternA": "board_base",
+      "objectPatternB": "grid_board|base_bolt",
+      "maxPenetrationDepth": 0.24,
+      "reason": "board base assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-23",
+      "objectPatternA": "booklet",
+      "objectPatternB": "booklet_band",
+      "maxPenetrationDepth": 0.12,
+      "reason": "booklet binding",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-24",
+      "objectPatternA": "control_strip",
+      "objectPatternB": "STR_control_",
+      "maxPenetrationDepth": 0.12,
+      "reason": "control strip assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-25",
+      "objectPatternA": "type_ruler",
+      "objectPatternB": "mount_rail|ruler_track|card_clip|STR_pin_|phase_chip",
+      "maxPenetrationDepth": 0.1,
+      "reason": "type ruler track clearance",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-26",
+      "objectPatternA": "ruler_track",
+      "objectPatternB": "mount_rail|phase_chip",
+      "maxPenetrationDepth": 0.1,
+      "reason": "type ruler guide assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-27",
+      "objectPatternA": "phase_chip",
+      "objectPatternB": "STR_pin_",
+      "maxPenetrationDepth": 0.04,
+      "reason": "phase chip retaining pin",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-28",
+      "objectPatternA": "phone_frame",
+      "objectPatternB": "phone_stand|phone_backrail|SCREEN_.*phone",
+      "maxPenetrationDepth": 0.16,
+      "reason": "phone assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-29",
+      "objectPatternA": "tablet_frame",
+      "objectPatternB": "tablet_hinge|SCREEN_.*tablet",
+      "maxPenetrationDepth": 0.16,
+      "reason": "tablet assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-30",
+      "objectPatternA": "esp32_board",
+      "objectPatternB": "esp32_chip|board_screw|PRO_pin_",
+      "maxPenetrationDepth": 0.16,
+      "reason": "controller board assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-31",
+      "objectPatternA": "keyboard",
+      "objectPatternB": "PRO_key_",
+      "maxPenetrationDepth": 0.12,
+      "reason": "keyboard assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-32",
+      "objectPatternA": "sensor",
+      "objectPatternB": "sensor_slot",
+      "maxPenetrationDepth": 0.08,
+      "reason": "sensor detail",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-33",
+      "objectPatternA": "monitor_(stem|foot|hinge)",
+      "objectPatternB": "monitor_(vent|hinge|stem|foot)",
+      "maxPenetrationDepth": 0.18,
+      "reason": "prototype monitor stand detail",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-34",
+      "objectPatternA": "REL_devices",
+      "objectPatternB": "SCREEN_release_laptop|laptop_hinge",
+      "maxPenetrationDepth": 0.25,
+      "reason": "laptop lid assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-35",
+      "objectPatternA": "laptop_base",
+      "objectPatternB": "laptop_key|laptop_hinge",
+      "maxPenetrationDepth": 0.16,
+      "reason": "laptop base assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-36",
+      "objectPatternA": "qa_panel|qa_row_",
+      "objectPatternB": "qa_row_|qa_check_|qa_text_",
+      "maxPenetrationDepth": 0.18,
+      "reason": "QA panel assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-37",
+      "objectPatternA": "archive_box",
+      "objectPatternB": "archive_lid|archive_latch|archive_corner|release_folder",
+      "maxPenetrationDepth": 0.32,
+      "reason": "archive package assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-38",
+      "objectPatternA": "archive_lid",
+      "objectPatternB": "archive_latch|archive_corner|release_folder",
+      "maxPenetrationDepth": 0.16,
+      "reason": "archive lid assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-39",
+      "objectPatternA": "project_rack",
+      "objectPatternB": "project_card_",
+      "maxPenetrationDepth": 0.16,
+      "reason": "project rack contact",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-40",
+      "objectPatternA": "project_card_",
+      "objectPatternB": "project_card_|project_image_",
+      "maxPenetrationDepth": 0.12,
+      "reason": "project card stack",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-41",
+      "objectPatternA": "qr_card",
+      "objectPatternB": "REL_qr_",
+      "maxPenetrationDepth": 0.12,
+      "reason": "QR print assembly",
+      "source": "round3-derived"
+    },
+    {
+      "name": "round3-physical-contact-42",
+      "objectPatternA": "projection_frame",
+      "objectPatternB": "PRINT_release_device|final_panel",
+      "maxPenetrationDepth": 0.12,
+      "reason": "projection surface assembly",
+      "source": "round3-derived"
     }
   ],
   "topology": {
@@ -8459,6 +9171,14 @@
       "internalSurfaceExposure": {
         "status": "pass",
         "doubleSidedSolids": []
+      },
+      "stageRootOwnership": {
+        "status": "pass",
+        "stageRoot": "ROOT_OBSERVE",
+        "exportedTopLevelObjects": [
+          "ROOT_OBSERVE"
+        ],
+        "offenders": []
       }
     },
     "structure": {
@@ -8482,6 +9202,14 @@
       "internalSurfaceExposure": {
         "status": "pass",
         "doubleSidedSolids": []
+      },
+      "stageRootOwnership": {
+        "status": "pass",
+        "stageRoot": "ROOT_STRUCTURE",
+        "exportedTopLevelObjects": [
+          "ROOT_STRUCTURE"
+        ],
+        "offenders": []
       }
     },
     "prototype": {
@@ -8505,6 +9233,14 @@
       "internalSurfaceExposure": {
         "status": "pass",
         "doubleSidedSolids": []
+      },
+      "stageRootOwnership": {
+        "status": "pass",
+        "stageRoot": "ROOT_PROTOTYPE",
+        "exportedTopLevelObjects": [
+          "ROOT_PROTOTYPE"
+        ],
+        "offenders": []
       }
     },
     "release": {
@@ -8529,6 +9265,14 @@
       "internalSurfaceExposure": {
         "status": "pass",
         "doubleSidedSolids": []
+      },
+      "stageRootOwnership": {
+        "status": "pass",
+        "stageRoot": "ROOT_RELEASE",
+        "exportedTopLevelObjects": [
+          "ROOT_RELEASE"
+        ],
+        "offenders": []
       }
     }
   }

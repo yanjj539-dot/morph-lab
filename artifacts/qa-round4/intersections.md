@@ -2,7 +2,7 @@
 
 - High: 0
 - Medium: 0
-- Allow-listed Low: 256
+- Allow-listed Low: 250
 - States per stage: 41
 - Meshes audited: 324
 
@@ -94,6 +94,14 @@ None. High and Medium gates are clear.
     "internalSurfaceExposure": {
       "status": "pass",
       "doubleSidedSolids": []
+    },
+    "stageRootOwnership": {
+      "status": "pass",
+      "stageRoot": "ROOT_OBSERVE",
+      "exportedTopLevelObjects": [
+        "ROOT_OBSERVE"
+      ],
+      "offenders": []
     }
   },
   "structure": {
@@ -117,6 +125,14 @@ None. High and Medium gates are clear.
     "internalSurfaceExposure": {
       "status": "pass",
       "doubleSidedSolids": []
+    },
+    "stageRootOwnership": {
+      "status": "pass",
+      "stageRoot": "ROOT_STRUCTURE",
+      "exportedTopLevelObjects": [
+        "ROOT_STRUCTURE"
+      ],
+      "offenders": []
     }
   },
   "prototype": {
@@ -140,6 +156,14 @@ None. High and Medium gates are clear.
     "internalSurfaceExposure": {
       "status": "pass",
       "doubleSidedSolids": []
+    },
+    "stageRootOwnership": {
+      "status": "pass",
+      "stageRoot": "ROOT_PROTOTYPE",
+      "exportedTopLevelObjects": [
+        "ROOT_PROTOTYPE"
+      ],
+      "offenders": []
     }
   },
   "release": {
@@ -164,6 +188,14 @@ None. High and Medium gates are clear.
     "internalSurfaceExposure": {
       "status": "pass",
       "doubleSidedSolids": []
+    },
+    "stageRootOwnership": {
+      "status": "pass",
+      "stageRoot": "ROOT_RELEASE",
+      "exportedTopLevelObjects": [
+        "ROOT_RELEASE"
+      ],
+      "offenders": []
     }
   }
 }
