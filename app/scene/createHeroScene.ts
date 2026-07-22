@@ -325,6 +325,8 @@ export async function createHeroScene({
     loadedTextures = null;
     delete canvasHost.dataset.schedulerState;
     delete canvasHost.dataset.schedulerFrames;
+    delete canvasHost.dataset.materialNormals;
+    delete canvasHost.dataset.normalDistanceTier;
     scene.clear();
   }
 
@@ -350,6 +352,12 @@ export async function createHeroScene({
       signal,
     });
     if (disposed) throw new Error("Hero scene was disposed while loading textures.");
+    canvasHost.dataset.materialNormals = String(
+      model.root.userData.round5MaterialNormalsEnabled !== false,
+    );
+    canvasHost.dataset.normalDistanceTier = String(
+      model.root.userData.round5NormalDistanceTier ?? "near",
+    );
 
     mixer = new AnimationMixer(model.root);
     actions = model.animations

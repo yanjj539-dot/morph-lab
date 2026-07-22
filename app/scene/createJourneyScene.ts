@@ -349,6 +349,15 @@ export async function createJourneyScene({
       }
       canvasHost.dataset.loadedStages = [...loadedStages.keys()].join(",");
       canvasHost.dataset.currentStage = residency.current;
+      const currentRuntime = loadedStages.get(residency.current);
+      if (currentRuntime) {
+        canvasHost.dataset.materialNormals = String(
+          currentRuntime.model.root.userData.round5MaterialNormalsEnabled !== false,
+        );
+        canvasHost.dataset.normalDistanceTier = String(
+          currentRuntime.model.root.userData.round5NormalDistanceTier ?? "near",
+        );
+      }
     } finally {
       reconciling = false;
     }
@@ -508,6 +517,8 @@ export async function createJourneyScene({
     delete canvasHost.dataset.currentStage;
     delete canvasHost.dataset.schedulerState;
     delete canvasHost.dataset.schedulerFrames;
+    delete canvasHost.dataset.materialNormals;
+    delete canvasHost.dataset.normalDistanceTier;
     scene.clear();
   }
 

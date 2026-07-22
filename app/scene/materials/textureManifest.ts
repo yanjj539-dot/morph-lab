@@ -1,4 +1,5 @@
 import { withBasePath } from "../../lib/paths";
+import { ROUND5_NORMAL_TEXTURE_REPEATS } from "./normalMapPolicy.ts";
 
 export type Round3TextureId =
   | "paperNormal"
@@ -20,23 +21,23 @@ export const ROUND3_TEXTURE_MANIFEST: Record<
 > = {
   paperNormal: {
     url: withBasePath("/textures/round-3/paper-normal.ktx2"),
-    repeat: [5, 5],
+    repeat: ROUND5_NORMAL_TEXTURE_REPEATS.paperNormal,
   },
   plasticNormal: {
     url: withBasePath("/textures/round-3/plastic-normal.ktx2"),
-    repeat: [4, 4],
+    repeat: ROUND5_NORMAL_TEXTURE_REPEATS.plasticNormal,
   },
   metalBrushedNormal: {
     url: withBasePath("/textures/round-3/metal-brushed-normal.ktx2"),
-    repeat: [3, 7],
+    repeat: ROUND5_NORMAL_TEXTURE_REPEATS.metalBrushedNormal,
   },
   rubberNormal: {
     url: withBasePath("/textures/round-3/rubber-normal.ktx2"),
-    repeat: [6, 6],
+    repeat: ROUND5_NORMAL_TEXTURE_REPEATS.rubberNormal,
   },
   studioOrm: {
     url: withBasePath("/textures/round-3/studio-orm.ktx2"),
-    repeat: [3, 3],
+    repeat: ROUND5_NORMAL_TEXTURE_REPEATS.studioOrm,
   },
   neutralStudioEnv: {
     url: withBasePath("/textures/round-3/neutral-studio-env.ktx2"),

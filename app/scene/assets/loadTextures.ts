@@ -11,13 +11,19 @@ import {
 } from "three";
 
 import { type JourneyStageId } from "../../data/journey";
-import type { SceneQualitySettings } from "../core/qualityManager";
+import type {
+  SceneQualitySettings,
+  SceneQualityTier,
+} from "../core/qualityManager";
 import { applyRound3MaterialSystem } from "../materials/materialFactory";
 import { acquireRound3CompressedTextures } from "../materials/loadCompressedTextures";
 import {
   getWebGLRendererDescription,
+  normalDistanceTierForStage,
+  readMaterialNormalOverride,
   supportsStableCompressedNormals,
 } from "../materials/normalMapPolicy";
+import { configureScreenTexture } from "../materials/screenTexturePolicy.ts";
 import {
   configureProjectSurface,
   type ProjectSurfaceKind,
@@ -38,6 +44,7 @@ import { type Round2ModelMap } from "./loadModels";
 
 export type TextureRuntimeOptions = {
   maxAnisotropy?: number;
+  qualityTier?: SceneQualityTier;
   signal?: AbortSignal;
 };
 
@@ -179,12 +186,15 @@ function installConfiguredSurface(
   mesh: Mesh,
   texture: Texture,
   config: ScreenConfig,
+  maxAnisotropy: number,
+  qualityTier: SceneQualityTier,
 ): SurfaceReplacement {
   const previous = mesh.material;
   const previousRenderOrder = mesh.renderOrder;
   const previousCastShadow = mesh.castShadow;
   const previousReceiveShadow = mesh.receiveShadow;
   const contentTexture = texture.clone();
+  configureScreenTexture(contentTexture, { maxAnisotropy }, qualityTier);
   let contentMaterial: MeshStandardMaterial;
   let glassMaterial: Material | null = null;
   if (config.kind === "screen") {
@@ -281,6 +291,7 @@ async function applyProjectTextures(
   const texturePromises = new Map<string, Promise<Texture>>();
   const replacedMaterials: SurfaceReplacement[] = [];
   const maxAnisotropy = Math.max(1, options.maxAnisotropy ?? 4);
+  const qualityTier = options.qualityTier ?? "balanced";
 
   try {
     const results = await Promise.allSettled(
@@ -323,11 +334,20 @@ async function applyProjectTextures(
         ? findScreenConfig(binding.stage as JourneyStageId, binding.meshName)
         : undefined;
       if (config) {
-        const replacement = installConfiguredSurface(mesh, texture, config);
+        const replacement = installConfiguredSurface(
+          mesh,
+          texture,
+          config,
+          maxAnisotropy,
+          qualityTier,
+        );
         loadedTextures.push(...replacement.contentTextures);
         replacedMaterials.push(replacement);
       } else {
         const replacement = createLegacyReplacement(mesh);
+        if (projectSurfaceKind(binding.meshName) === "screen") {
+          configureScreenTexture(texture, { maxAnisotropy }, qualityTier);
+        }
         const previous = configureProjectSurface(
           mesh,
           texture,
@@ -381,19 +401,32 @@ async function applyAuthoredTextures(
   const compressed = compressedLease.textures;
 
   try {
-    const normalMapsEnabled = supportsStableCompressedNormals(
+    const normalOverride = readMaterialNormalOverride(
+      typeof window === "undefined" ? "" : window.location.search,
+    );
+    const stableCompressedNormals = supportsStableCompressedNormals(
       getWebGLRendererDescription(options.renderer),
     );
-    for (const root of Object.values(models)) {
+    const normalMapsEnabled = normalOverride ?? stableCompressedNormals;
+    for (const [stage, root] of Object.entries(models)) {
       if (!root) continue;
+      const normalDistanceTier = normalDistanceTierForStage(stage);
       applyRound3MaterialSystem(root, compressed, options.quality, {
         normalMapsEnabled,
+        normalDistanceTier,
       });
+      root.userData.round5MaterialNormalsEnabled = normalMapsEnabled;
+      root.userData.round5NormalDistanceTier = normalDistanceTier;
     }
 
     options.scene.environment = compressed.neutralStudioEnv;
     options.scene.environmentIntensity = options.quality.tier === "high" ? 0.78 : 0.62;
-    const projectTextures = await applyProjectTextures(models, bindings, options, true);
+    const projectTextures = await applyProjectTextures(
+      models,
+      bindings,
+      { ...options, qualityTier: options.quality.tier },
+      true,
+    );
 
     const resources = [
       ...Object.values(compressed),
