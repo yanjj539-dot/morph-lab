@@ -1,6 +1,6 @@
 import {
-  ACESFilmicToneMapping,
-  PCFShadowMap,
+  AgXToneMapping,
+  PCFSoftShadowMap,
   SRGBColorSpace,
   WebGLRenderer,
 } from "three";
@@ -21,10 +21,11 @@ export function createRenderer(
   renderer.setPixelRatio(Math.min(quality.dpr, 1.5));
   renderer.setSize(host.clientWidth, host.clientHeight, false);
   renderer.outputColorSpace = SRGBColorSpace;
-  renderer.toneMapping = ACESFilmicToneMapping;
+  renderer.toneMapping = AgXToneMapping;
   renderer.toneMappingExposure = 1;
   renderer.shadowMap.enabled = quality.shadows;
-  renderer.shadowMap.type = PCFShadowMap;
+  renderer.shadowMap.type = PCFSoftShadowMap; // Round 2 baseline: PCFShadowMap.
+  renderer.transmissionResolutionScale = quality.tier === "high" ? 1 : 0.75;
   renderer.domElement.setAttribute("aria-hidden", "true");
   renderer.domElement.style.display = "block";
   renderer.domElement.style.height = "100%";

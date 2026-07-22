@@ -1,0 +1,44 @@
+[
+  {
+    "name": "paper-normal",
+    "width": 256,
+    "height": 256,
+    "kind": "normal",
+    "source": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\artifacts\\qa-round3\\texture-sources\\paper-normal.png"
+  },
+  {
+    "name": "plastic-normal",
+    "width": 256,
+    "height": 256,
+    "kind": "normal",
+    "source": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\artifacts\\qa-round3\\texture-sources\\plastic-normal.png"
+  },
+  {
+    "name": "metal-brushed-normal",
+    "width": 256,
+    "height": 256,
+    "kind": "brushed",
+    "source": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\artifacts\\qa-round3\\texture-sources\\metal-brushed-normal.png"
+  },
+  {
+    "name": "rubber-normal",
+    "width": 256,
+    "height": 256,
+    "kind": "normal",
+    "source": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\artifacts\\qa-round3\\texture-sources\\rubber-normal.png"
+  },
+  {
+    "name": "studio-orm",
+    "width": 256,
+    "height": 256,
+    "kind": "orm",
+    "source": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\artifacts\\qa-round3\\texture-sources\\studio-orm.png"
+  },
+  {
+    "name": "neutral-studio-env",
+    "width": 512,
+    "height": 256,
+    "kind": "environment",
+    "source": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\artifacts\\qa-round3\\texture-sources\\neutral-studio-env.png"
+  }
+]

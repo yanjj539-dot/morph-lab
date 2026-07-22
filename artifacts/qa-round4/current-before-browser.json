@@ -1,0 +1,66 @@
+{
+  "capturedAt": "2026-07-21T13:06:30.538Z",
+  "baseUrl": "http://127.0.0.1:57118",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "browserVersion": "149.0.7827.55",
+  "document": {
+    "width": 1920,
+    "height": 11628
+  },
+  "captures": [
+    {
+      "name": "hero",
+      "selector": ".hero",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 1015.1875
+      }
+    },
+    {
+      "name": "practice",
+      "selector": "#practice",
+      "box": {
+        "x": 224,
+        "y": -331.8125,
+        "width": 1472,
+        "height": 1839.890625
+      }
+    },
+    {
+      "name": "selected-work",
+      "selector": "#selected-work",
+      "box": {
+        "x": 0,
+        "y": -1692.921875,
+        "width": 1920,
+        "height": 4561.5
+      }
+    },
+    {
+      "name": "about",
+      "selector": "#about",
+      "box": {
+        "x": 224,
+        "y": -301.421875,
+        "width": 1472,
+        "height": 1778.375
+      }
+    },
+    {
+      "name": "cta",
+      "selector": ".final-cta",
+      "box": {
+        "x": 0,
+        "y": 69.953125,
+        "width": 1920,
+        "height": 1036.859375
+      }
+    }
+  ],
+  "events": []
+}

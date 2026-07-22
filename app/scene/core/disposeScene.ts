@@ -2,6 +2,7 @@ import {
   BufferGeometry,
   Material,
   Object3D,
+  Scene,
   Texture,
   WebGLRenderer,
 } from "three";
@@ -76,7 +77,11 @@ function disposeMaterialTextures(
   }
 }
 
-export function disposeScene(scene: Object3D, renderer: WebGLRenderer) {
+export function disposeScene(
+  scene: Object3D,
+  renderer: WebGLRenderer,
+  extraTextures: Iterable<Texture> = [],
+) {
   const geometries = new Set<BufferGeometry>();
   const materials = new Set<Material>();
   const textures = new Set<Texture>();
@@ -103,6 +108,13 @@ export function disposeScene(scene: Object3D, renderer: WebGLRenderer) {
     }
   });
 
+  if (scene instanceof Scene) {
+    disposeTexture(scene.background, textures, imageBitmaps);
+    disposeTexture(scene.environment, textures, imageBitmaps);
+    scene.background = null;
+    scene.environment = null;
+  }
+
   for (const geometry of geometries) {
     geometry.dispose();
   }
@@ -110,6 +122,10 @@ export function disposeScene(scene: Object3D, renderer: WebGLRenderer) {
   for (const material of materials) {
     disposeMaterialTextures(material, textures, imageBitmaps);
     material.dispose();
+  }
+
+  for (const texture of extraTextures) {
+    disposeTexture(texture, textures, imageBitmaps);
   }
 
   renderer.dispose();

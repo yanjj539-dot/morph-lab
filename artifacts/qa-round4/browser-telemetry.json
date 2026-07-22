@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-22T02:28:00.664Z",
+  "browserVersion": "149.0.7827.55",
+  "sessions": 15,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "failedRequests": 0,
+  "httpErrors": 0,
+  "glbRequestCount": 48,
+  "viewportCount": 9,
+  "progressCaptureCount": 41,
+  "desktopGlbCount": 4,
+  "mobileGlbCount": 0,
+  "reducedMotionGlbCount": 0,
+  "status": "pass"
+}

@@ -30,11 +30,11 @@ export function JourneyProgress({
               className="journey-progress__button"
               data-progress={JOURNEY_STAGE_PROGRESS[index]}
               aria-current={isActive ? "step" : undefined}
-              aria-label={`${stage.label} ${stage.eyebrow}: ${stage.title}`}
               onClick={() => onSelectStage(index)}
             >
               <span>{stage.label}</span>
               <span>{stage.eyebrow}</span>
+              <span className="sr-only">: {stage.title}</span>
             </button>
           </li>
         );

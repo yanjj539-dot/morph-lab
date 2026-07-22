@@ -1,0 +1,346 @@
+{
+  "generatedAt": "2026-07-21T11:36:13.568Z",
+  "baseUrl": "http://127.0.0.1:57113",
+  "loadPolicy": {
+    "desktop": {
+      "initialGlbCount": 0,
+      "enteredGlbCount": 4,
+      "state": "ready"
+    },
+    "mobile": {
+      "glbCount": 0,
+      "state": "fallback"
+    },
+    "reducedMotion": {
+      "glbCount": 0,
+      "state": "fallback"
+    }
+  },
+  "desktop": {
+    "glbCount": 4,
+    "canvasStats": {
+      "observe": {
+        "deviation": 26.95,
+        "entropy": 3.01
+      },
+      "structure": {
+        "deviation": 32.4,
+        "entropy": 4.03
+      },
+      "prototype": {
+        "deviation": 50.42,
+        "entropy": 4.39
+      },
+      "release": {
+        "deviation": 35.25,
+        "entropy": 3.2
+      }
+    }
+  },
+  "progressCaptures": [
+    {
+      "progress": 0,
+      "activeStage": "reused",
+      "bytes": 204595
+    },
+    {
+      "progress": 0.05,
+      "activeStage": "reused",
+      "bytes": 228738
+    },
+    {
+      "progress": 0.1,
+      "activeStage": "reused",
+      "bytes": 251872
+    },
+    {
+      "progress": 0.15000000000000002,
+      "activeStage": "reused",
+      "bytes": 267112
+    },
+    {
+      "progress": 0.2,
+      "activeStage": "reused",
+      "bytes": 578367
+    },
+    {
+      "progress": 0.25,
+      "activeStage": "reused",
+      "bytes": 783488
+    },
+    {
+      "progress": 0.30000000000000004,
+      "activeStage": "reused",
+      "bytes": 451116
+    },
+    {
+      "progress": 0.35000000000000003,
+      "activeStage": "reused",
+      "bytes": 480096
+    },
+    {
+      "progress": 0.4,
+      "activeStage": "reused",
+      "bytes": 527031
+    },
+    {
+      "progress": 0.45,
+      "activeStage": "reused",
+      "bytes": 630375
+    },
+    {
+      "progress": 0.5,
+      "activeStage": "reused",
+      "bytes": 975641
+    },
+    {
+      "progress": 0.55,
+      "activeStage": "reused",
+      "bytes": 702387
+    },
+    {
+      "progress": 0.6000000000000001,
+      "activeStage": "reused",
+      "bytes": 436434
+    },
+    {
+      "progress": 0.65,
+      "activeStage": "reused",
+      "bytes": 502726
+    },
+    {
+      "progress": 0.7000000000000001,
+      "activeStage": "reused",
+      "bytes": 665531
+    },
+    {
+      "progress": 0.75,
+      "activeStage": "reused",
+      "bytes": 956311
+    },
+    {
+      "progress": 0.8,
+      "activeStage": "reused",
+      "bytes": 524046
+    },
+    {
+      "progress": 0.8500000000000001,
+      "activeStage": "reused",
+      "bytes": 431437
+    },
+    {
+      "progress": 0.9,
+      "activeStage": "reused",
+      "bytes": 361944
+    },
+    {
+      "progress": 0.9500000000000001,
+      "activeStage": "reused",
+      "bytes": 343312
+    },
+    {
+      "progress": 1,
+      "activeStage": "reused",
+      "bytes": 311218
+    },
+    {
+      "progress": 0.22,
+      "activeStage": "reused",
+      "bytes": 691616
+    },
+    {
+      "progress": 0.25,
+      "activeStage": "reused",
+      "bytes": 783551
+    },
+    {
+      "progress": 0.28,
+      "activeStage": "reused",
+      "bytes": 612898
+    },
+    {
+      "progress": 0.47,
+      "activeStage": "reused",
+      "bytes": 744901
+    },
+    {
+      "progress": 0.5,
+      "activeStage": "reused",
+      "bytes": 975604
+    },
+    {
+      "progress": 0.53,
+      "activeStage": "reused",
+      "bytes": 887938
+    },
+    {
+      "progress": 0.72,
+      "activeStage": "reused",
+      "bytes": 808066
+    },
+    {
+      "progress": 0.75,
+      "activeStage": "reused",
+      "bytes": 956247
+    },
+    {
+      "progress": 0.78,
+      "activeStage": "reused",
+      "bytes": 801915
+    }
+  ],
+  "progressButtons": {
+    "before": 846,
+    "after": 4248
+  },
+  "mobile": {
+    "glbCount": 0
+  },
+  "reducedMotion": {
+    "glbCount": 0
+  },
+  "viewports": [
+    {
+      "width": 1920,
+      "scrollWidth": 1920,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 430,
+      "scrollWidth": 430,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 844,
+      "scrollWidth": 844,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    }
+  ],
+  "mobileMenus": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 667
+      },
+      "clientHeight": 587,
+      "scrollHeight": 587,
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "clientHeight": 310,
+      "scrollHeight": 310,
+      "clientWidth": 844,
+      "scrollWidth": 844
+    }
+  ],
+  "headerKeyboard": {
+    "recovered": true
+  },
+  "videos": {
+    "desktop1920": {
+      "bytes": 3887705,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "format": {
+        "duration": "33.480000"
+      }
+    },
+    "desktop1440": {
+      "bytes": 2535593,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "format": {
+        "duration": "24.360000"
+      }
+    },
+    "mobile": {
+      "bytes": 1062269,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "format": {
+        "duration": "9.720000"
+      }
+    },
+    "reducedMotion": {
+      "bytes": 1452523,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "format": {
+        "duration": "9.880000"
+      }
+    }
+  },
+  "lighthouse": {
+    "desktop": {
+      "performance": 96,
+      "accessibility": 96,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "mobile": {
+      "performance": 78,
+      "accessibility": 96,
+      "best-practices": 96,
+      "seo": 100
+    }
+  }
+}

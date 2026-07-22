@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "limits": {
+    "perAssetBytes": 1500000,
+    "totalBytes": 5000000
+  },
+  "totalBytes": 340704,
+  "assets": [
+    {
+      "stage": "observe",
+      "boundsMin": [
+        -3.56603,
+        -1.9,
+        -0.0
+      ],
+      "boundsMax": [
+        3.2,
+        1.9,
+        3.12
+      ],
+      "collisionProxy": "collection-aabb",
+      "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-4\\observe.glb",
+      "bytes": 340704,
+      "nodes": 68,
+      "meshes": 62,
+      "materials": 14,
+      "triangles": 15302,
+      "animations": [
+        "OBSERVE_OUTPUT_CARD",
+        "OBSERVE_CROP_MARKING",
+        "OBSERVE_MATERIAL_ARRIVAL",
+        "OBSERVE_ACTION"
+      ],
+      "animationDurationsSeconds": {
+        "OBSERVE_OUTPUT_CARD": 5.0,
+        "OBSERVE_CROP_MARKING": 5.0,
+        "OBSERVE_MATERIAL_ARRIVAL": 5.0,
+        "OBSERVE_ACTION": 5.0
+      },
+      "extensionsUsed": [
+        "KHR_draco_mesh_compression",
+        "KHR_materials_transmission",
+        "KHR_materials_ior"
+      ],
+      "glbVersion": 2,
+      "declaredLength": 340704,
+      "sceneRootNames": [
+        "ROOT_OBSERVE"
+      ],
+      "sceneNodeCount": 68,
+      "unreachableNodeCount": 0
+    }
+  ],
+  "status": "pass",
+  "failures": []
+}

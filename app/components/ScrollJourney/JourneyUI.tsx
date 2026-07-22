@@ -22,7 +22,7 @@ export function JourneyUI({ activeStage, state }: JourneyUIProps) {
 
       <div
         className="journey-ui__stage-copy"
-        aria-hidden={state !== "ready"}
+        aria-hidden={state !== "ready" && state !== "loading"}
         aria-live="polite"
       >
         <p>{stage.labelText}</p>

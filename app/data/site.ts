@@ -6,6 +6,7 @@ export interface ProjectAsset {
   width: number;
   height: number;
   tone?: "paper" | "blue" | "coral";
+  kind?: "screenshot" | "photo";
 }
 
 export interface Project {
@@ -17,30 +18,64 @@ export interface Project {
   assets: ProjectAsset[];
   services: string[];
   year: string;
+  status: string;
+  role: string;
   ratio: "landscape" | "portrait" | "wide";
   evidence: string[];
 }
 
 export const practices = [
   {
-    title: "AI visual systems",
+    title: "AI Visual Systems",
     titleZh: "AI 视觉系统",
     description: "为批量图像、人格视觉和品牌语气建立明确约束，让生成结果保持同一套审美判断。",
+    projectId: "abstract-persona-system",
+    image: {
+      src: withBasePath("/images/persona-result.webp"),
+      alt: "Abstract Persona System 的人格结果视觉局部",
+      width: 1200,
+      height: 1600,
+      position: "50% 42%",
+    },
   },
   {
-    title: "Interactive websites",
+    title: "Interactive Websites",
     titleZh: "交互网站",
     description: "把作品集、产品页和研究笔记做成可以浏览、可以部署、可以复用的数字界面。",
+    projectId: "digital-portfolio-experiments",
+    image: {
+      src: withBasePath("/images/web-aeroform.webp"),
+      alt: "Aeroform 交互网站的界面局部",
+      width: 1600,
+      height: 1000,
+      position: "50% 50%",
+    },
   },
   {
-    title: "Physical interaction prototypes",
+    title: "Physical Prototypes",
     titleZh: "实体交互原型",
     description: "用 ESP32、传感器、声音与光效，把情绪反馈和硬件行为接到真实体验里。",
+    projectId: "emotional-interaction-device",
+    image: {
+      src: withBasePath("/images/device-tree-hole.webp"),
+      alt: "ESP32、光环与传感器组成的实体交互装置局部",
+      width: 1600,
+      height: 1000,
+      position: "58% 52%",
+    },
   },
   {
-    title: "Agent-assisted workflow",
+    title: "Agent Workflows",
     titleZh: "Agent 辅助工作流",
     description: "让模型参与整理、初稿、检查和交付，但保留人的方向判断和质量门槛。",
+    projectId: "ai-design-workflow",
+    image: {
+      src: withBasePath("/images/morph-workflow-quality-gate-v1.webp"),
+      alt: "AI 设计工作流的质量门与发布节点局部",
+      width: 1600,
+      height: 1000,
+      position: "50% 50%",
+    },
   },
 ] as const;
 
@@ -67,6 +102,7 @@ export const projects: Project[] = [
         width: 900,
         height: 1600,
         tone: "paper",
+        kind: "screenshot",
       },
       {
         src: withBasePath("/images/persona-result.webp"),
@@ -74,10 +110,13 @@ export const projects: Project[] = [
         width: 1200,
         height: 1600,
         tone: "coral",
+        kind: "screenshot",
       },
     ],
     services: ["PERSONA SYSTEM", "VISUAL TAXONOMY", "MOBILE UI"],
     year: "2026",
+    status: "System released",
+    role: "Visual system / UI",
     ratio: "portrait",
     evidence: ["65 personas", "8 families", "result poster system"],
   },
@@ -95,6 +134,7 @@ export const projects: Project[] = [
         width: 1600,
         height: 1000,
         tone: "paper",
+        kind: "screenshot",
       },
       {
         src: withBasePath("/images/web-field-notes.webp"),
@@ -102,6 +142,7 @@ export const projects: Project[] = [
         width: 1600,
         height: 1000,
         tone: "blue",
+        kind: "screenshot",
       },
       {
         src: withBasePath("/images/web-smoke-fruit.webp"),
@@ -109,6 +150,7 @@ export const projects: Project[] = [
         width: 1600,
         height: 1000,
         tone: "coral",
+        kind: "screenshot",
       },
       {
         src: withBasePath("/images/web-units.webp"),
@@ -116,10 +158,13 @@ export const projects: Project[] = [
         width: 1600,
         height: 1000,
         tone: "blue",
+        kind: "screenshot",
       },
     ],
     services: ["WEB DESIGN", "FRONTEND", "EDITORIAL SYSTEM"],
     year: "2026",
+    status: "Four sites live",
+    role: "Design / Frontend",
     ratio: "wide",
     evidence: ["Aeroform", "Field Notes", "Smoke Fruit Sauce", "Units"],
   },
@@ -137,10 +182,13 @@ export const projects: Project[] = [
         width: 1600,
         height: 1000,
         tone: "paper",
+        kind: "photo",
       },
     ],
     services: ["ESP32", "SENSOR FEEDBACK", "SOUND + LIGHT"],
     year: "2026",
+    status: "Working prototype",
+    role: "Interaction / Hardware",
     ratio: "landscape",
     evidence: ["ESP32 prototype", "light ring", "sensor input", "sound feedback"],
   },
@@ -158,10 +206,13 @@ export const projects: Project[] = [
         width: 1600,
         height: 1000,
         tone: "blue",
+        kind: "screenshot",
       },
     ],
     services: ["AGENT WORKFLOW", "QA LOOP", "DEPLOYMENT"],
     year: "2026",
+    status: "Workflow in use",
+    role: "System / QA",
     ratio: "wide",
     evidence: ["material intake", "human review", "browser QA", "release"],
   },

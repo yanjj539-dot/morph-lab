@@ -1,0 +1,83 @@
+[
+  {
+    "stage": "observe",
+    "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-3\\observe.glb",
+    "bytes": 232152,
+    "nodes": 63,
+    "meshes": 58,
+    "materials": 13,
+    "triangles": 15294,
+    "animations": [
+      "OBSERVE_SECONDARY_OUTPUT",
+      "OBSERVE_SECONDARY_CROP",
+      "OBSERVE_SECONDARY_PAPERS",
+      "ML_OBSERVE_ACTION"
+    ],
+    "review": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\artifacts\\qa-round3\\review-observe.png",
+    "review_bytes": 1697137,
+    "fallback": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\fallback\\round-3\\observe.webp",
+    "fallback_bytes": 36004
+  },
+  {
+    "stage": "structure",
+    "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-3\\structure.glb",
+    "bytes": 293140,
+    "nodes": 89,
+    "meshes": 84,
+    "materials": 11,
+    "triangles": 17782,
+    "animations": [
+      "STRUCTURE_CONNECTOR_0",
+      "STRUCTURE_CONNECTOR_1",
+      "STRUCTURE_CONNECTOR_2",
+      "STRUCTURE_SECONDARY_FINAL",
+      "ML_STRUCTURE_ACTION",
+      "STRUCTURE_SECONDARY_TOKENS",
+      "STRUCTURE_SECONDARY_RULER"
+    ],
+    "review": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\artifacts\\qa-round3\\review-structure.png",
+    "review_bytes": 1808482,
+    "fallback": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\fallback\\round-3\\structure.webp",
+    "fallback_bytes": 57216
+  },
+  {
+    "stage": "prototype",
+    "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-3\\prototype.glb",
+    "bytes": 316512,
+    "nodes": 90,
+    "meshes": 88,
+    "materials": 12,
+    "triangles": 19570,
+    "animations": [
+      "PROTOTYPE_SECONDARY_CURSOR",
+      "PROTOTYPE_SECONDARY_RING",
+      "PROTOTYPE_SECONDARY_SENSOR",
+      "ML_PROTOTYPE_ACTION",
+      "PROTOTYPE_SECONDARY_PHONE"
+    ],
+    "review": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\artifacts\\qa-round3\\review-prototype.png",
+    "review_bytes": 1770951,
+    "fallback": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\fallback\\round-3\\prototype.webp",
+    "fallback_bytes": 57326
+  },
+  {
+    "stage": "release",
+    "glb": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\models\\round-3\\release.glb",
+    "bytes": 209204,
+    "nodes": 68,
+    "meshes": 65,
+    "materials": 13,
+    "triangles": 11782,
+    "animations": [
+      "ML_RELEASE_ACTION",
+      "RELEASE_SECONDARY_FINAL",
+      "RELEASE_SECONDARY_PACKAGE",
+      "RELEASE_SECONDARY_QA",
+      "RELEASE_SECONDARY_VERSION"
+    ],
+    "review": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\artifacts\\qa-round3\\review-release.png",
+    "review_bytes": 1813632,
+    "fallback": "C:\\Users\\\u4e25\\Desktop\\AI\u9879\u76ee\\VectrFL \u7f51\u7ad9\\morph-lab\\public\\fallback\\round-3\\release.webp",
+    "fallback_bytes": 68076
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-22T02:28:00.663Z",
+  "browserVersion": "149.0.7827.55",
+  "glb": {
+    "uniqueDesktopRequests": 4,
+    "requestCount": 4,
+    "duplicateUrls": [],
+    "heroRequests": 1,
+    "totalTransferSize": 1705008,
+    "totalEncodedBodySize": 1703808,
+    "totalDecodedBodySize": 1703808,
+    "mobileBytes": 0,
+    "reducedMotionBytes": 0
+  },
+  "textureTotalBytes": 614720,
+  "initialCriticalResourceBytes": 1072845,
+  "threeChunkBytes": 749776,
+  "dpr": 1,
+  "heroTimeToSceneMs": 423,
+  "journeyTimeToSceneMs": 4338,
+  "advisory": [
+    "textureTotalBytes",
+    "initialCriticalResourceBytes",
+    "threeChunkBytes"
+  ],
+  "status": "pass"
+}

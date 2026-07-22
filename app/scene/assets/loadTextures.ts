@@ -1,22 +1,53 @@
 import {
-  Color,
   Material,
   Mesh,
   MeshStandardMaterial,
   Object3D,
+  Scene,
   SRGBColorSpace,
   Texture,
   TextureLoader,
+  WebGLRenderer,
 } from "three";
 
 import { type JourneyStageId } from "../../data/journey";
-import { ROUND2_TEXTURE_BINDINGS, type TextureBinding } from "./assetManifest";
+import type { SceneQualitySettings } from "../core/qualityManager";
+import { applyRound3MaterialSystem } from "../materials/materialFactory";
+import { loadRound3CompressedTextures } from "../materials/loadCompressedTextures";
+import {
+  getWebGLRendererDescription,
+  supportsStableCompressedNormals,
+} from "../materials/normalMapPolicy";
+import {
+  configureProjectSurface,
+  type ProjectSurfaceKind,
+} from "../materials/screenMaterial";
+import { createPrintedSurface } from "../materials/createPrintedSurface";
+import { createScreenMaterial } from "../materials/createScreenMaterial";
+import {
+  findScreenConfig,
+  type ScreenConfig,
+} from "../materials/screenManifest";
+import {
+  ROUND2_TEXTURE_BINDINGS,
+  ROUND3_TEXTURE_BINDINGS,
+  ROUND4_TEXTURE_BINDINGS,
+  type TextureBinding,
+} from "./assetManifest";
 import { type Round2ModelMap } from "./loadModels";
 
-type TextureRuntimeOptions = {
+export type TextureRuntimeOptions = {
   maxAnisotropy?: number;
   signal?: AbortSignal;
 };
+
+export type Round3TextureRuntimeOptions = TextureRuntimeOptions & {
+  quality: SceneQualitySettings;
+  renderer: WebGLRenderer;
+  scene: Scene;
+};
+
+type StageRootMap = Partial<Record<JourneyStageId, Object3D>>;
 
 function findMeshByName(root: Object3D, meshName: string): Mesh | null {
   const object = root.getObjectByName(meshName);
@@ -24,63 +55,51 @@ function findMeshByName(root: Object3D, meshName: string): Mesh | null {
 }
 
 function disposeLoadedTextures(textures: Iterable<Texture>): void {
-  for (const texture of textures) {
-    texture.dispose();
-  }
-}
-
-function buildScreenMaterial(source: Mesh["material"], texture: Texture): MeshStandardMaterial {
-  const sourceMaterial = Array.isArray(source) ? source[0] : source;
-  const material = new MeshStandardMaterial();
-
-  if (sourceMaterial instanceof MeshStandardMaterial) {
-    material.color.copy(sourceMaterial.color);
-    material.roughness = sourceMaterial.roughness;
-    material.metalness = sourceMaterial.metalness;
-    material.opacity = sourceMaterial.opacity;
-    material.transparent = sourceMaterial.transparent;
-    material.side = sourceMaterial.side;
-  } else {
-    material.color = new Color("#ffffff");
-    material.roughness = 0.38;
-    material.metalness = 0.02;
-  }
-
-  material.map = texture;
-  material.emissive = new Color("#ffffff");
-  material.emissiveMap = texture;
-  material.emissiveIntensity = 0.16;
-  material.needsUpdate = true;
-
-  return material;
+  for (const texture of textures) texture.dispose();
 }
 
 function disposeReplacedMaterial(material: Mesh["material"]): void {
   const materials = Array.isArray(material) ? material : [material];
-  for (const entry of materials) {
-    entry.dispose();
-  }
+  for (const entry of materials) entry.dispose();
 }
 
 function disposeDetachedMaterials(
-  models: Round2ModelMap,
+  models: StageRootMap,
   replacements: readonly { previous: Mesh["material"] }[],
 ): void {
   const activeMaterials = new Set<Material>();
+  const activeTextures = new Set<Texture>();
   for (const root of Object.values(models)) {
+    if (!root) continue;
     root.traverse((object) => {
       if (!(object instanceof Mesh)) return;
       const materials = Array.isArray(object.material) ? object.material : [object.material];
-      for (const material of materials) activeMaterials.add(material);
+      for (const material of materials) {
+        activeMaterials.add(material);
+        for (const value of Object.values(material)) {
+          if (value instanceof Texture) activeTextures.add(value);
+        }
+      }
     });
   }
 
   const disposedMaterials = new Set<Material>();
+  const disposedTextures = new Set<Texture>();
   for (const { previous } of replacements) {
     const materials = Array.isArray(previous) ? previous : [previous];
     for (const material of materials) {
       if (activeMaterials.has(material) || disposedMaterials.has(material)) continue;
       disposedMaterials.add(material);
+      for (const value of Object.values(material)) {
+        if (
+          value instanceof Texture &&
+          !activeTextures.has(value) &&
+          !disposedTextures.has(value)
+        ) {
+          disposedTextures.add(value);
+          value.dispose();
+        }
+      }
       material.dispose();
     }
   }
@@ -89,15 +108,17 @@ function disposeDetachedMaterials(
 async function loadBindingTexture(
   loader: TextureLoader,
   binding: TextureBinding,
+  textureUrl: string,
   maxAnisotropy: number,
   loadedTextures: Texture[],
   texturePromises: Map<string, Promise<Texture>>,
   signal?: AbortSignal,
 ): Promise<[TextureBinding, Texture]> {
   signal?.throwIfAborted();
-  let texturePromise = texturePromises.get(binding.textureUrl);
+  let texturePromise = texturePromises.get(textureUrl);
+
   if (!texturePromise) {
-    texturePromise = loader.loadAsync(binding.textureUrl).then((texture) => {
+    texturePromise = loader.loadAsync(textureUrl).then((texture) => {
       loadedTextures.push(texture);
       texture.colorSpace = SRGBColorSpace;
       texture.flipY = false;
@@ -105,29 +126,166 @@ async function loadBindingTexture(
       texture.needsUpdate = true;
       return texture;
     });
-    texturePromises.set(binding.textureUrl, texturePromise);
+    texturePromises.set(textureUrl, texturePromise);
   }
+
   const texture = await texturePromise;
   signal?.throwIfAborted();
   return [binding, texture];
 }
 
-export async function applyRound2Textures(
-  models: Round2ModelMap,
-  options: TextureRuntimeOptions = {},
+function projectSurfaceKind(meshName: string): ProjectSurfaceKind {
+  return /^(?:PRINT_|REL_project_image_)/.test(meshName) ? "print" : "screen";
+}
+
+type SurfaceReplacement = {
+  mesh: Mesh;
+  previous: Mesh["material"];
+  previousRenderOrder: number;
+  previousCastShadow: boolean;
+  previousReceiveShadow: boolean;
+  overlays: Mesh[];
+  contentTextures: Texture[];
+};
+
+function firstMaterial(source: Mesh["material"]): Material {
+  return Array.isArray(source) ? source[0] : source;
+}
+
+function createSurfaceBaseMaterial(
+  previous: Mesh["material"],
+  kind: ProjectSurfaceKind,
+): MeshStandardMaterial {
+  const source = firstMaterial(previous);
+  const material = new MeshStandardMaterial({
+    color: kind === "screen" ? "#101116" : "#eeeae1",
+    roughness: kind === "screen" ? 0.5 : 0.91,
+    metalness: 0,
+  });
+  material.name = kind === "screen" ? "MAT_RuntimeScreenBase" : "MAT_RuntimePrintBase";
+  material.opacity = source.opacity;
+  material.transparent = source.transparent;
+  material.side = source.side;
+  material.depthWrite = true;
+  return material;
+}
+
+function installConfiguredSurface(
+  mesh: Mesh,
+  texture: Texture,
+  config: ScreenConfig,
+): SurfaceReplacement {
+  const previous = mesh.material;
+  const previousRenderOrder = mesh.renderOrder;
+  const previousCastShadow = mesh.castShadow;
+  const previousReceiveShadow = mesh.receiveShadow;
+  const contentTexture = texture.clone();
+  let contentMaterial: MeshStandardMaterial;
+  let glassMaterial: Material | null = null;
+  if (config.kind === "screen") {
+    const created = createScreenMaterial(contentTexture, config);
+    contentMaterial = created.material;
+    glassMaterial = created.glassMaterial;
+  } else {
+    contentMaterial = createPrintedSurface(contentTexture, config).material;
+  }
+  contentMaterial.polygonOffsetUnits = -Math.max(1, Math.round(config.contentDepthOffset * 1000));
+
+  mesh.material = createSurfaceBaseMaterial(previous, config.kind);
+  mesh.renderOrder = 1;
+  const contentOverlay = mesh.clone(false) as Mesh;
+  contentOverlay.name = `${mesh.name}__content`;
+  contentOverlay.material = contentMaterial;
+  contentOverlay.renderOrder = config.renderOrder;
+  contentOverlay.castShadow = false;
+  contentOverlay.receiveShadow = false;
+  contentOverlay.translateZ(config.contentDepthOffset);
+  contentOverlay.userData.surfaceDepthOffset = config.contentDepthOffset;
+  mesh.parent?.add(contentOverlay);
+  const overlays = [contentOverlay];
+
+  if (glassMaterial) {
+    const glassOverlay = mesh.clone(false) as Mesh;
+    glassOverlay.name = `${mesh.name}__glass`;
+    glassOverlay.material = glassMaterial;
+    glassOverlay.renderOrder = 3;
+    glassOverlay.castShadow = false;
+    glassOverlay.receiveShadow = false;
+    glassOverlay.translateZ(config.glassDepthOffset);
+    glassOverlay.userData.surfaceDepthOffset = config.glassDepthOffset;
+    mesh.parent?.add(glassOverlay);
+    overlays.push(glassOverlay);
+  }
+
+  if (config.kind === "screen") {
+    mesh.castShadow = false;
+    mesh.receiveShadow = false;
+  }
+
+  return {
+    mesh,
+    previous,
+    previousRenderOrder,
+    previousCastShadow,
+    previousReceiveShadow,
+    overlays,
+    contentTextures: [contentTexture],
+  };
+}
+
+function createLegacyReplacement(mesh: Mesh): SurfaceReplacement {
+  return {
+    mesh,
+    previous: mesh.material,
+    previousRenderOrder: mesh.renderOrder,
+    previousCastShadow: mesh.castShadow,
+    previousReceiveShadow: mesh.receiveShadow,
+    overlays: [],
+    contentTextures: [],
+  };
+}
+
+function rollbackSurfaceReplacement(replacement: SurfaceReplacement): void {
+  const {
+    mesh,
+    previous,
+    previousRenderOrder,
+    previousCastShadow,
+    previousReceiveShadow,
+    overlays,
+  } = replacement;
+  disposeReplacedMaterial(mesh.material);
+  mesh.material = previous;
+  mesh.renderOrder = previousRenderOrder;
+  mesh.castShadow = previousCastShadow;
+  mesh.receiveShadow = previousReceiveShadow;
+  for (const overlay of overlays) {
+    overlay.removeFromParent();
+    disposeReplacedMaterial(overlay.material);
+  }
+}
+
+async function applyProjectTextures(
+  models: StageRootMap,
+  bindings: readonly TextureBinding[],
+  options: TextureRuntimeOptions,
+  useScreenManifest: boolean,
 ): Promise<readonly Texture[]> {
   const textureLoader = new TextureLoader();
   const loadedTextures: Texture[] = [];
   const texturePromises = new Map<string, Promise<Texture>>();
-  const replacedMaterials: Array<{ mesh: Mesh; previous: Mesh["material"] }> = [];
+  const replacedMaterials: SurfaceReplacement[] = [];
   const maxAnisotropy = Math.max(1, options.maxAnisotropy ?? 4);
 
   try {
     const results = await Promise.allSettled(
-      ROUND2_TEXTURE_BINDINGS.map((binding) =>
+      bindings.map((binding) =>
         loadBindingTexture(
           textureLoader,
           binding,
+          (useScreenManifest
+            ? findScreenConfig(binding.stage as JourneyStageId, binding.meshName)?.source
+            : undefined) ?? binding.textureUrl,
           maxAnisotropy,
           loadedTextures,
           texturePromises,
@@ -138,6 +296,7 @@ export async function applyRound2Textures(
     options.signal?.throwIfAborted();
     const rejected = results.find((result) => result.status === "rejected");
     if (rejected) throw rejected.reason;
+
     const loadedBindings = results.map((result) => {
       if (result.status === "rejected") throw result.reason;
       return result.value;
@@ -145,29 +304,114 @@ export async function applyRound2Textures(
 
     for (const [binding, texture] of loadedBindings) {
       const stageRoot = models[binding.stage as JourneyStageId];
+      if (!stageRoot) {
+        throw new Error(`Texture stage "${binding.stage}" was not loaded.`);
+      }
       const mesh = findMeshByName(stageRoot, binding.meshName);
-
       if (!mesh) {
         throw new Error(
-          `Round 2 texture target "${binding.meshName}" was not found in ${binding.stage}.`,
+          `Round 3 texture target "${binding.meshName}" was not found in ${binding.stage}.`,
         );
       }
 
-      const previous = mesh.material;
-      const material = buildScreenMaterial(previous, texture);
-      replacedMaterials.push({ mesh, previous });
-      mesh.material = material;
+      const config = useScreenManifest
+        ? findScreenConfig(binding.stage as JourneyStageId, binding.meshName)
+        : undefined;
+      if (config) {
+        const replacement = installConfiguredSurface(mesh, texture, config);
+        loadedTextures.push(...replacement.contentTextures);
+        replacedMaterials.push(replacement);
+      } else {
+        const replacement = createLegacyReplacement(mesh);
+        const previous = configureProjectSurface(
+          mesh,
+          texture,
+          projectSurfaceKind(binding.meshName),
+        );
+        replacement.previous = previous;
+        replacedMaterials.push(replacement);
+      }
     }
 
     disposeDetachedMaterials(models, replacedMaterials);
-
     return loadedTextures;
   } catch (error) {
-    for (const { mesh, previous } of replacedMaterials) {
-      disposeReplacedMaterial(mesh.material);
-      mesh.material = previous;
-    }
+    for (const replacement of replacedMaterials) rollbackSurfaceReplacement(replacement);
     disposeLoadedTextures(loadedTextures);
     throw error;
   }
+}
+
+export function applyRound2Textures(
+  models: Round2ModelMap,
+  options: TextureRuntimeOptions = {},
+): Promise<readonly Texture[]> {
+  return applyProjectTextures(models, ROUND2_TEXTURE_BINDINGS, options, false);
+}
+
+export function applyScreenManifestTextures(
+  models: Round2ModelMap,
+  options: TextureRuntimeOptions = {},
+): Promise<readonly Texture[]> {
+  return applyProjectTextures(models, ROUND3_TEXTURE_BINDINGS, options, true);
+}
+
+export async function applyRound3Textures(
+  models: Round2ModelMap,
+  options: Round3TextureRuntimeOptions,
+): Promise<readonly Texture[]> {
+  return applyAuthoredTextures(models, ROUND3_TEXTURE_BINDINGS, options);
+}
+
+async function applyAuthoredTextures(
+  models: StageRootMap,
+  bindings: readonly TextureBinding[],
+  options: Round3TextureRuntimeOptions,
+): Promise<readonly Texture[]> {
+  const maxAnisotropy = Math.max(1, options.maxAnisotropy ?? 4);
+  const compressed = await loadRound3CompressedTextures(options.renderer, {
+    maxAnisotropy,
+    signal: options.signal,
+  });
+
+  try {
+    const normalMapsEnabled = supportsStableCompressedNormals(
+      getWebGLRendererDescription(options.renderer),
+    );
+    for (const root of Object.values(models)) {
+      if (!root) continue;
+      applyRound3MaterialSystem(root, compressed, options.quality, {
+        normalMapsEnabled,
+      });
+    }
+
+    options.scene.environment = compressed.neutralStudioEnv;
+    options.scene.environmentIntensity = options.quality.tier === "high" ? 0.78 : 0.62;
+    const projectTextures = await applyProjectTextures(models, bindings, options, true);
+
+    return [...Object.values(compressed), ...projectTextures];
+  } catch (error) {
+    options.scene.environment = null;
+    disposeLoadedTextures(Object.values(compressed));
+    throw error;
+  }
+}
+
+export function applyRound4Textures(
+  models: Round2ModelMap,
+  options: Round3TextureRuntimeOptions,
+): Promise<readonly Texture[]> {
+  return applyAuthoredTextures(models, ROUND4_TEXTURE_BINDINGS, options);
+}
+
+export function applyRound4StageTextures(
+  stage: JourneyStageId,
+  root: Object3D,
+  options: Round3TextureRuntimeOptions,
+): Promise<readonly Texture[]> {
+  const models = { [stage]: root } as StageRootMap;
+  const bindings = ROUND4_TEXTURE_BINDINGS.filter(
+    (binding) => binding.stage === stage,
+  );
+  return applyAuthoredTextures(models, bindings, options);
 }

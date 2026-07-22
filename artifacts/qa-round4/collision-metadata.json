@@ -1,0 +1,6271 @@
+{
+  "schemaVersion": 1,
+  "stages": {
+    "observe": [
+      {
+        "name": "OBS_research_table",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.2,
+          -1.9,
+          0.68
+        ],
+        "boundsMax": [
+          3.2,
+          1.9,
+          0.96
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_table_leg_-2.65_-1.25",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.77,
+          -1.37,
+          -0.0
+        ],
+        "boundsMax": [
+          -2.53,
+          -1.13,
+          0.72
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_table_leg_-2.65_1.25",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.77,
+          1.13,
+          -0.0
+        ],
+        "boundsMax": [
+          -2.53,
+          1.37,
+          0.72
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_table_leg_2.65_-1.25",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.53,
+          -1.37,
+          -0.0
+        ],
+        "boundsMax": [
+          2.77,
+          -1.13,
+          0.72
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_table_leg_2.65_1.25",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.53,
+          1.13,
+          -0.0
+        ],
+        "boundsMax": [
+          2.77,
+          1.37,
+          0.72
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_scanner_body",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.525,
+          -0.675,
+          1.0
+        ],
+        "boundsMax": [
+          1.025,
+          0.875,
+          1.24
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_scanner_bed",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.3,
+          -0.61,
+          1.2325
+        ],
+        "boundsMax": [
+          0.8,
+          0.51,
+          1.2875
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_scanner_rail",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.4,
+          0.56,
+          1.24
+        ],
+        "boundsMax": [
+          0.9,
+          0.68,
+          1.4
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_scan_beam",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.25,
+          1.4125,
+          1.3025
+        ],
+        "boundsMax": [
+          0.75,
+          1.4675,
+          1.3375
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_monitor_frame",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.99,
+          0.63,
+          1.35
+        ],
+        "boundsMax": [
+          2.71,
+          0.81,
+          2.63
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "SCREEN_observe_inspection",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.11,
+          0.615,
+          1.48
+        ],
+        "boundsMax": [
+          2.59,
+          0.615,
+          2.5
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_monitor_stem",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.77,
+          0.69,
+          0.97
+        ],
+        "boundsMax": [
+          1.93,
+          0.99,
+          1.67
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_monitor_foot",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.39,
+          0.325,
+          0.97
+        ],
+        "boundsMax": [
+          2.31,
+          0.975,
+          1.07
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_paper_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.47782,
+          -0.95152,
+          1.0025
+        ],
+        "boundsMax": [
+          -2.06218,
+          0.05152,
+          1.0375
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_papers",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_paper_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.06255,
+          -1.2761,
+          1.0275
+        ],
+        "boundsMax": [
+          -1.61745,
+          -0.2239,
+          1.0625
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_papers",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_paper_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.56603,
+          -0.23256,
+          1.0525
+        ],
+        "boundsMax": [
+          -2.17396,
+          0.73256,
+          1.0875
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_papers",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "PRINT_observe_persona",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -3.27,
+          -0.56,
+          0.71
+        ],
+        "boundsMax": [
+          -2.27,
+          -0.56,
+          1.38
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_papers",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_output_card",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.425,
+          -1.0775,
+          1.08
+        ],
+        "boundsMax": [
+          0.725,
+          -1.0225,
+          1.84
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "PRINT_observe_output",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -0.32,
+          -1.082,
+          1.18
+        ],
+        "boundsMax": [
+          0.62,
+          -1.082,
+          1.74
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_output_card",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_folder",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.12785,
+          0.73307,
+          1.025
+        ],
+        "boundsMax": [
+          -1.57215,
+          1.86693,
+          1.135
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_folder_tab",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.01,
+          1.41,
+          1.11
+        ],
+        "boundsMax": [
+          -2.59,
+          1.69,
+          1.19
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_material_tray",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.0,
+          0.95,
+          1.01
+        ],
+        "boundsMax": [
+          1.3,
+          1.75,
+          1.19
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_swatch_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.08693,
+          1.00144,
+          1.2075
+        ],
+        "boundsMax": [
+          0.41307,
+          1.63856,
+          1.2525
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_swatch_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.32239,
+          1.00307,
+          1.2135
+        ],
+        "boundsMax": [
+          0.57761,
+          1.63693,
+          1.2585
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_swatch_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.56,
+          1.01,
+          1.2195
+        ],
+        "boundsMax": [
+          0.74,
+          1.63,
+          1.2645
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_swatch_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.72239,
+          1.00307,
+          1.2255
+        ],
+        "boundsMax": [
+          0.97761,
+          1.63693,
+          1.2705
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_swatch_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.88693,
+          1.00144,
+          1.2315
+        ],
+        "boundsMax": [
+          1.21307,
+          1.63856,
+          1.2765
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_pencil",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.53458,
+          -1.5918,
+          1.105
+        ],
+        "boundsMax": [
+          -0.10542,
+          -1.2082,
+          1.175
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_clip_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.848,
+          -1.068,
+          0.992
+        ],
+        "boundsMax": [
+          -2.592,
+          -1.032,
+          1.248
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_clip_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.548,
+          -1.068,
+          0.992
+        ],
+        "boundsMax": [
+          -2.292,
+          -1.032,
+          1.248
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_clip_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.248,
+          -1.068,
+          0.992
+        ],
+        "boundsMax": [
+          -1.992,
+          -1.032,
+          1.248
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_lamp_shade",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.95,
+          0.045,
+          2.56
+        ],
+        "boundsMax": [
+          2.51,
+          0.395,
+          3.12
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_operator_body",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.64,
+          -0.66,
+          0.99
+        ],
+        "boundsMax": [
+          2.86,
+          -0.44,
+          1.45
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_operator",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_operator_head",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.62,
+          -0.68,
+          1.44
+        ],
+        "boundsMax": [
+          2.88,
+          -0.42,
+          1.7
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_operator",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_crop_frame_top",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.44,
+          -1.1075,
+          1.8325
+        ],
+        "boundsMax": [
+          0.74,
+          -1.0725,
+          1.8675
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_crop_frame",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_crop_frame_bottom",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.44,
+          -1.1075,
+          1.0525
+        ],
+        "boundsMax": [
+          0.74,
+          -1.0725,
+          1.0875
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_crop_frame",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_crop_frame_left",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.4575,
+          -1.1075,
+          1.07
+        ],
+        "boundsMax": [
+          -0.4225,
+          -1.0725,
+          1.85
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_crop_frame",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_crop_frame_right",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.7225,
+          -1.1075,
+          1.07
+        ],
+        "boundsMax": [
+          0.7575,
+          -1.0725,
+          1.85
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_crop_frame",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_scanner_lid",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.48,
+          -0.625,
+          1.3775
+        ],
+        "boundsMax": [
+          0.98,
+          0.825,
+          1.4625
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_lid_hinge_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.29,
+          0.715,
+          1.305
+        ],
+        "boundsMax": [
+          -1.07,
+          0.825,
+          1.415
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_lid_hinge_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.57,
+          0.715,
+          1.305
+        ],
+        "boundsMax": [
+          0.79,
+          0.825,
+          1.415
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_control_recess",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.24,
+          -0.84,
+          1.2525
+        ],
+        "boundsMax": [
+          0.86,
+          -0.6,
+          1.2875
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_control_key_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.335,
+          -0.775,
+          1.286
+        ],
+        "boundsMax": [
+          0.425,
+          -0.685,
+          1.314
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_control_key_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.505,
+          -0.775,
+          1.286
+        ],
+        "boundsMax": [
+          0.595,
+          -0.685,
+          1.314
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_control_key_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.675,
+          -0.775,
+          1.286
+        ],
+        "boundsMax": [
+          0.765,
+          -0.685,
+          1.314
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_paper_guide_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.12,
+          -0.36,
+          1.315
+        ],
+        "boundsMax": [
+          -1.04,
+          0.26,
+          1.405
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_paper_guide_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.54,
+          -0.36,
+          1.315
+        ],
+        "boundsMax": [
+          0.62,
+          0.26,
+          1.405
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_tray_divider_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.2675,
+          1.0,
+          1.14
+        ],
+        "boundsMax": [
+          0.2925,
+          1.7,
+          1.26
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_tray_divider_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.5075,
+          1.0,
+          1.14
+        ],
+        "boundsMax": [
+          0.5325,
+          1.7,
+          1.26
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_tray_divider_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.7475,
+          1.0,
+          1.14
+        ],
+        "boundsMax": [
+          0.7725,
+          1.7,
+          1.26
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_tray_divider_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.9875,
+          1.0,
+          1.14
+        ],
+        "boundsMax": [
+          1.0125,
+          1.7,
+          1.26
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_scanner_screw_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.395,
+          -0.605,
+          1.2575
+        ],
+        "boundsMax": [
+          -1.325,
+          -0.535,
+          1.2825
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_scanner_screw_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.825,
+          -0.605,
+          1.2575
+        ],
+        "boundsMax": [
+          0.895,
+          -0.535,
+          1.2825
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_scanner_screw_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.395,
+          0.715,
+          1.2575
+        ],
+        "boundsMax": [
+          -1.325,
+          0.785,
+          1.2825
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_scanner_screw_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.825,
+          0.715,
+          1.2575
+        ],
+        "boundsMax": [
+          0.895,
+          0.785,
+          1.2825
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_table_seam",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.7,
+          1.441,
+          0.968
+        ],
+        "boundsMax": [
+          2.7,
+          1.459,
+          0.992
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "OBS_status_window",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.11,
+          -0.6975,
+          1.26
+        ],
+        "boundsMax": [
+          -0.77,
+          -0.6625,
+          1.34
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "BASE_observe_inspection",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.11,
+          0.621,
+          1.48
+        ],
+        "boundsMax": [
+          2.59,
+          0.621,
+          2.5
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "GLASS_observe_inspection",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.11,
+          0.609,
+          1.48
+        ],
+        "boundsMax": [
+          2.59,
+          0.609,
+          2.5
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_inspection_device",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "SUBSTRATE_PRINT_observe_persona",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -3.27,
+          -0.554,
+          0.71
+        ],
+        "boundsMax": [
+          -2.27,
+          -0.554,
+          1.38
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_papers",
+          "ROOT_OBSERVE"
+        ]
+      },
+      {
+        "name": "SUBSTRATE_PRINT_observe_output",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -0.32,
+          -1.076,
+          1.18
+        ],
+        "boundsMax": [
+          0.62,
+          -1.076,
+          1.74
+        ],
+        "stageRoot": "ROOT_OBSERVE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "OBS_output_card",
+          "OBS_output_assembly",
+          "ROOT_OBSERVE"
+        ]
+      }
+    ],
+    "structure": [
+      {
+        "name": "STR_console",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.15,
+          -1.8,
+          0.0
+        ],
+        "boundsMax": [
+          3.15,
+          1.8,
+          0.3
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_board",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.675,
+          0.6,
+          0.355
+        ],
+        "boundsMax": [
+          2.675,
+          0.84,
+          3.705
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_board_base",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.875,
+          0.0,
+          0.35
+        ],
+        "boundsMax": [
+          2.875,
+          1.1,
+          0.57
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_v_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.309,
+          0.5575,
+          0.58
+        ],
+        "boundsMax": [
+          -2.291,
+          0.5825,
+          3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_v_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.734,
+          0.5575,
+          0.58
+        ],
+        "boundsMax": [
+          -1.716,
+          0.5825,
+          3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_v_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.159,
+          0.5575,
+          0.58
+        ],
+        "boundsMax": [
+          -1.141,
+          0.5825,
+          3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_v_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.584,
+          0.5575,
+          0.58
+        ],
+        "boundsMax": [
+          -0.566,
+          0.5825,
+          3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_v_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.009,
+          0.5575,
+          0.58
+        ],
+        "boundsMax": [
+          0.009,
+          0.5825,
+          3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_v_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.566,
+          0.5575,
+          0.58
+        ],
+        "boundsMax": [
+          0.584,
+          0.5825,
+          3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_v_6",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.141,
+          0.5575,
+          0.58
+        ],
+        "boundsMax": [
+          1.159,
+          0.5825,
+          3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_v_7",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.716,
+          0.5575,
+          0.58
+        ],
+        "boundsMax": [
+          1.734,
+          0.5825,
+          3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_v_8",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.291,
+          0.5575,
+          0.58
+        ],
+        "boundsMax": [
+          2.309,
+          0.5825,
+          3.48
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_h_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.425,
+          0.5575,
+          0.721
+        ],
+        "boundsMax": [
+          2.425,
+          0.5825,
+          0.739
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_h_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.425,
+          0.5575,
+          1.241
+        ],
+        "boundsMax": [
+          2.425,
+          0.5825,
+          1.259
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_h_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.425,
+          0.5575,
+          1.761
+        ],
+        "boundsMax": [
+          2.425,
+          0.5825,
+          1.779
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_h_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.425,
+          0.5575,
+          2.281
+        ],
+        "boundsMax": [
+          2.425,
+          0.5825,
+          2.299
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_h_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.425,
+          0.5575,
+          2.801
+        ],
+        "boundsMax": [
+          2.425,
+          0.5825,
+          2.819
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_grid_h_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.425,
+          0.5575,
+          3.321
+        ],
+        "boundsMax": [
+          2.425,
+          0.5825,
+          3.339
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_panel_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.275,
+          0.3825,
+          2.17
+        ],
+        "boundsMax": [
+          -1.025,
+          0.4575,
+          2.89
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_panels",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_panel_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.825,
+          0.3825,
+          2.17
+        ],
+        "boundsMax": [
+          0.525,
+          0.4575,
+          2.89
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_panels",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_panel_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.825,
+          0.3825,
+          1.92
+        ],
+        "boundsMax": [
+          2.275,
+          0.4575,
+          2.94
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_panels",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_panel_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.25,
+          0.3825,
+          1.07
+        ],
+        "boundsMax": [
+          -0.45,
+          0.4575,
+          1.79
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_panels",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_panel_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.25,
+          0.3825,
+          0.92
+        ],
+        "boundsMax": [
+          1.95,
+          0.4575,
+          1.54
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_system_device",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "SCREEN_structure_system",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          0.96,
+          0.372,
+          2.06
+        ],
+        "boundsMax": [
+          2.14,
+          0.372,
+          2.8
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_system_device",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_phase_chip",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.91,
+          0.345,
+          2.46
+        ],
+        "boundsMax": [
+          -1.39,
+          0.385,
+          2.6
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_panels",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_type_ruler",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.46,
+          0.305,
+          0.68
+        ],
+        "boundsMax": [
+          -2.04,
+          0.395,
+          3.18
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_type_bar_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.36,
+          0.2625,
+          1.075
+        ],
+        "boundsMax": [
+          -2.14,
+          0.2975,
+          1.125
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_type_bar_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.41,
+          0.2625,
+          1.425
+        ],
+        "boundsMax": [
+          -2.09,
+          0.2975,
+          1.475
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_type_bar_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.47,
+          0.2625,
+          1.775
+        ],
+        "boundsMax": [
+          -2.03,
+          0.2975,
+          1.825
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_type_bar_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.54,
+          0.2625,
+          2.125
+        ],
+        "boundsMax": [
+          -1.96,
+          0.2975,
+          2.175
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_type_bar_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.61,
+          0.2625,
+          2.475
+        ],
+        "boundsMax": [
+          -1.89,
+          0.2975,
+          2.525
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.38,
+          -1.13,
+          0.28
+        ],
+        "boundsMax": [
+          -1.02,
+          -0.77,
+          0.64
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_tokens",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.86,
+          -1.13,
+          0.28
+        ],
+        "boundsMax": [
+          -0.5,
+          -0.77,
+          0.64
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_tokens",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.34,
+          -1.13,
+          0.28
+        ],
+        "boundsMax": [
+          0.02,
+          -0.77,
+          0.64
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_tokens",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.18,
+          -1.13,
+          0.28
+        ],
+        "boundsMax": [
+          0.54,
+          -0.77,
+          0.64
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_tokens",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.7,
+          -1.13,
+          0.28
+        ],
+        "boundsMax": [
+          1.06,
+          -0.77,
+          0.64
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_tokens",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_dock",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.775,
+          -1.33,
+          0.17
+        ],
+        "boundsMax": [
+          1.475,
+          -0.51,
+          0.35
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_booklet",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.60828,
+          -1.4976,
+          0.3
+        ],
+        "boundsMax": [
+          3.05172,
+          -0.4024,
+          0.42
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_booklet_band",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.86547,
+          -1.39618,
+          0.37
+        ],
+        "boundsMax": [
+          2.19453,
+          -0.40382,
+          0.51
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_control_strip",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.375,
+          -1.125,
+          0.28
+        ],
+        "boundsMax": [
+          -1.825,
+          -0.675,
+          0.44
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_control_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.16,
+          -0.99,
+          0.455
+        ],
+        "boundsMax": [
+          -3.0,
+          -0.83,
+          0.505
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_control_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.84,
+          -0.99,
+          0.455
+        ],
+        "boundsMax": [
+          -2.68,
+          -0.83,
+          0.505
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_control_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.52,
+          -0.99,
+          0.455
+        ],
+        "boundsMax": [
+          -2.36,
+          -0.83,
+          0.505
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_control_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.2,
+          -0.99,
+          0.455
+        ],
+        "boundsMax": [
+          -2.04,
+          -0.83,
+          0.505
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_pin_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.055,
+          0.27,
+          0.875
+        ],
+        "boundsMax": [
+          -1.945,
+          0.35,
+          0.985
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_pin_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.755,
+          0.27,
+          0.875
+        ],
+        "boundsMax": [
+          -0.645,
+          0.35,
+          0.985
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_pin_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.545,
+          0.27,
+          0.875
+        ],
+        "boundsMax": [
+          0.655,
+          0.35,
+          0.985
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_pin_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.845,
+          0.27,
+          0.875
+        ],
+        "boundsMax": [
+          1.955,
+          0.35,
+          0.985
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_pin_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.055,
+          0.27,
+          2.675
+        ],
+        "boundsMax": [
+          -1.945,
+          0.35,
+          2.785
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_pin_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.755,
+          0.27,
+          2.675
+        ],
+        "boundsMax": [
+          -0.645,
+          0.35,
+          2.785
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_pin_6",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.545,
+          0.27,
+          2.675
+        ],
+        "boundsMax": [
+          0.655,
+          0.35,
+          2.785
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_pin_7",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.845,
+          0.27,
+          2.675
+        ],
+        "boundsMax": [
+          1.955,
+          0.35,
+          2.785
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_final_panel",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.08,
+          0.305,
+          2.02
+        ],
+        "boundsMax": [
+          2.28,
+          0.385,
+          2.84
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_operator_body",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          3.06,
+          -0.61,
+          0.33
+        ],
+        "boundsMax": [
+          3.28,
+          -0.39,
+          0.79
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_operator",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_operator_head",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          3.04,
+          -0.63,
+          0.78
+        ],
+        "boundsMax": [
+          3.3,
+          -0.37,
+          1.04
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_operator",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_mount_rail_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.4475,
+          0.37,
+          0.65
+        ],
+        "boundsMax": [
+          -2.3925,
+          0.49,
+          3.37
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_mount_rail_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.2275,
+          0.37,
+          0.65
+        ],
+        "boundsMax": [
+          -1.1725,
+          0.49,
+          3.37
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_mount_rail_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.0275,
+          0.37,
+          0.65
+        ],
+        "boundsMax": [
+          0.0275,
+          0.49,
+          3.37
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_mount_rail_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.1725,
+          0.37,
+          0.65
+        ],
+        "boundsMax": [
+          1.2275,
+          0.49,
+          3.37
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_mount_rail_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.3925,
+          0.37,
+          0.65
+        ],
+        "boundsMax": [
+          2.4475,
+          0.49,
+          3.37
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_card_clip_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.19,
+          0.25,
+          0.98
+        ],
+        "boundsMax": [
+          -2.01,
+          0.33,
+          1.08
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_card_clip_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.14,
+          0.25,
+          0.98
+        ],
+        "boundsMax": [
+          -0.96,
+          0.33,
+          1.08
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_card_clip_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.09,
+          0.25,
+          0.98
+        ],
+        "boundsMax": [
+          0.09,
+          0.33,
+          1.08
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_card_clip_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.96,
+          0.25,
+          0.98
+        ],
+        "boundsMax": [
+          1.14,
+          0.33,
+          1.08
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_card_clip_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.01,
+          0.25,
+          0.98
+        ],
+        "boundsMax": [
+          2.19,
+          0.33,
+          1.08
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_card_clip_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.19,
+          0.25,
+          2.83
+        ],
+        "boundsMax": [
+          -2.01,
+          0.33,
+          2.93
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_card_clip_6",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.14,
+          0.25,
+          2.83
+        ],
+        "boundsMax": [
+          -0.96,
+          0.33,
+          2.93
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_card_clip_7",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.09,
+          0.25,
+          2.83
+        ],
+        "boundsMax": [
+          0.09,
+          0.33,
+          2.93
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_card_clip_8",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.96,
+          0.25,
+          2.83
+        ],
+        "boundsMax": [
+          1.14,
+          0.33,
+          2.93
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_card_clip_9",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.01,
+          0.25,
+          2.83
+        ],
+        "boundsMax": [
+          2.19,
+          0.33,
+          2.93
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_slot_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.41,
+          -1.13,
+          0.3525
+        ],
+        "boundsMax": [
+          -0.99,
+          -0.71,
+          0.3875
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_slot_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.89,
+          -1.13,
+          0.3525
+        ],
+        "boundsMax": [
+          -0.47,
+          -0.71,
+          0.3875
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_slot_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.37,
+          -1.13,
+          0.3525
+        ],
+        "boundsMax": [
+          0.05,
+          -0.71,
+          0.3875
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_slot_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.15,
+          -1.13,
+          0.3525
+        ],
+        "boundsMax": [
+          0.57,
+          -0.71,
+          0.3875
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_token_slot_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.67,
+          -1.13,
+          0.3525
+        ],
+        "boundsMax": [
+          1.09,
+          -0.71,
+          0.3875
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_ruler_track",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.56,
+          0.37,
+          0.57
+        ],
+        "boundsMax": [
+          -1.94,
+          0.49,
+          3.29
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_console_seam",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.725,
+          1.35,
+          0.3075
+        ],
+        "boundsMax": [
+          2.725,
+          1.37,
+          0.3325
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_base_bolt_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.585,
+          0.1875,
+          0.555
+        ],
+        "boundsMax": [
+          -2.515,
+          0.2125,
+          0.625
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_base_bolt_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.515,
+          0.1875,
+          0.555
+        ],
+        "boundsMax": [
+          2.585,
+          0.2125,
+          0.625
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_base_bolt_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.585,
+          0.8675,
+          0.555
+        ],
+        "boundsMax": [
+          -2.515,
+          0.8925,
+          0.625
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_base_bolt_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.515,
+          0.8675,
+          0.555
+        ],
+        "boundsMax": [
+          2.585,
+          0.8925,
+          0.625
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_connector_guide_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.64,
+          0.23,
+          1.01
+        ],
+        "boundsMax": [
+          -0.46,
+          0.31,
+          1.09
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_connector_guide_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.09,
+          0.23,
+          1.53
+        ],
+        "boundsMax": [
+          0.09,
+          0.31,
+          1.61
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "STR_connector_guide_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.46,
+          0.23,
+          2.05
+        ],
+        "boundsMax": [
+          0.64,
+          0.31,
+          2.13
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "BASE_structure_system",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          0.96,
+          0.378,
+          2.06
+        ],
+        "boundsMax": [
+          2.14,
+          0.378,
+          2.8
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_system_device",
+          "ROOT_STRUCTURE"
+        ]
+      },
+      {
+        "name": "GLASS_structure_system",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          0.96,
+          0.366,
+          2.06
+        ],
+        "boundsMax": [
+          2.14,
+          0.366,
+          2.8
+        ],
+        "stageRoot": "ROOT_STRUCTURE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "STR_system_device",
+          "ROOT_STRUCTURE"
+        ]
+      }
+    ],
+    "prototype": [
+      {
+        "name": "PRO_test_bench",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.3,
+          -1.925,
+          0.0
+        ],
+        "boundsMax": [
+          3.3,
+          1.925,
+          0.3
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_frame",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.95,
+          0.59,
+          0.82
+        ],
+        "boundsMax": [
+          0.85,
+          0.81,
+          2.62
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "SCREEN_prototype_monitor",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -1.8,
+          0.575,
+          0.98
+        ],
+        "boundsMax": [
+          0.7,
+          0.575,
+          2.46
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_stem",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.64,
+          0.67,
+          0.23
+        ],
+        "boundsMax": [
+          -0.46,
+          1.09,
+          1.15
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_foot",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.175,
+          0.225,
+          0.29
+        ],
+        "boundsMax": [
+          0.075,
+          1.075,
+          0.41
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_phone_frame",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.18959,
+          -0.64135,
+          0.31
+        ],
+        "boundsMax": [
+          1.91041,
+          -0.45865,
+          1.73
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "SCREEN_prototype_phone",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.26,
+          -0.625,
+          0.43
+        ],
+        "boundsMax": [
+          1.84,
+          -0.625,
+          1.61
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_phone_stand",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.16,
+          -0.645,
+          0.29
+        ],
+        "boundsMax": [
+          1.94,
+          0.005,
+          0.41
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_tablet_frame",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.34803,
+          0.54722,
+          0.43
+        ],
+        "boundsMax": [
+          2.95197,
+          0.75278,
+          1.61
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_tablet_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "SCREEN_prototype_tablet",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.46,
+          0.575,
+          0.56
+        ],
+        "boundsMax": [
+          2.84,
+          0.575,
+          1.48
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_tablet_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_keyboard",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.875,
+          -1.51,
+          0.295
+        ],
+        "boundsMax": [
+          0.275,
+          -0.59,
+          0.425
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_0_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.63,
+          -1.37,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.47,
+          -1.23,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_0_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.44,
+          -1.37,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.28,
+          -1.23,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_0_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.25,
+          -1.37,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.09,
+          -1.23,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_0_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.06,
+          -1.37,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.9,
+          -1.23,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_0_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.87,
+          -1.37,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.71,
+          -1.23,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_0_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.68,
+          -1.37,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.52,
+          -1.23,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_0_6",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.49,
+          -1.37,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.33,
+          -1.23,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_0_7",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.3,
+          -1.37,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.14,
+          -1.23,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_0_8",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.11,
+          -1.37,
+          0.4375
+        ],
+        "boundsMax": [
+          0.05,
+          -1.23,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_1_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.63,
+          -1.19,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.47,
+          -1.05,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_1_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.44,
+          -1.19,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.28,
+          -1.05,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_1_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.25,
+          -1.19,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.09,
+          -1.05,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_1_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.06,
+          -1.19,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.9,
+          -1.05,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_1_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.87,
+          -1.19,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.71,
+          -1.05,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_1_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.68,
+          -1.19,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.52,
+          -1.05,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_1_6",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.49,
+          -1.19,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.33,
+          -1.05,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_1_7",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.3,
+          -1.19,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.14,
+          -1.05,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_1_8",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.11,
+          -1.19,
+          0.4375
+        ],
+        "boundsMax": [
+          0.05,
+          -1.05,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_2_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.63,
+          -1.01,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.47,
+          -0.87,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_2_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.44,
+          -1.01,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.28,
+          -0.87,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_2_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.25,
+          -1.01,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.09,
+          -0.87,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_2_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.06,
+          -1.01,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.9,
+          -0.87,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_2_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.87,
+          -1.01,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.71,
+          -0.87,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_2_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.68,
+          -1.01,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.52,
+          -0.87,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_2_6",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.49,
+          -1.01,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.33,
+          -0.87,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_2_7",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.3,
+          -1.01,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.14,
+          -0.87,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_2_8",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.11,
+          -1.01,
+          0.4375
+        ],
+        "boundsMax": [
+          0.05,
+          -0.87,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_3_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.63,
+          -0.83,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.47,
+          -0.69,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_3_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.44,
+          -0.83,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.28,
+          -0.69,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_3_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.25,
+          -0.83,
+          0.4375
+        ],
+        "boundsMax": [
+          -1.09,
+          -0.69,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_3_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.06,
+          -0.83,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.9,
+          -0.69,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_3_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.87,
+          -0.83,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.71,
+          -0.69,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_3_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.68,
+          -0.83,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.52,
+          -0.69,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_3_6",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.49,
+          -0.83,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.33,
+          -0.69,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_3_7",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.3,
+          -0.83,
+          0.4375
+        ],
+        "boundsMax": [
+          -0.14,
+          -0.69,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_key_3_8",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.11,
+          -0.83,
+          0.4375
+        ],
+        "boundsMax": [
+          0.05,
+          -0.69,
+          0.4825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_trackpad",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.375,
+          -1.41,
+          0.29
+        ],
+        "boundsMax": [
+          1.225,
+          -0.69,
+          0.37
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_mouse",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.1484,
+          -1.38,
+          0.3056
+        ],
+        "boundsMax": [
+          2.5516,
+          -0.82,
+          0.5744
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_esp32_board",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.27,
+          -1.04,
+          0.35
+        ],
+        "boundsMax": [
+          -2.07,
+          -0.26,
+          0.43
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_esp32_chip",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.86,
+          -0.81,
+          0.425
+        ],
+        "boundsMax": [
+          -2.48,
+          -0.49,
+          0.535
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_pin_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.125,
+          -0.925,
+          0.42
+        ],
+        "boundsMax": [
+          -3.075,
+          -0.875,
+          0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_pin_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.845,
+          -0.925,
+          0.42
+        ],
+        "boundsMax": [
+          -2.795,
+          -0.875,
+          0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_pin_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.565,
+          -0.925,
+          0.42
+        ],
+        "boundsMax": [
+          -2.515,
+          -0.875,
+          0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_pin_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.285,
+          -0.925,
+          0.42
+        ],
+        "boundsMax": [
+          -2.235,
+          -0.875,
+          0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_pin_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.125,
+          -0.425,
+          0.42
+        ],
+        "boundsMax": [
+          -3.075,
+          -0.375,
+          0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_pin_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.845,
+          -0.425,
+          0.42
+        ],
+        "boundsMax": [
+          -2.795,
+          -0.375,
+          0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_pin_6",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.565,
+          -0.425,
+          0.42
+        ],
+        "boundsMax": [
+          -2.515,
+          -0.375,
+          0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_pin_7",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.285,
+          -0.425,
+          0.42
+        ],
+        "boundsMax": [
+          -2.235,
+          -0.375,
+          0.52
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_sensor",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.79731,
+          0.10269,
+          0.33
+        ],
+        "boundsMax": [
+          -2.30269,
+          0.59731,
+          0.71
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_light_ring",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.1324,
+          0.4668,
+          0.7376
+        ],
+        "boundsMax": [
+          -1.9676,
+          0.6332,
+          1.9024
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_cursor",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.325,
+          0.425,
+          2.105
+        ],
+        "boundsMax": [
+          0.475,
+          0.575,
+          2.255
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_ui_layer",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.71,
+          0.4225,
+          1.19
+        ],
+        "boundsMax": [
+          0.11,
+          0.4575,
+          1.45
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_operator_body",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.74,
+          -0.31,
+          0.32
+        ],
+        "boundsMax": [
+          2.96,
+          -0.09,
+          0.78
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_operator",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_operator_head",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.72,
+          -0.33,
+          0.77
+        ],
+        "boundsMax": [
+          2.98,
+          -0.07,
+          1.03
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_operator",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_vent_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.34,
+          0.811,
+          2.3775
+        ],
+        "boundsMax": [
+          -1.16,
+          0.839,
+          2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_vent_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.14,
+          0.811,
+          2.3775
+        ],
+        "boundsMax": [
+          -0.96,
+          0.839,
+          2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_vent_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.94,
+          0.811,
+          2.3775
+        ],
+        "boundsMax": [
+          -0.76,
+          0.839,
+          2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_vent_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.74,
+          0.811,
+          2.3775
+        ],
+        "boundsMax": [
+          -0.56,
+          0.839,
+          2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_vent_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.54,
+          0.811,
+          2.3775
+        ],
+        "boundsMax": [
+          -0.36,
+          0.839,
+          2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_vent_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.34,
+          0.811,
+          2.3775
+        ],
+        "boundsMax": [
+          -0.16,
+          0.839,
+          2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_vent_6",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.14,
+          0.811,
+          2.3775
+        ],
+        "boundsMax": [
+          0.04,
+          0.839,
+          2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_vent_7",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.06,
+          0.811,
+          2.3775
+        ],
+        "boundsMax": [
+          0.24,
+          0.839,
+          2.4025
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_monitor_hinge",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.67,
+          0.56,
+          0.76
+        ],
+        "boundsMax": [
+          -0.43,
+          1.08,
+          1.0
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_phone_backrail",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.34,
+          -0.52,
+          0.43
+        ],
+        "boundsMax": [
+          1.76,
+          -0.32,
+          1.15
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_tablet_hinge",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.79,
+          0.63,
+          0.4
+        ],
+        "boundsMax": [
+          2.51,
+          0.81,
+          0.5
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_tablet_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_rubber_foot_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.775,
+          1.305,
+          0.29
+        ],
+        "boundsMax": [
+          -2.625,
+          1.455,
+          0.33
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_rubber_foot_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.975,
+          1.305,
+          0.29
+        ],
+        "boundsMax": [
+          -0.825,
+          1.455,
+          0.33
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_rubber_foot_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.825,
+          1.305,
+          0.29
+        ],
+        "boundsMax": [
+          0.975,
+          1.455,
+          0.33
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_rubber_foot_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.625,
+          1.305,
+          0.29
+        ],
+        "boundsMax": [
+          2.775,
+          1.455,
+          0.33
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_sensor_slot_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.675,
+          0.075,
+          0.4375
+        ],
+        "boundsMax": [
+          -2.425,
+          0.105,
+          0.4625
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_sensor_slot_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.675,
+          0.075,
+          0.5475
+        ],
+        "boundsMax": [
+          -2.425,
+          0.105,
+          0.5725
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_sensor_slot_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.675,
+          0.075,
+          0.6575
+        ],
+        "boundsMax": [
+          -2.425,
+          0.105,
+          0.6825
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_bench_seam",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.775,
+          1.47,
+          0.3075
+        ],
+        "boundsMax": [
+          2.775,
+          1.49,
+          0.3325
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_board_screw_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.235,
+          -0.955,
+          0.4475
+        ],
+        "boundsMax": [
+          -2.165,
+          -0.885,
+          0.4725
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_board_screw_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.235,
+          -0.415,
+          0.4475
+        ],
+        "boundsMax": [
+          -2.165,
+          -0.345,
+          0.4725
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_cable_clip_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.28,
+          1.3,
+          0.41
+        ],
+        "boundsMax": [
+          -1.12,
+          1.38,
+          0.47
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_cable_clip_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.63,
+          1.3,
+          0.41
+        ],
+        "boundsMax": [
+          -0.47,
+          1.38,
+          0.47
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_cable_clip_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.02,
+          1.3,
+          0.41
+        ],
+        "boundsMax": [
+          0.18,
+          1.38,
+          0.47
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_device_button_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.78,
+          -0.68,
+          0.548
+        ],
+        "boundsMax": [
+          1.86,
+          -0.6,
+          0.572
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "PRO_device_button_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.91,
+          -0.68,
+          0.548
+        ],
+        "boundsMax": [
+          1.99,
+          -0.6,
+          0.572
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "BASE_prototype_monitor",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -1.8,
+          0.581,
+          0.98
+        ],
+        "boundsMax": [
+          0.7,
+          0.581,
+          2.46
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "GLASS_prototype_monitor",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -1.8,
+          0.569,
+          0.98
+        ],
+        "boundsMax": [
+          0.7,
+          0.569,
+          2.46
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_monitor_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "BASE_prototype_phone",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.26,
+          -0.619,
+          0.43
+        ],
+        "boundsMax": [
+          1.84,
+          -0.619,
+          1.61
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "GLASS_prototype_phone",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.26,
+          -0.631,
+          0.43
+        ],
+        "boundsMax": [
+          1.84,
+          -0.631,
+          1.61
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_phone_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "BASE_prototype_tablet",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.46,
+          0.581,
+          0.56
+        ],
+        "boundsMax": [
+          2.84,
+          0.581,
+          1.48
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_tablet_device",
+          "ROOT_PROTOTYPE"
+        ]
+      },
+      {
+        "name": "GLASS_prototype_tablet",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.46,
+          0.569,
+          0.56
+        ],
+        "boundsMax": [
+          2.84,
+          0.569,
+          1.48
+        ],
+        "stageRoot": "ROOT_PROTOTYPE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "PRO_tablet_device",
+          "ROOT_PROTOTYPE"
+        ]
+      }
+    ],
+    "release": [
+      {
+        "name": "REL_delivery_station",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.35,
+          -1.95,
+          0.0
+        ],
+        "boundsMax": [
+          3.35,
+          1.95,
+          0.32
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_monitor_frame",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.625,
+          0.62,
+          0.81
+        ],
+        "boundsMax": [
+          -0.275,
+          0.82,
+          2.39
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "SCREEN_release_monitor",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -2.49,
+          0.605,
+          0.95
+        ],
+        "boundsMax": [
+          -0.41,
+          0.605,
+          2.25
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_monitor_stem",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.53,
+          0.665,
+          0.28
+        ],
+        "boundsMax": [
+          -1.37,
+          1.015,
+          1.06
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_monitor_foot",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.01,
+          0.29,
+          0.305
+        ],
+        "boundsMax": [
+          -0.89,
+          1.01,
+          0.415
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_base",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.175,
+          -0.615,
+          0.35
+        ],
+        "boundsMax": [
+          1.675,
+          0.635,
+          0.47
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_devices",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.175,
+          0.37774,
+          0.50198
+        ],
+        "boundsMax": [
+          1.675,
+          0.64226,
+          1.69802
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_laptop_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "SCREEN_release_laptop",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -0.06,
+          0.38085,
+          0.60502
+        ],
+        "boundsMax": [
+          1.56,
+          0.49817,
+          1.57798
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_laptop_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_phone_frame",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.93,
+          -0.71,
+          0.3
+        ],
+        "boundsMax": [
+          2.57,
+          -0.59,
+          1.58
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_phone_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "SCREEN_release_phone",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.995,
+          -0.72,
+          0.41
+        ],
+        "boundsMax": [
+          2.505,
+          -0.72,
+          1.47
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_phone_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_phone_stand",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.91,
+          -0.74,
+          0.31
+        ],
+        "boundsMax": [
+          2.59,
+          -0.16,
+          0.41
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_phone_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_projection_frame",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.7,
+          1.045,
+          0.955
+        ],
+        "boundsMax": [
+          2.8,
+          1.155,
+          2.405
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "PRINT_release_device",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          0.84,
+          1.035,
+          1.095
+        ],
+        "boundsMax": [
+          2.66,
+          1.035,
+          2.265
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qa_panel",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.5,
+          -0.68,
+          0.44
+        ],
+        "boundsMax": [
+          -1.4,
+          -0.52,
+          2.16
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qa_row_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.305,
+          -0.725,
+          1.64
+        ],
+        "boundsMax": [
+          -1.655,
+          -0.685,
+          1.88
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qa_check_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.125,
+          -0.775,
+          1.685
+        ],
+        "boundsMax": [
+          -2.975,
+          -0.725,
+          1.835
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qa_row_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.305,
+          -0.725,
+          1.28
+        ],
+        "boundsMax": [
+          -1.655,
+          -0.685,
+          1.52
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qa_check_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.125,
+          -0.775,
+          1.325
+        ],
+        "boundsMax": [
+          -2.975,
+          -0.725,
+          1.475
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qa_row_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.305,
+          -0.725,
+          0.92
+        ],
+        "boundsMax": [
+          -1.655,
+          -0.685,
+          1.16
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qa_check_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.125,
+          -0.775,
+          0.965
+        ],
+        "boundsMax": [
+          -2.975,
+          -0.725,
+          1.115
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qa_row_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.305,
+          -0.725,
+          0.56
+        ],
+        "boundsMax": [
+          -1.655,
+          -0.685,
+          0.8
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qa_check_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.125,
+          -0.775,
+          0.605
+        ],
+        "boundsMax": [
+          -2.975,
+          -0.725,
+          0.755
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qa_rows",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_archive_box",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.025,
+          -1.895,
+          0.265
+        ],
+        "boundsMax": [
+          0.525,
+          -0.745,
+          0.815
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_archive_lid",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.06,
+          -1.93,
+          0.83
+        ],
+        "boundsMax": [
+          0.56,
+          -0.71,
+          0.99
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_package_lid",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_archive_latch",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.425,
+          -2.01,
+          0.56
+        ],
+        "boundsMax": [
+          -0.075,
+          -1.89,
+          0.76
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_release_folder",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.65473,
+          -1.72135,
+          0.98
+        ],
+        "boundsMax": [
+          0.65473,
+          -0.77865,
+          1.06
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_project_rack",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.9,
+          -1.61,
+          0.25
+        ],
+        "boundsMax": [
+          1.9,
+          -0.89,
+          0.43
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_project_card_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.7916,
+          -1.38784,
+          0.425
+        ],
+        "boundsMax": [
+          1.5084,
+          -1.25216,
+          0.975
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_project_image_0",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          0.84821,
+          -1.38868,
+          0.49
+        ],
+        "boundsMax": [
+          1.44389,
+          -1.31685,
+          0.91
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_0",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_project_card_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.06945,
+          -1.3139,
+          0.54493
+        ],
+        "boundsMax": [
+          1.79055,
+          -1.2061,
+          1.09507
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_project_image_1",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.1285,
+          -1.31542,
+          0.60861
+        ],
+        "boundsMax": [
+          1.72886,
+          -1.27045,
+          1.02809
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_1",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_project_card_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.34894,
+          -1.26668,
+          0.66555
+        ],
+        "boundsMax": [
+          2.07106,
+          -1.13332,
+          1.21445
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_project_image_2",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.41071,
+          -1.26575,
+          0.72775
+        ],
+        "boundsMax": [
+          2.01191,
+          -1.19986,
+          1.14566
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_2",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_version",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.455,
+          -1.59,
+          0.335
+        ],
+        "boundsMax": [
+          -1.305,
+          -1.37,
+          0.485
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qr_card",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.34,
+          0.24,
+          0.42
+        ],
+        "boundsMax": [
+          3.16,
+          0.32,
+          1.24
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qr_0_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.44,
+          0.21,
+          0.5
+        ],
+        "boundsMax": [
+          2.56,
+          0.24,
+          0.62
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qr_0_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.76,
+          0.21,
+          0.5
+        ],
+        "boundsMax": [
+          2.88,
+          0.24,
+          0.62
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qr_1_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.6,
+          0.21,
+          0.66
+        ],
+        "boundsMax": [
+          2.72,
+          0.24,
+          0.78
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qr_2_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.44,
+          0.21,
+          0.82
+        ],
+        "boundsMax": [
+          2.56,
+          0.24,
+          0.94
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qr_2_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.76,
+          0.21,
+          0.82
+        ],
+        "boundsMax": [
+          2.88,
+          0.24,
+          0.94
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qr_3_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.6,
+          0.21,
+          0.98
+        ],
+        "boundsMax": [
+          2.72,
+          0.24,
+          1.1
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qr_1_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.92,
+          0.21,
+          0.66
+        ],
+        "boundsMax": [
+          3.04,
+          0.24,
+          0.78
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_qr_3_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          2.92,
+          0.21,
+          0.98
+        ],
+        "boundsMax": [
+          3.04,
+          0.24,
+          1.1
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_qr_card",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_live_state",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.86,
+          0.4,
+          2.49
+        ],
+        "boundsMax": [
+          -1.04,
+          0.56,
+          2.71
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_final_panel",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          1.1,
+          0.94,
+          2.065
+        ],
+        "boundsMax": [
+          2.4,
+          1.02,
+          2.615
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_hinge",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.025,
+          0.48,
+          0.43
+        ],
+        "boundsMax": [
+          1.525,
+          0.62,
+          0.57
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_laptop_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_key_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.08,
+          -0.28,
+          0.4675
+        ],
+        "boundsMax": [
+          0.22,
+          -0.16,
+          0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_key_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.29,
+          -0.28,
+          0.4675
+        ],
+        "boundsMax": [
+          0.43,
+          -0.16,
+          0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_key_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.5,
+          -0.28,
+          0.4675
+        ],
+        "boundsMax": [
+          0.64,
+          -0.16,
+          0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_key_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.08,
+          -0.1,
+          0.4675
+        ],
+        "boundsMax": [
+          0.22,
+          0.02,
+          0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_key_4",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.29,
+          -0.1,
+          0.4675
+        ],
+        "boundsMax": [
+          0.43,
+          0.02,
+          0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_key_5",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.5,
+          -0.1,
+          0.4675
+        ],
+        "boundsMax": [
+          0.64,
+          0.02,
+          0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_key_6",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.08,
+          0.08,
+          0.4675
+        ],
+        "boundsMax": [
+          0.22,
+          0.2,
+          0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_key_7",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.29,
+          0.08,
+          0.4675
+        ],
+        "boundsMax": [
+          0.43,
+          0.2,
+          0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_laptop_key_8",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.5,
+          0.08,
+          0.4675
+        ],
+        "boundsMax": [
+          0.64,
+          0.2,
+          0.4925
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_archive_corner_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.0,
+          -1.86,
+          0.39
+        ],
+        "boundsMax": [
+          -0.84,
+          -1.7,
+          0.61
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_archive_corner_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.34,
+          -1.86,
+          0.39
+        ],
+        "boundsMax": [
+          0.5,
+          -1.7,
+          0.61
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_archive_corner_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.0,
+          -0.96,
+          0.39
+        ],
+        "boundsMax": [
+          -0.84,
+          -0.8,
+          0.61
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_archive_corner_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.34,
+          -0.96,
+          0.39
+        ],
+        "boundsMax": [
+          0.5,
+          -0.8,
+          0.61
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_cable_channel",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.475,
+          1.15,
+          0.34
+        ],
+        "boundsMax": [
+          -0.425,
+          1.33,
+          0.46
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_station_seam",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.8,
+          1.47,
+          0.3275
+        ],
+        "boundsMax": [
+          2.8,
+          1.49,
+          0.3525
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_station_bolt_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.085,
+          -1.685,
+          0.3275
+        ],
+        "boundsMax": [
+          -3.015,
+          -1.615,
+          0.3525
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_station_bolt_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          3.015,
+          -1.685,
+          0.3275
+        ],
+        "boundsMax": [
+          3.085,
+          -1.615,
+          0.3525
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_station_bolt_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -3.085,
+          1.615,
+          0.3275
+        ],
+        "boundsMax": [
+          -3.015,
+          1.685,
+          0.3525
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_station_bolt_3",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          3.015,
+          1.615,
+          0.3275
+        ],
+        "boundsMax": [
+          3.085,
+          1.685,
+          0.3525
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_package_safety_guide_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -0.62,
+          -1.31,
+          0.6
+        ],
+        "boundsMax": [
+          -0.54,
+          -0.69,
+          0.72
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_package_safety_guide_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.0,
+          -1.31,
+          0.6
+        ],
+        "boundsMax": [
+          0.08,
+          -0.69,
+          0.72
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_package_safety_guide_2",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          0.62,
+          -1.31,
+          0.6
+        ],
+        "boundsMax": [
+          0.7,
+          -0.69,
+          0.72
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_status_tag_0",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -2.22,
+          1.205,
+          0.44
+        ],
+        "boundsMax": [
+          -1.98,
+          1.255,
+          0.54
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "REL_status_tag_1",
+        "collisionProxy": "evaluated-mesh",
+        "boundsMin": [
+          -1.87,
+          1.205,
+          0.44
+        ],
+        "boundsMax": [
+          -1.63,
+          1.255,
+          0.54
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "BASE_release_monitor",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -2.49,
+          0.611,
+          0.95
+        ],
+        "boundsMax": [
+          -0.41,
+          0.611,
+          2.25
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "GLASS_release_monitor",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -2.49,
+          0.599,
+          0.95
+        ],
+        "boundsMax": [
+          -0.41,
+          0.599,
+          2.25
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_monitor_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "BASE_release_laptop",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -0.06,
+          0.38681,
+          0.60574
+        ],
+        "boundsMax": [
+          1.56,
+          0.50413,
+          1.57869
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_laptop_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "GLASS_release_laptop",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          -0.06,
+          0.37489,
+          0.60431
+        ],
+        "boundsMax": [
+          1.56,
+          0.49221,
+          1.57726
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_laptop_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "BASE_release_phone",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.995,
+          -0.714,
+          0.41
+        ],
+        "boundsMax": [
+          2.505,
+          -0.714,
+          1.47
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_phone_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "GLASS_release_phone",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.995,
+          -0.726,
+          0.41
+        ],
+        "boundsMax": [
+          2.505,
+          -0.726,
+          1.47
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_phone_device",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "SUBSTRATE_PRINT_release_device",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          0.84,
+          1.041,
+          1.095
+        ],
+        "boundsMax": [
+          2.66,
+          1.041,
+          2.265
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "SUBSTRATE_REL_project_image_0",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          0.84893,
+          -1.38272,
+          0.49
+        ],
+        "boundsMax": [
+          1.44461,
+          -1.31089,
+          0.91
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_0",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "SUBSTRATE_REL_project_image_1",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.12874,
+          -1.30943,
+          0.60891
+        ],
+        "boundsMax": [
+          1.7291,
+          -1.26446,
+          1.02839
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_1",
+          "ROOT_RELEASE"
+        ]
+      },
+      {
+        "name": "SUBSTRATE_REL_project_image_2",
+        "collisionProxy": "surface",
+        "boundsMin": [
+          1.41048,
+          -1.25979,
+          0.72835
+        ],
+        "boundsMax": [
+          2.01167,
+          -1.1939,
+          1.14626
+        ],
+        "stageRoot": "ROOT_RELEASE",
+        "rootOwned": true,
+        "ancestorPath": [
+          "REL_project_card_2",
+          "ROOT_RELEASE"
+        ]
+      }
+    ]
+  }
+}

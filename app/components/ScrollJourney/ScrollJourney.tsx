@@ -45,6 +45,9 @@ export default function ScrollJourney() {
     const safeIndex = Math.max(0, Math.min(JOURNEY_STAGES.length - 1, index));
     const controller = sceneControllerRef.current;
     const trigger = scrollTriggerRef.current;
+    const scrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth";
 
     setActiveStage(safeIndex);
 
@@ -52,13 +55,13 @@ export default function ScrollJourney() {
       const progress = JOURNEY_STAGE_PROGRESS[safeIndex];
       const scrollTop = trigger.start + (trigger.end - trigger.start) * progress;
       controller.scrollToStage(safeIndex);
-      window.scrollTo({ top: scrollTop, behavior: "smooth" });
+      window.scrollTo({ top: scrollTop, behavior: scrollBehavior });
       return;
     }
 
     document
       .getElementById(`journey-stage-${JOURNEY_STAGES[safeIndex].id}`)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      ?.scrollIntoView({ behavior: scrollBehavior, block: "start" });
   }, []);
 
   useEffect(() => {
@@ -73,6 +76,7 @@ export default function ScrollJourney() {
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let abortController: AbortController | null = null;
     let fallbackObserver: IntersectionObserver | null = null;
+    let entryObserver: IntersectionObserver | null = null;
     let generation = 0;
     let disposed = false;
 
@@ -112,6 +116,8 @@ export default function ScrollJourney() {
       abortController = null;
       fallbackObserver?.disconnect();
       fallbackObserver = null;
+      entryObserver?.disconnect();
+      entryObserver = null;
       scrollTriggerRef.current?.kill();
       scrollTriggerRef.current = null;
       sceneControllerRef.current?.dispose();
@@ -174,7 +180,7 @@ export default function ScrollJourney() {
 
         sceneControllerRef.current = controller;
         const trigger = ScrollTrigger.create({
-          id: "round-2-journey",
+          id: "round-4-journey",
           trigger: section,
           start: "top top",
           end: "+=420%",
@@ -202,11 +208,45 @@ export default function ScrollJourney() {
       }
     };
 
-    const handleModeChange = () => {
-      void initializeExperience();
+    const beginExperience = () => {
+      cleanupExperience();
+      const search = new URLSearchParams(window.location.search);
+      const isQaCapture = search.has("qaStage") || search.has("qaProgress");
+      const isDesktop = desktopQuery.matches;
+      const prefersReducedMotion = reducedMotionQuery.matches;
+      if (!isDesktop || prefersReducedMotion) {
+        void initializeExperience();
+        return;
+      }
+      const shouldDeferScene =
+        !isQaCapture;
+
+      if (!shouldDeferScene) {
+        void initializeExperience();
+        return;
+      }
+
+      setJourneyState("loading");
+      entryObserver = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          entryObserver?.disconnect();
+          entryObserver = null;
+          void initializeExperience();
+        },
+        {
+          rootMargin: "0px 0px -35% 0px",
+          threshold: 0,
+        },
+      );
+      entryObserver.observe(section);
     };
 
-    void initializeExperience();
+    const handleModeChange = () => {
+      beginExperience();
+    };
+
+    beginExperience();
     desktopQuery.addEventListener("change", handleModeChange);
     reducedMotionQuery.addEventListener("change", handleModeChange);
 
@@ -225,6 +265,8 @@ export default function ScrollJourney() {
       id="process"
       className="scroll-journey"
       data-state={journeyState}
+      data-nav-section="process"
+      data-header-theme="light"
       aria-labelledby="journey-title"
     >
       <div ref={pinRef} className="scroll-journey__pin">

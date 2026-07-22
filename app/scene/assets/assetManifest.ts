@@ -8,6 +8,7 @@ export type StageAssetManifest = {
   modelUrl: string;
   rootPosition: Vector3Tuple;
   rootScale: number;
+  expectedClipName?: string;
 };
 
 export type TextureBinding = {
@@ -17,6 +18,82 @@ export type TextureBinding = {
 };
 
 export const DRACO_DECODER_PATH = withBasePath("/draco/gltf/");
+
+export const ROUND4_STAGE_ORDER: readonly JourneyStageId[] = [
+  "observe",
+  "structure",
+  "prototype",
+  "release",
+] as const;
+
+export const ROUND4_STAGE_ASSETS: Record<JourneyStageId, StageAssetManifest> = {
+  observe: {
+    id: "observe",
+    modelUrl: withBasePath("/models/round-4/observe.glb"),
+    rootPosition: [-6, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "OBSERVE_ACTION",
+  },
+  structure: {
+    id: "structure",
+    modelUrl: withBasePath("/models/round-4/structure.glb"),
+    rootPosition: [-2, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "STRUCTURE_ACTION",
+  },
+  prototype: {
+    id: "prototype",
+    modelUrl: withBasePath("/models/round-4/prototype.glb"),
+    rootPosition: [2, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "PROTOTYPE_ACTION",
+  },
+  release: {
+    id: "release",
+    modelUrl: withBasePath("/models/round-4/release.glb"),
+    rootPosition: [6, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "RELEASE_ACTION",
+  },
+};
+
+export const ROUND3_STAGE_ORDER: readonly JourneyStageId[] = [
+  "observe",
+  "structure",
+  "prototype",
+  "release",
+] as const;
+
+export const ROUND3_STAGE_ASSETS: Record<JourneyStageId, StageAssetManifest> = {
+  observe: {
+    id: "observe",
+    modelUrl: withBasePath("/models/round-3/observe.glb"),
+    rootPosition: [-6, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "ML_OBSERVE_ACTION",
+  },
+  structure: {
+    id: "structure",
+    modelUrl: withBasePath("/models/round-3/structure.glb"),
+    rootPosition: [-2, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "ML_STRUCTURE_ACTION",
+  },
+  prototype: {
+    id: "prototype",
+    modelUrl: withBasePath("/models/round-3/prototype.glb"),
+    rootPosition: [2, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "ML_PROTOTYPE_ACTION",
+  },
+  release: {
+    id: "release",
+    modelUrl: withBasePath("/models/round-3/release.glb"),
+    rootPosition: [6, 0.08, -1.7],
+    rootScale: 0.62,
+    expectedClipName: "ML_RELEASE_ACTION",
+  },
+};
 
 export const ROUND2_STAGE_ASSETS: Record<JourneyStageId, StageAssetManifest> = {
   observe: {
@@ -123,4 +200,12 @@ export const ROUND2_TEXTURE_BINDINGS: readonly TextureBinding[] = [
     meshName: "REL_project_image_2",
     textureUrl: withBasePath("/images/web-field-notes.webp"),
   },
+] as const;
+
+export const ROUND3_TEXTURE_BINDINGS: readonly TextureBinding[] = [
+  ...ROUND2_TEXTURE_BINDINGS,
+] as const;
+
+export const ROUND4_TEXTURE_BINDINGS: readonly TextureBinding[] = [
+  ...ROUND3_TEXTURE_BINDINGS,
 ] as const;

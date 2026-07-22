@@ -1,6 +1,7 @@
 /* Static fallback URLs are already base-path-prefixed in journey data. */
 /* eslint-disable @next/next/no-img-element */
 import { JOURNEY_STAGES } from "../../data/journey";
+import { withBasePath } from "../../lib/paths";
 
 export type JourneyState = "fallback" | "loading" | "ready" | "error";
 
@@ -14,8 +15,12 @@ const STATUS_COPY: Record<Exclude<JourneyState, "ready">, string> = {
   error: "The real-time scene could not load. Showing the authored scene plates instead.",
 };
 
+const LOADING_OBSERVE_SRC = withBasePath(
+  "/fallback/round-4/journey-observe.webp",
+);
+
 export function JourneyFallback({ state }: JourneyFallbackProps) {
-  const isLive = state === "loading" || state === "error";
+  const isLive = state === "loading";
 
   return (
     <div className="journey-fallback" aria-hidden={state === "ready"}>
@@ -28,7 +33,10 @@ export function JourneyFallback({ state }: JourneyFallbackProps) {
         </p>
       ) : null}
 
-      <div className="journey-fallback__stages">
+      <div
+        className="journey-fallback__stages"
+        aria-hidden={state === "ready" || state === "loading"}
+      >
         {JOURNEY_STAGES.map((stage, index) => (
           <article
             id={`journey-stage-${stage.id}`}
@@ -38,7 +46,11 @@ export function JourneyFallback({ state }: JourneyFallbackProps) {
           >
             <figure className="journey-fallback__figure">
               <img
-                src={stage.fallbackSrc}
+                src={
+                  state === "loading" && index === 0
+                    ? LOADING_OBSERVE_SRC
+                    : stage.fallbackSrc
+                }
                 alt={`${stage.eyebrow} 阶段的 Blender 工作台场景`}
                 width={1600}
                 height={1000}

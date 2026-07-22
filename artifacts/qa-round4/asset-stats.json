@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-22T02:28:00.663Z",
+  "browserVersion": "149.0.7827.55",
+  "limits": {
+    "perAssetBytes": 1500000,
+    "totalBytes": 5000000
+  },
+  "totalBytes": 1703808,
+  "totalTransferSize": 1705008,
+  "totalEncodedBodySize": 1703808,
+  "totalDecodedBodySize": 1703808,
+  "assets": [
+    {
+      "stage": "observe",
+      "path": "public/models/round-4/observe.glb",
+      "bytes": 340720,
+      "encodedBodySize": 340720,
+      "decodedBodySize": 340720,
+      "transferSize": 341020
+    },
+    {
+      "stage": "structure",
+      "path": "public/models/round-4/structure.glb",
+      "bytes": 465252,
+      "encodedBodySize": 465252,
+      "decodedBodySize": 465252,
+      "transferSize": 465552
+    },
+    {
+      "stage": "prototype",
+      "path": "public/models/round-4/prototype.glb",
+      "bytes": 524688,
+      "encodedBodySize": 524688,
+      "decodedBodySize": 524688,
+      "transferSize": 524988
+    },
+    {
+      "stage": "release",
+      "path": "public/models/round-4/release.glb",
+      "bytes": 373148,
+      "encodedBodySize": 373148,
+      "decodedBodySize": 373148,
+      "transferSize": 373448
+    }
+  ],
+  "status": "pass",
+  "failures": []
+}
