@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-22T06:56:11.799Z",
+  "sourceCommit": "154a53451e616f2df144eb43ab15739a33447dd5",
+  "passed": true,
+  "checks": {
+    "journeyReadyWithinOneSecond": true,
+    "initialJourneyRequestsAtMostTwoGlbs": true,
+    "averageFpsAtLeast55": true,
+    "onePercentLowAtLeast40": true,
+    "averageFrameTimeAtMost18": true,
+    "consecutiveBelow25AtMost3": true,
+    "activeDrawCallsAtMost100": true,
+    "allSchedulersSleep": true,
+    "noConsoleOrRequestErrors": true,
+    "mobileRequestsZeroGlbs": true,
+    "allRequiredVideosPresent": true,
+    "allNormalComparisonsPresent": true
+  },
+  "performance": {
+    "schemaVersion": 1,
+    "capturedAt": "2026-07-22T06:56:11.799Z",
+    "sourceCommit": "154a53451e616f2df144eb43ab15739a33447dd5",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "journeyTimeToSceneMs": 544,
+    "frameSummary": {
+      "sampleCount": 218,
+      "averageFrameTimeMs": 16.62,
+      "averageFps": 60.16,
+      "onePercentLowFps": 44.91,
+      "longFrameCount": 0,
+      "consecutiveBelow25Fps": 0
+    },
+    "canvasMetrics": {
+      "drawCalls": 93,
+      "triangles": 28348,
+      "dpr": 1.5,
+      "loadedStages": [
+        "release",
+        "prototype"
+      ],
+      "schedulerState": "sleeping"
+    },
+    "environment": {
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7827.55 Safari/537.36",
+      "deviceMemory": 16,
+      "hardwareConcurrency": 32,
+      "devicePixelRatio": 1,
+      "activeCanvasCount": 2,
+      "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "gpuRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 750tiLaptop GPU (0x000028E0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "maxAnisotropy": 16,
+      "hardwareAccelerated": true
+    }
+  },
+  "drawCalls": {
+    "schemaVersion": 1,
+    "capturedAt": "2026-07-22T06:56:11.799Z",
+    "activeBudget": 100,
+    "transitionBudget": 140,
+    "stages": [
+      {
+        "stage": "observe",
+        "drawCalls": 76,
+        "triangles": 30360,
+        "dpr": 1.5,
+        "normalDistanceTier": "near",
+        "batchDrawCallsSaved": 36,
+        "loadedStages": [
+          "observe",
+          "structure"
+        ]
+      },
+      {
+        "stage": "structure",
+        "drawCalls": 68,
+        "triangles": 37712,
+        "dpr": 1.5,
+        "normalDistanceTier": "medium",
+        "batchDrawCallsSaved": 57,
+        "loadedStages": [
+          "structure",
+          "prototype"
+        ]
+      },
+      {
+        "stage": "prototype",
+        "drawCalls": 54,
+        "triangles": 43096,
+        "dpr": 1.5,
+        "normalDistanceTier": "medium",
+        "batchDrawCallsSaved": 76,
+        "loadedStages": [
+          "prototype",
+          "release",
+          "structure"
+        ]
+      },
+      {
+        "stage": "release",
+        "drawCalls": 94,
+        "triangles": 28402,
+        "dpr": 1.5,
+        "normalDistanceTier": "far",
+        "batchDrawCallsSaved": 41,
+        "loadedStages": [
+          "release",
+          "structure"
+        ]
+      }
+    ],
+    "maxActiveDrawCalls": 94
+  },
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "state": "ready",
+      "glbCount": 2
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "state": "ready",
+      "glbCount": 2
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "state": "ready",
+      "glbCount": 2
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "state": "ready",
+      "glbCount": 2
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "state": "fallback",
+      "glbCount": 0
+    }
+  ],
+  "videos": [
+    {
+      "file": "before-performance-1440.mp4",
+      "bytes": 3887705
+    },
+    {
+      "file": "after-performance-1440.mp4",
+      "bytes": 634051,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "file": "after-performance-1920.mp4",
+      "bytes": 684563,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "file": "after-balanced-tier.mp4",
+      "bytes": 754404,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "file": "after-high-tier.mp4",
+      "bytes": 610117,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "file": "mobile-fallback.mp4",
+      "bytes": 137305,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "environmentLimitation": null
+}

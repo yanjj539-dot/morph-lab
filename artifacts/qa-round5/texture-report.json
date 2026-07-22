@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-22T06:56:11.799Z",
+  "policy": {
+    "colorSpace": "sRGB for screen/project color textures; no-color-space for normal/ORM",
+    "minFilter": "LinearMipmapLinearFilter",
+    "magFilter": "LinearFilter",
+    "mipmaps": true,
+    "anisotropyCaps": {
+      "low": 2,
+      "balanced": 4,
+      "high": 8
+    },
+    "normalRepeats": {
+      "paper": [
+        2,
+        2
+      ],
+      "plastic": [
+        1.5,
+        1.5
+      ],
+      "metal": [
+        1,
+        3
+      ],
+      "rubber": [
+        2,
+        2
+      ]
+    },
+    "normalScales": {
+      "warmWhitePlastic": 0.01,
+      "coolCeramic": 0.006,
+      "paper": 0.012,
+      "metal": 0.014,
+      "rubber": 0.018
+    },
+    "distanceMultiplier": {
+      "near": 1,
+      "medium": 0.4,
+      "far": 0
+    }
+  },
+  "resources": [
+    {
+      "name": "http://127.0.0.1:55424/fallback/round-4/journey-observe.webp",
+      "initiatorType": "link",
+      "startTime": 61.4,
+      "duration": 27.4,
+      "transferSize": 16188,
+      "encodedBodySize": 15888,
+      "decodedBodySize": 15888
+    },
+    {
+      "name": "http://127.0.0.1:55424/fallback/round-4/hero-observe.webp",
+      "initiatorType": "img",
+      "startTime": 64.7,
+      "duration": 98.7,
+      "transferSize": 25876,
+      "encodedBodySize": 25576,
+      "decodedBodySize": 25576
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/web-aeroform.webp",
+      "initiatorType": "img",
+      "startTime": 305.5,
+      "duration": 70.8,
+      "transferSize": 26364,
+      "encodedBodySize": 26064,
+      "decodedBodySize": 26064
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/persona-result.webp",
+      "initiatorType": "img",
+      "startTime": 305.5,
+      "duration": 69.2,
+      "transferSize": 163770,
+      "encodedBodySize": 163470,
+      "decodedBodySize": 163470
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/device-tree-hole.webp",
+      "initiatorType": "img",
+      "startTime": 305.5,
+      "duration": 73.4,
+      "transferSize": 254694,
+      "encodedBodySize": 254394,
+      "decodedBodySize": 254394
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/morph-workflow-quality-gate-v1.webp",
+      "initiatorType": "img",
+      "startTime": 305.6,
+      "duration": 71.7,
+      "transferSize": 77424,
+      "encodedBodySize": 77124,
+      "decodedBodySize": 77124
+    },
+    {
+      "name": "http://127.0.0.1:55424/textures/round-3/plastic-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 717.7,
+      "duration": 65.7,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:55424/textures/round-3/paper-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 717.7,
+      "duration": 66.9,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:55424/textures/round-3/metal-brushed-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 717.8,
+      "duration": 64.7,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:55424/textures/round-3/rubber-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 717.8,
+      "duration": 65.2,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:55424/textures/round-3/studio-orm.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 717.9,
+      "duration": 67.3,
+      "transferSize": 88172,
+      "encodedBodySize": 87872,
+      "decodedBodySize": 87872
+    },
+    {
+      "name": "http://127.0.0.1:55424/textures/round-3/neutral-studio-env.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 718,
+      "duration": 70.1,
+      "transferSize": 175596,
+      "encodedBodySize": 175296,
+      "decodedBodySize": 175296
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/persona-result.webp",
+      "initiatorType": "img",
+      "startTime": 884.4,
+      "duration": 7,
+      "transferSize": 300,
+      "encodedBodySize": 163470,
+      "decodedBodySize": 163470
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/persona-home.webp",
+      "initiatorType": "img",
+      "startTime": 884.6,
+      "duration": 15.5,
+      "transferSize": 28268,
+      "encodedBodySize": 27968,
+      "decodedBodySize": 27968
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/persona-home.webp",
+      "initiatorType": "img",
+      "startTime": 4443.2,
+      "duration": 12.1,
+      "transferSize": 300,
+      "encodedBodySize": 27968,
+      "decodedBodySize": 27968
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/persona-result.webp",
+      "initiatorType": "img",
+      "startTime": 4443.3,
+      "duration": 15.6,
+      "transferSize": 300,
+      "encodedBodySize": 163470,
+      "decodedBodySize": 163470
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/persona-result.webp",
+      "initiatorType": "img",
+      "startTime": 4520,
+      "duration": 11.2,
+      "transferSize": 300,
+      "encodedBodySize": 163470,
+      "decodedBodySize": 163470
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/persona-home.webp",
+      "initiatorType": "img",
+      "startTime": 4520.3,
+      "duration": 13.4,
+      "transferSize": 300,
+      "encodedBodySize": 27968,
+      "decodedBodySize": 27968
+    },
+    {
+      "name": "http://127.0.0.1:55424/fallback/round-4/observe.webp",
+      "initiatorType": "img",
+      "startTime": 4595.6,
+      "duration": 17.5,
+      "transferSize": 35836,
+      "encodedBodySize": 35536,
+      "decodedBodySize": 35536
+    },
+    {
+      "name": "http://127.0.0.1:55424/fallback/round-4/structure.webp",
+      "initiatorType": "img",
+      "startTime": 4619.7,
+      "duration": 57.5,
+      "transferSize": 56118,
+      "encodedBodySize": 55818,
+      "decodedBodySize": 55818
+    },
+    {
+      "name": "http://127.0.0.1:55424/fallback/round-4/release.webp",
+      "initiatorType": "img",
+      "startTime": 4619.8,
+      "duration": 56.4,
+      "transferSize": 64576,
+      "encodedBodySize": 64276,
+      "decodedBodySize": 64276
+    },
+    {
+      "name": "http://127.0.0.1:55424/fallback/round-4/prototype.webp",
+      "initiatorType": "img",
+      "startTime": 4619.8,
+      "duration": 58,
+      "transferSize": 71382,
+      "encodedBodySize": 71082,
+      "decodedBodySize": 71082
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/web-field-notes.webp",
+      "initiatorType": "img",
+      "startTime": 4723.4,
+      "duration": 15.2,
+      "transferSize": 70358,
+      "encodedBodySize": 70058,
+      "decodedBodySize": 70058
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/web-aeroform.webp",
+      "initiatorType": "img",
+      "startTime": 7526.3,
+      "duration": 9.5,
+      "transferSize": 300,
+      "encodedBodySize": 26064,
+      "decodedBodySize": 26064
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/web-aeroform.webp",
+      "initiatorType": "img",
+      "startTime": 7858.3,
+      "duration": 11,
+      "transferSize": 300,
+      "encodedBodySize": 26064,
+      "decodedBodySize": 26064
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/persona-home.webp",
+      "initiatorType": "img",
+      "startTime": 7858.5,
+      "duration": 15.4,
+      "transferSize": 300,
+      "encodedBodySize": 27968,
+      "decodedBodySize": 27968
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/web-units.webp",
+      "initiatorType": "img",
+      "startTime": 11790.1,
+      "duration": 41.3,
+      "transferSize": 78390,
+      "encodedBodySize": 78090,
+      "decodedBodySize": 78090
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/web-smoke-fruit.webp",
+      "initiatorType": "img",
+      "startTime": 11790.3,
+      "duration": 40.2,
+      "transferSize": 55542,
+      "encodedBodySize": 55242,
+      "decodedBodySize": 55242
+    },
+    {
+      "name": "http://127.0.0.1:55424/images/device-tree-hole.webp",
+      "initiatorType": "img",
+      "startTime": 11790.6,
+      "duration": 36.7,
+      "transferSize": 300,
+      "encodedBodySize": 254394,
+      "decodedBodySize": 254394
+    }
+  ]
+}

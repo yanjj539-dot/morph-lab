@@ -1,0 +1,10 @@
+{
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7827.55 Safari/537.36",
+  "deviceMemory": 16,
+  "hardwareConcurrency": 32,
+  "devicePixelRatio": 1,
+  "activeCanvasCount": 2,
+  "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "gpuRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 750tiLaptop GPU (0x000028E0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "maxAnisotropy": 16
+}

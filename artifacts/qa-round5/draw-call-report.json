@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-22T06:56:11.799Z",
+  "activeBudget": 100,
+  "transitionBudget": 140,
+  "stages": [
+    {
+      "stage": "observe",
+      "drawCalls": 76,
+      "triangles": 30360,
+      "dpr": 1.5,
+      "normalDistanceTier": "near",
+      "batchDrawCallsSaved": 36,
+      "loadedStages": [
+        "observe",
+        "structure"
+      ]
+    },
+    {
+      "stage": "structure",
+      "drawCalls": 68,
+      "triangles": 37712,
+      "dpr": 1.5,
+      "normalDistanceTier": "medium",
+      "batchDrawCallsSaved": 57,
+      "loadedStages": [
+        "structure",
+        "prototype"
+      ]
+    },
+    {
+      "stage": "prototype",
+      "drawCalls": 54,
+      "triangles": 43096,
+      "dpr": 1.5,
+      "normalDistanceTier": "medium",
+      "batchDrawCallsSaved": 76,
+      "loadedStages": [
+        "prototype",
+        "release",
+        "structure"
+      ]
+    },
+    {
+      "stage": "release",
+      "drawCalls": 94,
+      "triangles": 28402,
+      "dpr": 1.5,
+      "normalDistanceTier": "far",
+      "batchDrawCallsSaved": 41,
+      "loadedStages": [
+        "release",
+        "structure"
+      ]
+    }
+  ],
+  "maxActiveDrawCalls": 94
+}
