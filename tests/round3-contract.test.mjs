@@ -60,7 +60,8 @@ test("round 3 runtime retains Blender clips and removes arbitrary mesh draw rang
   assert.match(clips, /action\.paused\s*=\s*true/);
   assert.match(clips, /action\.time\s*=/);
   assert.doesNotMatch(stageTimelines, /setDrawRange\(/);
-  assert.match(stageTimelines, /depthWrite/);
+  assert.match(stageTimelines, /root\.visible\s*=\s*stage\s*===\s*current/);
+  assert.doesNotMatch(stageTimelines, /material\.(?:opacity|transparent|depthWrite)\s*=/);
   assert.doesNotMatch(cameraTimeline, /applyToCamera/);
   assert.match(cameraTimeline, /getUtoTmapping|arcLength/);
   assert.match(cameraRig, /Quaternion/);

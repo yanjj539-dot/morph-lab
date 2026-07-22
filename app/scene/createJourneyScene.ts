@@ -17,22 +17,28 @@ import {
   type JourneyStageId,
 } from "../data/journey";
 import {
-  disposeLoadedStageModels,
-  getStageRoots,
-  loadRound4Models,
-  type Round2ModelMap,
-  type Round4ModelMap,
+  acquireRound4StageAsset,
+  type LoadedStageModel,
 } from "./assets/loadModels";
 import {
-  applyRound4Textures,
+  applyRound4StageTextures,
   type LoadedTextureResources,
 } from "./assets/loadTextures";
+import {
+  createStagePreloader,
+  type StageLoadState,
+} from "./assets/stagePreloader.ts";
 import { createBlenderClipController } from "./animation/blenderClipController";
 import {
   createCameraTimeline,
   createCameraTimelineSample,
 } from "./animation/cameraTimeline";
 import { clamp01, stageIndexForProgress } from "./animation/progressMath";
+import {
+  residentStages,
+  STAGE_ORDER,
+  type StageReadiness,
+} from "./animation/stageResidency.ts";
 import { createStageTimelines } from "./animation/stageTimelines";
 import { createCameraCollisionInspector } from "./collision/cameraCollision";
 import { createCameraRig } from "./core/createCameraRig";
@@ -45,10 +51,24 @@ import { createProjectedLabels } from "./interaction/projectedLabels";
 import { createVisibilityController } from "./interaction/visibilityController";
 import { createStudioLightRig } from "./lighting/studioLightRig";
 
+export type JourneyPerformanceState = {
+  currentStage: JourneyStageId;
+  loadedStages: JourneyStageId[];
+  stageStates: Record<JourneyStageId, StageLoadState>;
+  activeCanvasCount: number;
+  drawCalls: number;
+  triangles: number;
+  geometries: number;
+  textures: number;
+  programs: number;
+  dpr: number;
+};
+
 export type JourneySceneController = {
   setProgress(progress: number): void;
   scrollToStage(index: number): void;
   resize(): void;
+  getPerformanceState(): JourneyPerformanceState;
   dispose(): void;
 };
 
@@ -59,6 +79,12 @@ export type JourneySceneOptions = {
   onStageChange(index: number): void;
   onReady(): void;
   onError(error: Error): void;
+};
+
+type LoadedStageRuntime = {
+  stage: JourneyStageId;
+  model: LoadedStageModel;
+  textures: LoadedTextureResources;
 };
 
 const ROUTE_POINTS = [
@@ -74,36 +100,35 @@ const ROUTE_POINTS = [
 
 const SHADOW_DETAIL_PATTERN = /(?:key_|pin_|grid_|qr_|clip_|text|screen|print|image)/i;
 
-function configureModelShadows(models: Round2ModelMap, enabled: boolean): void {
-  for (const root of Object.values(models)) {
-    root.traverse((object) => {
-      if (!(object instanceof Mesh)) return;
-      const materials = Array.isArray(object.material)
-        ? object.material
-        : [object.material];
-      const isTransmissive = materials.some(
-        (material) =>
-          material.transparent ||
-          material.opacity < 0.999 ||
-          (material instanceof MeshPhysicalMaterial && material.transmission > 0),
-      );
-      object.receiveShadow = enabled && !isTransmissive;
-      object.castShadow =
-        enabled && !isTransmissive && !SHADOW_DETAIL_PATTERN.test(object.name);
-    });
-  }
+function configureStageShadows(
+  root: LoadedStageModel["root"],
+  enabled: boolean,
+): void {
+  root.traverse((object) => {
+    if (!(object instanceof Mesh)) return;
+    const materials = Array.isArray(object.material)
+      ? object.material
+      : [object.material];
+    const isTransmissive = materials.some(
+      (material) =>
+        material.transparent ||
+        material.opacity < 0.999 ||
+        (material instanceof MeshPhysicalMaterial && material.transmission > 0),
+    );
+    object.receiveShadow = enabled && !isTransmissive;
+    object.castShadow =
+      enabled && !isTransmissive && !SHADOW_DETAIL_PATTERN.test(object.name);
+  });
 }
 
 function getFrozenQaProgress(): number | null {
   if (typeof window === "undefined") return null;
-
   const searchParams = new URLSearchParams(window.location.search);
   const qaProgress = searchParams.get("qaProgress");
   if (qaProgress !== null) {
     const parsedProgress = Number.parseFloat(qaProgress);
     if (Number.isFinite(parsedProgress)) return clamp01(parsedProgress);
   }
-
   const qaStage = searchParams.get("qaStage");
   const index = JOURNEY_STAGES.findIndex((stage) => stage.id === qaStage);
   return index < 0 ? null : JOURNEY_STAGE_PROGRESS[index];
@@ -112,6 +137,15 @@ function getFrozenQaProgress(): number | null {
 function isQaCameraInspectionEnabled(): boolean {
   if (typeof window === "undefined") return false;
   return new URLSearchParams(window.location.search).has("qaCamera");
+}
+
+function scheduleIdle(callback: () => void): () => void {
+  if ("requestIdleCallback" in window) {
+    const id = window.requestIdleCallback(callback, { timeout: 900 });
+    return () => window.cancelIdleCallback(id);
+  }
+  const id = globalThis.setTimeout(callback, 80);
+  return () => globalThis.clearTimeout(id);
 }
 
 function normalizeError(error: unknown): Error {
@@ -130,7 +164,7 @@ export async function createJourneyScene({
   const renderer = createRenderer(canvasHost, quality);
   const scene = new Scene();
   scene.background = new Color("#e6ecef");
-  scene.fog = new Fog("#e6ecef", 10, 28);
+  scene.fog = new Fog("#e6ecef", 14, 34);
 
   const cameraRig = createCameraRig();
   const cameraTimeline = createCameraTimeline();
@@ -183,13 +217,131 @@ export async function createJourneyScene({
   let previousFrameTime = 0;
   let disposed = false;
   let ready = false;
-  let clipController: ReturnType<typeof createBlenderClipController> | null = null;
-  let stageTimelines: ReturnType<typeof createStageTimelines> | null = null;
   let projectedLabels: ReturnType<typeof createProjectedLabels> | null = null;
   let resizeObserver: ResizeObserver | null = null;
-  let loadedTextures: LoadedTextureResources | null = null;
-  let loadedModels: Round4ModelMap | null = null;
   let lastCameraInspectionProgress = Number.NaN;
+  let lastResidencySignature = "";
+  let currentResidentStage: JourneyStageId = "observe";
+  let reconciling = false;
+  const loadedStages = new Map<JourneyStageId, LoadedStageRuntime>();
+  const activeClipStages = new Set<JourneyStageId>();
+  const clipController = createBlenderClipController({});
+  const stageTimelines = createStageTimelines({});
+
+  function disposeStageRuntime(runtime: LoadedStageRuntime): void {
+    activeClipStages.delete(runtime.stage);
+    clipController.removeStage(runtime.stage);
+    stageTimelines.removeStage(runtime.stage);
+    runtime.model.root.removeFromParent();
+    runtime.model.root.traverse((object) => {
+      if (!(object instanceof Mesh)) return;
+      const materials = Array.isArray(object.material)
+        ? object.material
+        : [object.material];
+      for (const material of materials) material.dispose();
+    });
+    for (const texture of runtime.textures) {
+      if (!runtime.textures.sharedTextures.has(texture)) texture.dispose();
+    }
+    runtime.textures.release();
+    runtime.model.release?.();
+    loadedStages.delete(runtime.stage);
+  }
+
+  function readiness(): StageReadiness {
+    return Object.fromEntries(
+      STAGE_ORDER.map((stage) => [stage, stagePreloader.getState(stage) === "ready"]),
+    ) as StageReadiness;
+  }
+
+  function reconcileResidency(): void {
+    if (disposed || reconciling) return;
+    reconciling = true;
+    try {
+      const residency = residentStages(progress, readiness());
+      currentResidentStage = residency.current;
+      const attached = new Set(residency.attached);
+      const signature = `${residency.current}:${residency.attached.join(",")}`;
+
+      if (signature !== lastResidencySignature) {
+        for (const [stage, runtime] of loadedStages) {
+          const shouldAttach = attached.has(stage);
+          if (shouldAttach && runtime.model.root.parent !== scene) {
+            scene.add(runtime.model.root);
+          } else if (!shouldAttach) {
+            runtime.model.root.removeFromParent();
+          }
+          runtime.model.root.visible = stage === residency.current;
+          configureStageShadows(
+            runtime.model.root,
+            quality.shadows && stage === residency.current,
+          );
+          if (shouldAttach && !activeClipStages.has(stage)) {
+            clipController.addStage(stage, runtime.model);
+            activeClipStages.add(stage);
+          } else if (!shouldAttach && activeClipStages.has(stage)) {
+            clipController.removeStage(stage);
+            activeClipStages.delete(stage);
+          }
+        }
+        stageTimelines.update(progress);
+        for (const [stage, runtime] of loadedStages) {
+          runtime.model.root.visible = stage === residency.current;
+        }
+        renderer.shadowMap.needsUpdate = true;
+        cameraVisibilityInspector?.refresh(scene);
+        lastResidencySignature = signature;
+      }
+
+      for (const [stage] of [...loadedStages]) {
+        if (attached.has(stage)) continue;
+        stagePreloader.evict(stage, disposeStageRuntime);
+      }
+      canvasHost.dataset.loadedStages = [...loadedStages.keys()].join(",");
+      canvasHost.dataset.currentStage = residency.current;
+    } finally {
+      reconciling = false;
+    }
+  }
+
+  const stagePreloader = createStagePreloader<LoadedStageRuntime>({
+    scheduleIdle,
+    async loadStage(stage) {
+      const model = await acquireRound4StageAsset(stage, "Round5Journey", { signal });
+      let textures: LoadedTextureResources | null = null;
+      try {
+        signal?.throwIfAborted();
+        textures = await applyRound4StageTextures(stage, model.root, {
+          maxAnisotropy: Math.min(
+            quality.anisotropy,
+            renderer.capabilities.getMaxAnisotropy(),
+          ),
+          quality,
+          renderer,
+          scene,
+          signal,
+        });
+        signal?.throwIfAborted();
+        if (disposed) throw new Error(`Journey ${stage} loaded after disposal.`);
+        const runtime = { stage, model, textures };
+        loadedStages.set(stage, runtime);
+        stageTimelines.addStage(stage, model.root);
+        reconcileResidency();
+        startRendering();
+        return runtime;
+      } catch (error) {
+        if (textures) {
+          for (const texture of textures) {
+            if (!textures.sharedTextures.has(texture)) texture.dispose();
+          }
+          textures.release();
+        }
+        model.release?.();
+        throw error;
+      }
+    },
+  });
+  const unsubscribePreloader = stagePreloader.subscribe(reconcileResidency);
 
   function updateStageBoundary(nextProgress: number): void {
     const nextStage = stageIndexForProgress(nextProgress);
@@ -216,9 +368,7 @@ export async function createJourneyScene({
       ? Math.min(0.05, Math.max(0, (time - previousFrameTime) * 0.001))
       : 1 / 60;
     previousFrameTime = time;
-
-    clipController?.update(progress);
-    stageTimelines?.update(progress, time * 0.001);
+    clipController.update(progress);
     lightRig.update(progress);
     cameraTimeline.sample(progress, cameraSample);
     cameraRig.setPose(cameraSample, 1 - Math.exp(-12 * deltaSeconds));
@@ -239,7 +389,6 @@ export async function createJourneyScene({
       cameraWorldPosition,
       cameraRig.camera.near,
     ).clearance;
-
     const routeCount = Math.max(
       6,
       Math.floor((routeIndexCount * clamp01(progress)) / 3) * 3,
@@ -258,7 +407,6 @@ export async function createJourneyScene({
     }
     projectedLabels?.update(progress, cameraRig.camera);
     renderer.render(scene, cameraRig.camera);
-
     animationFrameId = window.requestAnimationFrame(renderFrame);
   }
 
@@ -290,38 +438,18 @@ export async function createJourneyScene({
     resizeObserver = null;
     visibility.dispose();
     signal?.removeEventListener("abort", dispose);
+    unsubscribePreloader();
+    stagePreloader.dispose();
     projectedLabels?.dispose();
     projectedLabels = null;
-    stageTimelines?.reset();
-    stageTimelines = null;
-    clipController?.dispose();
-    clipController = null;
-    const preserveGeometries = new Set(
-      loadedModels
-        ? Object.values(loadedModels).flatMap((model) => [
-            ...(model.sharedGeometries ?? []),
-          ])
-        : [],
-    );
-    const preserveTextures = new Set(
-      [
-        ...(loadedModels
-          ? Object.values(loadedModels).flatMap((model) => [
-              ...(model.sharedTextures ?? []),
-            ])
-          : []),
-        ...(loadedTextures?.sharedTextures ?? []),
-      ],
-    );
-    disposeScene(scene, renderer, loadedTextures ?? [], {
-      preserveGeometries,
-      preserveTextures,
-    });
-    loadedTextures?.release();
-    if (loadedModels) disposeLoadedStageModels(loadedModels);
-    loadedModels = null;
-    loadedTextures = null;
+    stageTimelines.reset();
+    clipController.dispose();
+    scene.environment = null;
+    for (const runtime of [...loadedStages.values()]) disposeStageRuntime(runtime);
+    disposeScene(scene, renderer);
     delete canvasHost.dataset.cameraSample;
+    delete canvasHost.dataset.loadedStages;
+    delete canvasHost.dataset.currentStage;
     scene.clear();
   }
 
@@ -334,44 +462,25 @@ export async function createJourneyScene({
         `Camera path intersects authored proxies at ${cameraPathReport.collisions.length} samples.`,
       );
     }
-
-    loadedModels = await loadRound4Models({ signal });
-    if (disposed) {
-      disposeLoadedStageModels(loadedModels);
-      loadedModels = null;
-      throw new Error("Journey scene was disposed while loading models.");
+    await stagePreloader.ensure("observe", "critical");
+    if (disposed) throw new Error("Journey scene was disposed while loading Observe.");
+    stagePreloader.preloadForProgress(progress);
+    if (frozenQaProgress !== null) {
+      const desired = residentStages(progress, readiness()).desired;
+      if (desired !== "observe") {
+        await stagePreloader.ensure(desired, "critical");
+      }
     }
-    const models = getStageRoots(loadedModels);
-
-    for (const stage of JOURNEY_STAGES) {
-      scene.add(models[stage.id as JourneyStageId]);
-    }
-    configureModelShadows(models, quality.shadows);
-    loadedTextures = await applyRound4Textures(models, {
-      maxAnisotropy: Math.min(
-        quality.anisotropy,
-        renderer.capabilities.getMaxAnisotropy(),
-      ),
-      quality,
-      renderer,
-      scene,
-      signal,
-    });
-    if (disposed) throw new Error("Journey scene was disposed while loading textures.");
-
-    clipController = createBlenderClipController(loadedModels);
-    clipController.update(progress);
-    stageTimelines = createStageTimelines(models);
-    stageTimelines.update(progress);
     projectedLabels = createProjectedLabels(labelHost);
-    cameraVisibilityInspector?.refresh(scene);
     resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(canvasHost);
     resize();
     updateStageBoundary(progress);
+    reconcileResidency();
     ready = true;
     startRendering();
     onReady();
+    stagePreloader.schedule("structure");
   } catch (error) {
     const normalized = normalizeError(error);
     dispose();
@@ -382,16 +491,38 @@ export async function createJourneyScene({
   return {
     setProgress(nextProgress) {
       progress = frozenQaProgress ?? clamp01(nextProgress);
+      stagePreloader.preloadForProgress(progress);
       updateStageBoundary(progress);
+      reconcileResidency();
       startRendering();
     },
     scrollToStage(index) {
       const safeIndex = Math.max(0, Math.min(JOURNEY_STAGE_PROGRESS.length - 1, index));
       progress = frozenQaProgress ?? JOURNEY_STAGE_PROGRESS[safeIndex];
+      stagePreloader.preloadForProgress(progress);
       updateStageBoundary(progress);
+      reconcileResidency();
       startRendering();
     },
     resize,
+    getPerformanceState() {
+      const stageStates = Object.fromEntries(
+        STAGE_ORDER.map((stage) => [stage, stagePreloader.getState(stage)]),
+      ) as Record<JourneyStageId, StageLoadState>;
+      const render = renderer.info.render;
+      return {
+        currentStage: currentResidentStage,
+        loadedStages: [...loadedStages.keys()],
+        stageStates,
+        activeCanvasCount: document.querySelectorAll("canvas").length,
+        drawCalls: render.calls,
+        triangles: render.triangles,
+        geometries: renderer.info.memory.geometries,
+        textures: renderer.info.memory.textures,
+        programs: renderer.info.programs?.length ?? 0,
+        dpr: renderer.getPixelRatio(),
+      };
+    },
     dispose,
   };
 }
