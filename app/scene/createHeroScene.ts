@@ -23,6 +23,7 @@ import {
 } from "./assets/loadTextures";
 import { createCameraRig } from "./core/createCameraRig";
 import { createRenderer } from "./core/createRenderer";
+import { optimizeStaticStageMeshes } from "./core/staticBatchOptimizer.ts";
 import {
   createDynamicResolutionController,
   type DynamicResolutionChange,
@@ -33,8 +34,10 @@ import {
   createRenderScheduler,
   type RenderSchedulerState,
 } from "./core/renderScheduler";
+import { round5PerformanceStore } from "./debug/performanceStore.ts";
 import { createVisibilityController } from "./interaction/visibilityController";
 import { createStudioLightRig } from "./lighting/studioLightRig";
+import { getWebGLRendererDescription } from "./materials/normalMapPolicy.ts";
 
 export const HERO_POINTER_LIMIT_DEGREES = 1.5;
 export const HERO_OPENING_POSE = Object.freeze({
@@ -182,6 +185,26 @@ export async function createHeroScene({
     onChange: applyDpr,
   });
 
+  function publishPerformance(schedulerState?: string): void {
+    const render = renderer.info.render;
+    canvasHost.dataset.drawCalls = String(render.calls);
+    canvasHost.dataset.triangles = String(render.triangles);
+    canvasHost.dataset.dpr = String(renderer.getPixelRatio());
+    round5PerformanceStore.update("hero", {
+      schedulerState: schedulerState ?? canvasHost.dataset.schedulerState ?? "sleeping",
+      drawCalls: render.calls,
+      triangles: render.triangles,
+      geometries: renderer.info.memory.geometries,
+      textures: renderer.info.memory.textures,
+      programs: renderer.info.programs?.length ?? 0,
+      dpr: renderer.getPixelRatio(),
+      activeCanvasCount: document.querySelectorAll("canvas").length,
+      gpuRenderer: getWebGLRendererDescription(renderer),
+      webglVersion: renderer.capabilities.isWebGL2 ? "WebGL 2" : "WebGL 1",
+      maxAnisotropy: renderer.capabilities.getMaxAnisotropy(),
+    });
+  }
+
   function markActivity(reason: string, durationMs: number): void {
     if (disposed || !ready) return;
     if (scheduler.getState().status === "sleeping") previousFrameTime = 0;
@@ -276,6 +299,7 @@ export async function createHeroScene({
     if (Number.isFinite(pulseStartedAt)) renderer.shadowMap.needsUpdate = true;
     renderer.render(scene, cameraRig.camera);
     resolution.recordFrame(frameTimeMs, time);
+    publishPerformance("rendering");
   }
 
   const visibility = createVisibilityController(canvasHost, {
@@ -294,6 +318,7 @@ export async function createHeroScene({
     onStateChange(state) {
       canvasHost.dataset.schedulerState = state.status;
       canvasHost.dataset.schedulerFrames = String(state.frameCount);
+      publishPerformance(state.status);
     },
   });
 
@@ -327,6 +352,11 @@ export async function createHeroScene({
     delete canvasHost.dataset.schedulerFrames;
     delete canvasHost.dataset.materialNormals;
     delete canvasHost.dataset.normalDistanceTier;
+    delete canvasHost.dataset.drawCalls;
+    delete canvasHost.dataset.triangles;
+    delete canvasHost.dataset.dpr;
+    delete canvasHost.dataset.batchDrawCallsSaved;
+    round5PerformanceStore.remove("hero");
     scene.clear();
   }
 
@@ -352,6 +382,9 @@ export async function createHeroScene({
       signal,
     });
     if (disposed) throw new Error("Hero scene was disposed while loading textures.");
+    const batchReport = optimizeStaticStageMeshes(model.root, model.animations);
+    model.root.userData.round5BatchReport = batchReport;
+    canvasHost.dataset.batchDrawCallsSaved = String(batchReport.drawCallsSaved);
     canvasHost.dataset.materialNormals = String(
       model.root.userData.round5MaterialNormalsEnabled !== false,
     );

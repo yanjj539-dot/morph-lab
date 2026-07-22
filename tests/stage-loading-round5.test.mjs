@@ -11,6 +11,20 @@ const residencyUrl = new URL(
   "../app/scene/animation/stageResidency.ts",
   import.meta.url,
 );
+const texturePolicyUrl = new URL(
+  "../app/scene/assets/stageTexturePolicy.ts",
+  import.meta.url,
+);
+
+test("makes Observe interactive before optional material hydration", async () => {
+  assert.equal(existsSync(texturePolicyUrl), true, "stageTexturePolicy.ts is missing");
+  if (!existsSync(texturePolicyUrl)) return;
+  const { stageTextureLoadMode } = await import(texturePolicyUrl.href);
+  assert.equal(stageTextureLoadMode("observe"), "deferred");
+  assert.equal(stageTextureLoadMode("structure"), "blocking");
+  assert.equal(stageTextureLoadMode("prototype"), "blocking");
+  assert.equal(stageTextureLoadMode("release"), "blocking");
+});
 
 test("loads Observe independently and collapses duplicate stage requests", async () => {
   assert.equal(existsSync(preloaderUrl), true, "stagePreloader.ts is missing");

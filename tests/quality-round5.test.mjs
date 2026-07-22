@@ -41,6 +41,13 @@ test("selects deterministic high, balanced, and low stationary targets", async (
   }
 });
 
+test("exposes deterministic QA tier overrides without changing production defaults", async () => {
+  const { qualitySettingsForTier } = await import(qualityUrl.href);
+  assert.equal(qualitySettingsForTier("high").idleDpr, 1.5);
+  assert.equal(qualitySettingsForTier("balanced").idleDpr, 1.25);
+  assert.equal(qualitySettingsForTier("low").idleDpr, 1);
+});
+
 test("drops DPR after 60 slow frames and raises only after cooldown and 120 fast frames", async () => {
   assert.equal(existsSync(resolutionUrl), true, "dynamicResolution.ts is missing");
   if (!existsSync(resolutionUrl)) return;

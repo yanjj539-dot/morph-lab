@@ -185,8 +185,8 @@ test("Hero and Journey preserve shared resources until their parsed leases relea
 
   assert.match(hero, /preserveGeometries/);
   assert.match(hero, /loadedModel\?\.release/);
-  assert.match(journey, /preserveGeometries/);
-  assert.match(journey, /disposeLoadedStageModels/);
+  assert.match(journey, /sharedGeometries/);
+  assert.match(journey, /runtime\.model\.release/);
 });
 
 test("coalesces the shared KTX2 material set behind texture leases", async () => {

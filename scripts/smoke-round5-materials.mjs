@@ -19,6 +19,10 @@ try {
     });
     await page.locator('.scroll-journey[data-state="ready"]').waitFor({ timeout: 15_000 });
     const canvas = page.locator(".scroll-journey__canvas");
+    await page.waitForFunction(() => {
+      const node = document.querySelector(".scroll-journey__canvas");
+      return node?.dataset.materialsState === "ready";
+    });
     assert.equal(await canvas.getAttribute("data-normal-distance-tier"), "near");
     assert.equal(
       await canvas.getAttribute("data-material-normals"),

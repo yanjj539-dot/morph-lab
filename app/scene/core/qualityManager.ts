@@ -89,8 +89,37 @@ export function selectQualitySettings({
   };
 }
 
+export function qualitySettingsForTier(
+  tier: SceneQualityTier,
+): SceneQualitySettings {
+  if (tier === "high") {
+    return selectQualitySettings({
+      devicePixelRatio: 2,
+      deviceMemory: 16,
+      hardwareConcurrency: 16,
+    });
+  }
+  if (tier === "low") {
+    return selectQualitySettings({
+      devicePixelRatio: 1,
+      deviceMemory: 4,
+      hardwareConcurrency: 4,
+      coarsePointer: true,
+    });
+  }
+  return selectQualitySettings({
+    devicePixelRatio: 1,
+    deviceMemory: 8,
+    hardwareConcurrency: 8,
+  });
+}
+
 export function getQualitySettings(): SceneQualitySettings {
   if (typeof window === "undefined") return selectQualitySettings({});
+  const forcedTier = new URLSearchParams(window.location.search).get("qualityTier");
+  if (forcedTier === "high" || forcedTier === "balanced" || forcedTier === "low") {
+    return qualitySettingsForTier(forcedTier);
+  }
   const navigatorWithMemory = navigator as Navigator & { deviceMemory?: number };
   return selectQualitySettings({
     devicePixelRatio: window.devicePixelRatio || 1,

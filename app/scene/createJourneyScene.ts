@@ -28,6 +28,7 @@ import {
   createStagePreloader,
   type StageLoadState,
 } from "./assets/stagePreloader.ts";
+import { stageTextureLoadMode } from "./assets/stageTexturePolicy.ts";
 import { createBlenderClipController } from "./animation/blenderClipController";
 import {
   createCameraTimeline,
@@ -43,6 +44,7 @@ import { createStageTimelines } from "./animation/stageTimelines";
 import { createCameraCollisionInspector } from "./collision/cameraCollision";
 import { createCameraRig } from "./core/createCameraRig";
 import { createRenderer } from "./core/createRenderer";
+import { optimizeStaticStageMeshes } from "./core/staticBatchOptimizer.ts";
 import {
   createDynamicResolutionController,
   type DynamicResolutionChange,
@@ -55,9 +57,11 @@ import {
 } from "./core/renderScheduler";
 import { inspectCameraTimeline } from "./debug/cameraPathInspector";
 import { createCameraVisibilityInspector } from "./debug/cameraVisibilityInspector";
+import { round5PerformanceStore } from "./debug/performanceStore.ts";
 import { createProjectedLabels } from "./interaction/projectedLabels";
 import { createVisibilityController } from "./interaction/visibilityController";
 import { createStudioLightRig } from "./lighting/studioLightRig";
+import { getWebGLRendererDescription } from "./materials/normalMapPolicy.ts";
 
 export type JourneyPerformanceState = {
   currentStage: JourneyStageId;
@@ -93,7 +97,8 @@ export type JourneySceneOptions = {
 type LoadedStageRuntime = {
   stage: JourneyStageId;
   model: LoadedStageModel;
-  textures: LoadedTextureResources;
+  textures: LoadedTextureResources | null;
+  disposed: boolean;
 };
 
 const ROUTE_POINTS = [
@@ -263,6 +268,31 @@ export async function createJourneyScene({
     onChange: applyDpr,
   });
 
+  function publishPerformance(schedulerState?: string): void {
+    const render = renderer.info.render;
+    canvasHost.dataset.drawCalls = String(render.calls);
+    canvasHost.dataset.peakDrawCalls = String(
+      Math.max(Number(canvasHost.dataset.peakDrawCalls ?? 0), render.calls),
+    );
+    canvasHost.dataset.triangles = String(render.triangles);
+    canvasHost.dataset.dpr = String(renderer.getPixelRatio());
+    round5PerformanceStore.update("journey", {
+      schedulerState: schedulerState ?? canvasHost.dataset.schedulerState ?? "sleeping",
+      drawCalls: render.calls,
+      triangles: render.triangles,
+      geometries: renderer.info.memory.geometries,
+      textures: renderer.info.memory.textures,
+      programs: renderer.info.programs?.length ?? 0,
+      dpr: renderer.getPixelRatio(),
+      currentStage: currentResidentStage,
+      loadedStages: [...loadedStages.keys()],
+      activeCanvasCount: document.querySelectorAll("canvas").length,
+      gpuRenderer: getWebGLRendererDescription(renderer),
+      webglVersion: renderer.capabilities.isWebGL2 ? "WebGL 2" : "WebGL 1",
+      maxAnisotropy: renderer.capabilities.getMaxAnisotropy(),
+    });
+  }
+
   function markActivity(reason: string, durationMs = 180): void {
     if (disposed || !ready) return;
     if (scheduler.getState().status === "sleeping") previousFrameTime = 0;
@@ -278,21 +308,25 @@ export async function createJourneyScene({
   }
 
   function disposeStageRuntime(runtime: LoadedStageRuntime): void {
+    runtime.disposed = true;
     activeClipStages.delete(runtime.stage);
     clipController.removeStage(runtime.stage);
     stageTimelines.removeStage(runtime.stage);
     runtime.model.root.removeFromParent();
     runtime.model.root.traverse((object) => {
       if (!(object instanceof Mesh)) return;
+      if (!runtime.model.sharedGeometries?.has(object.geometry)) {
+        object.geometry.dispose();
+      }
       const materials = Array.isArray(object.material)
         ? object.material
         : [object.material];
       for (const material of materials) material.dispose();
     });
-    for (const texture of runtime.textures) {
-      if (!runtime.textures.sharedTextures.has(texture)) texture.dispose();
+    for (const texture of runtime.textures ?? []) {
+      if (!runtime.textures?.sharedTextures.has(texture)) texture.dispose();
     }
-    runtime.textures.release();
+    runtime.textures?.release();
     runtime.model.release?.();
     loadedStages.delete(runtime.stage);
   }
@@ -351,13 +385,25 @@ export async function createJourneyScene({
       canvasHost.dataset.currentStage = residency.current;
       const currentRuntime = loadedStages.get(residency.current);
       if (currentRuntime) {
-        canvasHost.dataset.materialNormals = String(
-          currentRuntime.model.root.userData.round5MaterialNormalsEnabled !== false,
+        const materialsState = String(
+          currentRuntime.model.root.userData.round5MaterialsState ?? "loading",
         );
+        canvasHost.dataset.materialsState = materialsState;
+        if (materialsState === "ready") {
+          canvasHost.dataset.materialNormals = String(
+            currentRuntime.model.root.userData.round5MaterialNormalsEnabled !== false,
+          );
+        } else {
+          delete canvasHost.dataset.materialNormals;
+        }
         canvasHost.dataset.normalDistanceTier = String(
           currentRuntime.model.root.userData.round5NormalDistanceTier ?? "near",
         );
+        canvasHost.dataset.batchDrawCallsSaved = String(
+          currentRuntime.model.root.userData.round5BatchReport?.drawCallsSaved ?? 0,
+        );
       }
+      publishPerformance();
     } finally {
       reconciling = false;
     }
@@ -367,35 +413,74 @@ export async function createJourneyScene({
     scheduleIdle,
     async loadStage(stage) {
       const model = await acquireRound4StageAsset(stage, "Round5Journey", { signal });
-      let textures: LoadedTextureResources | null = null;
+      let runtime: LoadedStageRuntime | null = null;
       try {
         signal?.throwIfAborted();
-        textures = await applyRound4StageTextures(stage, model.root, {
-          maxAnisotropy: Math.min(
-            quality.anisotropy,
-            renderer.capabilities.getMaxAnisotropy(),
-          ),
-          quality,
-          renderer,
-          scene,
-          signal,
-        });
-        signal?.throwIfAborted();
-        if (disposed) throw new Error(`Journey ${stage} loaded after disposal.`);
+        const batchReport = optimizeStaticStageMeshes(model.root, model.animations);
+        model.root.userData.round5BatchReport = batchReport;
         model.root.updateMatrix();
         model.root.matrixAutoUpdate = false;
-        const runtime = { stage, model, textures };
-        loadedStages.set(stage, runtime);
+        const stageRuntime: LoadedStageRuntime = {
+          stage,
+          model,
+          textures: null,
+          disposed: false,
+        };
+        runtime = stageRuntime;
+
+        const hydrateTextures = async (): Promise<void> => {
+          const loadedTextures = await applyRound4StageTextures(stage, model.root, {
+            maxAnisotropy: Math.min(
+              quality.anisotropy,
+              renderer.capabilities.getMaxAnisotropy(),
+            ),
+            quality,
+            renderer,
+            scene,
+            signal,
+          });
+          const releaseLoadedTextures = () => {
+            for (const texture of loadedTextures) {
+              if (!loadedTextures.sharedTextures.has(texture)) texture.dispose();
+            }
+            loadedTextures.release();
+          };
+          if (disposed || stageRuntime.disposed) {
+            releaseLoadedTextures();
+            return;
+          }
+          stageRuntime.textures = loadedTextures;
+          model.root.userData.round5MaterialsState = "ready";
+          reconcileResidency();
+          markActivity(`materials-ready:${stage}`);
+        };
+
+        model.root.userData.round5MaterialsState = "loading";
+        if (stageTextureLoadMode(stage) === "blocking") {
+          await hydrateTextures();
+          signal?.throwIfAborted();
+        }
+        if (disposed) throw new Error(`Journey ${stage} loaded after disposal.`);
+        loadedStages.set(stage, stageRuntime);
         stageTimelines.addStage(stage, model.root);
         reconcileResidency();
         markActivity(`stage-loaded:${stage}`);
-        return runtime;
+
+        if (stageTextureLoadMode(stage) === "deferred") {
+          void hydrateTextures().catch((error: unknown) => {
+            if (stageRuntime.disposed || disposed || signal?.aborted) return;
+            model.root.userData.round5MaterialsState = "error";
+            reconcileResidency();
+            console.warn(`Journey ${stage} material hydration failed.`, error);
+          });
+        }
+        return stageRuntime;
       } catch (error) {
-        if (textures) {
-          for (const texture of textures) {
-            if (!textures.sharedTextures.has(texture)) texture.dispose();
+        if (runtime?.textures) {
+          for (const texture of runtime.textures) {
+            if (!runtime.textures.sharedTextures.has(texture)) texture.dispose();
           }
-          textures.release();
+          runtime.textures.release();
         }
         model.release?.();
         throw error;
@@ -471,6 +556,7 @@ export async function createJourneyScene({
     projectedLabels?.update(progress, cameraRig.camera);
     renderer.render(scene, cameraRig.camera);
     resolution.recordFrame(frameTimeMs, time);
+    publishPerformance("rendering");
   }
 
   const visibility = createVisibilityController(canvasHost, {
@@ -489,6 +575,7 @@ export async function createJourneyScene({
     onStateChange(state) {
       canvasHost.dataset.schedulerState = state.status;
       canvasHost.dataset.schedulerFrames = String(state.frameCount);
+      publishPerformance(state.status);
     },
   });
 
@@ -518,7 +605,14 @@ export async function createJourneyScene({
     delete canvasHost.dataset.schedulerState;
     delete canvasHost.dataset.schedulerFrames;
     delete canvasHost.dataset.materialNormals;
+    delete canvasHost.dataset.materialsState;
+    delete canvasHost.dataset.peakDrawCalls;
     delete canvasHost.dataset.normalDistanceTier;
+    delete canvasHost.dataset.drawCalls;
+    delete canvasHost.dataset.triangles;
+    delete canvasHost.dataset.dpr;
+    delete canvasHost.dataset.batchDrawCallsSaved;
+    round5PerformanceStore.remove("journey");
     scene.clear();
   }
 
