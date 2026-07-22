@@ -18,7 +18,7 @@ export function createRenderer(
     stencil: false,
   });
 
-  renderer.setPixelRatio(quality.activeDpr);
+  renderer.setPixelRatio(Math.min(quality.activeDpr, 1.5));
   renderer.setSize(host.clientWidth, host.clientHeight, false);
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = AgXToneMapping;
