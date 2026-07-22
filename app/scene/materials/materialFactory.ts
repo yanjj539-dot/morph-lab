@@ -8,6 +8,11 @@ import {
 import type { SceneQualitySettings } from "../core/qualityManager";
 import { configureAcrylicObject, isAcrylicMaterial } from "./acrylicMaterial";
 import type { Round3TextureSet } from "./loadCompressedTextures";
+import {
+  isMicroNormalEligible,
+  normalPolicyFor,
+  type NormalDistanceTier,
+} from "./normalMapPolicy.ts";
 
 export type Round4MaterialProfile = Readonly<{
   color: `#${string}`;
@@ -26,6 +31,7 @@ export type Round4MaterialProfile = Readonly<{
 
 export type Round4MaterialRuntimeOptions = Readonly<{
   normalMapsEnabled?: boolean;
+  normalDistanceTier?: NormalDistanceTier;
 }>;
 
 export const ROUND4_RENDER_ORDER_POLICY = Object.freeze({
@@ -44,23 +50,23 @@ export const ROUND4_SCREEN_CONTENT_POLICY = Object.freeze({
 export const ROUND4_MATERIAL_PROFILES = Object.freeze({
   warmWhitePlastic: {
     color: "#ede9df", roughness: 0.58, metalness: 0, ior: 1.46, transmission: 0,
-    normalScale: 0.035, aoMapIntensity: 0.1, emissiveIntensity: 0, depthWrite: true, renderOrder: 0,
+    normalScale: 0.01, aoMapIntensity: 0.1, emissiveIntensity: 0, depthWrite: true, renderOrder: 0,
   },
   coolWhiteCeramic: {
     color: "#e6ecef", roughness: 0.34, metalness: 0, ior: 1.52, transmission: 0,
-    normalScale: 0.015, aoMapIntensity: 0, emissiveIntensity: 0, depthWrite: true, renderOrder: 0,
+    normalScale: 0.006, aoMapIntensity: 0, emissiveIntensity: 0, depthWrite: true, renderOrder: 0,
   },
   paper: {
     color: "#eeeae1", roughness: 0.92, metalness: 0, ior: 1.45, transmission: 0,
-    normalScale: 0.05, aoMapIntensity: 0.12, emissiveIntensity: 0, depthWrite: true, renderOrder: 0,
+    normalScale: 0.012, aoMapIntensity: 0.12, emissiveIntensity: 0, depthWrite: true, renderOrder: 0,
   },
   softGreyMetal: {
     color: "#a7adb2", roughness: 0.64, metalness: 0.68, ior: 1.5, transmission: 0,
-    normalScale: 0.035, aoMapIntensity: 0, emissiveIntensity: 0, depthWrite: true, renderOrder: 0,
+    normalScale: 0.014, aoMapIntensity: 0, emissiveIntensity: 0, depthWrite: true, renderOrder: 0,
   },
   blackRubber: {
     color: "#17191d", roughness: 0.88, metalness: 0, ior: 1.46, transmission: 0,
-    normalScale: 0.055, aoMapIntensity: 0, emissiveIntensity: 0, depthWrite: true, renderOrder: 0,
+    normalScale: 0.018, aoMapIntensity: 0, emissiveIntensity: 0, depthWrite: true, renderOrder: 0,
   },
   screenGlass: {
     color: "#d7e2ec", roughness: 0.12, metalness: 0, ior: 1.46, transmission: 0.16,
@@ -152,6 +158,7 @@ export function applyRound4MaterialSystem(
   options: Round4MaterialRuntimeOptions = {},
 ): void {
   const normalMapsEnabled = options.normalMapsEnabled ?? true;
+  const normalDistanceTier = options.normalDistanceTier ?? "near";
 
   root.traverse((object) => {
     if (!(object instanceof Mesh)) return;
@@ -162,6 +169,16 @@ export function applyRound4MaterialSystem(
       if (!(material instanceof MeshStandardMaterial)) continue;
       material.envMapIntensity = quality.tier === "high" ? 0.68 : 0.52;
       const route = resolveRound4MaterialRoute(material.name);
+      object.geometry.computeBoundingSphere();
+      const microNormalEligible = isMicroNormalEligible(
+        object.name,
+        object.geometry.boundingSphere?.radius ?? Number.POSITIVE_INFINITY,
+      );
+      const normalPolicy = normalPolicyFor(
+        route ?? "",
+        normalDistanceTier,
+        normalMapsEnabled && microNormalEligible,
+      );
 
       if (isAcrylicMaterial(material) || route === "frostedAcrylic") continue;
       if (route === "screenContent") {
@@ -178,25 +195,25 @@ export function applyRound4MaterialSystem(
       } else if (route === "paper") {
         const profile = ROUND4_MATERIAL_PROFILES.paper;
         applyProfile(object, material, profile);
-        material.normalMap = normalMapsEnabled ? textures.paperNormal : null;
+        material.normalMap = normalPolicy.enabled ? textures.paperNormal : null;
         material.aoMap = textures.studioOrm;
       } else if (route === "softGreyMetal") {
         const profile = ROUND4_MATERIAL_PROFILES.softGreyMetal;
         applyProfile(object, material, profile);
-        material.normalMap = normalMapsEnabled ? textures.metalBrushedNormal : null;
+        material.normalMap = normalPolicy.enabled ? textures.metalBrushedNormal : null;
         material.roughnessMap = null;
       } else if (route === "blackRubber") {
         const profile = ROUND4_MATERIAL_PROFILES.blackRubber;
         applyProfile(object, material, profile);
-        material.normalMap = normalMapsEnabled ? textures.rubberNormal : null;
+        material.normalMap = normalPolicy.enabled ? textures.rubberNormal : null;
       } else if (route === "coolWhiteCeramic") {
         const profile = ROUND4_MATERIAL_PROFILES.coolWhiteCeramic;
         applyProfile(object, material, profile);
-        material.normalMap = normalMapsEnabled ? textures.plasticNormal : null;
+        material.normalMap = normalPolicy.enabled ? textures.plasticNormal : null;
       } else if (route === "warmWhitePlastic") {
         const profile = ROUND4_MATERIAL_PROFILES.warmWhitePlastic;
         applyProfile(object, material, profile);
-        material.normalMap = normalMapsEnabled ? textures.plasticNormal : null;
+        material.normalMap = normalPolicy.enabled ? textures.plasticNormal : null;
         material.aoMap = textures.studioOrm;
       } else if (route === "coralAccent") {
         applyProfile(object, material, ROUND4_MATERIAL_PROFILES.coralAccent);
@@ -204,7 +221,32 @@ export function applyRound4MaterialSystem(
         applyProfile(object, material, ROUND4_MATERIAL_PROFILES.signalBlue);
       }
 
+      material.normalScale.setScalar(normalPolicy.scale);
+      material.userData.round5NormalRoute = route;
+      material.userData.round5NormalsEnabled =
+        normalMapsEnabled && microNormalEligible;
       material.needsUpdate = true;
+    }
+  });
+}
+
+export function applyRound5NormalDistanceTier(
+  root: Object3D,
+  distanceTier: NormalDistanceTier,
+): void {
+  root.traverse((object) => {
+    if (!(object instanceof Mesh)) return;
+    const materials = Array.isArray(object.material)
+      ? object.material
+      : [object.material];
+    for (const material of materials) {
+      if (!(material instanceof MeshStandardMaterial)) continue;
+      const route = material.userData.round5NormalRoute;
+      if (typeof route !== "string") continue;
+      const enabled = material.userData.round5NormalsEnabled !== false;
+      material.normalScale.setScalar(
+        normalPolicyFor(route, distanceTier, enabled).scale,
+      );
     }
   });
 }

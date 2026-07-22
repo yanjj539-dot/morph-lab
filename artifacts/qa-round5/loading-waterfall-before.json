@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-22T04:56:27.199Z",
+  "resources": [
+    {
+      "name": "http://127.0.0.1:5195/models/round-4/observe.glb",
+      "initiatorType": "fetch",
+      "startTime": 546.5,
+      "duration": 11.799999999813735,
+      "transferSize": 341020,
+      "encodedBodySize": 340720,
+      "decodedBodySize": 340720
+    },
+    {
+      "name": "http://127.0.0.1:5195/models/round-4/prototype.glb",
+      "initiatorType": "fetch",
+      "startTime": 546.7000000001863,
+      "duration": 15.599999999627471,
+      "transferSize": 524988,
+      "encodedBodySize": 524688,
+      "decodedBodySize": 524688
+    },
+    {
+      "name": "http://127.0.0.1:5195/models/round-4/structure.glb",
+      "initiatorType": "fetch",
+      "startTime": 546.7000000001863,
+      "duration": 17.699999999720603,
+      "transferSize": 465552,
+      "encodedBodySize": 465252,
+      "decodedBodySize": 465252
+    },
+    {
+      "name": "http://127.0.0.1:5195/models/round-4/release.glb",
+      "initiatorType": "fetch",
+      "startTime": 546.7999999998137,
+      "duration": 37.10000000009313,
+      "transferSize": 373448,
+      "encodedBodySize": 373148,
+      "decodedBodySize": 373148
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/paper-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.5,
+      "duration": 8.700000000186265,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/plastic-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.5,
+      "duration": 9.100000000093132,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/metal-brushed-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.6000000000931,
+      "duration": 9.699999999720603,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/rubber-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.6000000000931,
+      "duration": 10.399999999906868,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/studio-orm.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.7000000001863,
+      "duration": 15.399999999906868,
+      "transferSize": 88172,
+      "encodedBodySize": 87872,
+      "decodedBodySize": 87872
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/neutral-studio-env.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.7999999998137,
+      "duration": 16.200000000186265,
+      "transferSize": 175596,
+      "encodedBodySize": 175296,
+      "decodedBodySize": 175296
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/paper-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5976.100000000093,
+      "duration": 9,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/plastic-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5976.299999999814,
+      "duration": 11.700000000186265,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/metal-brushed-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5976.600000000093,
+      "duration": 12.5,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/rubber-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5976.799999999814,
+      "duration": 13.100000000093132,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/studio-orm.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5977.100000000093,
+      "duration": 13.5,
+      "transferSize": 88172,
+      "encodedBodySize": 87872,
+      "decodedBodySize": 87872
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/neutral-studio-env.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5977.299999999814,
+      "duration": 15.300000000279397,
+      "transferSize": 175596,
+      "encodedBodySize": 175296,
+      "decodedBodySize": 175296
+    }
+  ]
+}

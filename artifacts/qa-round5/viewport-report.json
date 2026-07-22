@@ -1,0 +1,32 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "state": "ready",
+    "glbCount": 2
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "state": "ready",
+    "glbCount": 2
+  },
+  {
+    "width": 1280,
+    "height": 800,
+    "state": "ready",
+    "glbCount": 2
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "state": "ready",
+    "glbCount": 2
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "state": "fallback",
+    "glbCount": 0
+  }
+]

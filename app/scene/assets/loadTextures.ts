@@ -11,13 +11,19 @@ import {
 } from "three";
 
 import { type JourneyStageId } from "../../data/journey";
-import type { SceneQualitySettings } from "../core/qualityManager";
+import type {
+  SceneQualitySettings,
+  SceneQualityTier,
+} from "../core/qualityManager";
 import { applyRound3MaterialSystem } from "../materials/materialFactory";
-import { loadRound3CompressedTextures } from "../materials/loadCompressedTextures";
+import { acquireRound3CompressedTextures } from "../materials/loadCompressedTextures";
 import {
   getWebGLRendererDescription,
+  normalDistanceTierForStage,
+  readMaterialNormalOverride,
   supportsStableCompressedNormals,
 } from "../materials/normalMapPolicy";
+import { configureScreenTexture } from "../materials/screenTexturePolicy.ts";
 import {
   configureProjectSurface,
   type ProjectSurfaceKind,
@@ -38,6 +44,7 @@ import { type Round2ModelMap } from "./loadModels";
 
 export type TextureRuntimeOptions = {
   maxAnisotropy?: number;
+  qualityTier?: SceneQualityTier;
   signal?: AbortSignal;
 };
 
@@ -45,6 +52,11 @@ export type Round3TextureRuntimeOptions = TextureRuntimeOptions & {
   quality: SceneQualitySettings;
   renderer: WebGLRenderer;
   scene: Scene;
+};
+
+export type LoadedTextureResources = Texture[] & {
+  readonly sharedTextures: ReadonlySet<Texture>;
+  release(): void;
 };
 
 type StageRootMap = Partial<Record<JourneyStageId, Object3D>>;
@@ -174,12 +186,15 @@ function installConfiguredSurface(
   mesh: Mesh,
   texture: Texture,
   config: ScreenConfig,
+  maxAnisotropy: number,
+  qualityTier: SceneQualityTier,
 ): SurfaceReplacement {
   const previous = mesh.material;
   const previousRenderOrder = mesh.renderOrder;
   const previousCastShadow = mesh.castShadow;
   const previousReceiveShadow = mesh.receiveShadow;
   const contentTexture = texture.clone();
+  configureScreenTexture(contentTexture, { maxAnisotropy }, qualityTier);
   let contentMaterial: MeshStandardMaterial;
   let glassMaterial: Material | null = null;
   if (config.kind === "screen") {
@@ -276,6 +291,7 @@ async function applyProjectTextures(
   const texturePromises = new Map<string, Promise<Texture>>();
   const replacedMaterials: SurfaceReplacement[] = [];
   const maxAnisotropy = Math.max(1, options.maxAnisotropy ?? 4);
+  const qualityTier = options.qualityTier ?? "balanced";
 
   try {
     const results = await Promise.allSettled(
@@ -318,11 +334,20 @@ async function applyProjectTextures(
         ? findScreenConfig(binding.stage as JourneyStageId, binding.meshName)
         : undefined;
       if (config) {
-        const replacement = installConfiguredSurface(mesh, texture, config);
+        const replacement = installConfiguredSurface(
+          mesh,
+          texture,
+          config,
+          maxAnisotropy,
+          qualityTier,
+        );
         loadedTextures.push(...replacement.contentTextures);
         replacedMaterials.push(replacement);
       } else {
         const replacement = createLegacyReplacement(mesh);
+        if (projectSurfaceKind(binding.meshName) === "screen") {
+          configureScreenTexture(texture, { maxAnisotropy }, qualityTier);
+        }
         const previous = configureProjectSurface(
           mesh,
           texture,
@@ -359,7 +384,7 @@ export function applyScreenManifestTextures(
 export async function applyRound3Textures(
   models: Round2ModelMap,
   options: Round3TextureRuntimeOptions,
-): Promise<readonly Texture[]> {
+): Promise<LoadedTextureResources> {
   return applyAuthoredTextures(models, ROUND3_TEXTURE_BINDINGS, options);
 }
 
@@ -367,32 +392,60 @@ async function applyAuthoredTextures(
   models: StageRootMap,
   bindings: readonly TextureBinding[],
   options: Round3TextureRuntimeOptions,
-): Promise<readonly Texture[]> {
+): Promise<LoadedTextureResources> {
   const maxAnisotropy = Math.max(1, options.maxAnisotropy ?? 4);
-  const compressed = await loadRound3CompressedTextures(options.renderer, {
+  const compressedLease = await acquireRound3CompressedTextures(options.renderer, {
     maxAnisotropy,
     signal: options.signal,
   });
+  const compressed = compressedLease.textures;
 
   try {
-    const normalMapsEnabled = supportsStableCompressedNormals(
+    const normalOverride = readMaterialNormalOverride(
+      typeof window === "undefined" ? "" : window.location.search,
+    );
+    const stableCompressedNormals = supportsStableCompressedNormals(
       getWebGLRendererDescription(options.renderer),
     );
-    for (const root of Object.values(models)) {
+    const normalMapsEnabled = normalOverride ?? stableCompressedNormals;
+    for (const [stage, root] of Object.entries(models)) {
       if (!root) continue;
+      const normalDistanceTier = normalDistanceTierForStage(stage);
       applyRound3MaterialSystem(root, compressed, options.quality, {
         normalMapsEnabled,
+        normalDistanceTier,
       });
+      root.userData.round5MaterialNormalsEnabled = normalMapsEnabled;
+      root.userData.round5NormalDistanceTier = normalDistanceTier;
     }
 
     options.scene.environment = compressed.neutralStudioEnv;
     options.scene.environmentIntensity = options.quality.tier === "high" ? 0.78 : 0.62;
-    const projectTextures = await applyProjectTextures(models, bindings, options, true);
+    const projectTextures = await applyProjectTextures(
+      models,
+      bindings,
+      { ...options, qualityTier: options.quality.tier },
+      true,
+    );
 
-    return [...Object.values(compressed), ...projectTextures];
+    const resources = [
+      ...Object.values(compressed),
+      ...projectTextures,
+    ] as LoadedTextureResources;
+    Object.defineProperties(resources, {
+      sharedTextures: {
+        value: compressedLease.sharedTextures,
+        enumerable: false,
+      },
+      release: {
+        value: compressedLease.release,
+        enumerable: false,
+      },
+    });
+    return resources;
   } catch (error) {
     options.scene.environment = null;
-    disposeLoadedTextures(Object.values(compressed));
+    compressedLease.release();
     throw error;
   }
 }
@@ -400,7 +453,7 @@ async function applyAuthoredTextures(
 export function applyRound4Textures(
   models: Round2ModelMap,
   options: Round3TextureRuntimeOptions,
-): Promise<readonly Texture[]> {
+): Promise<LoadedTextureResources> {
   return applyAuthoredTextures(models, ROUND4_TEXTURE_BINDINGS, options);
 }
 
@@ -408,7 +461,7 @@ export function applyRound4StageTextures(
   stage: JourneyStageId,
   root: Object3D,
   options: Round3TextureRuntimeOptions,
-): Promise<readonly Texture[]> {
+): Promise<LoadedTextureResources> {
   const models = { [stage]: root } as StageRootMap;
   const bindings = ROUND4_TEXTURE_BINDINGS.filter(
     (binding) => binding.stage === stage,

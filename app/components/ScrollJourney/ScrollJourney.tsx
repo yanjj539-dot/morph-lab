@@ -211,7 +211,10 @@ export default function ScrollJourney() {
     const beginExperience = () => {
       cleanupExperience();
       const search = new URLSearchParams(window.location.search);
-      const isQaCapture = search.has("qaStage") || search.has("qaProgress");
+      const isQaCapture =
+        search.has("qaStage") ||
+        search.has("qaProgress") ||
+        search.has("qaPerformance");
       const isDesktop = desktopQuery.matches;
       const prefersReducedMotion = reducedMotionQuery.matches;
       if (!isDesktop || prefersReducedMotion) {

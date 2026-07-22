@@ -1,50 +1,52 @@
-export type SceneQualityTier = "mobile" | "balanced" | "high";
+export type SceneQualityTier = "low" | "balanced" | "high";
 
 export type SceneQualitySettings = {
   tier: SceneQualityTier;
   dpr: number;
+  activeDpr: number;
+  idleDpr: number;
+  targetFps: number;
+  stableFrameCount: number;
+  transmissionResolutionScale: number;
   anisotropy: number;
   shadows: boolean;
   shadowMapSize: number;
   antialias: boolean;
 };
 
-const DESKTOP_DPR_CAP = 1.5;
+export type QualityProfile = {
+  devicePixelRatio?: number;
+  deviceMemory?: number;
+  hardwareConcurrency?: number;
+  coarsePointer?: boolean;
+  narrowViewport?: boolean;
+  reducedMotion?: boolean;
+};
 
-export function getQualitySettings(): SceneQualitySettings {
-  if (typeof window === "undefined") {
-    return {
-      tier: "balanced",
-      dpr: 1,
-      anisotropy: 4,
-      shadows: true,
-      shadowMapSize: 1024,
-      antialias: true,
-    };
-  }
-
-  const dpr = Math.min(window.devicePixelRatio || 1, DESKTOP_DPR_CAP);
-  const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
-  const isNarrowViewport = window.matchMedia("(max-width: 767px)").matches;
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
-  const navigatorWithMemory = navigator as Navigator & {
-    deviceMemory?: number;
-  };
-  const deviceMemory = navigatorWithMemory.deviceMemory ?? 4;
-  const hardwareConcurrency = navigator.hardwareConcurrency ?? 4;
-  const isConstrainedDevice =
-    isCoarsePointer ||
-    isNarrowViewport ||
-    prefersReducedMotion ||
+export function selectQualitySettings({
+  devicePixelRatio = 1,
+  deviceMemory = 4,
+  hardwareConcurrency = 4,
+  coarsePointer = false,
+  narrowViewport = false,
+  reducedMotion = false,
+}: QualityProfile): SceneQualitySettings {
+  const constrained =
+    coarsePointer ||
+    narrowViewport ||
+    reducedMotion ||
     deviceMemory <= 4 ||
     hardwareConcurrency <= 4;
 
-  if (isConstrainedDevice) {
+  if (constrained) {
     return {
-      tier: "mobile",
-      dpr: Math.min(dpr, 1),
+      tier: "low",
+      dpr: 1,
+      activeDpr: 1,
+      idleDpr: 1,
+      targetFps: 45,
+      stableFrameCount: 6,
+      transmissionResolutionScale: 0.5,
       anisotropy: 2,
       shadows: false,
       shadowMapSize: 512,
@@ -52,10 +54,19 @@ export function getQualitySettings(): SceneQualitySettings {
     };
   }
 
-  if (dpr >= 1.4 && deviceMemory >= 8 && hardwareConcurrency >= 8) {
+  const high =
+    devicePixelRatio >= 1.5 &&
+    deviceMemory >= 8 &&
+    hardwareConcurrency >= 8;
+  if (high) {
     return {
       tier: "high",
-      dpr,
+      dpr: 1.5,
+      activeDpr: 1.5,
+      idleDpr: 1.5,
+      targetFps: 60,
+      stableFrameCount: 10,
+      transmissionResolutionScale: 0.75,
       anisotropy: 8,
       shadows: true,
       shadowMapSize: 2048,
@@ -65,10 +76,57 @@ export function getQualitySettings(): SceneQualitySettings {
 
   return {
     tier: "balanced",
-    dpr,
+    dpr: 1.25,
+    activeDpr: 1.25,
+    idleDpr: 1.25,
+    targetFps: 60,
+    stableFrameCount: 8,
+    transmissionResolutionScale: 0.5,
     anisotropy: 4,
     shadows: true,
     shadowMapSize: 1024,
     antialias: true,
   };
+}
+
+export function qualitySettingsForTier(
+  tier: SceneQualityTier,
+): SceneQualitySettings {
+  if (tier === "high") {
+    return selectQualitySettings({
+      devicePixelRatio: 2,
+      deviceMemory: 16,
+      hardwareConcurrency: 16,
+    });
+  }
+  if (tier === "low") {
+    return selectQualitySettings({
+      devicePixelRatio: 1,
+      deviceMemory: 4,
+      hardwareConcurrency: 4,
+      coarsePointer: true,
+    });
+  }
+  return selectQualitySettings({
+    devicePixelRatio: 1,
+    deviceMemory: 8,
+    hardwareConcurrency: 8,
+  });
+}
+
+export function getQualitySettings(): SceneQualitySettings {
+  if (typeof window === "undefined") return selectQualitySettings({});
+  const forcedTier = new URLSearchParams(window.location.search).get("qualityTier");
+  if (forcedTier === "high" || forcedTier === "balanced" || forcedTier === "low") {
+    return qualitySettingsForTier(forcedTier);
+  }
+  const navigatorWithMemory = navigator as Navigator & { deviceMemory?: number };
+  return selectQualitySettings({
+    devicePixelRatio: window.devicePixelRatio || 1,
+    deviceMemory: navigatorWithMemory.deviceMemory ?? 8,
+    hardwareConcurrency: navigator.hardwareConcurrency ?? 4,
+    coarsePointer: window.matchMedia("(pointer: coarse)").matches,
+    narrowViewport: window.matchMedia("(max-width: 767px)").matches,
+    reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  });
 }

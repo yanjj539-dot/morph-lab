@@ -1,7 +1,7 @@
 import { type Vector3Tuple } from "three";
 
-import { type JourneyStageId } from "../../data/journey";
-import { withBasePath } from "../../lib/paths";
+import type { JourneyStageId } from "../../data/journey.ts";
+import { withBasePath } from "../../lib/paths.ts";
 
 export type StageAssetManifest = {
   id: JourneyStageId;

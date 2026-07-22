@@ -5,10 +5,10 @@ import {
   LoopOnce,
 } from "three";
 
-import { type JourneyStageId } from "../../data/journey";
-import { ROUND3_STAGE_ORDER } from "../assets/assetManifest";
-import { type Round3ModelMap } from "../assets/loadModels";
-import { clamp01 } from "./progressMath";
+import type { JourneyStageId } from "../../data/journey.ts";
+import { ROUND3_STAGE_ORDER } from "../assets/assetManifest.ts";
+import type { LoadedStageModel, Round3ModelMap } from "../assets/loadModels.ts";
+import { clamp01 } from "./progressMath.ts";
 
 type StageClipWindow = {
   start: number;
@@ -24,6 +24,8 @@ type StageClipState = {
 
 export type BlenderClipController = {
   update(globalProgress: number): void;
+  addStage(stage: JourneyStageId, model: LoadedStageModel): void;
+  removeStage(stage: JourneyStageId): void;
   reset(): void;
   dispose(): void;
   readonly clipNames: readonly string[];
@@ -67,10 +69,15 @@ function localProgressForWindow(
 }
 
 export function createBlenderClipController(
-  models: Round3ModelMap,
+  models: Partial<Round3ModelMap> = {},
 ): BlenderClipController {
-  const states: StageClipState[] = ROUND3_STAGE_ORDER.map((stage) => {
-    const model = models[stage];
+  const states = new Map<JourneyStageId, StageClipState>();
+  let disposed = false;
+
+  function createState(
+    stage: JourneyStageId,
+    model: LoadedStageModel,
+  ): StageClipState {
     selectStageClip(stage, model.animations, model.expectedClipName);
     const mixer = new AnimationMixer(model.root);
     const actions = model.animations
@@ -92,15 +99,36 @@ export function createBlenderClipController(
       actions,
       window: STAGE_CLIP_WINDOWS[stage],
     };
-  });
+  }
 
-  let disposed = false;
+  function removeStage(stage: JourneyStageId): void {
+    const state = states.get(stage);
+    if (!state) return;
+    for (const { action, clip } of state.actions) {
+      action.stop();
+      state.mixer.uncacheClip(clip);
+    }
+    state.mixer.stopAllAction();
+    state.mixer.uncacheRoot(state.mixer.getRoot());
+    states.delete(stage);
+  }
+
+  function addStage(stage: JourneyStageId, model: LoadedStageModel): void {
+    if (disposed) throw new Error("Blender clip controller is disposed.");
+    removeStage(stage);
+    states.set(stage, createState(stage, model));
+  }
+
+  for (const stage of ROUND3_STAGE_ORDER) {
+    const model = models[stage];
+    if (model) addStage(stage, model);
+  }
 
   function update(globalProgress: number): void {
     if (disposed) return;
     const progress = clamp01(globalProgress);
 
-    for (const state of states) {
+    for (const state of states.values()) {
       const localProgress = localProgressForWindow(progress, state.window);
       for (const { action, clip } of state.actions) {
         action.time = localProgress * clip.duration;
@@ -111,7 +139,7 @@ export function createBlenderClipController(
 
   function reset(): void {
     if (disposed) return;
-    for (const state of states) {
+    for (const state of states.values()) {
       for (const { action } of state.actions) action.time = 0;
       state.mixer.update(0);
     }
@@ -119,22 +147,19 @@ export function createBlenderClipController(
 
   return {
     update,
+    addStage,
+    removeStage,
     reset,
     dispose() {
       if (disposed) return;
       reset();
       disposed = true;
-      for (const state of states) {
-        for (const { action, clip } of state.actions) {
-          action.stop();
-          state.mixer.uncacheClip(clip);
-        }
-        state.mixer.stopAllAction();
-        state.mixer.uncacheRoot(models[state.stage].root);
-      }
+      for (const stage of [...states.keys()]) removeStage(stage);
     },
-    clipNames: states.flatMap((state) =>
-      state.actions.map(({ clip }) => clip.name),
-    ),
+    get clipNames() {
+      return [...states.values()].flatMap((state) =>
+        state.actions.map(({ clip }) => clip.name),
+      );
+    },
   };
 }

@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ArrowDownRight } from "lucide-react";
 import { HeroScene } from "./components/HeroScene";
+import { PerformanceDebugPanel } from "./components/PerformanceDebugPanel";
 import { ProjectShowcase } from "./components/ProjectShowcase";
 import ScrollJourney from "./components/ScrollJourney";
 import { SignalButton } from "./components/SignalButton";
@@ -11,6 +12,7 @@ import { withBasePath } from "./lib/paths";
 export default function Home() {
   return (
     <main id="main-content">
+      <PerformanceDebugPanel />
       <section
         className="hero hero--editorial"
         aria-labelledby="hero-title"

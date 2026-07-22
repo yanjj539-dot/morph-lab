@@ -208,7 +208,7 @@ test("camera inspector returns 41 finite Round 4 states by default", () => {
   }
 });
 
-test("all adjacent stages keep their authored ten-percent crossfade windows", () => {
+test("Round 5 preserves the Round 4 camera path while switching opaque stage roots", () => {
   const roots = {
     observe: makeStageRoot(),
     structure: makeStageRoot(),
@@ -217,61 +217,27 @@ test("all adjacent stages keep their authored ten-percent crossfade windows", ()
   };
   const timeline = createStageTimelines(roots);
   const transitions = [
-    {
-      outgoing: "observe",
-      incoming: "structure",
-      incomingStart: 0.18,
-      incomingEnd: 0.28,
-      outgoingStart: 0.2,
-      outgoingEnd: 0.3,
-    },
-    {
-      outgoing: "structure",
-      incoming: "prototype",
-      incomingStart: 0.44,
-      incomingEnd: 0.54,
-      outgoingStart: 0.46,
-      outgoingEnd: 0.56,
-    },
-    {
-      outgoing: "prototype",
-      incoming: "release",
-      incomingStart: 0.69,
-      incomingEnd: 0.79,
-      outgoingStart: 0.7,
-      outgoingEnd: 0.8,
-    },
+    { outgoing: "observe", incoming: "structure", switchPoint: 0.285 },
+    { outgoing: "structure", incoming: "prototype", switchPoint: 0.535 },
+    { outgoing: "prototype", incoming: "release", switchPoint: 0.765 },
   ];
 
   for (const transition of transitions) {
     const outgoing = roots[transition.outgoing];
     const incoming = roots[transition.incoming];
-    assert.ok(Math.abs(transition.incomingEnd - transition.incomingStart - 0.1) < 1e-9);
-    assert.ok(Math.abs(transition.outgoingEnd - transition.outgoingStart - 0.1) < 1e-9);
 
-    timeline.update(transition.incomingStart);
-    assert.equal(stageOpacity(incoming), 0, "incoming stage starts transparent");
-    assert.equal(stageOpacity(outgoing), 1, "outgoing stage starts opaque");
-
-    timeline.update(transition.outgoingStart);
-    assert.equal(stageOpacity(outgoing), 1, "outgoing fade starts opaque");
-    assert.ok(stageOpacity(incoming) > 0, "incoming stage overlaps before fade-out");
-
-    timeline.update((transition.outgoingStart + transition.outgoingEnd) / 2);
-    assert.ok(stageOpacity(outgoing) > 0 && stageOpacity(outgoing) < 1);
-    assert.ok(stageOpacity(incoming) > 0 && stageOpacity(incoming) < 1);
+    timeline.update(transition.switchPoint - 0.001);
+    assert.equal(stageOpacity(outgoing), 1);
+    assert.equal(stageOpacity(incoming), 1);
     assert.equal(outgoing.visible, true);
-    assert.equal(incoming.visible, true);
+    assert.equal(incoming.visible, false);
 
-    timeline.update(transition.incomingEnd);
-    assert.equal(stageOpacity(incoming), 1, "incoming stage finishes opaque");
-    assert.ok(stageOpacity(outgoing) > 0, "outgoing stage remains during overlap tail");
-
-    timeline.update(transition.outgoingEnd);
-    assert.equal(stageOpacity(outgoing), 0, "outgoing stage finishes transparent");
-    assert.equal(stageOpacity(incoming), 1, "incoming stage remains opaque");
+    timeline.update(transition.switchPoint);
+    assert.equal(stageOpacity(outgoing), 1);
+    assert.equal(stageOpacity(incoming), 1);
     assert.equal(outgoing.visible, false);
     assert.equal(incoming.visible, true);
+    assert.equal(Object.values(roots).filter((root) => root.visible).length, 1);
   }
   timeline.reset();
 });
