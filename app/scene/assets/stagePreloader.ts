@@ -91,14 +91,16 @@ export function createStagePreloader<T>({
 
   function schedule(stage: JourneyStageId): void {
     if (disposed || states.get(stage) !== "idle") return;
-    let cancel: void | (() => void);
-    cancel = scheduleIdle(() => {
-      if (cancel) cancelIdleCallbacks.delete(cancel);
+    const scheduled: { cancel?: () => void; ran: boolean } = { ran: false };
+    const cancel = scheduleIdle(() => {
+      scheduled.ran = true;
+      if (scheduled.cancel) cancelIdleCallbacks.delete(scheduled.cancel);
       void ensure(stage, "idle").catch(() => {
         // Later-stage failure is reflected in state and must not break Observe.
       });
     });
-    if (cancel) cancelIdleCallbacks.add(cancel);
+    scheduled.cancel = typeof cancel === "function" ? cancel : undefined;
+    if (cancel && !scheduled.ran) cancelIdleCallbacks.add(cancel);
   }
 
   return {

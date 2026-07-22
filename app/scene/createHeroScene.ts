@@ -23,8 +23,16 @@ import {
 } from "./assets/loadTextures";
 import { createCameraRig } from "./core/createCameraRig";
 import { createRenderer } from "./core/createRenderer";
+import {
+  createDynamicResolutionController,
+  type DynamicResolutionChange,
+} from "./core/dynamicResolution";
 import { disposeScene } from "./core/disposeScene";
 import { getQualitySettings } from "./core/qualityManager";
+import {
+  createRenderScheduler,
+  type RenderSchedulerState,
+} from "./core/renderScheduler";
 import { createVisibilityController } from "./interaction/visibilityController";
 import { createStudioLightRig } from "./lighting/studioLightRig";
 
@@ -47,6 +55,10 @@ export type HeroSceneController = {
   setExitProgress(progress: number): void;
   pulse(): void;
   resize(): void;
+  getPerformanceState(): {
+    dpr: number;
+    scheduler: RenderSchedulerState;
+  };
   dispose(): void;
 };
 
@@ -128,9 +140,10 @@ export async function createHeroScene({
   floor.rotation.x = -Math.PI / 2;
   floor.position.set(-6, 0.04, -1.7);
   floor.receiveShadow = quality.shadows;
+  floor.updateMatrix();
+  floor.matrixAutoUpdate = false;
   scene.add(floor);
 
-  let animationFrameId = 0;
   let previousFrameTime = 0;
   let disposed = false;
   let ready = false;
@@ -145,21 +158,60 @@ export async function createHeroScene({
   let pointerY = 0;
   let exitProgress = 0;
   let pulseStartedAt = Number.NEGATIVE_INFINITY;
+  let idleSharpTimer = 0;
+
+  function applyDpr(change: DynamicResolutionChange): void {
+    if (!change.changed || disposed) return;
+    const bounds = canvasHost.getBoundingClientRect();
+    renderer.setPixelRatio(change.currentDpr);
+    renderer.setSize(
+      Math.max(1, Math.floor(bounds.width)),
+      Math.max(1, Math.floor(bounds.height)),
+      false,
+    );
+    renderer.shadowMap.needsUpdate = true;
+  }
+
+  const resolution = createDynamicResolutionController({
+    activeDpr: quality.activeDpr,
+    idleDpr: quality.idleDpr,
+    minDpr: 1,
+    maxDpr: 1.5,
+    cooldownMs: 2000,
+    idleDelayMs: 220,
+    onChange: applyDpr,
+  });
+
+  function markActivity(reason: string, durationMs: number): void {
+    if (disposed || !ready) return;
+    if (scheduler.getState().status === "sleeping") previousFrameTime = 0;
+    const now = performance.now();
+    resolution.markActivity(now);
+    if (idleSharpTimer) window.clearTimeout(idleSharpTimer);
+    idleSharpTimer = window.setTimeout(() => {
+      idleSharpTimer = 0;
+      const change = resolution.settleIdle(performance.now());
+      if (change.sharpFrame) scheduler.invalidate("idle-sharp");
+    }, 220);
+    scheduler.startTransient(durationMs, reason);
+  }
 
   function resize(): void {
     if (disposed) return;
     const bounds = canvasHost.getBoundingClientRect();
     const width = Math.max(1, Math.floor(bounds.width));
     const height = Math.max(1, Math.floor(bounds.height));
-    renderer.setPixelRatio(Math.min(quality.dpr, 1.5));
+    renderer.setPixelRatio(resolution.getState().currentDpr);
     renderer.setSize(width, height, false);
     cameraRig.resize(width, height);
   }
 
   function renderFrame(time: number): void {
-    animationFrameId = 0;
     if (disposed || !ready || !visibility.isVisible()) return;
 
+    const frameTimeMs = previousFrameTime
+      ? Math.min(50, Math.max(0, time - previousFrameTime))
+      : 1000 / 60;
     const deltaSeconds = previousFrameTime
       ? Math.min(0.05, Math.max(0, (time - previousFrameTime) * 0.001))
       : 1 / 60;
@@ -221,27 +273,27 @@ export async function createHeroScene({
       },
       1 - Math.exp(-12 * deltaSeconds),
     );
-    scene.updateMatrixWorld(true);
+    if (Number.isFinite(pulseStartedAt)) renderer.shadowMap.needsUpdate = true;
     renderer.render(scene, cameraRig.camera);
-    animationFrameId = window.requestAnimationFrame(renderFrame);
-  }
-
-  function startRendering(): void {
-    if (disposed || !ready || animationFrameId || !visibility.isVisible()) return;
-    animationFrameId = window.requestAnimationFrame(renderFrame);
-  }
-
-  function stopRendering(): void {
-    if (!animationFrameId) return;
-    window.cancelAnimationFrame(animationFrameId);
-    animationFrameId = 0;
-    previousFrameTime = 0;
+    resolution.recordFrame(frameTimeMs, time);
   }
 
   const visibility = createVisibilityController(canvasHost, {
     onChange(isVisible) {
-      if (isVisible) startRendering();
-      else stopRendering();
+      if (isVisible) scheduler.invalidate("visibility-restored");
+      else scheduler.stop();
+    },
+  });
+
+  const scheduler = createRenderScheduler({
+    render: renderFrame,
+    isVisible: visibility.isVisible,
+    requestFrame: window.requestAnimationFrame.bind(window),
+    cancelFrame: window.cancelAnimationFrame.bind(window),
+    stableFrames: quality.stableFrameCount,
+    onStateChange(state) {
+      canvasHost.dataset.schedulerState = state.status;
+      canvasHost.dataset.schedulerFrames = String(state.frameCount);
     },
   });
 
@@ -249,7 +301,9 @@ export async function createHeroScene({
     if (disposed) return;
     disposed = true;
     ready = false;
-    stopRendering();
+    if (idleSharpTimer) window.clearTimeout(idleSharpTimer);
+    idleSharpTimer = 0;
+    scheduler.dispose();
     resizeObserver?.disconnect();
     resizeObserver = null;
     visibility.dispose();
@@ -269,6 +323,8 @@ export async function createHeroScene({
     loadedModel?.release?.();
     loadedModel = null;
     loadedTextures = null;
+    delete canvasHost.dataset.schedulerState;
+    delete canvasHost.dataset.schedulerFrames;
     scene.clear();
   }
 
@@ -280,6 +336,8 @@ export async function createHeroScene({
     loadedModel = model;
     if (disposed) throw new Error("Hero scene was disposed while loading Observe.");
     scene.add(model.root);
+    model.root.updateMatrix();
+    model.root.matrixAutoUpdate = false;
     configureModelShadows(model.root, quality.shadows);
     loadedTextures = await applyRound4StageTextures("observe", model.root, {
       maxAnisotropy: Math.min(
@@ -311,8 +369,9 @@ export async function createHeroScene({
     resizeObserver.observe(canvasHost);
     resize();
     cameraRig.setPose(HERO_OPENING_POSE, 1);
+    renderer.shadowMap.needsUpdate = true;
     ready = true;
-    startRendering();
+    markActivity("initial-ready", 180);
     onReady();
   } catch (error) {
     const normalized = normalizeError(error);
@@ -325,17 +384,23 @@ export async function createHeroScene({
     setPointer(x, y) {
       pointerTargetX = clampPointer(x);
       pointerTargetY = clampPointer(y);
-      startRendering();
+      markActivity("pointer", 180);
     },
     setExitProgress(progress: number) {
       exitProgress = clampProgress(progress);
-      startRendering();
+      markActivity("exit-scroll", 180);
     },
     pulse() {
       pulseStartedAt = performance.now();
-      startRendering();
+      markActivity("pulse", HERO_PULSE_DURATION_MS);
     },
     resize,
+    getPerformanceState() {
+      return {
+        dpr: resolution.getState().currentDpr,
+        scheduler: scheduler.getState(),
+      };
+    },
     dispose,
   };
 }

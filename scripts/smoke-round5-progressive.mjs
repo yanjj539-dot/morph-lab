@@ -53,19 +53,8 @@ try {
     .locator('.scroll-journey[data-state="ready"]')
     .waitFor({ timeout: 15_000 });
 
-  const setProgress = async (progress) => {
-    await journeyPage.evaluate((value) => {
-      const section = document.querySelector(".scroll-journey");
-      const top = section.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: top + window.innerHeight * 4.2 * value,
-        behavior: "instant",
-      });
-    }, progress);
-    await journeyPage.waitForTimeout(500);
-  };
-
-  await setProgress(0.4);
+  const progressButtons = journeyPage.locator(".journey-progress__button");
+  await progressButtons.nth(1).click();
   await journeyPage.waitForFunction(() =>
     document.querySelector(".scroll-journey__canvas")?.dataset.loadedStages?.includes("prototype"),
   );
@@ -75,7 +64,7 @@ try {
   assert.ok(atPrototype.length <= 2);
   assert.ok(atPrototype.includes("prototype"));
 
-  await setProgress(0.7);
+  await progressButtons.nth(3).click();
   await journeyPage.waitForFunction(() =>
     document.querySelector(".scroll-journey__canvas")?.dataset.loadedStages?.includes("release"),
   );

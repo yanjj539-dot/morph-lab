@@ -43,8 +43,16 @@ import { createStageTimelines } from "./animation/stageTimelines";
 import { createCameraCollisionInspector } from "./collision/cameraCollision";
 import { createCameraRig } from "./core/createCameraRig";
 import { createRenderer } from "./core/createRenderer";
+import {
+  createDynamicResolutionController,
+  type DynamicResolutionChange,
+} from "./core/dynamicResolution";
 import { disposeScene } from "./core/disposeScene";
 import { getQualitySettings } from "./core/qualityManager";
+import {
+  createRenderScheduler,
+  type RenderSchedulerState,
+} from "./core/renderScheduler";
 import { inspectCameraTimeline } from "./debug/cameraPathInspector";
 import { createCameraVisibilityInspector } from "./debug/cameraVisibilityInspector";
 import { createProjectedLabels } from "./interaction/projectedLabels";
@@ -62,6 +70,7 @@ export type JourneyPerformanceState = {
   textures: number;
   programs: number;
   dpr: number;
+  scheduler: RenderSchedulerState;
 };
 
 export type JourneySceneController = {
@@ -192,6 +201,8 @@ export async function createJourneyScene({
   floor.rotation.x = -Math.PI / 2;
   floor.position.set(0, 0.08, -1.7);
   floor.receiveShadow = quality.shadows;
+  floor.updateMatrix();
+  floor.matrixAutoUpdate = false;
   scene.add(floor);
 
   const routeCurve = new CatmullRomCurve3([...ROUTE_POINTS], false, "catmullrom", 0.34);
@@ -206,6 +217,8 @@ export async function createJourneyScene({
   route.name = "MORPH_CONTINUOUS_ROUTE";
   route.castShadow = false;
   route.receiveShadow = false;
+  route.updateMatrix();
+  route.matrixAutoUpdate = false;
   scene.add(route);
   const routeIndexCount = routeGeometry.index?.count ?? 0;
   routeGeometry.setDrawRange(0, 6);
@@ -213,7 +226,6 @@ export async function createJourneyScene({
   const frozenQaProgress = getFrozenQaProgress();
   let progress = frozenQaProgress ?? 0;
   let activeStage = -1;
-  let animationFrameId = 0;
   let previousFrameTime = 0;
   let disposed = false;
   let ready = false;
@@ -223,10 +235,47 @@ export async function createJourneyScene({
   let lastResidencySignature = "";
   let currentResidentStage: JourneyStageId = "observe";
   let reconciling = false;
+  let idleSharpTimer = 0;
   const loadedStages = new Map<JourneyStageId, LoadedStageRuntime>();
   const activeClipStages = new Set<JourneyStageId>();
   const clipController = createBlenderClipController({});
   const stageTimelines = createStageTimelines({});
+
+  function applyDpr(change: DynamicResolutionChange): void {
+    if (!change.changed || disposed) return;
+    const bounds = canvasHost.getBoundingClientRect();
+    renderer.setPixelRatio(change.currentDpr);
+    renderer.setSize(
+      Math.max(1, Math.floor(bounds.width)),
+      Math.max(1, Math.floor(bounds.height)),
+      false,
+    );
+    renderer.shadowMap.needsUpdate = true;
+  }
+
+  const resolution = createDynamicResolutionController({
+    activeDpr: quality.activeDpr,
+    idleDpr: quality.idleDpr,
+    minDpr: 1,
+    maxDpr: 1.5,
+    cooldownMs: 2000,
+    idleDelayMs: 220,
+    onChange: applyDpr,
+  });
+
+  function markActivity(reason: string, durationMs = 180): void {
+    if (disposed || !ready) return;
+    if (scheduler.getState().status === "sleeping") previousFrameTime = 0;
+    const now = performance.now();
+    resolution.markActivity(now);
+    if (idleSharpTimer) window.clearTimeout(idleSharpTimer);
+    idleSharpTimer = window.setTimeout(() => {
+      idleSharpTimer = 0;
+      const change = resolution.settleIdle(performance.now());
+      if (change.sharpFrame) scheduler.invalidate("idle-sharp");
+    }, 220);
+    scheduler.startTransient(durationMs, reason);
+  }
 
   function disposeStageRuntime(runtime: LoadedStageRuntime): void {
     activeClipStages.delete(runtime.stage);
@@ -291,6 +340,7 @@ export async function createJourneyScene({
         renderer.shadowMap.needsUpdate = true;
         cameraVisibilityInspector?.refresh(scene);
         lastResidencySignature = signature;
+        markActivity(`stage-residency:${residency.current}`);
       }
 
       for (const [stage] of [...loadedStages]) {
@@ -323,11 +373,13 @@ export async function createJourneyScene({
         });
         signal?.throwIfAborted();
         if (disposed) throw new Error(`Journey ${stage} loaded after disposal.`);
+        model.root.updateMatrix();
+        model.root.matrixAutoUpdate = false;
         const runtime = { stage, model, textures };
         loadedStages.set(stage, runtime);
         stageTimelines.addStage(stage, model.root);
         reconcileResidency();
-        startRendering();
+        markActivity(`stage-loaded:${stage}`);
         return runtime;
       } catch (error) {
         if (textures) {
@@ -355,15 +407,18 @@ export async function createJourneyScene({
     const bounds = canvasHost.getBoundingClientRect();
     const width = Math.max(1, Math.floor(bounds.width));
     const height = Math.max(1, Math.floor(bounds.height));
-    renderer.setPixelRatio(Math.min(quality.dpr, 1.5));
+    renderer.setPixelRatio(resolution.getState().currentDpr);
     renderer.setSize(width, height, false);
     cameraRig.resize(width, height);
     projectedLabels?.resize();
+    scheduler.invalidate("resize");
   }
 
   function renderFrame(time: number): void {
-    animationFrameId = 0;
     if (disposed || !ready || !visibility.isVisible()) return;
+    const frameTimeMs = previousFrameTime
+      ? Math.min(50, Math.max(0, time - previousFrameTime))
+      : 1000 / 60;
     const deltaSeconds = previousFrameTime
       ? Math.min(0.05, Math.max(0, (time - previousFrameTime) * 0.001))
       : 1 / 60;
@@ -394,7 +449,6 @@ export async function createJourneyScene({
       Math.floor((routeIndexCount * clamp01(progress)) / 3) * 3,
     );
     routeGeometry.setDrawRange(0, routeCount);
-    scene.updateMatrixWorld(true);
     if (
       cameraVisibilityInspector &&
       (!Number.isFinite(lastCameraInspectionProgress) ||
@@ -407,25 +461,25 @@ export async function createJourneyScene({
     }
     projectedLabels?.update(progress, cameraRig.camera);
     renderer.render(scene, cameraRig.camera);
-    animationFrameId = window.requestAnimationFrame(renderFrame);
-  }
-
-  function startRendering(): void {
-    if (disposed || !ready || animationFrameId || !visibility.isVisible()) return;
-    animationFrameId = window.requestAnimationFrame(renderFrame);
-  }
-
-  function stopRendering(): void {
-    if (!animationFrameId) return;
-    window.cancelAnimationFrame(animationFrameId);
-    animationFrameId = 0;
-    previousFrameTime = 0;
+    resolution.recordFrame(frameTimeMs, time);
   }
 
   const visibility = createVisibilityController(canvasHost, {
     onChange(isVisible) {
-      if (isVisible) startRendering();
-      else stopRendering();
+      if (isVisible) scheduler.invalidate("visibility-restored");
+      else scheduler.stop();
+    },
+  });
+
+  const scheduler = createRenderScheduler({
+    render: renderFrame,
+    isVisible: visibility.isVisible,
+    requestFrame: window.requestAnimationFrame.bind(window),
+    cancelFrame: window.cancelAnimationFrame.bind(window),
+    stableFrames: quality.stableFrameCount,
+    onStateChange(state) {
+      canvasHost.dataset.schedulerState = state.status;
+      canvasHost.dataset.schedulerFrames = String(state.frameCount);
     },
   });
 
@@ -433,7 +487,9 @@ export async function createJourneyScene({
     if (disposed) return;
     disposed = true;
     ready = false;
-    stopRendering();
+    if (idleSharpTimer) window.clearTimeout(idleSharpTimer);
+    idleSharpTimer = 0;
+    scheduler.dispose();
     resizeObserver?.disconnect();
     resizeObserver = null;
     visibility.dispose();
@@ -450,6 +506,8 @@ export async function createJourneyScene({
     delete canvasHost.dataset.cameraSample;
     delete canvasHost.dataset.loadedStages;
     delete canvasHost.dataset.currentStage;
+    delete canvasHost.dataset.schedulerState;
+    delete canvasHost.dataset.schedulerFrames;
     scene.clear();
   }
 
@@ -478,7 +536,7 @@ export async function createJourneyScene({
     updateStageBoundary(progress);
     reconcileResidency();
     ready = true;
-    startRendering();
+    markActivity("initial-ready", 180);
     onReady();
     stagePreloader.schedule("structure");
   } catch (error) {
@@ -494,7 +552,7 @@ export async function createJourneyScene({
       stagePreloader.preloadForProgress(progress);
       updateStageBoundary(progress);
       reconcileResidency();
-      startRendering();
+      markActivity("scroll-progress");
     },
     scrollToStage(index) {
       const safeIndex = Math.max(0, Math.min(JOURNEY_STAGE_PROGRESS.length - 1, index));
@@ -502,7 +560,7 @@ export async function createJourneyScene({
       stagePreloader.preloadForProgress(progress);
       updateStageBoundary(progress);
       reconcileResidency();
-      startRendering();
+      markActivity("stage-jump");
     },
     resize,
     getPerformanceState() {
@@ -521,6 +579,7 @@ export async function createJourneyScene({
         textures: renderer.info.memory.textures,
         programs: renderer.info.programs?.length ?? 0,
         dpr: renderer.getPixelRatio(),
+        scheduler: scheduler.getState(),
       };
     },
     dispose,
