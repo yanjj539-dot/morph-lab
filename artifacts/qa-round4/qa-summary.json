@@ -1,0 +1,684 @@
+{
+  "generatedAt": "2026-07-22T00:01:07.895Z",
+  "browserVersion": "149.0.7827.55",
+  "baseUrl": "http://127.0.0.1:50443",
+  "geometry": {
+    "high": 0,
+    "medium": 0,
+    "low": 250,
+    "samples": 41,
+    "meshCount": 324,
+    "topologyErrors": 0,
+    "surfaceFailures": 0,
+    "environmentFailures": 0,
+    "generatedAt": "2026-07-22T00:00:57.890Z"
+  },
+  "camera": {
+    "samples": 41,
+    "high": 0,
+    "medium": 0,
+    "minimumClearance": 3.491962,
+    "nearPlaneSafe": true,
+    "externalOcclusions": 0,
+    "internalExposures": 0
+  },
+  "loadPolicy": {
+    "desktop": {
+      "initialGlbCount": 0,
+      "heroGlbCount": 1,
+      "enteredGlbCount": 4,
+      "state": "ready",
+      "heroTimeToSceneMs": 363,
+      "journeyTimeToSceneMs": 3143,
+      "dpr": 1,
+      "initialCriticalBytes": 1072831,
+      "threeChunkBytes": 741843,
+      "glbResources": [
+        {
+          "name": "http://127.0.0.1:50443/models/round-4/observe.glb",
+          "transferSize": 341020,
+          "encodedBodySize": 340720,
+          "decodedBodySize": 340720,
+          "initiatorType": "fetch"
+        },
+        {
+          "name": "http://127.0.0.1:50443/models/round-4/observe.glb",
+          "transferSize": 341020,
+          "encodedBodySize": 340720,
+          "decodedBodySize": 340720,
+          "initiatorType": "fetch"
+        },
+        {
+          "name": "http://127.0.0.1:50443/models/round-4/structure.glb",
+          "transferSize": 465552,
+          "encodedBodySize": 465252,
+          "decodedBodySize": 465252,
+          "initiatorType": "fetch"
+        },
+        {
+          "name": "http://127.0.0.1:50443/models/round-4/prototype.glb",
+          "transferSize": 524988,
+          "encodedBodySize": 524688,
+          "decodedBodySize": 524688,
+          "initiatorType": "fetch"
+        },
+        {
+          "name": "http://127.0.0.1:50443/models/round-4/release.glb",
+          "transferSize": 373448,
+          "encodedBodySize": 373148,
+          "decodedBodySize": 373148,
+          "initiatorType": "fetch"
+        }
+      ]
+    },
+    "mobile": {
+      "glbCount": 0,
+      "state": "fallback"
+    },
+    "reducedMotion": {
+      "glbCount": 0,
+      "state": "fallback"
+    }
+  },
+  "desktop": {
+    "glbCount": 4,
+    "canvasStats": {
+      "observe": {
+        "deviation": 37.1,
+        "entropy": 3.18
+      },
+      "structure": {
+        "deviation": 43.93,
+        "entropy": 4.24
+      },
+      "prototype": {
+        "deviation": 45.29,
+        "entropy": 4.3
+      },
+      "release": {
+        "deviation": 41.48,
+        "entropy": 3.52
+      }
+    }
+  },
+  "progressCaptures": [
+    {
+      "progress": 0,
+      "activeStage": "01OBSERVE",
+      "deviation": 37.22,
+      "entropy": 3.33,
+      "bytes": 105545,
+      "file": "journey-progress/progress-00-000.png"
+    },
+    {
+      "progress": 0.025,
+      "activeStage": "01OBSERVE",
+      "deviation": 37.27,
+      "entropy": 3.33,
+      "bytes": 107543,
+      "file": "journey-progress/progress-01-003.png"
+    },
+    {
+      "progress": 0.05,
+      "activeStage": "01OBSERVE",
+      "deviation": 37.22,
+      "entropy": 3.26,
+      "bytes": 115770,
+      "file": "journey-progress/progress-02-005.png"
+    },
+    {
+      "progress": 0.075,
+      "activeStage": "01OBSERVE",
+      "deviation": 37.1,
+      "entropy": 3.2,
+      "bytes": 119662,
+      "file": "journey-progress/progress-03-008.png"
+    },
+    {
+      "progress": 0.1,
+      "activeStage": "01OBSERVE",
+      "deviation": 37.04,
+      "entropy": 3.17,
+      "bytes": 117602,
+      "file": "journey-progress/progress-04-010.png"
+    },
+    {
+      "progress": 0.125,
+      "activeStage": "01OBSERVE",
+      "deviation": 37.02,
+      "entropy": 3.39,
+      "bytes": 120966,
+      "file": "journey-progress/progress-05-013.png"
+    },
+    {
+      "progress": 0.15,
+      "activeStage": "01OBSERVE",
+      "deviation": 37.01,
+      "entropy": 3.46,
+      "bytes": 124825,
+      "file": "journey-progress/progress-06-015.png"
+    },
+    {
+      "progress": 0.175,
+      "activeStage": "01OBSERVE",
+      "deviation": 37.03,
+      "entropy": 3.55,
+      "bytes": 128166,
+      "file": "journey-progress/progress-07-018.png"
+    },
+    {
+      "progress": 0.2,
+      "activeStage": "01OBSERVE",
+      "deviation": 36.98,
+      "entropy": 4.18,
+      "bytes": 204413,
+      "file": "journey-progress/progress-08-020.png"
+    },
+    {
+      "progress": 0.225,
+      "activeStage": "01OBSERVE",
+      "deviation": 37.29,
+      "entropy": 4.52,
+      "bytes": 236263,
+      "file": "journey-progress/progress-09-023.png"
+    },
+    {
+      "progress": 0.25,
+      "activeStage": "02STRUCTURE",
+      "deviation": 40.47,
+      "entropy": 4.78,
+      "bytes": 273322,
+      "file": "journey-progress/progress-10-025.png"
+    },
+    {
+      "progress": 0.275,
+      "activeStage": "02STRUCTURE",
+      "deviation": 42.56,
+      "entropy": 4.61,
+      "bytes": 245334,
+      "file": "journey-progress/progress-11-028.png"
+    },
+    {
+      "progress": 0.3,
+      "activeStage": "02STRUCTURE",
+      "deviation": 43.06,
+      "entropy": 3.97,
+      "bytes": 183946,
+      "file": "journey-progress/progress-12-030.png"
+    },
+    {
+      "progress": 0.325,
+      "activeStage": "02STRUCTURE",
+      "deviation": 43.01,
+      "entropy": 4.12,
+      "bytes": 183445,
+      "file": "journey-progress/progress-13-033.png"
+    },
+    {
+      "progress": 0.35,
+      "activeStage": "02STRUCTURE",
+      "deviation": 43.38,
+      "entropy": 4.18,
+      "bytes": 188219,
+      "file": "journey-progress/progress-14-035.png"
+    },
+    {
+      "progress": 0.375,
+      "activeStage": "02STRUCTURE",
+      "deviation": 44.85,
+      "entropy": 4.34,
+      "bytes": 197220,
+      "file": "journey-progress/progress-15-038.png"
+    },
+    {
+      "progress": 0.4,
+      "activeStage": "02STRUCTURE",
+      "deviation": 45.79,
+      "entropy": 4.44,
+      "bytes": 209546,
+      "file": "journey-progress/progress-16-040.png"
+    },
+    {
+      "progress": 0.425,
+      "activeStage": "02STRUCTURE",
+      "deviation": 46.16,
+      "entropy": 4.5,
+      "bytes": 215269,
+      "file": "journey-progress/progress-17-043.png"
+    },
+    {
+      "progress": 0.45,
+      "activeStage": "02STRUCTURE",
+      "deviation": 46.26,
+      "entropy": 4.68,
+      "bytes": 245673,
+      "file": "journey-progress/progress-18-045.png"
+    },
+    {
+      "progress": 0.475,
+      "activeStage": "02STRUCTURE",
+      "deviation": 44.83,
+      "entropy": 4.91,
+      "bytes": 287526,
+      "file": "journey-progress/progress-19-048.png"
+    },
+    {
+      "progress": 0.5,
+      "activeStage": "03PROTOTYPE",
+      "deviation": 41.43,
+      "entropy": 5.24,
+      "bytes": 323222,
+      "file": "journey-progress/progress-20-050.png"
+    },
+    {
+      "progress": 0.525,
+      "activeStage": "03PROTOTYPE",
+      "deviation": 40.98,
+      "entropy": 5.08,
+      "bytes": 270589,
+      "file": "journey-progress/progress-21-053.png"
+    },
+    {
+      "progress": 0.55,
+      "activeStage": "03PROTOTYPE",
+      "deviation": 43.69,
+      "entropy": 4.6,
+      "bytes": 202803,
+      "file": "journey-progress/progress-22-055.png"
+    },
+    {
+      "progress": 0.575,
+      "activeStage": "03PROTOTYPE",
+      "deviation": 43.86,
+      "entropy": 4.01,
+      "bytes": 138531,
+      "file": "journey-progress/progress-23-058.png"
+    },
+    {
+      "progress": 0.6,
+      "activeStage": "03PROTOTYPE",
+      "deviation": 44.58,
+      "entropy": 4.17,
+      "bytes": 146973,
+      "file": "journey-progress/progress-24-060.png"
+    },
+    {
+      "progress": 0.625,
+      "activeStage": "03PROTOTYPE",
+      "deviation": 45.17,
+      "entropy": 4.29,
+      "bytes": 157585,
+      "file": "journey-progress/progress-25-063.png"
+    },
+    {
+      "progress": 0.65,
+      "activeStage": "03PROTOTYPE",
+      "deviation": 45.93,
+      "entropy": 4.38,
+      "bytes": 164803,
+      "file": "journey-progress/progress-26-065.png"
+    },
+    {
+      "progress": 0.675,
+      "activeStage": "03PROTOTYPE",
+      "deviation": 46.62,
+      "entropy": 4.37,
+      "bytes": 168460,
+      "file": "journey-progress/progress-27-068.png"
+    },
+    {
+      "progress": 0.7,
+      "activeStage": "03PROTOTYPE",
+      "deviation": 46.51,
+      "entropy": 4.71,
+      "bytes": 190512,
+      "file": "journey-progress/progress-28-070.png"
+    },
+    {
+      "progress": 0.725,
+      "activeStage": "03PROTOTYPE",
+      "deviation": 41.29,
+      "entropy": 4.84,
+      "bytes": 239628,
+      "file": "journey-progress/progress-29-073.png"
+    },
+    {
+      "progress": 0.75,
+      "activeStage": "04RELEASE",
+      "deviation": 40.88,
+      "entropy": 4.83,
+      "bytes": 257801,
+      "file": "journey-progress/progress-30-075.png"
+    },
+    {
+      "progress": 0.775,
+      "activeStage": "04RELEASE",
+      "deviation": 41.95,
+      "entropy": 4.63,
+      "bytes": 239722,
+      "file": "journey-progress/progress-31-078.png"
+    },
+    {
+      "progress": 0.8,
+      "activeStage": "04RELEASE",
+      "deviation": 42.62,
+      "entropy": 3.86,
+      "bytes": 155326,
+      "file": "journey-progress/progress-32-080.png"
+    },
+    {
+      "progress": 0.825,
+      "activeStage": "04RELEASE",
+      "deviation": 42.77,
+      "entropy": 4.02,
+      "bytes": 156442,
+      "file": "journey-progress/progress-33-083.png"
+    },
+    {
+      "progress": 0.85,
+      "activeStage": "04RELEASE",
+      "deviation": 42.23,
+      "entropy": 3.93,
+      "bytes": 146099,
+      "file": "journey-progress/progress-34-085.png"
+    },
+    {
+      "progress": 0.875,
+      "activeStage": "04RELEASE",
+      "deviation": 41.7,
+      "entropy": 3.56,
+      "bytes": 143751,
+      "file": "journey-progress/progress-35-088.png"
+    },
+    {
+      "progress": 0.9,
+      "activeStage": "04RELEASE",
+      "deviation": 41.47,
+      "entropy": 3.52,
+      "bytes": 138493,
+      "file": "journey-progress/progress-36-090.png"
+    },
+    {
+      "progress": 0.925,
+      "activeStage": "04RELEASE",
+      "deviation": 41.33,
+      "entropy": 3.49,
+      "bytes": 136186,
+      "file": "journey-progress/progress-37-093.png"
+    },
+    {
+      "progress": 0.95,
+      "activeStage": "04RELEASE",
+      "deviation": 41.77,
+      "entropy": 3.51,
+      "bytes": 136404,
+      "file": "journey-progress/progress-38-095.png"
+    },
+    {
+      "progress": 0.975,
+      "activeStage": "04RELEASE",
+      "deviation": 41.56,
+      "entropy": 3.43,
+      "bytes": 127527,
+      "file": "journey-progress/progress-39-098.png"
+    },
+    {
+      "progress": 1,
+      "activeStage": "04RELEASE",
+      "deviation": 41.41,
+      "entropy": 3.43,
+      "bytes": 126768,
+      "file": "journey-progress/progress-40-100.png"
+    }
+  ],
+  "progressButtons": {
+    "before": 1007,
+    "after": 4409
+  },
+  "uiStates": {
+    "desktopGlbCount": 4,
+    "mobile": {
+      "glbCount": 0,
+      "state": "fallback"
+    },
+    "reduced-motion": {
+      "glbCount": 0,
+      "state": "fallback"
+    }
+  },
+  "mobile": {
+    "glbCount": 0
+  },
+  "reducedMotion": {
+    "glbCount": 0
+  },
+  "viewports": [
+    {
+      "width": 1920,
+      "scrollWidth": 1920,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 430,
+      "scrollWidth": 430,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    },
+    {
+      "width": 844,
+      "scrollWidth": 844,
+      "title": "MORPH//LAB — AI Design, Interactive Systems and Digital Experiments"
+    }
+  ],
+  "mobileMenus": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 667
+      },
+      "clientHeight": 587,
+      "scrollHeight": 587,
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "clientHeight": 310,
+      "scrollHeight": 310,
+      "clientWidth": 844,
+      "scrollWidth": 844
+    }
+  ],
+  "headerKeyboard": {
+    "recovered": true
+  },
+  "videos": {
+    "desktop": {
+      "bytes": 1066408,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "format": {
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "duration": "19.440000"
+      }
+    },
+    "mobile": {
+      "bytes": 966497,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "format": {
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "duration": "9.760000"
+      }
+    },
+    "reducedMotion": {
+      "bytes": 1188482,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "format": {
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "duration": "9.760000"
+      }
+    }
+  },
+  "budgets": {
+    "assetStats": {
+      "schemaVersion": 2,
+      "generatedAt": "2026-07-22T00:09:37.169Z",
+      "browserVersion": "149.0.7827.55",
+      "limits": {
+        "perAssetBytes": 1500000,
+        "totalBytes": 5000000
+      },
+      "totalBytes": 1703808,
+      "totalEncodedBodySize": 1703808,
+      "totalDecodedBodySize": 1703808,
+      "assets": [
+        {
+          "stage": "observe",
+          "path": "public/models/round-4/observe.glb",
+          "bytes": 340720,
+          "encodedBodySize": 340720,
+          "decodedBodySize": 340720,
+          "transferSize": 341020
+        },
+        {
+          "stage": "structure",
+          "path": "public/models/round-4/structure.glb",
+          "bytes": 465252,
+          "encodedBodySize": 465252,
+          "decodedBodySize": 465252,
+          "transferSize": 465552
+        },
+        {
+          "stage": "prototype",
+          "path": "public/models/round-4/prototype.glb",
+          "bytes": 524688,
+          "encodedBodySize": 524688,
+          "decodedBodySize": 524688,
+          "transferSize": 524988
+        },
+        {
+          "stage": "release",
+          "path": "public/models/round-4/release.glb",
+          "bytes": 373148,
+          "encodedBodySize": 373148,
+          "decodedBodySize": 373148,
+          "transferSize": 373448
+        }
+      ],
+      "status": "pass",
+      "failures": []
+    },
+    "networkBudget": {
+      "schemaVersion": 1,
+      "generatedAt": "2026-07-22T00:09:37.169Z",
+      "browserVersion": "149.0.7827.55",
+      "glb": {
+        "uniqueDesktopRequests": 4,
+        "heroRequests": 1,
+        "totalEncodedBodySize": 1703808,
+        "totalDecodedBodySize": 1703808,
+        "mobileBytes": 0,
+        "reducedMotionBytes": 0
+      },
+      "textureTotalBytes": 614720,
+      "initialCriticalResourceBytes": 1072831,
+      "threeChunkBytes": 741843,
+      "dpr": 1,
+      "heroTimeToSceneMs": 363,
+      "journeyTimeToSceneMs": 3143,
+      "advisory": [
+        "textureTotalBytes",
+        "initialCriticalResourceBytes",
+        "threeChunkBytes"
+      ],
+      "status": "pass"
+    }
+  },
+  "browserTelemetry": {
+    "schemaVersion": 1,
+    "generatedAt": "2026-07-22T00:09:37.170Z",
+    "browserVersion": "149.0.7827.55",
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "failedRequests": 0,
+    "httpErrors": 0,
+    "viewportCount": 9,
+    "progressCaptureCount": 41,
+    "desktopGlbCount": 4,
+    "mobileGlbCount": 0,
+    "reducedMotionGlbCount": 0,
+    "status": "pass"
+  },
+  "lighthouse": {
+    "desktop": {
+      "performance": 96,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "mobile": {
+      "performance": 79,
+      "accessibility": 96,
+      "best-practices": 96,
+      "seo": 100
+    }
+  }
+}

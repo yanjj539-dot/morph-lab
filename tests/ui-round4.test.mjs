@@ -22,7 +22,7 @@ test("Round 4 homepage keeps the exact semantic Hero message", async () => {
   assert.match(page, /把模型、界面与交互，做成可以真实运行的作品。/);
   assert.match(page, /<HeroScene\b/);
   assert.match(page, /fallback\/round-4\/hero-observe\.webp/);
-  assert.match(page, /fallback\/round-4\/observe\.webp/);
+  assert.match(page, /fallback\/round-4\/hero-observe-mobile\.webp/);
   assert.doesNotMatch(page, /DESIGN, SYSTEMS,|AND DIGITAL EXPERIMENTS/);
 });
 
@@ -132,6 +132,24 @@ test("homepage sections retain semantic mobile reading order and bounded project
     assert.ok(Number(match[1]) <= 1.025, `project zoom ${match[1]} is bounded`);
   }
   assert.match(motion, /Math\.min\(1\.025/);
+});
+
+test("homepage does not promote below-fold project imagery over the Hero LCP", async () => {
+  const [page, workPage, showcase] = await Promise.all([
+    read("app/page.tsx"),
+    read("app/work/page.tsx"),
+    read("app/components/ProjectShowcase.tsx"),
+  ]);
+
+  assert.match(page, /<ProjectShowcase\s+prioritizeFirstImage=\{false\}\s*\/>/);
+  assert.match(workPage, /<ProjectShowcase\s*\/>/);
+  assert.match(showcase, /prioritizeFirstImage\s*=\s*true/);
+  assert.match(
+    showcase,
+    /const shouldPrioritize\s*=\s*prioritizeFirstImage\s*&&\s*index\s*===\s*0\s*&&\s*assetIndex\s*===\s*0/,
+  );
+  assert.match(showcase, /loading=\{shouldPrioritize\s*\?\s*["']eager["']\s*:\s*["']lazy["']\}/);
+  assert.match(showcase, /fetchPriority=\{shouldPrioritize\s*\?\s*["']high["']\s*:\s*["']auto["']\}/);
 });
 
 test("Hero and Journey dispose attached and software-fallback textures through one deduplicated path", async () => {

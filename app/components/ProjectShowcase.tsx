@@ -45,7 +45,15 @@ function WorkflowDiagram() {
     </div>
   );
 }
-export function ProjectShowcase({ limit }: { limit?: number }) {
+type ProjectShowcaseProps = {
+  limit?: number;
+  prioritizeFirstImage?: boolean;
+};
+
+export function ProjectShowcase({
+  limit,
+  prioritizeFirstImage = true,
+}: ProjectShowcaseProps) {
   const visibleProjects = typeof limit === "number" ? projects.slice(0, limit) : projects;
 
   return (
@@ -63,27 +71,31 @@ export function ProjectShowcase({ limit }: { limit?: number }) {
                 data-gallery-count={project.assets.length}
                 data-project-visual
               >
-                {project.assets.map((asset, assetIndex) => (
-                  <picture
-                    className={[
-                      `project-picture project-picture--${asset.tone ?? "paper"}`,
-                      `project-picture--${asset.kind ?? "screenshot"}`,
-                    ].join(" ")}
-                    key={asset.src}
-                    data-project-mask
-                  >
-                    <img
-                      src={asset.src}
-                      alt={asset.alt}
-                      width={asset.width}
-                      height={asset.height}
-                      loading={index === 0 && assetIndex === 0 ? "eager" : "lazy"}
-                      fetchPriority={index === 0 && assetIndex === 0 ? "high" : "auto"}
-                      data-project-image
-                      data-project-zoom={assetIndex === 0 ? "1.025" : "1.015"}
-                    />
-                  </picture>
-                ))}
+                {project.assets.map((asset, assetIndex) => {
+                  const shouldPrioritize = prioritizeFirstImage && index === 0 && assetIndex === 0;
+
+                  return (
+                    <picture
+                      className={[
+                        `project-picture project-picture--${asset.tone ?? "paper"}`,
+                        `project-picture--${asset.kind ?? "screenshot"}`,
+                      ].join(" ")}
+                      key={asset.src}
+                      data-project-mask
+                    >
+                      <img
+                        src={asset.src}
+                        alt={asset.alt}
+                        width={asset.width}
+                        height={asset.height}
+                        loading={shouldPrioritize ? "eager" : "lazy"}
+                        fetchPriority={shouldPrioritize ? "high" : "auto"}
+                        data-project-image
+                        data-project-zoom={assetIndex === 0 ? "1.025" : "1.015"}
+                      />
+                    </picture>
+                  );
+                })}
               </div>
             ) : (
               <WorkflowDiagram />

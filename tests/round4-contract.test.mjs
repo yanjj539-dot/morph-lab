@@ -109,12 +109,27 @@ test("round 4 geometry and camera evidence closes high and medium severity findi
   assert.match(markdown, /Medium:\s*0/);
 });
 
+test("round 4 keeps the mobile Hero LCP plate lightweight", async () => {
+  const mobileHero = await stat(fileUrl("public/fallback/round-4/hero-observe-mobile.webp"));
+
+  assert.ok(mobileHero.size <= 16_000, `mobile Hero fallback is ${mobileHero.size} bytes`);
+});
+
 test("round 4 delivery includes 41 Journey captures, named UI states, recordings, and Lighthouse floors", async () => {
   const [progress, uiStates] = await Promise.all([
     readdir(fileUrl("artifacts/qa-round4/journey-progress/")),
     readdir(fileUrl("artifacts/qa-round4/ui-states/")),
   ]);
-  assert.ok(progress.filter((name) => /^progress-.*\.png$/.test(name)).length >= 41);
+  const expectedProgressNames = Array.from(
+    { length: 41 },
+    (_, index) =>
+      `progress-${String(index).padStart(2, "0")}-${String(Math.round((index * 100) / 40)).padStart(3, "0")}.png`,
+  );
+  assert.deepEqual(
+    progress.filter((name) => /^progress-.*\.png$/.test(name)).sort(),
+    expectedProgressNames,
+    "Journey progress evidence uses the exact 41 half-up 2.5% filenames",
+  );
 
   for (const state of [
     "hero",

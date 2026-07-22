@@ -42,7 +42,7 @@ export default function Home() {
           <div className="hero-composition">
             <HeroScene
               fallbackSrc={withBasePath("/fallback/round-4/hero-observe.webp")}
-              mobileFallbackSrc={withBasePath("/fallback/round-4/observe.webp")}
+              mobileFallbackSrc={withBasePath("/fallback/round-4/hero-observe-mobile.webp")}
               fallbackAlt="MORPH//LAB Observe 阶段的 Blender 工作台，包含材料、扫描器、屏幕与输出卡片"
             />
           </div>
@@ -132,7 +132,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <ProjectShowcase />
+        <ProjectShowcase prioritizeFirstImage={false} />
       </section>
 
       <section

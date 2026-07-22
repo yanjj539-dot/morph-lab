@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-22T00:09:37.169Z",
+  "browserVersion": "149.0.7827.55",
+  "glb": {
+    "uniqueDesktopRequests": 4,
+    "heroRequests": 1,
+    "totalEncodedBodySize": 1703808,
+    "totalDecodedBodySize": 1703808,
+    "mobileBytes": 0,
+    "reducedMotionBytes": 0
+  },
+  "textureTotalBytes": 614720,
+  "initialCriticalResourceBytes": 1072831,
+  "threeChunkBytes": 741843,
+  "dpr": 1,
+  "heroTimeToSceneMs": 363,
+  "journeyTimeToSceneMs": 3143,
+  "advisory": [
+    "textureTotalBytes",
+    "initialCriticalResourceBytes",
+    "threeChunkBytes"
+  ],
+  "status": "pass"
+}

@@ -56,7 +56,7 @@ test("server-renders the finished MORPH//LAB homepage", async () => {
   assert.match(html, /https:\/\/morph-lab\.test\/og\.png/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /\/fallback\/round-4\/hero-observe\.webp/);
-  assert.match(html, /\/fallback\/round-4\/observe\.webp/);
+  assert.match(html, /\/fallback\/round-4\/hero-observe-mobile\.webp/);
   assert.match(html, /media="\(max-width: 1023px\), \(prefers-reduced-motion: reduce\)"/);
   assert.doesNotMatch(html, /MORPH SYSTEM \/ ONLINE/);
   assert.doesNotMatch(html, /AI SHOULD NOT LOOK LIKE AI/);
@@ -99,7 +99,7 @@ test("ships real project assets and the responsive scroll journey", async () => 
   assert.doesNotMatch(page, /<MorphCore \/>|<LiveGenerativeSystem \/>/);
   assert.match(page, /<HeroScene\b/);
   assert.match(page, /fallbackSrc=\{withBasePath\("\/fallback\/round-4\/hero-observe\.webp"\)\}/);
-  assert.match(page, /mobileFallbackSrc=\{withBasePath\("\/fallback\/round-4\/observe\.webp"\)\}/);
+  assert.match(page, /mobileFallbackSrc=\{withBasePath\("\/fallback\/round-4\/hero-observe-mobile\.webp"\)\}/);
   assert.doesNotMatch(page, /hero-card|hero-card--note|hero-card--system|hero-card--release/);
   assert.match(
     studio,
@@ -139,6 +139,7 @@ test("ships real project assets and the responsive scroll journey", async () => 
       "../public/images/morph-studio-workbench-v1.webp",
       "../public/images/morph-workflow-quality-gate-v1.webp",
       "../public/fallback/round-4/hero-observe.webp",
+      "../public/fallback/round-4/hero-observe-mobile.webp",
       "../public/fallback/round-4/journey-observe.webp",
       "../public/fallback/round-4/observe.webp",
       "../public/fallback/round-4/structure.webp",

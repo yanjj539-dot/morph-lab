@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-22T00:00:58.226Z",
+  "summary": {
+    "samples": 41,
+    "high": 0,
+    "medium": 0,
+    "minimumClearance": 3.491962,
+    "nearPlaneSafe": true,
+    "externalOcclusions": 0,
+    "internalExposures": 0
+  },
+  "collisions": [],
+  "samples": [
+    {
+      "progress": 0,
+      "position": [
+        -7.657934,
+        4.712779,
+        7.610907
+      ],
+      "target": [
+        -6,
+        0.45,
+        -1.55
+      ],
+      "fov": 36,
+      "yaw": -0.03,
+      "pitch": -0.04,
+      "dollyDistance": 0.24,
+      "roll": 0,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 7.73288,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.025,
+      "position": [
+        -7.594358,
+        4.666136,
+        7.545353
+      ],
+      "target": [
+        -5.988762,
+        0.442471,
+        -1.548689
+      ],
+      "fov": 35.871094,
+      "yaw": -0.027852,
+      "pitch": -0.039141,
+      "dollyDistance": 0.22625,
+      "roll": 0.000344,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 7.65556,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.05,
+      "position": [
+        -7.429231,
+        4.543582,
+        7.370793
+      ],
+      "target": [
+        -5.959923,
+        0.421528,
+        -1.54489
+      ],
+      "fov": 35.53125,
+      "yaw": -0.022187,
+      "pitch": -0.036875,
+      "dollyDistance": 0.19,
+      "roll": 0.00125,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 7.452924,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.075,
+      "position": [
+        -7.199533,
+        4.371728,
+        7.121584
+      ],
+      "target": [
+        -5.915176,
+        0.398491,
+        -1.541523
+      ],
+      "fov": 35.050781,
+      "yaw": -0.01418,
+      "pitch": -0.033672,
+      "dollyDistance": 0.13875,
+      "roll": 0.002531,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 7.16998,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.1,
+      "position": [
+        -6.937046,
+        4.177613,
+        6.835469
+      ],
+      "target": [
+        -5.85768,
+        0.390832,
+        -1.543062
+      ],
+      "fov": 34.5,
+      "yaw": -0.005,
+      "pitch": -0.03,
+      "dollyDistance": 0.08,
+      "roll": 0.004,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 6.848273,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.125,
+      "position": [
+        -6.661445,
+        3.989425,
+        6.557069
+      ],
+      "target": [
+        -5.799799,
+        0.386553,
+        -1.545528
+      ],
+      "fov": 33.949219,
+      "yaw": 0.00418,
+      "pitch": -0.026328,
+      "dollyDistance": 0.02125,
+      "roll": 0.005469,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 6.537597,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.15,
+      "position": [
+        -6.421125,
+        3.828221,
+        6.313832
+      ],
+      "target": [
+        -5.749274,
+        0.383358,
+        -1.547825
+      ],
+      "fov": 33.46875,
+      "yaw": 0.012188,
+      "pitch": -0.023125,
+      "dollyDistance": -0.03,
+      "roll": 0.00675,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 6.26874,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.175,
+      "position": [
+        -6.253869,
+        3.71534,
+        6.139867
+      ],
+      "target": [
+        -5.713541,
+        0.381028,
+        -1.54943
+      ],
+      "fov": 33.128906,
+      "yaw": 0.017852,
+      "pitch": -0.020859,
+      "dollyDistance": -0.06625,
+      "roll": 0.007656,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 6.078067,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.2,
+      "position": [
+        -6.191453,
+        3.672689,
+        6.073203
+      ],
+      "target": [
+        -5.7,
+        0.38,
+        -1.55
+      ],
+      "fov": 33,
+      "yaw": 0.02,
+      "pitch": -0.02,
+      "dollyDistance": -0.08,
+      "roll": 0.008,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 6.005372,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.225,
+      "position": [
+        -5.932112,
+        3.593056,
+        6.001404
+      ],
+      "target": [
+        -5.463492,
+        0.424643,
+        -1.576045
+      ],
+      "fov": 33.134951,
+      "yaw": 0.025398,
+      "pitch": -0.017301,
+      "dollyDistance": -0.058408,
+      "roll": 0.005301,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 5.922136,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.25,
+      "position": [
+        -5.019414,
+        3.32712,
+        5.779212
+      ],
+      "target": [
+        -4.64337,
+        0.582151,
+        -1.668395
+      ],
+      "fov": 33.603313,
+      "yaw": 0.044133,
+      "pitch": -0.007934,
+      "dollyDistance": 0.01653,
+      "roll": -0.004066,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 5.667115,
+      "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.275,
+      "position": [
+        -4.285632,
+        3.142997,
+        5.666421
+      ],
+      "target": [
+        -4.012025,
+        0.707684,
+        -1.742711
+      ],
+      "fov": 33.964506,
+      "yaw": 0.05858,
+      "pitch": -0.00071,
+      "dollyDistance": 0.074321,
+      "roll": -0.01129,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 5.491193,
+      "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.3,
+      "position": [
+        -4.213687,
+        3.124684,
+        5.654875
+      ],
+      "target": [
+        -3.949973,
+        0.720006,
+        -1.750004
+      ],
+      "fov": 33.999956,
+      "yaw": 0.059999,
+      "pitch": 0,
+      "dollyDistance": 0.079997,
+      "roll": -0.012,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 5.468776,
+      "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.325,
+      "position": [
+        -4.187583,
+        3.112907,
+        5.645853
+      ],
+      "target": [
+        -3.921137,
+        0.726067,
+        -1.754586
+      ],
+      "fov": 33.953965,
+      "yaw": 0.058772,
+      "pitch": 0.00046,
+      "dollyDistance": 0.076931,
+      "roll": -0.011693,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 5.456062,
+      "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.35,
+      "position": [
+        -3.897446,
+        2.982304,
+        5.544072
+      ],
+      "target": [
+        -3.601335,
+        0.794934,
+        -1.806626
+      ],
+      "fov": 33.443411,
+      "yaw": 0.045158,
+      "pitch": 0.005566,
+      "dollyDistance": 0.042894,
+      "roll": -0.008289,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 5.320328,
+      "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.375,
+      "position": [
+        -3.207422,
+        2.687309,
+        5.304314
+      ],
+      "target": [
+        -2.84174,
+        0.941838,
+        -1.917769
+      ],
+      "fov": 32.238212,
+      "yaw": 0.013019,
+      "pitch": 0.017618,
+      "dollyDistance": -0.037453,
+      "roll": -0.000255,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 5.054314,
+      "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.4,
+      "position": [
+        -2.636479,
+        2.468363,
+        5.118833
+      ],
+      "target": [
+        -2.214103,
+        1.027667,
+        -1.98302
+      ],
+      "fov": 31.256624,
+      "yaw": -0.013157,
+      "pitch": 0.027434,
+      "dollyDistance": -0.102892,
+      "roll": 0.006289,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.868833,
+      "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.425,
+      "position": [
+        -2.491109,
+        2.413861,
+        5.071225
+      ],
+      "target": [
+        -2.054976,
+        1.049303,
+        -1.999471
+      ],
+      "fov": 31.007815,
+      "yaw": -0.019792,
+      "pitch": 0.029922,
+      "dollyDistance": -0.119479,
+      "roll": 0.007948,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.821225,
+      "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.45,
+      "position": [
+        -2.486563,
+        2.412151,
+        5.06972
+      ],
+      "target": [
+        -2.05,
+        1.05,
+        -2
+      ],
+      "fov": 31,
+      "yaw": -0.02,
+      "pitch": 0.03,
+      "dollyDistance": -0.12,
+      "roll": 0.008,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.81972,
+      "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.475,
+      "position": [
+        -2.129016,
+        2.409123,
+        5.042077
+      ],
+      "target": [
+        -1.738859,
+        1.008238,
+        -1.962314
+      ],
+      "fov": 31.134951,
+      "yaw": -0.010553,
+      "pitch": 0.027301,
+      "dollyDistance": -0.097058,
+      "roll": 0.006111,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.792077,
+      "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.5,
+      "position": [
+        -0.900154,
+        2.399918,
+        4.937386
+      ],
+      "target": [
+        -0.660239,
+        0.858691,
+        -1.826867
+      ],
+      "fov": 31.603313,
+      "yaw": 0.022232,
+      "pitch": 0.017934,
+      "dollyDistance": -0.017437,
+      "roll": -0.000446,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.687386,
+      "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.525,
+      "position": [
+        0.031915,
+        2.398099,
+        4.839536
+      ],
+      "target": [
+        0.168565,
+        0.732379,
+        -1.711321
+      ],
+      "fov": 31.964506,
+      "yaw": 0.047515,
+      "pitch": 0.01071,
+      "dollyDistance": 0.043966,
+      "roll": -0.005503,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.516907,
+      "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.55,
+      "position": [
+        0.145564,
+        2.388451,
+        4.814673
+      ],
+      "target": [
+        0.279161,
+        0.721319,
+        -1.700249
+      ],
+      "fov": 31.956268,
+      "yaw": 0.048688,
+      "pitch": 0.010437,
+      "dollyDistance": 0.044898,
+      "roll": -0.00565,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.481456,
+      "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.575,
+      "position": [
+        0.367759,
+        2.297335,
+        4.665474
+      ],
+      "target": [
+        0.562586,
+        0.733964,
+        -1.702611
+      ],
+      "fov": 31.53125,
+      "yaw": 0.035938,
+      "pitch": 0.014687,
+      "dollyDistance": -0.004687,
+      "roll": -0.00225,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.318994,
+      "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.6,
+      "position": [
+        0.748257,
+        2.149304,
+        4.413599
+      ],
+      "target": [
+        1.037396,
+        0.755307,
+        -1.706618
+      ],
+      "fov": 30.819242,
+      "yaw": 0.014577,
+      "pitch": 0.021808,
+      "dollyDistance": -0.087755,
+      "roll": 0.003446,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.063599,
+      "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.625,
+      "position": [
+        1.19246,
+        2.001442,
+        4.152213
+      ],
+      "target": [
+        1.566703,
+        0.782106,
+        -1.712015
+      ],
+      "fov": 30.025237,
+      "yaw": -0.009243,
+      "pitch": 0.029748,
+      "dollyDistance": -0.180389,
+      "roll": 0.009798,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 3.802213,
+      "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.65,
+      "position": [
+        1.581717,
+        1.889797,
+        3.947276
+      ],
+      "target": [
+        2.013919,
+        0.806901,
+        -1.717239
+      ],
+      "fov": 29.354227,
+      "yaw": -0.029373,
+      "pitch": 0.036458,
+      "dollyDistance": -0.258673,
+      "roll": 0.015166,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 3.597276,
+      "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.675,
+      "position": [
+        1.783324,
+        1.83444,
+        3.841962
+      ],
+      "target": [
+        2.242539,
+        0.819591,
+        -1.719914
+      ],
+      "fov": 29.011206,
+      "yaw": -0.039664,
+      "pitch": 0.039888,
+      "dollyDistance": -0.298693,
+      "roll": 0.01791,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 3.491962,
+      "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.7,
+      "position": [
+        1.827157,
+        1.841445,
+        3.854116
+      ],
+      "target": [
+        2.281563,
+        0.816066,
+        -1.715452
+      ],
+      "fov": 29.049871,
+      "yaw": -0.03867,
+      "pitch": 0.039335,
+      "dollyDistance": -0.293351,
+      "roll": 0.017801,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 3.504116,
+      "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.725,
+      "position": [
+        2.918104,
+        2.115498,
+        4.30728
+      ],
+      "target": [
+        3.199958,
+        0.701549,
+        -1.583183
+      ],
+      "fov": 30.5,
+      "yaw": 0,
+      "pitch": 0.02,
+      "dollyDistance": -0.1,
+      "roll": 0.012,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 3.95728,
+      "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.75,
+      "position": [
+        3.961587,
+        2.495416,
+        4.887124
+      ],
+      "target": [
+        4.118433,
+        0.584041,
+        -1.454423
+      ],
+      "fov": 31.950129,
+      "yaw": 0.03867,
+      "pitch": 0.000665,
+      "dollyDistance": 0.093351,
+      "roll": 0.006199,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.561224,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.775,
+      "position": [
+        3.998542,
+        2.509329,
+        4.907129
+      ],
+      "target": [
+        4.15056,
+        0.580014,
+        -1.450014
+      ],
+      "fov": 32.001455,
+      "yaw": 0.039983,
+      "pitch": -0.000006,
+      "dollyDistance": 0.100052,
+      "roll": 0.005996,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.577644,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.8,
+      "position": [
+        4.09606,
+        2.559458,
+        4.98561
+      ],
+      "target": [
+        4.24516,
+        0.582283,
+        -1.452325
+      ],
+      "fov": 32.243845,
+      "yaw": 0.037074,
+      "pitch": -0.000975,
+      "dollyDistance": 0.108778,
+      "roll": 0.005317,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.648033,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.825,
+      "position": [
+        4.448575,
+        2.743534,
+        5.270934
+      ],
+      "target": [
+        4.5902,
+        0.590199,
+        -1.460405
+      ],
+      "fov": 33.12773,
+      "yaw": 0.026467,
+      "pitch": -0.004511,
+      "dollyDistance": 0.140598,
+      "roll": 0.002842,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 4.920934,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.85,
+      "position": [
+        4.982484,
+        3.03571,
+        5.715517
+      ],
+      "target": [
+        5.125828,
+        0.603734,
+        -1.474151
+      ],
+      "fov": 34.5,
+      "yaw": 0.01,
+      "pitch": -0.01,
+      "dollyDistance": 0.19,
+      "roll": -0.001,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 5.367114,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.875,
+      "position": [
+        5.486896,
+        3.343552,
+        6.17524
+      ],
+      "target": [
+        5.660687,
+        0.627579,
+        -1.497825
+      ],
+      "fov": 35.87227,
+      "yaw": -0.006467,
+      "pitch": -0.015489,
+      "dollyDistance": 0.239402,
+      "roll": -0.004842,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 5.841022,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.9,
+      "position": [
+        5.801071,
+        3.546642,
+        6.472987
+      ],
+      "target": [
+        6.005012,
+        0.645248,
+        -1.515298
+      ],
+      "fov": 36.756155,
+      "yaw": -0.017074,
+      "pitch": -0.019025,
+      "dollyDistance": 0.271222,
+      "roll": -0.007317,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 6.15496,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.925,
+      "position": [
+        5.886287,
+        3.602656,
+        6.554272
+      ],
+      "target": [
+        6.09944,
+        0.649973,
+        -1.519973
+      ],
+      "fov": 36.998545,
+      "yaw": -0.019983,
+      "pitch": -0.019994,
+      "dollyDistance": 0.279948,
+      "roll": -0.007996,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 6.241546,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.95,
+      "position": [
+        5.915672,
+        3.606322,
+        6.582263
+      ],
+      "target": [
+        6.112922,
+        0.649251,
+        -1.517947
+      ],
+      "fov": 37.056585,
+      "yaw": -0.018868,
+      "pitch": -0.018868,
+      "dollyDistance": 0.283395,
+      "roll": -0.007547,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 6.269768,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 0.975,
+      "position": [
+        6.300287,
+        3.65254,
+        6.98132
+      ],
+      "target": [
+        6.289006,
+        0.634285,
+        -1.480078
+      ],
+      "fov": 37.847924,
+      "yaw": -0.003042,
+      "pitch": -0.003042,
+      "dollyDistance": 0.330875,
+      "roll": -0.001217,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 6.671477,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    },
+    {
+      "progress": 1,
+      "position": [
+        6.351952,
+        3.664402,
+        7.070169
+      ],
+      "target": [
+        6.3,
+        0.62,
+        -1.45
+      ],
+      "fov": 38,
+      "yaw": 0,
+      "pitch": 0,
+      "dollyDistance": 0.34,
+      "roll": 0,
+      "nearPlane": 0.1,
+      "finite": true,
+      "clearance": 6.761084,
+      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "nearPlaneSafe": true,
+      "externalOcclusion": false,
+      "internalExposure": false
+    }
+  ]
+}
