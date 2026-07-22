@@ -1,5 +1,6 @@
 import {
   AnimationClip,
+  BufferGeometry,
   Group,
   Material,
   Mesh,
@@ -20,12 +21,19 @@ import {
   ROUND4_STAGE_ORDER,
   type StageAssetManifest,
 } from "./assetManifest";
+import {
+  createGltfAssetCache,
+  type InstantiatedStageAsset,
+} from "./gltfAssetCache.ts";
 import { loadModelBytes } from "./modelByteCache";
 
 export type LoadedStageModel = {
   root: Group;
   animations: AnimationClip[];
   expectedClipName?: string;
+  sharedGeometries?: ReadonlySet<BufferGeometry>;
+  sharedTextures?: ReadonlySet<Texture>;
+  release?: () => void;
 };
 
 export type Round2ModelMap = Record<JourneyStageId, Group>;
@@ -37,6 +45,18 @@ export type StageModelLoadOptions = {
 };
 
 export type Round2ModelLoadOptions = StageModelLoadOptions;
+
+function createConfiguredGltfLoader(): {
+  gltfLoader: GLTFLoader;
+  dracoLoader: DRACOLoader;
+} {
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath(DRACO_DECODER_PATH);
+  dracoLoader.setDecoderConfig({ type: "wasm" });
+  const gltfLoader = new GLTFLoader();
+  gltfLoader.setDRACOLoader(dracoLoader);
+  return { gltfLoader, dracoLoader };
+}
 
 function disposeMaterial(material: Material): void {
   for (const value of Object.values(material)) {
@@ -52,7 +72,9 @@ function disposeObject(object: Object3D): void {
   object.traverse((node) => {
     if (!(node instanceof Mesh)) return;
     geometries.add(node.geometry);
-    const nodeMaterials = Array.isArray(node.material) ? node.material : [node.material];
+    const nodeMaterials = Array.isArray(node.material)
+      ? node.material
+      : [node.material];
     for (const material of nodeMaterials) materials.add(material);
   });
 
@@ -61,23 +83,20 @@ function disposeObject(object: Object3D): void {
 }
 
 export function disposeLoadedStageModels(models: Round3ModelMap): void {
-  for (const model of Object.values(models)) disposeObject(model.root);
+  for (const model of Object.values(models)) {
+    if (model.release) model.release();
+    else disposeObject(model.root);
+  }
 }
 
-async function loadStageModels(
+async function loadLegacyStageModels(
   assets: Record<JourneyStageId, StageAssetManifest>,
   order: readonly JourneyStageId[],
   rootPrefix: string,
   options: StageModelLoadOptions,
 ): Promise<Round3ModelMap> {
   options.signal?.throwIfAborted();
-
-  const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath(DRACO_DECODER_PATH);
-  dracoLoader.setDecoderConfig({ type: "wasm" });
-
-  const gltfLoader = new GLTFLoader();
-  gltfLoader.setDRACOLoader(dracoLoader);
+  const { gltfLoader, dracoLoader } = createConfiguredGltfLoader();
   const loadedRoots: Group[] = [];
 
   try {
@@ -95,12 +114,7 @@ async function loadStageModels(
         const root = gltf.scene;
         loadedRoots.push(root);
         options.signal?.throwIfAborted();
-
-        root.name = `${rootPrefix}_${stage}`;
-        root.position.set(...asset.rootPosition);
-        root.scale.setScalar(asset.rootScale);
-        root.updateMatrixWorld(true);
-
+        configureStageRoot(root, asset, `${rootPrefix}_${stage}`);
         return [
           stage,
           {
@@ -115,7 +129,6 @@ async function loadStageModels(
     options.signal?.throwIfAborted();
     const rejected = results.find((result) => result.status === "rejected");
     if (rejected) throw rejected.reason;
-
     return Object.fromEntries(
       results.map((result) => {
         if (result.status === "rejected") throw result.reason;
@@ -130,6 +143,59 @@ async function loadStageModels(
   }
 }
 
+function configureStageRoot(
+  root: Group,
+  asset: StageAssetManifest,
+  name: string,
+): void {
+  root.name = name;
+  root.position.set(...asset.rootPosition);
+  root.scale.setScalar(asset.rootScale);
+  root.updateMatrixWorld(true);
+}
+
+const round4Parser = createConfiguredGltfLoader();
+const round4AssetCache = createGltfAssetCache<JourneyStageId>(async (stage) => {
+  const asset = ROUND4_STAGE_ASSETS[stage];
+  const modelBytes = await loadModelBytes(asset.modelUrl);
+  const resourcePath = asset.modelUrl.slice(
+    0,
+    Math.max(0, asset.modelUrl.lastIndexOf("/") + 1),
+  );
+  const gltf = await round4Parser.gltfLoader.parseAsync(modelBytes, resourcePath);
+  return {
+    root: gltf.scene,
+    animations: gltf.animations,
+    expectedClipName: asset.expectedClipName,
+  };
+});
+
+function modelFromInstance(
+  instance: InstantiatedStageAsset,
+  release: () => void,
+): LoadedStageModel {
+  return { ...instance, release };
+}
+
+export async function acquireRound4StageAsset(
+  stage: JourneyStageId,
+  rootPrefix: string,
+  options: StageModelLoadOptions = {},
+): Promise<LoadedStageModel> {
+  options.signal?.throwIfAborted();
+  const lease = await round4AssetCache.acquire(stage);
+  try {
+    options.signal?.throwIfAborted();
+    const instance = lease.instantiate(`${rootPrefix}_${stage}`);
+    configureStageRoot(instance.root, ROUND4_STAGE_ASSETS[stage], instance.root.name);
+    options.signal?.throwIfAborted();
+    return modelFromInstance(instance, lease.release);
+  } catch (error) {
+    lease.release();
+    throw error;
+  }
+}
+
 export function getStageRoots(models: Round3ModelMap): Round2ModelMap {
   return Object.fromEntries(
     ROUND3_STAGE_ORDER.map((stage) => [stage, models[stage].root]),
@@ -139,7 +205,7 @@ export function getStageRoots(models: Round3ModelMap): Round2ModelMap {
 export function loadRound3Models(
   options: StageModelLoadOptions = {},
 ): Promise<Round3ModelMap> {
-  return loadStageModels(
+  return loadLegacyStageModels(
     ROUND3_STAGE_ASSETS,
     ROUND3_STAGE_ORDER,
     "Round3",
@@ -147,35 +213,42 @@ export function loadRound3Models(
   );
 }
 
-export function loadRound4Models(
+export async function loadRound4Models(
   options: StageModelLoadOptions = {},
 ): Promise<Round4ModelMap> {
-  return loadStageModels(
-    ROUND4_STAGE_ASSETS,
-    ROUND4_STAGE_ORDER,
-    "Round4",
-    options,
+  const results = await Promise.allSettled(
+    ROUND4_STAGE_ORDER.map(async (stage) => [
+      stage,
+      await acquireRound4StageAsset(stage, "Round4", options),
+    ] as const),
   );
+  const rejected = results.find((result) => result.status === "rejected");
+  if (rejected) {
+    for (const result of results) {
+      if (result.status === "fulfilled") result.value[1].release?.();
+    }
+    throw rejected.reason;
+  }
+  return Object.fromEntries(
+    results.map((result) => {
+      if (result.status === "rejected") throw result.reason;
+      return result.value;
+    }),
+  ) as Round4ModelMap;
 }
 
-export async function loadRound4StageModel(
+export function loadRound4StageModel(
   stage: JourneyStageId,
   options: StageModelLoadOptions = {},
 ): Promise<LoadedStageModel> {
-  const models = await loadStageModels(
-    ROUND4_STAGE_ASSETS,
-    [stage],
-    "Round4Hero",
-    options,
-  );
-  return models[stage];
+  return acquireRound4StageAsset(stage, "Round4Hero", options);
 }
 
 // Kept for asset inspection and Round 2 regression tooling.
 export async function loadRound2Models(
   options: Round2ModelLoadOptions = {},
 ): Promise<Round2ModelMap> {
-  const models = await loadStageModels(
+  const models = await loadLegacyStageModels(
     ROUND2_STAGE_ASSETS,
     ROUND2_STAGE_ORDER,
     "Round2",

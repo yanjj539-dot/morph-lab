@@ -9,13 +9,18 @@ import {
   MeshStandardMaterial,
   PlaneGeometry,
   Scene,
-  Texture,
   Vector3,
 } from "three";
 
 import { createCameraTimeline, createCameraTimelineSample } from "./animation/cameraTimeline";
-import { loadRound4StageModel } from "./assets/loadModels";
-import { applyRound4StageTextures } from "./assets/loadTextures";
+import {
+  loadRound4StageModel,
+  type LoadedStageModel,
+} from "./assets/loadModels";
+import {
+  applyRound4StageTextures,
+  type LoadedTextureResources,
+} from "./assets/loadTextures";
 import { createCameraRig } from "./core/createCameraRig";
 import { createRenderer } from "./core/createRenderer";
 import { disposeScene } from "./core/disposeScene";
@@ -132,7 +137,8 @@ export async function createHeroScene({
   let resizeObserver: ResizeObserver | null = null;
   let mixer: AnimationMixer | null = null;
   let actions: readonly { action: AnimationAction; duration: number }[] = [];
-  let loadedTextures: readonly Texture[] = [];
+  let loadedTextures: LoadedTextureResources | null = null;
+  let loadedModel: LoadedStageModel | null = null;
   let pointerTargetX = 0;
   let pointerTargetY = 0;
   let pointerX = 0;
@@ -252,8 +258,17 @@ export async function createHeroScene({
     mixer?.stopAllAction();
     mixer = null;
     actions = [];
-    disposeScene(scene, renderer, loadedTextures);
-    loadedTextures = [];
+    disposeScene(scene, renderer, loadedTextures ?? [], {
+      preserveGeometries: loadedModel?.sharedGeometries,
+      preserveTextures: new Set([
+        ...(loadedModel?.sharedTextures ?? []),
+        ...(loadedTextures?.sharedTextures ?? []),
+      ]),
+    });
+    loadedTextures?.release();
+    loadedModel?.release?.();
+    loadedModel = null;
+    loadedTextures = null;
     scene.clear();
   }
 
@@ -262,6 +277,7 @@ export async function createHeroScene({
 
   try {
     const model = await loadRound4StageModel("observe", { signal });
+    loadedModel = model;
     if (disposed) throw new Error("Hero scene was disposed while loading Observe.");
     scene.add(model.root);
     configureModelShadows(model.root, quality.shadows);

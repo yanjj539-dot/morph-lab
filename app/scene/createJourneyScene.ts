@@ -7,7 +7,6 @@ import {
   MeshStandardMaterial,
   PlaneGeometry,
   Scene,
-  Texture,
   TubeGeometry,
   Vector3,
 } from "three";
@@ -22,8 +21,12 @@ import {
   getStageRoots,
   loadRound4Models,
   type Round2ModelMap,
+  type Round4ModelMap,
 } from "./assets/loadModels";
-import { applyRound4Textures } from "./assets/loadTextures";
+import {
+  applyRound4Textures,
+  type LoadedTextureResources,
+} from "./assets/loadTextures";
 import { createBlenderClipController } from "./animation/blenderClipController";
 import {
   createCameraTimeline,
@@ -184,7 +187,8 @@ export async function createJourneyScene({
   let stageTimelines: ReturnType<typeof createStageTimelines> | null = null;
   let projectedLabels: ReturnType<typeof createProjectedLabels> | null = null;
   let resizeObserver: ResizeObserver | null = null;
-  let loadedTextures: readonly Texture[] = [];
+  let loadedTextures: LoadedTextureResources | null = null;
+  let loadedModels: Round4ModelMap | null = null;
   let lastCameraInspectionProgress = Number.NaN;
 
   function updateStageBoundary(nextProgress: number): void {
@@ -292,8 +296,31 @@ export async function createJourneyScene({
     stageTimelines = null;
     clipController?.dispose();
     clipController = null;
-    disposeScene(scene, renderer, loadedTextures);
-    loadedTextures = [];
+    const preserveGeometries = new Set(
+      loadedModels
+        ? Object.values(loadedModels).flatMap((model) => [
+            ...(model.sharedGeometries ?? []),
+          ])
+        : [],
+    );
+    const preserveTextures = new Set(
+      [
+        ...(loadedModels
+          ? Object.values(loadedModels).flatMap((model) => [
+              ...(model.sharedTextures ?? []),
+            ])
+          : []),
+        ...(loadedTextures?.sharedTextures ?? []),
+      ],
+    );
+    disposeScene(scene, renderer, loadedTextures ?? [], {
+      preserveGeometries,
+      preserveTextures,
+    });
+    loadedTextures?.release();
+    if (loadedModels) disposeLoadedStageModels(loadedModels);
+    loadedModels = null;
+    loadedTextures = null;
     delete canvasHost.dataset.cameraSample;
     scene.clear();
   }
@@ -308,9 +335,10 @@ export async function createJourneyScene({
       );
     }
 
-    const loadedModels = await loadRound4Models({ signal });
+    loadedModels = await loadRound4Models({ signal });
     if (disposed) {
       disposeLoadedStageModels(loadedModels);
+      loadedModels = null;
       throw new Error("Journey scene was disposed while loading models.");
     }
     const models = getStageRoots(loadedModels);
