@@ -9,6 +9,7 @@ import type { SceneQualitySettings } from "../core/qualityManager";
 import { configureAcrylicObject, isAcrylicMaterial } from "./acrylicMaterial";
 import type { Round3TextureSet } from "./loadCompressedTextures";
 import {
+  isMicroNormalEligible,
   normalPolicyFor,
   type NormalDistanceTier,
 } from "./normalMapPolicy.ts";
@@ -168,10 +169,15 @@ export function applyRound4MaterialSystem(
       if (!(material instanceof MeshStandardMaterial)) continue;
       material.envMapIntensity = quality.tier === "high" ? 0.68 : 0.52;
       const route = resolveRound4MaterialRoute(material.name);
+      object.geometry.computeBoundingSphere();
+      const microNormalEligible = isMicroNormalEligible(
+        object.name,
+        object.geometry.boundingSphere?.radius ?? Number.POSITIVE_INFINITY,
+      );
       const normalPolicy = normalPolicyFor(
         route ?? "",
         normalDistanceTier,
-        normalMapsEnabled,
+        normalMapsEnabled && microNormalEligible,
       );
 
       if (isAcrylicMaterial(material) || route === "frostedAcrylic") continue;
@@ -217,7 +223,8 @@ export function applyRound4MaterialSystem(
 
       material.normalScale.setScalar(normalPolicy.scale);
       material.userData.round5NormalRoute = route;
-      material.userData.round5NormalsEnabled = normalMapsEnabled;
+      material.userData.round5NormalsEnabled =
+        normalMapsEnabled && microNormalEligible;
       material.needsUpdate = true;
     }
   });

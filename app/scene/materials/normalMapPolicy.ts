@@ -23,6 +23,19 @@ const BASE_NORMAL_SCALE: Readonly<Record<string, number>> = Object.freeze({
   blackRubber: 0.018,
 });
 
+const MAX_MICRO_NORMAL_RADIUS = 1.25;
+
+export function isMicroNormalEligible(
+  meshName: string,
+  boundingRadius: number,
+): boolean {
+  return (
+    !meshName.startsWith("ROUND5_BATCH_") &&
+    Number.isFinite(boundingRadius) &&
+    boundingRadius <= MAX_MICRO_NORMAL_RADIUS
+  );
+}
+
 export function readMaterialNormalOverride(
   search: string | URLSearchParams,
 ): boolean | null {

@@ -38,3 +38,10 @@ test("publishes lower-frequency repeat profiles for public normal textures", asy
     studioOrm: [2, 2],
   });
 });
+
+test("rejects micro normals on large or cross-object batched surfaces", async () => {
+  const { isMicroNormalEligible } = await import(policyUrl.href);
+  assert.equal(isMicroNormalEligible("detail_knob", 0.4), true);
+  assert.equal(isMicroNormalEligible("large_table", 3.2), false);
+  assert.equal(isMicroNormalEligible("ROUND5_BATCH_03", 0.8), false);
+});
