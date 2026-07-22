@@ -92,10 +92,11 @@ test("round 4 camera choreography adds authored dolly and limited roll without r
 });
 
 test("round 4 geometry and camera evidence closes high and medium severity findings across 41 samples", async () => {
-  const [intersections, collisions, markdown] = await Promise.all([
+  const [intersections, collisions, markdown, qaRunner] = await Promise.all([
     readJson("artifacts/qa-round4/intersections.json"),
     readJson("artifacts/qa-round4/camera-collisions.json"),
     readText("artifacts/qa-round4/intersections.md"),
+    readText("scripts/qa-round4.mjs"),
   ]);
 
   assert.equal(intersections.summary.high, 0);
@@ -104,7 +105,25 @@ test("round 4 geometry and camera evidence closes high and medium severity findi
   assert.ok(Array.isArray(intersections.intersections));
   assert.equal(collisions.summary.high, 0);
   assert.equal(collisions.summary.medium, 0);
-  assert.ok(collisions.summary.samples >= 41, "camera collision inspection uses 41 samples");
+  assert.equal(collisions.schemaVersion, 2);
+  assert.equal(collisions.source, "runtime-raycast");
+  assert.equal(collisions.summary.samples, 41, "camera collision inspection uses exact 41 samples");
+  assert.equal(collisions.summary.unexpectedExternalOcclusions, 0);
+  assert.equal(collisions.summary.internalExposures, 0);
+  assert.equal(collisions.summary.nearPlaneViolations, 0);
+  assert.equal(collisions.summary.insufficientFocusEvidence, 0);
+  assert.ok(collisions.summary.allowedExternalOcclusions > 0);
+  assert.ok(
+    collisions.samples.every(
+      (sample) =>
+        sample.rays.length === 5 &&
+        sample.renderableMeshCount > 0 &&
+        typeof sample.externalOcclusion.safe === "boolean" &&
+        typeof sample.internalExposure.safe === "boolean",
+    ),
+    "each camera sample contains measured runtime ray evidence",
+  );
+  assert.doesNotMatch(qaRunner, /externalOcclusion:\s*false|internalExposure:\s*false/);
   assert.match(markdown, /High:\s*0/);
   assert.match(markdown, /Medium:\s*0/);
 });
@@ -116,6 +135,7 @@ test("round 4 keeps the mobile Hero LCP plate lightweight", async () => {
 });
 
 test("round 4 delivery includes 41 Journey captures, named UI states, recordings, and Lighthouse floors", async () => {
+  const { default: sharp } = await import("sharp");
   const [progress, uiStates] = await Promise.all([
     readdir(fileUrl("artifacts/qa-round4/journey-progress/")),
     readdir(fileUrl("artifacts/qa-round4/ui-states/")),
@@ -130,6 +150,14 @@ test("round 4 delivery includes 41 Journey captures, named UI states, recordings
     expectedProgressNames,
     "Journey progress evidence uses the exact 41 half-up 2.5% filenames",
   );
+
+  for (const stage of ["observe", "structure", "prototype", "release"]) {
+    const metadata = await sharp(
+      await readFile(fileUrl(`artifacts/qa-round4/stage-${stage}-1920x1080.png`)),
+    ).metadata();
+    assert.equal(metadata.width, 1920, `${stage} stage evidence width`);
+    assert.equal(metadata.height, 1080, `${stage} stage evidence height`);
+  }
 
   for (const state of [
     "hero",
@@ -155,12 +183,42 @@ test("round 4 delivery includes 41 Journey captures, named UI states, recordings
     assert.ok((await stat(fileUrl(`artifacts/qa-round4/${video}`))).size > 100_000, `${video} evidence`);
   }
 
+  for (const name of [
+    "current-after-desktop",
+    "current-after-mobile",
+    "current-after-reduced-motion",
+  ]) {
+    const [video, contactSheet] = await Promise.all([
+      stat(fileUrl(`artifacts/qa-round4/${name}.mp4`)),
+      stat(fileUrl(`artifacts/qa-round4/video-contact-sheets/${name}-contact-sheet.png`)),
+    ]);
+    assert.ok(contactSheet.size > 10_000, `${name} contact sheet evidence`);
+    assert.ok(
+      contactSheet.mtimeMs >= video.mtimeMs,
+      `${name} contact sheet is generated from the current MP4`,
+    );
+  }
+
   for (const mode of ["desktop", "mobile"]) {
     const report = await readJson(`artifacts/qa-round4/lighthouse-${mode}.json`);
     assert.ok(report.categories.performance.score >= (mode === "desktop" ? 0.9 : 0.75));
     assert.ok(report.categories.accessibility.score >= 0.95);
     assert.ok(report.categories.seo.score >= 0.95);
   }
+
+  const [networkBudget, telemetry] = await Promise.all([
+    readJson("artifacts/qa-round4/network-budget.json"),
+    readJson("artifacts/qa-round4/browser-telemetry.json"),
+  ]);
+  assert.equal(networkBudget.glb.requestCount, 4);
+  assert.equal(networkBudget.glb.uniqueDesktopRequests, 4);
+  assert.deepEqual(networkBudget.glb.duplicateUrls, []);
+  assert.ok(networkBudget.glb.totalTransferSize > 0);
+  assert.ok(telemetry.sessions > 0);
+  assert.equal(telemetry.consoleErrors, 0);
+  assert.equal(telemetry.pageErrors, 0);
+  assert.equal(telemetry.failedRequests, 0);
+  assert.equal(telemetry.httpErrors, 0);
 });
 
 test("round 4 preserves the compressed desktop path, zero-GLB fallbacks, and GitHub Pages-safe URLs", async () => {
@@ -186,6 +244,64 @@ test("round 4 preserves the compressed desktop path, zero-GLB fallbacks, and Git
   assert.match(paths, /withBasePath/);
 });
 
+test("round 4 model bytes coalesce consumers and retry after a failed fetch", async () => {
+  const { loadModelBytes } = await import("../app/scene/assets/modelByteCache.ts");
+  const calls = [];
+  const fetcher = async (url) => {
+    calls.push(String(url));
+    return new Response(Uint8Array.from([1, 2, 3, 4]));
+  };
+  const url = `/models/round-4/cache-${Date.now()}.glb`;
+
+  const [first, concurrent] = await Promise.all([
+    loadModelBytes(url, fetcher),
+    loadModelBytes(url, fetcher),
+  ]);
+  const sequential = await loadModelBytes(url, fetcher);
+
+  assert.equal(calls.length, 1, "concurrent and later consumers share one byte request");
+  assert.equal(first, concurrent);
+  assert.equal(first, sequential);
+
+  let attempts = 0;
+  const retryUrl = `/models/round-4/retry-${Date.now()}.glb`;
+  const retryingFetcher = async () => {
+    attempts += 1;
+    return attempts === 1
+      ? new Response("temporary failure", { status: 503 })
+      : new Response(Uint8Array.from([5, 6, 7, 8]));
+  };
+
+  await assert.rejects(loadModelBytes(retryUrl, retryingFetcher), /503/);
+  assert.deepEqual(
+    [...new Uint8Array(await loadModelBytes(retryUrl, retryingFetcher))],
+    [5, 6, 7, 8],
+  );
+  assert.equal(attempts, 2, "a rejected request is removed so the next consumer can retry");
+});
+
+test("round 4 network metrics retain duplicate requests and their real bytes", async () => {
+  const { summarizeGlbResources } = await import("../scripts/lib/round4Metrics.mjs");
+  const observe = "https://morph-lab.test/models/round-4/observe.glb";
+  const summary = summarizeGlbResources([
+    { name: observe, transferSize: 110, encodedBodySize: 100, decodedBodySize: 100 },
+    { name: observe, transferSize: 110, encodedBodySize: 100, decodedBodySize: 100 },
+    {
+      name: "https://morph-lab.test/models/round-4/structure.glb",
+      transferSize: 60,
+      encodedBodySize: 50,
+      decodedBodySize: 50,
+    },
+  ]);
+
+  assert.equal(summary.requestCount, 3);
+  assert.equal(summary.uniqueRequestCount, 2);
+  assert.deepEqual(summary.duplicateUrls, [observe]);
+  assert.equal(summary.totalTransferSize, 280);
+  assert.equal(summary.totalEncodedBodySize, 250);
+  assert.equal(summary.totalDecodedBodySize, 250);
+});
+
 test("round 4 documents the reference study, story, material decisions, delivery, and limitations", async () => {
   for (const path of [
     "docs/vectr-reference-study.md",
@@ -193,6 +309,7 @@ test("round 4 documents the reference study, story, material decisions, delivery
     "docs/round-4-defect-list.md",
     "docs/round-4-camera-storyboard.md",
     "docs/round-4-material-system.md",
+    "docs/round-4-technology-evaluation.md",
     "docs/round-4-delivery.md",
     "docs/round-4-known-limitations.md",
   ]) {

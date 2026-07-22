@@ -80,7 +80,6 @@ export default function Home() {
               key={item.title}
               data-motion-reveal
               data-page-transition
-              aria-label={`${item.titleZh}：查看对应项目`}
             >
               <span className="practice-row__rail" aria-hidden="true">
                 <span className="practice-row__index">

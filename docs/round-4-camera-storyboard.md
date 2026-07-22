@@ -18,7 +18,7 @@ Round 4 uses one continuous desktop camera path for the Hero handoff and Journey
 | ---: | --- | --- | --- |
 | 0.000 | Observe wide | Hero and Journey share the opening material table. | Stable wide angle, no roll, generous text-safe area. |
 | 0.200 | Observe push | Scanner and output card become the first close read. | Dolly pushes in, FOV narrows, tiny positive roll. |
-| 0.290 | Paper occlusion | Structure starts to enter through a physical edge. | Lateral move with allowed paper foreground. |
+| 0.290 | Panel/rail occlusion | Structure starts to enter through a physical edge. | Lateral move with the allowlisted mounting rail crossing before the grid board. |
 | 0.450 | Structure board | System cards and rails become the main surface. | Lower angle, narrowed FOV, negative dolly. |
 | 0.540 | Rail handoff | The route leaves Structure and prepares Prototype. | Short positive dolly, small counter-roll. |
 | 0.680 | Prototype close | Monitor, phone, and tablet surfaces dominate. | Tightest FOV, near-field lateral pass, max roll below limit. |
@@ -39,8 +39,9 @@ Round 4 uses one continuous desktop camera path for the Hero handoff and Journey
 The authoritative 2026-07-22 run sampled every `0.025` step and reported:
 
 - Camera samples: 41; High: 0; Medium: 0.
-- Minimum clearance: `3.491962`; near-plane safe at every sample.
-- External occlusions: 0; internal surface exposures: 0.
+- Minimum clearance: `3.492548`; near-plane safe at every sample.
+- Allowed external occlusions: 6 at progress `0.275`–`0.400`, all caused by `STR_mount_rail_2` passing before the Structure grid board.
+- Unexpected external occlusions: 0; internal surface exposures: 0; insufficient focus evidence: 0.
 - Authored roll stays within the `0.026` radian limit and returns to zero at the final lock.
 - Visual checkpoints at progress `0.000`, `0.500`, and `1.000` preserve readable copy while moving from Observe wide, through the Prototype close pass, to the Release lock.
 

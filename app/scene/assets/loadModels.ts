@@ -20,6 +20,7 @@ import {
   ROUND4_STAGE_ORDER,
   type StageAssetManifest,
 } from "./assetManifest";
+import { loadModelBytes } from "./modelByteCache";
 
 export type LoadedStageModel = {
   root: Group;
@@ -84,7 +85,13 @@ async function loadStageModels(
       order.map(async (stage) => {
         options.signal?.throwIfAborted();
         const asset = assets[stage];
-        const gltf = await gltfLoader.loadAsync(asset.modelUrl);
+        const modelBytes = await loadModelBytes(asset.modelUrl);
+        options.signal?.throwIfAborted();
+        const resourcePath = asset.modelUrl.slice(
+          0,
+          Math.max(0, asset.modelUrl.lastIndexOf("/") + 1),
+        );
+        const gltf = await gltfLoader.parseAsync(modelBytes, resourcePath);
         const root = gltf.scene;
         loadedRoots.push(root);
         options.signal?.throwIfAborted();

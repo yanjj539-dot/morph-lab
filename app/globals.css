@@ -772,7 +772,7 @@ html.page-transition-incoming body {
 
 .journey-progress__item {
   position: relative;
-  color: rgba(17, 19, 24, 0.44);
+  color: rgba(17, 19, 24, 0.62);
   transition: color 220ms ease;
 }
 

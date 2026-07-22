@@ -1,1041 +1,4894 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-07-22T00:00:58.226Z",
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-22T02:25:24.556Z",
+  "source": "runtime-raycast",
+  "viewport": {
+    "width": 1280,
+    "height": 800,
+    "aspect": 1.6
+  },
   "summary": {
     "samples": 41,
     "high": 0,
     "medium": 0,
-    "minimumClearance": 3.491962,
+    "minimumClearance": 3.492548,
     "nearPlaneSafe": true,
-    "externalOcclusions": 0,
-    "internalExposures": 0
+    "allowedExternalOcclusions": 6,
+    "unexpectedExternalOcclusions": 0,
+    "internalExposures": 0,
+    "nearPlaneViolations": 0,
+    "insufficientFocusEvidence": 0
   },
-  "collisions": [],
+  "geometryEvidence": {
+    "source": "intersections.json#environmentChecks",
+    "stages": {
+      "observe": {
+        "externalOcclusion": {
+          "status": "pass",
+          "externalMeshes": []
+        },
+        "internalSurfaceExposure": {
+          "status": "pass",
+          "doubleSidedSolids": []
+        }
+      },
+      "structure": {
+        "externalOcclusion": {
+          "status": "pass",
+          "externalMeshes": []
+        },
+        "internalSurfaceExposure": {
+          "status": "pass",
+          "doubleSidedSolids": []
+        }
+      },
+      "prototype": {
+        "externalOcclusion": {
+          "status": "pass",
+          "externalMeshes": []
+        },
+        "internalSurfaceExposure": {
+          "status": "pass",
+          "doubleSidedSolids": []
+        }
+      },
+      "release": {
+        "externalOcclusion": {
+          "status": "pass",
+          "externalMeshes": []
+        },
+        "internalSurfaceExposure": {
+          "status": "pass",
+          "doubleSidedSolids": []
+        }
+      }
+    }
+  },
   "samples": [
     {
       "progress": 0,
+      "stageId": "observe",
       "position": [
         -7.657934,
         4.712779,
         7.610907
       ],
-      "target": [
-        -6,
-        0.45,
-        -1.55
-      ],
-      "fov": 36,
-      "yaw": -0.03,
-      "pitch": -0.04,
-      "dollyDistance": 0.24,
-      "roll": 0,
       "nearPlane": 0.1,
-      "finite": true,
+      "renderableMeshCount": 68,
       "clearance": 7.73288,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "OBS_scanner_body",
+          "OBS_output_assembly"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 3,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.024864111842802863,
+            0.1417325833610398
+          ],
+          "focusHit": true,
+          "focusDistance": 9.481413128120465,
+          "hitMeshNames": [
+            "OBS_output_card"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.12639635739936156,
+            0.2351597997803217
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.07666813371375582,
+            0.2351597997803217
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "OBS_material_tray",
+            "OBS_swatch_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.12639635739936156,
+            0.04830536694175791
+          ],
+          "focusHit": true,
+          "focusDistance": 9.765615200236036,
+          "hitMeshNames": [
+            "OBS_scanner_body"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.07666813371375582,
+            0.04830536694175791
+          ],
+          "focusHit": true,
+          "focusDistance": 9.69957701409205,
+          "hitMeshNames": [
+            "OBS_crop_frame_bottom"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.025,
+      "stageId": "observe",
       "position": [
-        -7.594358,
-        4.666136,
-        7.545353
+        -7.605021,
+        4.670444,
+        7.541461
       ],
-      "target": [
-        -5.988762,
-        0.442471,
-        -1.548689
-      ],
-      "fov": 35.871094,
-      "yaw": -0.027852,
-      "pitch": -0.039141,
-      "dollyDistance": 0.22625,
-      "roll": 0.000344,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 7.65556,
+      "renderableMeshCount": 68,
+      "clearance": 7.653204,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "OBS_scanner_body",
+          "OBS_output_assembly"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 3,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.027248052388017793,
+            0.14561896299734495
+          ],
+          "focusHit": true,
+          "focusDistance": 9.394858439564981,
+          "hitMeshNames": [
+            "OBS_output_card"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.12985199297824215,
+            0.23997522492836945
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.07535588820220657,
+            0.23997522492836945
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "OBS_material_tray",
+            "OBS_swatch_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.12985199297824215,
+            0.05126270106632043
+          ],
+          "focusHit": true,
+          "focusDistance": 9.68076117541892,
+          "hitMeshNames": [
+            "OBS_scanner_body"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.07535588820220657,
+            0.05126270106632043
+          ],
+          "focusHit": true,
+          "focusDistance": 9.612458664195904,
+          "hitMeshNames": [
+            "OBS_crop_frame_bottom"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.05,
+      "stageId": "observe",
       "position": [
-        -7.429231,
-        4.543582,
-        7.370793
+        -7.456808,
+        4.554702,
+        7.361051
       ],
-      "target": [
-        -5.959923,
-        0.421528,
-        -1.54489
-      ],
-      "fov": 35.53125,
-      "yaw": -0.022187,
-      "pitch": -0.036875,
-      "dollyDistance": 0.19,
-      "roll": 0.00125,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 7.452924,
+      "renderableMeshCount": 68,
+      "clearance": 7.44649,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "OBS_scanner_body",
+          "OBS_output_assembly"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 3,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.03361860274657878,
+            0.15679694815133607
+          ],
+          "focusHit": true,
+          "focusDistance": 9.167446639452322,
+          "hitMeshNames": [
+            "OBS_output_card"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.13905294223050674,
+            0.25353883988393205
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.07181573673734917,
+            0.25353883988393205
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "OBS_material_tray",
+            "OBS_swatch_4",
+            "OBS_tray_divider_3"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.13905294223050674,
+            0.06005505641874007
+          ],
+          "focusHit": true,
+          "focusDistance": 9.458174521369779,
+          "hitMeshNames": [
+            "OBS_scanner_body"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.07181573673734917,
+            0.06005505641874007
+          ],
+          "focusHit": true,
+          "focusDistance": 9.378568868738505,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.075,
+      "stageId": "observe",
       "position": [
-        -7.199533,
-        4.371728,
-        7.121584
+        -7.237463,
+        4.386981,
+        7.108859
       ],
-      "target": [
-        -5.915176,
-        0.398491,
-        -1.541523
-      ],
-      "fov": 35.050781,
-      "yaw": -0.01418,
-      "pitch": -0.033672,
-      "dollyDistance": 0.13875,
-      "roll": 0.002531,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 7.16998,
+      "renderableMeshCount": 68,
+      "clearance": 7.161079,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "OBS_scanner_body",
+          "OBS_output_assembly"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 3,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.04405068226002397,
+            0.17170064082977415
+          ],
+          "focusHit": true,
+          "focusDistance": 8.848772025598965,
+          "hitMeshNames": [
+            "OBS_output_card"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.1535425366333653,
+            0.27179149560255317
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.06544117211331736,
+            0.27179149560255317
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "OBS_material_tray",
+            "OBS_swatch_4",
+            "OBS_tray_divider_3"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.1535425366333653,
+            0.07160978605699513
+          ],
+          "focusHit": true,
+          "focusDistance": 9.14682728474685,
+          "hitMeshNames": [
+            "OBS_scanner_body"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.06544117211331736,
+            0.07160978605699513
+          ],
+          "focusHit": true,
+          "focusDistance": 9.044228542750448,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.1,
+      "stageId": "observe",
       "position": [
-        -6.937046,
-        4.177613,
-        6.835469
+        -6.979165,
+        4.1945,
+        6.822277
       ],
-      "target": [
-        -5.85768,
-        0.390832,
-        -1.543062
-      ],
-      "fov": 34.5,
-      "yaw": -0.005,
-      "pitch": -0.03,
-      "dollyDistance": 0.08,
-      "roll": 0.004,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 6.848273,
+      "renderableMeshCount": 68,
+      "clearance": 6.838963,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "OBS_scanner_body",
+          "OBS_output_assembly"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 3,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.058411014245127166,
+            0.18386183601351652
+          ],
+          "focusHit": true,
+          "focusDistance": 8.475859015895697,
+          "hitMeshNames": [
+            "OBS_crop_frame_left"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.17261428928186523,
+            0.28781327701095527
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.0557922607916109,
+            0.28781327701095527
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "OBS_swatch_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.17261428928186523,
+            0.07991039501607779
+          ],
+          "focusHit": true,
+          "focusDistance": 8.796907168341441,
+          "hitMeshNames": [
+            "OBS_scanner_body"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.0557922607916109,
+            0.07991039501607779
+          ],
+          "focusHit": true,
+          "focusDistance": 8.66598456491039,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.125,
+      "stageId": "observe",
       "position": [
-        -6.661445,
-        3.989425,
-        6.557069
+        -6.702248,
+        4.005739,
+        6.545348
       ],
-      "target": [
-        -5.799799,
-        0.386553,
-        -1.545528
-      ],
-      "fov": 33.949219,
-      "yaw": 0.00418,
-      "pitch": -0.026328,
-      "dollyDistance": 0.02125,
-      "roll": 0.005469,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 6.537597,
+      "renderableMeshCount": 68,
+      "clearance": 6.52927,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "OBS_scanner_body",
+          "OBS_output_assembly"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 3,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.0763117017241158,
+            0.19629221277225978
+          ],
+          "focusHit": true,
+          "focusDistance": 8.131132134260108,
+          "hitMeshNames": [
+            "OBS_crop_frame_top"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.19622522973312945,
+            0.30391631213136927
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.04360182628489781,
+            0.30391631213136927
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "OBS_swatch_3"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.19622522973312945,
+            0.08866811341315034
+          ],
+          "focusHit": true,
+          "focusDistance": 8.463049205016258,
+          "hitMeshNames": [
+            "OBS_scanner_body"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.04360182628489781,
+            0.08866811341315034
+          ],
+          "focusHit": true,
+          "focusDistance": 8.299952500609715,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.15,
+      "stageId": "observe",
       "position": [
-        -6.421125,
-        3.828221,
-        6.313832
+        -6.455716,
+        3.84202,
+        6.304736
       ],
-      "target": [
-        -5.749274,
-        0.383358,
-        -1.547825
-      ],
-      "fov": 33.46875,
-      "yaw": 0.012188,
-      "pitch": -0.023125,
-      "dollyDistance": -0.03,
-      "roll": 0.00675,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 6.26874,
+      "renderableMeshCount": 68,
+      "clearance": 6.262243,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "OBS_scanner_body",
+          "OBS_output_assembly"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 3,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.09642399938439519,
+            0.20831914564348047
+          ],
+          "focusHit": true,
+          "focusDistance": 7.84823677659763,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.22310225245327886,
+            0.3190602518795219
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.030254253684488475,
+            0.3190602518795219
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "OBS_swatch_3"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.22310225245327886,
+            0.09757803940743903
+          ],
+          "focusHit": true,
+          "focusDistance": 8.18049865929947,
+          "hitMeshNames": [
+            "OBS_scanner_body"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.030254253684488475,
+            0.09757803940743903
+          ],
+          "focusHit": true,
+          "focusDistance": 7.986503835498787,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.175,
+      "stageId": "observe",
       "position": [
-        -6.253869,
-        3.71534,
-        6.139867
+        -6.27783,
+        3.724885,
+        6.133999
       ],
-      "target": [
-        -5.713541,
-        0.381028,
-        -1.54943
-      ],
-      "fov": 33.128906,
-      "yaw": 0.017852,
-      "pitch": -0.020859,
-      "dollyDistance": -0.06625,
-      "roll": 0.007656,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 6.078067,
+      "renderableMeshCount": 68,
+      "clearance": 6.073857,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "OBS_scanner_body",
+          "OBS_output_assembly"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 3,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.11201960346818982,
+            0.21767596713710527
+          ],
+          "focusHit": true,
+          "focusDistance": 7.642806962937323,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.24375814751555364,
+            0.3306009142992396
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.019718940579173977,
+            0.3306009142992396
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "OBS_scan_beam"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.24375814751555364,
+            0.10475101997497094
+          ],
+          "focusHit": true,
+          "focusDistance": 7.985329446755404,
+          "hitMeshNames": [
+            "OBS_scanner_body"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.019718940579173977,
+            0.10475101997497094
+          ],
+          "focusHit": true,
+          "focusDistance": 7.765830622769011,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.2,
+      "stageId": "observe",
       "position": [
-        -6.191453,
-        3.672689,
-        6.073203
+        -6.20047,
+        3.676279,
+        6.071064
       ],
-      "target": [
-        -5.7,
-        0.38,
-        -1.55
-      ],
-      "fov": 33,
-      "yaw": 0.02,
-      "pitch": -0.02,
-      "dollyDistance": -0.08,
-      "roll": 0.008,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 6.005372,
+      "renderableMeshCount": 68,
+      "clearance": 6.003835,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "OBS_scanner_body",
+          "OBS_output_assembly"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 3,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.11833731107076709,
+            0.22041805908141376
+          ],
+          "focusHit": true,
+          "focusDistance": 7.551635414345605,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.25228605773585233,
+            0.33472015408239575
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.015611435594318157,
+            0.33472015408239575
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "OBS_scan_beam"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.25228605773585233,
+            0.10611596408043181
+          ],
+          "focusHit": true,
+          "focusDistance": 7.915224327170026,
+          "hitMeshNames": [
+            "OBS_scanner_body"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.015611435594318157,
+            0.10611596408043181
+          ],
+          "focusHit": true,
+          "focusDistance": 7.668255882999127,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.225,
+      "stageId": "observe",
       "position": [
-        -5.932112,
-        3.593056,
-        6.001404
+        -5.954664,
+        3.604256,
+        5.995282
       ],
-      "target": [
-        -5.463492,
-        0.424643,
-        -1.576045
-      ],
-      "fov": 33.134951,
-      "yaw": 0.025398,
-      "pitch": -0.017301,
-      "dollyDistance": -0.058408,
-      "roll": 0.005301,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 5.922136,
+      "renderableMeshCount": 158,
+      "clearance": 5.917765,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "OBS_scanner_body",
+          "OBS_output_assembly"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 3,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.18678907547029397,
+            0.19854959489553767
+          ],
+          "focusHit": true,
+          "focusDistance": 7.446725212222519,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.3225812707758695,
+            0.3140527062974068
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            -0.05099688016471841,
+            0.3140527062974068
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "OBS_scan_beam"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.3225812707758695,
+            0.08304648349366858
+          ],
+          "focusHit": true,
+          "focusDistance": 7.839948531826723,
+          "hitMeshNames": [
+            "OBS_scanner_body"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            -0.05099688016471841,
+            0.08304648349366858
+          ],
+          "focusHit": true,
+          "focusDistance": 7.546265673122192,
+          "hitMeshNames": [
+            "PRINT_observe_output__content"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.25,
+      "stageId": "structure",
       "position": [
-        -5.019414,
-        3.32712,
-        5.779212
+        -5.096447,
+        3.365248,
+        5.76075
       ],
-      "target": [
-        -4.64337,
-        0.582151,
-        -1.668395
-      ],
-      "fov": 33.603313,
-      "yaw": 0.044133,
-      "pitch": -0.007934,
-      "dollyDistance": 0.01653,
-      "roll": -0.004066,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 5.667115,
+      "renderableMeshCount": 157,
+      "clearance": 5.653156,
       "nearestProxyId": "COLLIDER_OBSERVE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "STR_grid_board"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.6140059775794993,
+            0.380507445089095
+          ],
+          "focusHit": true,
+          "focusDistance": 8.586168981489205,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.3824095641271989,
+            0.6332765504470418
+          ],
+          "focusHit": true,
+          "focusDistance": 8.180913044763582,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.8456023910317997,
+            0.6332765504470418
+          ],
+          "focusHit": true,
+          "focusDistance": 8.79253113331356,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.3824095641271989,
+            0.12773833973114818
+          ],
+          "focusHit": true,
+          "focusDistance": 8.504047334702777,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.8456023910317997,
+            0.12773833973114818
+          ],
+          "focusHit": true,
+          "focusDistance": 9.164058192037164,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [
+            "STR_panel_4"
+          ],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.275,
+      "stageId": "structure",
       "position": [
-        -4.285632,
-        3.142997,
-        5.666421
+        -4.344862,
+        3.172237,
+        5.654318
       ],
-      "target": [
-        -4.012025,
-        0.707684,
-        -1.742711
-      ],
-      "fov": 33.964506,
-      "yaw": 0.05858,
-      "pitch": -0.00071,
-      "dollyDistance": 0.074321,
-      "roll": -0.01129,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 5.491193,
+      "renderableMeshCount": 156,
+      "clearance": 5.489003,
       "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "STR_grid_board"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [
+          "STR_mount_rail_2"
+        ],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.5214923277809044,
+            0.3215622674756813
+          ],
+          "focusHit": true,
+          "focusDistance": 8.284176377149635,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_mount_rail_2"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_mount_rail_2"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.25730751869092816,
+            0.580029471843901
+          ],
+          "focusHit": true,
+          "focusDistance": 7.924165107103254,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.7856771368708806,
+            0.580029471843901
+          ],
+          "focusHit": true,
+          "focusDistance": 8.511011690934138,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.25730751869092816,
+            0.0630950631074616
+          ],
+          "focusHit": true,
+          "focusDistance": 8.215663586831806,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_3"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_panels"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.7856771368708806,
+            0.0630950631074616
+          ],
+          "focusHit": true,
+          "focusDistance": 8.844840682130233,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [
+            "STR_panel_4"
+          ],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.3,
+      "stageId": "structure",
       "position": [
-        -4.213687,
-        3.124684,
-        5.654875
+        -4.219507,
+        3.127559,
+        5.653731
       ],
-      "target": [
-        -3.949973,
-        0.720006,
-        -1.750004
-      ],
-      "fov": 33.999956,
-      "yaw": 0.059999,
-      "pitch": 0,
-      "dollyDistance": 0.079997,
-      "roll": -0.012,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 5.468776,
+      "renderableMeshCount": 93,
+      "clearance": 5.468504,
       "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "STR_grid_board"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [
+          "STR_mount_rail_2"
+        ],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.507519873955256,
+            0.3174588709657139
+          ],
+          "focusHit": true,
+          "focusDistance": 8.239123547176881,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_mount_rail_2"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_mount_rail_2"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.2433117810928866,
+            0.5778411654832093
+          ],
+          "focusHit": true,
+          "focusDistance": 7.89791920583938,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.7717279668176255,
+            0.5778411654832093
+          ],
+          "focusHit": true,
+          "focusDistance": 8.45602692619422,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.2433117810928866,
+            0.057076576448218536
+          ],
+          "focusHit": true,
+          "focusDistance": 8.18199986317543,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_3"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_panels"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.7717279668176255,
+            0.057076576448218536
+          ],
+          "focusHit": true,
+          "focusDistance": 8.779490602931066,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [
+            "STR_panel_4"
+          ],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.325,
+      "stageId": "structure",
       "position": [
-        -4.187583,
-        3.112907,
-        5.645853
+        -4.182638,
+        3.114768,
+        5.645429
       ],
-      "target": [
-        -3.921137,
-        0.726067,
-        -1.754586
-      ],
-      "fov": 33.953965,
-      "yaw": 0.058772,
-      "pitch": 0.00046,
-      "dollyDistance": 0.076931,
-      "roll": -0.011693,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 5.456062,
+      "renderableMeshCount": 93,
+      "clearance": 5.454937,
       "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "STR_grid_board"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [
+          "STR_mount_rail_2"
+        ],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.501501775795349,
+            0.3150124150358062
+          ],
+          "focusHit": true,
+          "focusDistance": 8.218251875258497,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_mount_rail_2"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_mount_rail_2"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.236467477158174,
+            0.5762458052364066
+          ],
+          "focusHit": true,
+          "focusDistance": 7.882444754618093,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.7665360744325241,
+            0.5762458052364066
+          ],
+          "focusHit": true,
+          "focusDistance": 8.432499524915592,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.236467477158174,
+            0.05377902483520586
+          ],
+          "focusHit": true,
+          "focusDistance": 8.16459141471461,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_3"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_panels"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.7665360744325241,
+            0.05377902483520586
+          ],
+          "focusHit": true,
+          "focusDistance": 8.753218903361795,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [
+            "STR_panel_4"
+          ],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.35,
+      "stageId": "structure",
       "position": [
-        -3.897446,
-        2.982304,
-        5.544072
+        -3.842838,
+        3.002833,
+        5.53993
       ],
-      "target": [
-        -3.601335,
-        0.794934,
-        -1.806626
-      ],
-      "fov": 33.443411,
-      "yaw": 0.045158,
-      "pitch": 0.005566,
-      "dollyDistance": 0.042894,
-      "roll": -0.008289,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 5.320328,
+      "renderableMeshCount": 93,
+      "clearance": 5.311234,
       "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "STR_grid_board"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [
+          "STR_mount_rail_2"
+        ],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.431788092537819,
+            0.2840623737608631
+          ],
+          "focusHit": true,
+          "focusDistance": 8.007200399562718,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_mount_rail_2"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_mount_rail_2"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.15833263647698115,
+            0.5532060116029663
+          ],
+          "focusHit": true,
+          "focusDistance": 7.720991986665352,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.7052435485986569,
+            0.5532060116029663
+          ],
+          "focusHit": true,
+          "focusDistance": 8.195487324299553,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.15833263647698115,
+            0.014918735918759779
+          ],
+          "focusHit": true,
+          "focusDistance": 7.987286459327149,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_3"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_panels"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.7052435485986569,
+            0.014918735918759779
+          ],
+          "focusHit": true,
+          "focusDistance": 8.493167668153005,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [
+            "STR_panel_4"
+          ],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.375,
+      "stageId": "structure",
       "position": [
-        -3.207422,
-        2.687309,
-        5.304314
+        -3.080347,
+        2.735004,
+        5.297943
       ],
-      "target": [
-        -2.84174,
-        0.941838,
-        -1.917769
-      ],
-      "fov": 32.238212,
-      "yaw": 0.013019,
-      "pitch": 0.017618,
-      "dollyDistance": -0.037453,
-      "roll": -0.000255,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 5.054314,
+      "renderableMeshCount": 93,
+      "clearance": 5.047943,
       "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "STR_grid_board"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [
+          "STR_mount_rail_2"
+        ],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.24285657219818554,
+            0.21364539487140133
+          ],
+          "focusHit": true,
+          "focusDistance": 7.574190060059439,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_mount_rail_2"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_mount_rail_2"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.05193360138119571,
+            0.5023336447322779
+          ],
+          "focusHit": true,
+          "focusDistance": 7.406658023264587,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.5376467457775668,
+            0.5023336447322779
+          ],
+          "focusHit": true,
+          "focusDistance": 7.697029683133932,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.05193360138119571,
+            -0.07504285498947527
+          ],
+          "focusHit": true,
+          "focusDistance": 7.636587882623879,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_3"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_panels"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.5376467457775668,
+            -0.07504285498947527
+          ],
+          "focusHit": true,
+          "focusDistance": 7.943695927709135,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_grid_v_7",
+            "STR_panel_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [
+            "STR_grid_v_7",
+            "STR_panel_4"
+          ],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.4,
+      "stageId": "structure",
       "position": [
-        -2.636479,
-        2.468363,
-        5.118833
+        -2.534426,
+        2.506627,
+        5.116304
       ],
-      "target": [
-        -2.214103,
-        1.027667,
-        -1.98302
-      ],
-      "fov": 31.256624,
-      "yaw": -0.013157,
-      "pitch": 0.027434,
-      "dollyDistance": -0.102892,
-      "roll": 0.006289,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.868833,
+      "renderableMeshCount": 93,
+      "clearance": 4.866304,
       "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "STR_grid_board"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [
+          "STR_mount_rail_2"
+        ],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.061528240603794665,
+            0.16993337180248116
+          ],
+          "focusHit": true,
+          "focusDistance": 7.297829015736562,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_mount_rail_2"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_mount_rail_2"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.2517853495479366,
+            0.4754222541624392
+          ],
+          "focusHit": true,
+          "focusDistance": 7.223375494154611,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.3748418307555259,
+            0.4754222541624392
+          ],
+          "focusHit": true,
+          "focusDistance": 7.368852269567184,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.2517853495479366,
+            -0.1355555105574769
+          ],
+          "focusHit": true,
+          "focusDistance": 7.421881447469169,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_3"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_panels"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.3748418307555259,
+            -0.1355555105574769
+          ],
+          "focusHit": true,
+          "focusDistance": 7.575651706306867,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [
+            "STR_panel_4"
+          ],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.425,
+      "stageId": "structure",
       "position": [
-        -2.491109,
-        2.413861,
-        5.071225
+        -2.465329,
+        2.423524,
+        5.070897
       ],
-      "target": [
-        -2.054976,
-        1.049303,
-        -1.999471
-      ],
-      "fov": 31.007815,
-      "yaw": -0.019792,
-      "pitch": 0.029922,
-      "dollyDistance": -0.119479,
-      "roll": 0.007948,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.821225,
+      "renderableMeshCount": 93,
+      "clearance": 4.820897,
       "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "STR_grid_board"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.011576398652234865,
+            0.16077215165164435
+          ],
+          "focusHit": true,
+          "focusDistance": 7.235128844194977,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.3064804327468353,
+            0.47245680104930365
+          ],
+          "focusHit": true,
+          "focusDistance": 7.17776249113826,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.329633230051305,
+            0.47245680104930365
+          ],
+          "focusHit": true,
+          "focusDistance": 7.303527780114775,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.3064804327468353,
+            -0.15091249774601498
+          ],
+          "focusHit": true,
+          "focusDistance": 7.363629983234874,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_3"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_panels"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.329633230051305,
+            -0.15091249774601498
+          ],
+          "focusHit": true,
+          "focusDistance": 7.4968679522604456,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [
+            "STR_panel_4"
+          ],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.45,
+      "stageId": "structure",
       "position": [
-        -2.486563,
-        2.412151,
-        5.06972
+        -2.485753,
+        2.412454,
+        5.069712
       ],
-      "target": [
-        -2.05,
-        1.05,
-        -2
-      ],
-      "fov": 31,
-      "yaw": -0.02,
-      "pitch": 0.03,
-      "dollyDistance": -0.12,
-      "roll": 0.008,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.81972,
+      "renderableMeshCount": 93,
+      "clearance": 4.819712,
       "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "STR_grid_board"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.009841547863771838,
+            0.16062559973570195
+          ],
+          "focusHit": true,
+          "focusDistance": 7.233542883308603,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.30823179374723286,
+            0.4727423790652673
+          ],
+          "focusHit": true,
+          "focusDistance": 7.174396435640611,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.32791488947477654,
+            0.4727423790652673
+          ],
+          "focusHit": true,
+          "focusDistance": 7.305573895611385,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.30823179374723286,
+            -0.15149117959386338
+          ],
+          "focusHit": true,
+          "focusDistance": 7.358342493561487,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_3"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_panels"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.32791488947477654,
+            -0.15149117959386338
+          ],
+          "focusHit": true,
+          "focusDistance": 7.4972882838593575,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [
+            "STR_panel_4"
+          ],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.475,
+      "stageId": "structure",
       "position": [
-        -2.129016,
-        2.409123,
-        5.042077
+        -2.165357,
+        2.398741,
+        5.042028
       ],
-      "target": [
-        -1.738859,
-        1.008238,
-        -1.962314
-      ],
-      "fov": 31.134951,
-      "yaw": -0.010553,
-      "pitch": 0.027301,
-      "dollyDistance": -0.097058,
-      "roll": 0.006111,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.792077,
+      "renderableMeshCount": 195,
+      "clearance": 4.792028,
       "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "STR_grid_board"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.09093634990338764,
+            0.18415530184643886
+          ],
+          "focusHit": true,
+          "focusDistance": 7.190296706547432,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.41098967425999533,
+            0.49712601182917626
+          ],
+          "focusHit": true,
+          "focusDistance": 7.1774787786875125,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.22911697445322005,
+            0.49712601182917626
+          ],
+          "focusHit": true,
+          "focusDistance": 7.2190002865713785,
+          "hitMeshNames": [
+            "STR_grid_board"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.41098967425999533,
+            -0.12881540813629855
+          ],
+          "focusHit": true,
+          "focusDistance": 7.361571541567367,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_3"
+          ],
+          "allowedForegroundMeshNames": [
+            "STR_panels"
+          ],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.22911697445322005,
+            -0.12881540813629855
+          ],
+          "focusHit": true,
+          "focusDistance": 7.40706640692736,
+          "hitMeshNames": [
+            "STR_grid_board",
+            "STR_panel_4"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [
+            "STR_panel_4"
+          ],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.5,
+      "stageId": "prototype",
       "position": [
-        -0.900154,
-        2.399918,
-        4.937386
+        -1.021784,
+        2.36516,
+        4.939809
       ],
-      "target": [
-        -0.660239,
-        0.858691,
-        -1.826867
-      ],
-      "fov": 31.603313,
-      "yaw": 0.022232,
-      "pitch": 0.017934,
-      "dollyDistance": -0.017437,
-      "roll": -0.000446,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.687386,
+      "renderableMeshCount": 194,
+      "clearance": 4.689809,
       "nearestProxyId": "COLLIDER_STRUCTURE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "SCREEN_prototype_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.7065745657766666,
+            0.17457624588315215
+          ],
+          "focusHit": true,
+          "focusDistance": 7.588599256591261,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.5607476297248577,
+            0.30929248940320775
+          ],
+          "focusHit": true,
+          "focusDistance": 7.38585042668258,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.8524015018284754,
+            0.30929248940320775
+          ],
+          "focusHit": true,
+          "focusDistance": 7.726534711117434,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.5607476297248577,
+            0.03986000236309655
+          ],
+          "focusHit": true,
+          "focusDistance": 7.486092418877914,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.8524015018284754,
+            0.03986000236309655
+          ],
+          "focusHit": true,
+          "focusDistance": 7.834390678244612,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.525,
+      "stageId": "prototype",
       "position": [
-        0.031915,
-        2.398099,
-        4.839536
+        -0.058748,
+        2.37217,
+        4.843558
       ],
-      "target": [
-        0.168565,
-        0.732379,
-        -1.711321
-      ],
-      "fov": 31.964506,
-      "yaw": 0.047515,
-      "pitch": 0.01071,
-      "dollyDistance": 0.043966,
-      "roll": -0.005503,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.516907,
+      "renderableMeshCount": 197,
+      "clearance": 4.531276,
       "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "SCREEN_prototype_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.46018317674063114,
+            0.25214601934981573
+          ],
+          "focusHit": true,
+          "focusDistance": 7.213083489924564,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.3130482011839753,
+            0.38932714807982977
+          ],
+          "focusHit": true,
+          "focusDistance": 7.069561535257139,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.6073181522972869,
+            0.38932714807982977
+          ],
+          "focusHit": true,
+          "focusDistance": 7.296872268124296,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.3130482011839753,
+            0.11496489061980172
+          ],
+          "focusHit": true,
+          "focusDistance": 7.168258452834319,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.6073181522972869,
+            0.11496489061980172
+          ],
+          "focusHit": true,
+          "focusDistance": 7.40159134858464,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.55,
+      "stageId": "prototype",
       "position": [
-        0.145564,
-        2.388451,
-        4.814673
+        0.141384,
+        2.387478,
+        4.814835
       ],
-      "target": [
-        0.279161,
-        0.721319,
-        -1.700249
-      ],
-      "fov": 31.956268,
-      "yaw": 0.048688,
-      "pitch": 0.010437,
-      "dollyDistance": 0.044898,
-      "roll": -0.00565,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.481456,
+      "renderableMeshCount": 107,
+      "clearance": 4.481966,
       "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "SCREEN_prototype_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.4307510003265554,
+            0.26074359581000534
+          ],
+          "focusHit": true,
+          "focusDistance": 7.142995503942153,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.2824367640145238,
+            0.3989842837103437
+          ],
+          "focusHit": true,
+          "focusDistance": 7.011551579727784,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.579065236638587,
+            0.3989842837103437
+          ],
+          "focusHit": true,
+          "focusDistance": 7.214225994663593,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.2824367640145238,
+            0.12250290790966693
+          ],
+          "focusHit": true,
+          "focusDistance": 7.111387768951883,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.579065236638587,
+            0.12250290790966693
+          ],
+          "focusHit": true,
+          "focusDistance": 7.319509299727377,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.575,
+      "stageId": "prototype",
       "position": [
-        0.367759,
-        2.297335,
-        4.665474
+        0.412168,
+        2.312158,
+        4.663021
       ],
-      "target": [
-        0.562586,
-        0.733964,
-        -1.702611
-      ],
-      "fov": 31.53125,
-      "yaw": 0.035938,
-      "pitch": 0.014687,
-      "dollyDistance": -0.004687,
-      "roll": -0.00225,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.318994,
+      "renderableMeshCount": 107,
+      "clearance": 4.315036,
       "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "SCREEN_prototype_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.3554010673492374,
+            0.26092175861838324
+          ],
+          "focusHit": true,
+          "focusDistance": 6.930064775819057,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.20212556354492997,
+            0.40438964923759635
+          ],
+          "focusHit": true,
+          "focusDistance": 6.817599473975374,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.5086765711535448,
+            0.40438964923759635
+          ],
+          "focusHit": true,
+          "focusDistance": 6.988532326623254,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.20212556354492997,
+            0.11745386799917011
+          ],
+          "focusHit": true,
+          "focusDistance": 6.912871409380242,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.5086765711535448,
+            0.11745386799917011
+          ],
+          "focusHit": true,
+          "focusDistance": 7.08843011247081,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.6,
+      "stageId": "prototype",
       "position": [
-        0.748257,
-        2.149304,
-        4.413599
+        0.819877,
+        2.173189,
+        4.411076
       ],
-      "target": [
-        1.037396,
-        0.755307,
-        -1.706618
-      ],
-      "fov": 30.819242,
-      "yaw": 0.014577,
-      "pitch": 0.021808,
-      "dollyDistance": -0.087755,
-      "roll": 0.003446,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.063599,
+      "renderableMeshCount": 107,
+      "clearance": 4.061076,
       "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "SCREEN_prototype_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.21265089779060606,
+            0.26032976507632805
+          ],
+          "focusHit": true,
+          "focusDistance": 6.598349676374479,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.0498119393610512,
+            0.41300329757171517
+          ],
+          "focusHit": true,
+          "focusDistance": 6.517081945922673,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.3754898562201609,
+            0.41300329757171517
+          ],
+          "focusHit": true,
+          "focusDistance": 6.637229882676532,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.0498119393610512,
+            0.10765623258094087
+          ],
+          "focusHit": true,
+          "focusDistance": 6.603636022119958,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.3754898562201609,
+            0.10765623258094087
+          ],
+          "focusHit": true,
+          "focusDistance": 6.727102813468089,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.625,
+      "stageId": "prototype",
       "position": [
-        1.19246,
-        2.001442,
-        4.152213
+        1.269131,
+        2.026999,
+        4.151236
       ],
-      "target": [
-        1.566703,
-        0.782106,
-        -1.712015
-      ],
-      "fov": 30.025237,
-      "yaw": -0.009243,
-      "pitch": 0.029748,
-      "dollyDistance": -0.180389,
-      "roll": 0.009798,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 3.802213,
+      "renderableMeshCount": 107,
+      "clearance": 3.801236,
       "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "SCREEN_prototype_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.028100211251938706,
+            0.2578360749710076
+          ],
+          "focusHit": true,
+          "focusDistance": 6.27744345421191,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.14726596527564484,
+            0.42160510770735055
+          ],
+          "focusHit": true,
+          "focusDistance": 6.233514196725749,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.20346638777952225,
+            0.42160510770735055
+          ],
+          "focusHit": true,
+          "focusDistance": 6.291494886069274,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.14726596527564484,
+            0.09406704223466461
+          ],
+          "focusHit": true,
+          "focusDistance": 6.310732539058183,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.20346638777952225,
+            0.09406704223466461
+          ],
+          "focusHit": true,
+          "focusDistance": 6.370452448008277,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.65,
+      "stageId": "prototype",
       "position": [
-        1.581717,
-        1.889797,
-        3.947276
+        1.644396,
+        1.910687,
+        3.947679
       ],
-      "target": [
-        2.013919,
-        0.806901,
-        -1.717239
-      ],
-      "fov": 29.354227,
-      "yaw": -0.029373,
-      "pitch": 0.036458,
-      "dollyDistance": -0.258673,
-      "roll": 0.015166,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 3.597276,
+      "renderableMeshCount": 107,
+      "clearance": 3.597679,
       "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "SCREEN_prototype_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.15011654358138152,
+            0.25702473381748686
+          ],
+          "focusHit": true,
+          "focusDistance": 6.047829197381918,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.33738489919243353,
+            0.4320217579968777
+          ],
+          "focusHit": true,
+          "focusDistance": 6.037203587079721,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.03715181202967052,
+            0.4320217579968777
+          ],
+          "focusHit": true,
+          "focusDistance": 6.038376084323831,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.33738489919243353,
+            0.08202770963809604
+          ],
+          "focusHit": true,
+          "focusDistance": 6.106956257937268,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.03715181202967052,
+            0.08202770963809604
+          ],
+          "focusHit": true,
+          "focusDistance": 6.108489277463598,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.675,
+      "stageId": "prototype",
       "position": [
-        1.783324,
-        1.83444,
-        3.841962
+        1.814807,
+        1.844934,
+        3.842548
       ],
-      "target": [
-        2.242539,
-        0.819591,
-        -1.719914
-      ],
-      "fov": 29.011206,
-      "yaw": -0.039664,
-      "pitch": 0.039888,
-      "dollyDistance": -0.298693,
-      "roll": 0.01791,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 3.491962,
+      "renderableMeshCount": 107,
+      "clearance": 3.492548,
       "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "SCREEN_prototype_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.25058167263730957,
+            0.2579383054562774
+          ],
+          "focusHit": true,
+          "focusDistance": 5.937567935888828,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.44479310591764604,
+            0.43945611397719636
+          ],
+          "focusHit": true,
+          "focusDistance": 5.943371514451961,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            -0.056370239356973134,
+            0.43945611397719636
+          ],
+          "focusHit": true,
+          "focusDistance": 5.917290845967147,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.44479310591764604,
+            0.07642049693535843
+          ],
+          "focusHit": true,
+          "focusDistance": 6.008517540000262,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            -0.056370239356973134,
+            0.07642049693535843
+          ],
+          "focusHit": true,
+          "focusDistance": 5.9821690869577555,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.7,
+      "stageId": "prototype",
       "position": [
-        1.827157,
-        1.841445,
-        3.854116
+        1.824107,
+        1.839751,
+        3.854178
       ],
-      "target": [
-        2.281563,
-        0.816066,
-        -1.715452
-      ],
-      "fov": 29.049871,
-      "yaw": -0.03867,
-      "pitch": 0.039335,
-      "dollyDistance": -0.293351,
-      "roll": 0.017801,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 3.504116,
+      "renderableMeshCount": 107,
+      "clearance": 3.504178,
       "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "SCREEN_prototype_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.2665379451187687,
+            0.2604199556343947
+          ],
+          "focusHit": true,
+          "focusDistance": 5.948762541824516,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.46037563745324084,
+            0.4417683932488581
+          ],
+          "focusHit": true,
+          "focusDistance": 5.955554661588063,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            -0.0727002527842966,
+            0.4417683932488581
+          ],
+          "focusHit": true,
+          "focusDistance": 5.9279522430504725,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.46037563745324084,
+            0.07907151801993126
+          ],
+          "focusHit": true,
+          "focusDistance": 6.020168607942814,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            -0.0727002527842966,
+            0.07907151801993126
+          ],
+          "focusHit": true,
+          "focusDistance": 5.992272343866917,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.725,
+      "stageId": "prototype",
       "position": [
-        2.918104,
-        2.115498,
-        4.30728
+        2.792854,
+        2.052915,
+        4.314641
       ],
-      "target": [
-        3.199958,
-        0.701549,
-        -1.583183
-      ],
-      "fov": 30.5,
-      "yaw": 0,
-      "pitch": 0.02,
-      "dollyDistance": -0.1,
-      "roll": 0.012,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 3.95728,
+      "renderableMeshCount": 194,
+      "clearance": 3.964641,
       "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "SCREEN_prototype_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 5,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.573959382353197,
+            0.3173823358024678
+          ],
+          "focusHit": true,
+          "focusDistance": 6.532586385218808,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.749410353681927,
+            0.47764713644914075
+          ],
+          "focusHit": true,
+          "focusDistance": 6.5975566283197455,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            -0.3985084110244669,
+            0.47764713644914075
+          ],
+          "focusHit": true,
+          "focusDistance": 6.431936039155016,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.749410353681927,
+            0.15711753515579485
+          ],
+          "focusHit": true,
+          "focusDistance": 6.680386447682396,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            -0.3985084110244669,
+            0.15711753515579485
+          ],
+          "focusHit": true,
+          "focusDistance": 6.510693183965589,
+          "hitMeshNames": [
+            "GLASS_prototype_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.75,
+      "stageId": "release",
       "position": [
-        3.961587,
-        2.495416,
-        4.887124
+        3.827396,
+        2.428132,
+        4.90229
       ],
-      "target": [
-        4.118433,
-        0.584041,
-        -1.454423
-      ],
-      "fov": 31.950129,
-      "yaw": 0.03867,
-      "pitch": 0.000665,
-      "dollyDistance": 0.093351,
-      "roll": 0.006199,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.561224,
-      "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
+      "renderableMeshCount": 191,
+      "clearance": 4.566649,
+      "nearestProxyId": "COLLIDER_PROTOTYPE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.23023435367780903,
+            0.17971456819925954
+          ],
+          "focusHit": true,
+          "focusDistance": 6.391674189832672,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.022467517414055435,
+            0.3814391459700979
+          ],
+          "focusHit": true,
+          "focusDistance": 6.284168201747179,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.4380011899415627,
+            0.3814391459700979
+          ],
+          "focusHit": true,
+          "focusDistance": 7.290430004073719,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.022467517414055435,
+            -0.022010009571578837
+          ],
+          "focusHit": true,
+          "focusDistance": 6.457030477950273,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.4380011899415627,
+            -0.022010009571578837
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_delivery_station"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.775,
+      "stageId": "release",
       "position": [
-        3.998542,
-        2.509329,
-        4.907129
+        3.993991,
+        2.506993,
+        4.907727
       ],
-      "target": [
-        4.15056,
-        0.580014,
-        -1.450014
-      ],
-      "fov": 32.001455,
-      "yaw": 0.039983,
-      "pitch": -0.000006,
-      "dollyDistance": 0.100052,
-      "roll": 0.005996,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.577644,
+      "renderableMeshCount": 190,
+      "clearance": 4.578654,
       "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.22597986883629023,
+            0.18288086752305766
+          ],
+          "focusHit": true,
+          "focusDistance": 6.394157480007591,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            0.023128127668066267,
+            0.38448110539761704
+          ],
+          "focusHit": true,
+          "focusDistance": 6.296528177820017,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.4288316100045142,
+            0.38448110539761704
+          ],
+          "focusHit": true,
+          "focusDistance": 7.269095052063258,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            0.023128127668066267,
+            -0.018719370351501785
+          ],
+          "focusHit": true,
+          "focusDistance": 6.4784835046715115,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.4288316100045142,
+            -0.018719370351501785
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_delivery_station"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.8,
+      "stageId": "release",
       "position": [
-        4.09606,
-        2.559458,
-        4.98561
+        4.106378,
+        2.556038,
+        4.98689
       ],
-      "target": [
-        4.24516,
-        0.582283,
-        -1.452325
-      ],
-      "fov": 32.243845,
-      "yaw": 0.037074,
-      "pitch": -0.000975,
-      "dollyDistance": 0.108778,
-      "roll": 0.005317,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.648033,
+      "renderableMeshCount": 92,
+      "clearance": 4.648597,
       "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.1895669755049918,
+            0.17809003814140517
+          ],
+          "focusHit": true,
+          "focusDistance": 6.468567742160145,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.008444189608710156,
+            0.37586614853012845
+          ],
+          "focusHit": true,
+          "focusDistance": 6.380020326057735,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.3875781406186938,
+            0.37586614853012845
+          ],
+          "focusHit": true,
+          "focusDistance": 7.327671645597716,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.008444189608710156,
+            -0.019686072247318165
+          ],
+          "focusHit": true,
+          "focusDistance": 6.56549773644317,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.3875781406186938,
+            -0.019686072247318165
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_delivery_station"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.825,
+      "stageId": "release",
       "position": [
-        4.448575,
-        2.743534,
-        5.270934
+        4.487895,
+        2.73048,
+        5.275808
       ],
-      "target": [
-        4.5902,
-        0.590199,
-        -1.460405
-      ],
-      "fov": 33.12773,
-      "yaw": 0.026467,
-      "pitch": -0.004511,
-      "dollyDistance": 0.140598,
-      "roll": 0.002842,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 4.920934,
+      "renderableMeshCount": 92,
+      "clearance": 4.925808,
       "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            0.06477537247348807,
+            0.16176887138288848
+          ],
+          "focusHit": true,
+          "focusDistance": 6.759398705868697,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.11883202952070163,
+            0.34636431626286845
+          ],
+          "focusHit": true,
+          "focusDistance": 6.700302704189128,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.24838277446767776,
+            0.34636431626286845
+          ],
+          "focusHit": true,
+          "focusDistance": 7.569374880800388,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.11883202952070163,
+            -0.022826573497091524
+          ],
+          "focusHit": true,
+          "focusDistance": 6.898169756339762,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.24838277446767776,
+            -0.022826573497091524
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_delivery_station"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.85,
+      "stageId": "release",
       "position": [
-        4.982484,
-        3.03571,
-        5.715517
+        5.047604,
+        3.014046,
+        5.723811
       ],
-      "target": [
-        5.125828,
-        0.603734,
-        -1.474151
-      ],
-      "fov": 34.5,
-      "yaw": 0.01,
-      "pitch": -0.01,
-      "dollyDistance": 0.19,
-      "roll": -0.001,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 5.367114,
+      "renderableMeshCount": 92,
+      "clearance": 5.374937,
       "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.0955188174857501,
+            0.13812692753746508
+          ],
+          "focusHit": true,
+          "focusDistance": 7.2622811659539295,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.2592267471750037,
+            0.30478625830060074
+          ],
+          "focusHit": true,
+          "focusDistance": 7.238826501288454,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            0.06818911220350353,
+            0.30478625830060074
+          ],
+          "focusHit": true,
+          "focusDistance": 8.011590375555526,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.2592267471750037,
+            -0.02853240322567055
+          ],
+          "focusHit": true,
+          "focusDistance": 7.457600162176172,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            0.06818911220350353,
+            -0.02853240322567055
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_archive_lid",
+            "REL_delivery_station",
+            "REL_monitor_foot"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.875,
+      "stageId": "release",
       "position": [
-        5.486896,
-        3.343552,
-        6.17524
+        5.556268,
+        3.320422,
+        6.184644
       ],
-      "target": [
-        5.660687,
-        0.627579,
-        -1.497825
-      ],
-      "fov": 35.87227,
-      "yaw": -0.006467,
-      "pitch": -0.015489,
-      "dollyDistance": 0.239402,
-      "roll": -0.004842,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 5.841022,
+      "renderableMeshCount": 92,
+      "clearance": 5.848803,
       "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.22197609506518545,
+            0.11147402622102223
+          ],
+          "focusHit": true,
+          "focusDistance": 7.823636800037501,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.3684401810948087,
+            0.26331593139674714
+          ],
+          "focusHit": true,
+          "focusDistance": 7.830750060051925,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            -0.07551200903556216,
+            0.26331593139674714
+          ],
+          "focusHit": true,
+          "focusDistance": 8.527801193048873,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.3684401810948087,
+            -0.0403678789547027
+          ],
+          "focusHit": true,
+          "focusDistance": 8.065668487265704,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            -0.07551200903556216,
+            -0.0403678789547027
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_archive_lid",
+            "REL_delivery_station",
+            "REL_monitor_foot"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.9,
+      "stageId": "release",
       "position": [
-        5.801071,
-        3.546642,
-        6.472987
+        5.847511,
+        3.531132,
+        6.479653
       ],
-      "target": [
-        6.005012,
-        0.645248,
-        -1.515298
-      ],
-      "fov": 36.756155,
-      "yaw": -0.017074,
-      "pitch": -0.019025,
-      "dollyDistance": 0.271222,
-      "roll": -0.007317,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 6.15496,
+      "renderableMeshCount": 92,
+      "clearance": 6.160083,
       "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.28644514445188035,
+            0.09350094335774338
+          ],
+          "focusHit": true,
+          "focusDistance": 8.205603738832865,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.4249465008147797,
+            0.23739217456576206
+          ],
+          "focusHit": true,
+          "focusDistance": 8.23348740326461,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            -0.147943788088981,
+            0.23739217456576206
+          ],
+          "focusHit": true,
+          "focusDistance": 8.880084331291373,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.4249465008147797,
+            -0.0503902878502753
+          ],
+          "focusHit": true,
+          "focusDistance": 8.465480665356424,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            -0.147943788088981,
+            -0.0503902878502753
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_archive_lid",
+            "REL_delivery_station",
+            "REL_monitor_foot"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.925,
+      "stageId": "release",
       "position": [
-        5.886287,
-        3.602656,
-        6.554272
+        5.899148,
+        3.598358,
+        6.556172
       ],
-      "target": [
-        6.09944,
-        0.649973,
-        -1.519973
-      ],
-      "fov": 36.998545,
-      "yaw": -0.019983,
-      "pitch": -0.019994,
-      "dollyDistance": 0.279948,
-      "roll": -0.007996,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 6.241546,
+      "renderableMeshCount": 92,
+      "clearance": 6.242982,
       "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.302322222210699,
+            0.08780755847018096
+          ],
+          "focusHit": true,
+          "focusDistance": 8.311128116013176,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.4391307917255764,
+            0.23016288813887426
+          ],
+          "focusHit": true,
+          "focusDistance": 8.349974888790392,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            -0.16551365269582158,
+            0.23016288813887426
+          ],
+          "focusHit": true,
+          "focusDistance": 8.974825306736511,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.4391307917255764,
+            -0.054547771198512354
+          ],
+          "focusHit": true,
+          "focusDistance": 8.569745149252617,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            -0.16551365269582158,
+            -0.054547771198512354
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_archive_lid",
+            "REL_delivery_station",
+            "REL_monitor_foot"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.95,
+      "stageId": "release",
       "position": [
-        5.915672,
-        3.606322,
-        6.582263
+        5.910755,
+        3.611328,
+        6.580313
       ],
-      "target": [
-        6.112922,
-        0.649251,
-        -1.517947
-      ],
-      "fov": 37.056585,
-      "yaw": -0.018868,
-      "pitch": -0.018868,
-      "dollyDistance": 0.283395,
-      "roll": -0.007547,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 6.269768,
+      "renderableMeshCount": 92,
+      "clearance": 6.268361,
       "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.30379968625617193,
+            0.08770189505731243
+          ],
+          "focusHit": true,
+          "focusDistance": 8.34030345134303,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.44005131096203953,
+            0.22946025049421712
+          ],
+          "focusHit": true,
+          "focusDistance": 8.381272722658839,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            -0.16754806155030427,
+            0.22946025049421712
+          ],
+          "focusHit": true,
+          "focusDistance": 9.0022541649241,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.44005131096203953,
+            -0.05405646037959225
+          ],
+          "focusHit": true,
+          "focusDistance": 8.598737651047065,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            -0.16754806155030427,
+            -0.05405646037959225
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_archive_lid",
+            "REL_delivery_station",
+            "REL_monitor_foot"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 0.975,
+      "stageId": "release",
       "position": [
-        6.300287,
-        3.65254,
-        6.98132
+        6.227104,
+        3.72592,
+        6.954566
       ],
-      "target": [
-        6.289006,
-        0.634285,
-        -1.480078
-      ],
-      "fov": 37.847924,
-      "yaw": -0.003042,
-      "pitch": -0.003042,
-      "dollyDistance": 0.330875,
-      "roll": -0.001217,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 6.671477,
+      "renderableMeshCount": 92,
+      "clearance": 6.65309,
       "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.31768854633666843,
+            0.09477191744931127
+          ],
+          "focusHit": true,
+          "focusDistance": 8.776582378532021,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.44619607941226236,
+            0.2254232422287626
+          ],
+          "focusHit": true,
+          "focusDistance": 8.812517882145789,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            -0.1891810132610745,
+            0.2254232422287626
+          ],
+          "focusHit": true,
+          "focusDistance": 9.41745821864234,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.44619607941226236,
+            -0.03587940733014007
+          ],
+          "focusHit": true,
+          "focusDistance": 9.047938207171146,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            -0.1891810132610745,
+            -0.03587940733014007
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_archive_lid",
+            "REL_delivery_station",
+            "REL_monitor_foot"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     },
     {
       "progress": 1,
+      "stageId": "release",
       "position": [
-        6.351952,
-        3.664402,
-        7.070169
+        6.337739,
+        3.67862,
+        7.065151
       ],
-      "target": [
-        6.3,
-        0.62,
-        -1.45
-      ],
-      "fov": 38,
-      "yaw": 0,
-      "pitch": 0,
-      "dollyDistance": 0.34,
-      "roll": 0,
       "nearPlane": 0.1,
-      "finite": true,
-      "clearance": 6.761084,
+      "renderableMeshCount": 92,
+      "clearance": 6.757626,
       "nearestProxyId": "COLLIDER_RELEASE_PRIMARY",
       "nearPlaneSafe": true,
-      "externalOcclusion": false,
-      "internalExposure": false
+      "focus": {
+        "configuredMeshNames": [
+          "REL_qa_rows",
+          "SCREEN_release_monitor"
+        ],
+        "missingMeshNames": [],
+        "hitRayCount": 4,
+        "visible": true
+      },
+      "externalOcclusion": {
+        "safe": true,
+        "allowedMeshNames": [],
+        "unexpectedMeshNames": []
+      },
+      "internalExposure": {
+        "safe": true,
+        "cameraInsideMeshNames": [],
+        "visibleBackfaceMeshNames": []
+      },
+      "rays": [
+        {
+          "id": "center",
+          "ndc": [
+            -0.31369305643310397,
+            0.10458044698039412
+          ],
+          "focusHit": true,
+          "focusDistance": 8.871691186972186,
+          "hitMeshNames": [
+            "REL_qa_row_1"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-left",
+          "ndc": [
+            -0.4402074655314824,
+            0.23156043464497666
+          ],
+          "focusHit": true,
+          "focusDistance": 8.915508564456639,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "top-right",
+          "ndc": [
+            -0.1871786473347256,
+            0.23156043464497666
+          ],
+          "focusHit": true,
+          "focusDistance": 9.521957116010114,
+          "hitMeshNames": [
+            "GLASS_release_monitor"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-left",
+          "ndc": [
+            -0.4402074655314824,
+            -0.02239954068418841
+          ],
+          "focusHit": true,
+          "focusDistance": 9.158117942796174,
+          "hitMeshNames": [
+            "REL_qa_panel"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        },
+        {
+          "id": "bottom-right",
+          "ndc": [
+            -0.1871786473347256,
+            -0.02239954068418841
+          ],
+          "focusHit": false,
+          "focusDistance": null,
+          "hitMeshNames": [
+            "MORPH_WORLD_FLOOR",
+            "REL_archive_lid",
+            "REL_delivery_station",
+            "REL_monitor_foot"
+          ],
+          "allowedForegroundMeshNames": [],
+          "unexpectedOccluderMeshNames": [],
+          "nearPlaneViolationMeshNames": [],
+          "visibleBackfaceMeshNames": []
+        }
+      ]
     }
   ]
 }

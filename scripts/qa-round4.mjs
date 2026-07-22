@@ -9,10 +9,13 @@ import { extname, resolve } from "node:path";
 import { chromium } from "playwright";
 import sharp from "sharp";
 
+import { summarizeGlbResources } from "./lib/round4Metrics.mjs";
+
 const root = resolve(import.meta.dirname, "..");
 const artifactRoot = resolve(root, "artifacts", "qa-round4");
 const progressRoot = resolve(artifactRoot, "journey-progress");
 const uiStateRoot = resolve(artifactRoot, "ui-states");
+const contactSheetRoot = resolve(artifactRoot, "video-contact-sheets");
 const lighthouseTempRoot = resolve(
   `${process.env.SystemDrive ?? "C:"}\\`,
   "Temp",
@@ -39,12 +42,15 @@ const launchArgs = [
   "--ignore-gpu-blocklist",
   "--enable-unsafe-swiftshader",
 ];
+const browserTelemetrySessions = [];
 
 await mkdir(artifactRoot, { recursive: true });
 await rm(progressRoot, { force: true, recursive: true });
 await rm(uiStateRoot, { force: true, recursive: true });
+await rm(contactSheetRoot, { force: true, recursive: true });
 await mkdir(progressRoot, { recursive: true });
 await mkdir(uiStateRoot, { recursive: true });
+await mkdir(contactSheetRoot, { recursive: true });
 await mkdir(lighthouseTempRoot, { recursive: true });
 
 registerHooks({
@@ -131,59 +137,111 @@ async function runAndValidateGeometry() {
   return { ...report.summary, generatedAt: new Date(jsonStat.mtimeMs).toISOString() };
 }
 
-async function writeAndValidateCameraEvidence() {
-  const [{ createCameraTimeline }, { inspectCameraTimeline }, { createCameraCollisionInspector }] =
-    await Promise.all([
-      import("../app/scene/animation/cameraTimeline.ts"),
-      import("../app/scene/debug/cameraPathInspector.ts"),
-      import("../app/scene/collision/cameraCollision.ts"),
-    ]);
-  const inspection = inspectCameraTimeline(createCameraTimeline(), 41);
+async function writeAndValidateCameraEvidence(runtimeSamples) {
+  const [{ createCameraCollisionInspector }, { Vector3 }, geometryReport] = await Promise.all([
+    import("../app/scene/collision/cameraCollision.ts"),
+    import("three"),
+    readFile(resolve(artifactRoot, "intersections.json"), "utf8").then(JSON.parse),
+  ]);
+  assert.equal(runtimeSamples.length, 41, "runtime camera samples");
   const collisionInspector = createCameraCollisionInspector();
-  const samples = inspection.samples.map((sample) => {
-    const clearance = collisionInspector.inspect(sample.position, sample.nearPlane);
+  const geometryEvidence = Object.fromEntries(
+    stages.map((stage) => [
+      stage,
+      {
+        externalOcclusion: geometryReport.environmentChecks[stage].externalOcclusion,
+        internalSurfaceExposure:
+          geometryReport.environmentChecks[stage].internalSurfaceExposure,
+      },
+    ]),
+  );
+  for (const [stage, evidence] of Object.entries(geometryEvidence)) {
+    assert.equal(evidence.externalOcclusion.status, "pass", `${stage}: external asset hygiene`);
+    assert.equal(
+      evidence.internalSurfaceExposure.status,
+      "pass",
+      `${stage}: internal-surface asset hygiene`,
+    );
+  }
+
+  const samples = runtimeSamples.map((visibility, index) => {
+    const expectedProgress = index / Math.max(1, runtimeSamples.length - 1);
+    assert.ok(
+      Math.abs(visibility.progress - expectedProgress) <= 0.002,
+      `camera sample ${index} progress ${visibility.progress}`,
+    );
+    const position = new Vector3(...visibility.cameraPosition);
+    const clearance = collisionInspector.inspect(position, visibility.cameraNear);
     return {
-      progress: Number(sample.progress.toFixed(3)),
-      position: sample.position.toArray().map((value) => Number(value.toFixed(6))),
-      target: sample.target.toArray().map((value) => Number(value.toFixed(6))),
-      fov: Number(sample.fov.toFixed(6)),
-      yaw: Number(sample.yaw.toFixed(6)),
-      pitch: Number(sample.pitch.toFixed(6)),
-      dollyDistance: Number(sample.dollyDistance.toFixed(6)),
-      roll: Number(sample.roll.toFixed(6)),
-      nearPlane: sample.nearPlane,
-      finite: sample.finite,
+      progress: Number(visibility.progress.toFixed(3)),
+      stageId: visibility.stageId,
+      position: visibility.cameraPosition.map((value) => Number(value.toFixed(6))),
+      nearPlane: visibility.cameraNear,
+      renderableMeshCount: visibility.renderableMeshCount,
       clearance: Number(clearance.clearance.toFixed(6)),
       nearestProxyId: clearance.nearestProxyId,
-      nearPlaneSafe: clearance.clearance > 0,
-      externalOcclusion: false,
-      internalExposure: false,
+      nearPlaneSafe: clearance.clearance > 0 && visibility.nearPlaneSafe,
+      focus: {
+        configuredMeshNames: visibility.focusMeshNames,
+        missingMeshNames: visibility.missingFocusMeshNames,
+        hitRayCount: visibility.focusHitRayCount,
+        visible: visibility.focusVisible,
+      },
+      externalOcclusion: {
+        safe: visibility.externalOcclusionSafe,
+        allowedMeshNames: visibility.allowedForegroundHitMeshNames,
+        unexpectedMeshNames: visibility.unexpectedOccluderMeshNames,
+      },
+      internalExposure: {
+        safe: visibility.internalExposureSafe,
+        cameraInsideMeshNames: visibility.cameraInsideMeshNames,
+        visibleBackfaceMeshNames: visibility.visibleBackfaceMeshNames,
+      },
+      rays: visibility.rays,
     };
   });
-  const high = samples.filter((sample) => sample.clearance < -0.15).length;
-  const medium = samples.filter(
-    (sample) => sample.clearance >= -0.15 && sample.clearance <= 0,
+  const nearPlaneViolations = samples.filter((sample) => !sample.nearPlaneSafe).length;
+  const internalExposures = samples.filter((sample) => !sample.internalExposure.safe).length;
+  const unexpectedExternalOcclusions = samples.filter(
+    (sample) => !sample.externalOcclusion.safe,
   ).length;
+  const insufficientFocusEvidence = samples.filter(
+    (sample) => !sample.focus.visible || sample.focus.missingMeshNames.length > 0,
+  ).length;
+  const allowedExternalOcclusions = samples.filter(
+    (sample) => sample.externalOcclusion.allowedMeshNames.length > 0,
+  ).length;
+  const high = nearPlaneViolations + internalExposures;
+  const medium = unexpectedExternalOcclusions + insufficientFocusEvidence;
   const report = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     generatedAt: new Date().toISOString(),
+    source: "runtime-raycast",
+    viewport: { width: 1280, height: 800, aspect: 1.6 },
     summary: {
       samples: samples.length,
       high,
       medium,
       minimumClearance: Math.min(...samples.map((sample) => sample.clearance)),
       nearPlaneSafe: samples.every((sample) => sample.nearPlaneSafe),
-      externalOcclusions: samples.filter((sample) => sample.externalOcclusion).length,
-      internalExposures: samples.filter((sample) => sample.internalExposure).length,
+      allowedExternalOcclusions,
+      unexpectedExternalOcclusions,
+      internalExposures,
+      nearPlaneViolations,
+      insufficientFocusEvidence,
     },
-    collisions: inspection.collisions,
+    geometryEvidence: {
+      source: "intersections.json#environmentChecks",
+      stages: geometryEvidence,
+    },
     samples,
   };
   assert.equal(report.summary.samples, 41, "camera samples");
   assert.equal(report.summary.high, 0, "camera High findings");
   assert.equal(report.summary.medium, 0, "camera Medium findings");
   assert.equal(report.summary.nearPlaneSafe, true, "camera near-plane safety");
-  assert.equal(report.summary.externalOcclusions, 0, "external camera occlusions");
+  assert.ok(report.summary.allowedExternalOcclusions > 0, "authored external foreground occlusion");
+  assert.equal(report.summary.unexpectedExternalOcclusions, 0, "unexpected camera occlusions");
   assert.equal(report.summary.internalExposures, 0, "internal surface exposures");
   await writeFile(
     resolve(artifactRoot, "camera-collisions.json"),
@@ -194,14 +252,14 @@ async function writeAndValidateCameraEvidence() {
 }
 
 function createTelemetry(page, baseUrl) {
-  const glbRequests = new Set();
+  const glbRequests = [];
   const failedRequests = [];
   const failedResponses = [];
   const consoleErrors = [];
   const pageErrors = [];
 
   page.on("request", (request) => {
-    if (request.url().endsWith(".glb")) glbRequests.add(request.url());
+    if (request.url().endsWith(".glb")) glbRequests.push(request.url());
   });
   page.on("requestfailed", (request) => {
     failedRequests.push(`${request.method()} ${request.url()}: ${request.failure()?.errorText}`);
@@ -216,13 +274,19 @@ function createTelemetry(page, baseUrl) {
   });
   page.on("pageerror", (error) => pageErrors.push(error.message));
 
-  return {
+  const telemetry = {
     glbRequests,
     failedRequests,
     failedResponses,
     consoleErrors,
     pageErrors,
   };
+  browserTelemetrySessions.push(telemetry);
+  return telemetry;
+}
+
+function uniqueGlbCount(telemetry) {
+  return new Set(telemetry.glbRequests).size;
 }
 
 function assertTelemetry(telemetry, label) {
@@ -307,7 +371,7 @@ async function captureCanvasStats(page, name) {
 
 async function captureStages(browser, baseUrl) {
   const context = await browser.newContext({
-    viewport: { width: 1280, height: 800 },
+    viewport: { width: 1920, height: 1080 },
     deviceScaleFactor: 1,
     reducedMotion: "no-preference",
   });
@@ -316,6 +380,7 @@ async function captureStages(browser, baseUrl) {
   const canvasStats = {};
 
   for (const stage of stages) {
+    const requestStart = telemetry.glbRequests.length;
     await page.goto(`${baseUrl}/?qaStage=${stage}`, { waitUntil: "networkidle" });
     await waitForJourneyState(page, "ready");
     await scrollToJourney(page);
@@ -330,12 +395,23 @@ async function captureStages(browser, baseUrl) {
       .locator('.journey-progress__button[aria-current="step"]')
       .textContent();
     assert.match(current ?? "", new RegExp(stage, "i"), `${stage}: active progress button`);
+    const stageRequests = telemetry.glbRequests.slice(requestStart);
+    assert.equal(stageRequests.length, 4, `${stage}: requests each GLB exactly once`);
+    assert.equal(new Set(stageRequests).size, 4, `${stage}: requests four unique GLBs`);
   }
 
-  assert.equal(telemetry.glbRequests.size, 4, "desktop should request all four GLBs");
+  assert.equal(
+    telemetry.glbRequests.length,
+    stages.length * 4,
+    "four independent stage navigations request four GLBs each",
+  );
   assertTelemetry(telemetry, "desktop stages");
   await context.close();
-  return { glbCount: telemetry.glbRequests.size, canvasStats };
+  return {
+    glbCount: uniqueGlbCount(telemetry),
+    glbRequestCount: telemetry.glbRequests.length,
+    canvasStats,
+  };
 }
 
 async function verifyLoadPolicy(browser, baseUrl) {
@@ -358,7 +434,7 @@ async function verifyLoadPolicy(browser, baseUrl) {
     "loading",
     "desktop Journey remains deferred while only its preview edge is visible",
   );
-  assert.equal(desktopTelemetry.glbRequests.size, 0, "desktop initial page requests zero GLBs");
+  assert.equal(desktopTelemetry.glbRequests.length, 0, "desktop initial page requests zero GLBs");
   assert.equal(await desktopPage.locator("#process canvas").count(), 0, "desktop initial page has no canvas");
 
   const initialResources = await desktopPage.evaluate(() =>
@@ -378,14 +454,24 @@ async function verifyLoadPolicy(browser, baseUrl) {
     { timeout: 45_000 },
   );
   const heroTimeToSceneMs = Date.now() - sceneStartedAt;
-  assert.equal(desktopTelemetry.glbRequests.size, 1, "Hero requests only Observe GLB after intent");
+  assert.equal(desktopTelemetry.glbRequests.length, 1, "Hero requests only Observe GLB after intent");
   assert.equal(await desktopPage.locator("[data-hero-scene] canvas").count(), 1);
 
   const journeyStartedAt = Date.now();
   await scrollToJourney(desktopPage);
   await waitForJourneyState(desktopPage, "ready");
   const journeyTimeToSceneMs = Date.now() - journeyStartedAt;
-  assert.equal(desktopTelemetry.glbRequests.size, 4, "desktop Journey requests four GLBs on entry");
+  assert.equal(
+    desktopTelemetry.glbRequests.length,
+    4,
+    "Hero and Journey request each GLB exactly once on one page",
+  );
+  assert.equal(uniqueGlbCount(desktopTelemetry), 4, "desktop Journey requests four unique GLBs");
+  assert.equal(
+    desktopTelemetry.glbRequests.filter((url) => url.endsWith("/observe.glb")).length,
+    1,
+    "Observe is shared by Hero and Journey without a duplicate transfer",
+  );
   assert.equal(await desktopPage.locator("#process canvas").count(), 1, "desktop Journey creates one canvas");
   const resources = await desktopPage.evaluate(() =>
     performance.getEntriesByType("resource").map((entry) => ({
@@ -397,7 +483,10 @@ async function verifyLoadPolicy(browser, baseUrl) {
     })),
   );
   const glbResources = resources.filter((entry) => entry.name.endsWith(".glb"));
-  assert.equal(new Set(glbResources.map((entry) => entry.name)).size, 4);
+  const glbMetrics = summarizeGlbResources(glbResources);
+  assert.equal(glbMetrics.requestCount, 4, "ResourceTiming records one entry per GLB");
+  assert.equal(glbMetrics.uniqueRequestCount, 4, "ResourceTiming records four unique GLBs");
+  assert.deepEqual(glbMetrics.duplicateUrls, [], "ResourceTiming contains no duplicate GLB fetch");
   const initialNames = new Set(initialResources.map((entry) => entry.name));
   const deferredScripts = resources.filter(
     (entry) => entry.initiatorType === "script" && !initialNames.has(entry.name),
@@ -434,11 +523,11 @@ async function verifyLoadPolicy(browser, baseUrl) {
     await page.goto(baseUrl, { waitUntil: "networkidle" });
     assert.equal(await page.locator("[data-hero-scene]").getAttribute("data-state"), "fallback");
     await waitForJourneyState(page, "fallback");
-    assert.equal(telemetry.glbRequests.size, 0, `${mode.name} requests zero GLBs`);
+    assert.equal(telemetry.glbRequests.length, 0, `${mode.name} requests zero GLBs`);
     assert.equal(await page.locator("#process canvas").count(), 0, `${mode.name} creates no canvas`);
     assertTelemetry(telemetry, `${mode.name} load policy`);
     fallbackResults[mode.name === "mobile" ? "mobile" : "reducedMotion"] = {
-      glbCount: telemetry.glbRequests.size,
+      glbCount: telemetry.glbRequests.length,
       state: "fallback",
     };
     await context.close();
@@ -454,11 +543,11 @@ async function verifyLoadPolicy(browser, baseUrl) {
       journeyTimeToSceneMs,
       dpr: Number(dpr.toFixed(3)),
       initialCriticalBytes: initialResources.reduce(
-        (sum, entry) => sum + (entry.transferSize || entry.encodedBodySize || 0),
+        (sum, entry) => sum + (entry.transferSize ?? entry.encodedBodySize ?? 0),
         0,
       ),
       threeChunkBytes: deferredScripts.reduce(
-        (sum, entry) => sum + (entry.transferSize || entry.encodedBodySize || 0),
+        (sum, entry) => sum + (entry.transferSize ?? entry.encodedBodySize ?? 0),
         0,
       ),
       glbResources,
@@ -475,7 +564,7 @@ async function captureProgressFrames(browser, baseUrl) {
   });
   const page = await context.newPage();
   const telemetry = createTelemetry(page, baseUrl);
-  await page.goto(baseUrl, { waitUntil: "networkidle" });
+  await page.goto(`${baseUrl}/?qaCamera=1`, { waitUntil: "networkidle" });
   await scrollToJourney(page);
   await waitForJourneyState(page, "ready");
 
@@ -486,6 +575,7 @@ async function captureProgressFrames(browser, baseUrl) {
   });
 
   const captures = [];
+  const cameraSamples = [];
   for (const [index, progress] of progressSamples.entries()) {
     await page.evaluate(
       ({ top, value }) => {
@@ -496,7 +586,25 @@ async function captureProgressFrames(browser, baseUrl) {
       },
       { top: journeyTop, value: progress },
     );
-    await page.waitForTimeout(80);
+    await page.waitForFunction(
+      (expectedProgress) => {
+        const raw = document.querySelector(".scroll-journey__canvas")?.getAttribute("data-camera-sample");
+        if (!raw) return false;
+        try {
+          return Math.abs(JSON.parse(raw).progress - expectedProgress) <= 0.002;
+        } catch {
+          return false;
+        }
+      },
+      progress,
+      { timeout: 10_000 },
+    );
+    const cameraSample = await page.locator(".scroll-journey__canvas").evaluate((element) => {
+      const raw = element.getAttribute("data-camera-sample");
+      if (!raw) throw new Error("Runtime camera sample is missing.");
+      return JSON.parse(raw);
+    });
+    cameraSamples.push(cameraSample);
     const samplePercent = Math.round((index * 100) / (progressSamples.length - 1));
     const name = `progress-${String(index).padStart(2, "0")}-${String(samplePercent).padStart(3, "0")}.png`;
     const path = resolve(progressRoot, name);
@@ -521,10 +629,12 @@ async function captureProgressFrames(browser, baseUrl) {
   }
 
   assert.equal(captures.length, 41, "forty-one deterministic progress captures");
-  assert.equal(telemetry.glbRequests.size, 4, "progress capture requests four GLBs once");
+  assert.equal(cameraSamples.length, 41, "forty-one runtime raycast samples");
+  assert.equal(telemetry.glbRequests.length, 4, "progress capture requests four GLBs once");
+  assert.equal(uniqueGlbCount(telemetry), 4, "progress capture requests four unique GLBs");
   assertTelemetry(telemetry, "progress captures");
   await context.close();
-  return captures;
+  return { captures, cameraSamples };
 }
 
 async function verifyProgressButtons(browser, baseUrl) {
@@ -562,7 +672,7 @@ async function verifyFallbackMode(browser, baseUrl, options) {
   await scrollToJourney(page);
 
   assert.equal(await page.locator("#process canvas").count(), 0, `${options.name}: no canvas`);
-  assert.equal(telemetry.glbRequests.size, 0, `${options.name}: no GLB requests`);
+  assert.equal(telemetry.glbRequests.length, 0, `${options.name}: no GLB requests`);
   await assertViewportHealth(page, options.name);
 
   const fallbackStages = page.locator("[data-journey-fallback-stage]");
@@ -580,7 +690,7 @@ async function verifyFallbackMode(browser, baseUrl, options) {
   });
   assertTelemetry(telemetry, options.name);
   await context.close();
-  return { glbCount: telemetry.glbRequests.size };
+  return { glbCount: telemetry.glbRequests.length };
 }
 
 async function captureViewportMatrix(browser, baseUrl) {
@@ -789,7 +899,7 @@ async function captureUiStates(browser, baseUrl) {
     null,
     { timeout: 45_000 },
   );
-  assert.ok(telemetry.glbRequests.size <= 1, "Hero requests at most the Observe GLB");
+  assert.ok(telemetry.glbRequests.length <= 1, "Hero requests at most the Observe GLB");
   assert.equal(await page.locator("[data-hero-scene] canvas").count(), 1, "Hero creates one canvas");
   await shot("hero-desktop", page.locator(".hero"));
   await page.mouse.move(1200, 240);
@@ -832,7 +942,15 @@ async function captureUiStates(browser, baseUrl) {
     assert.equal((await row.locator(".practice-row__zh").textContent())?.trim(), expected[2]);
     assert.ok((await row.getAttribute("href"))?.endsWith(expected[3]), `Practice href ${index + 1}`);
     assert.equal(await row.evaluate((element) => element.hasAttribute("data-page-transition")), true);
-    assert.equal(await row.getAttribute("aria-label"), `${expected[2]}：查看对应项目`);
+    assert.equal(await row.getAttribute("aria-label"), null, "visible Practice copy remains the name");
+    assert.equal(
+      await page.getByRole("link", {
+        name: new RegExp(`${expected[1]}\\s+${expected[2]}`),
+        includeHidden: true,
+      }).count(),
+      1,
+      `Practice accessible name ${index + 1}`,
+    );
   }
   await shot("practice-default", practice);
   await rows.first().hover();
@@ -940,7 +1058,7 @@ async function captureUiStates(browser, baseUrl) {
     await scrollToJourney(fallbackPage);
     await waitForJourneyState(fallbackPage, "fallback");
     assert.equal(await fallbackPage.locator("[data-journey-fallback-stage]").count(), 4);
-    assert.equal(fallbackTelemetry.glbRequests.size, 0);
+    assert.equal(fallbackTelemetry.glbRequests.length, 0);
     assert.equal(await fallbackPage.evaluate(() => Boolean(globalThis.THREE || globalThis.gsap)), false);
     await fallbackPage.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
     await fallbackPage.waitForFunction(
@@ -1016,7 +1134,7 @@ async function captureUiStates(browser, baseUrl) {
   await shot("webgl-failure-authored-fallback", webglPage);
   await webglContext.close();
 
-  return { desktopGlbCount: telemetry.glbRequests.size, ...fallbackResults };
+  return { desktopGlbCount: uniqueGlbCount(telemetry), ...fallbackResults };
 }
 
 async function saveVideo(browser, baseUrl, options) {
@@ -1095,9 +1213,31 @@ async function saveVideo(browser, baseUrl, options) {
   assert.equal(videoStream?.width, options.viewport.width, `${options.name}: width`);
   assert.equal(videoStream?.height, options.viewport.height, `${options.name}: height`);
   assert.match(metadata.format?.format_name ?? "", /mp4/, `${options.name}: MP4 container`);
-  assert.ok(Number(metadata.format?.duration) > 3, `${options.name}: duration`);
+  const durationSeconds = Number(metadata.format?.duration);
+  assert.ok(durationSeconds > 3, `${options.name}: duration`);
+  const contactSheetPath = resolve(contactSheetRoot, `${options.name}-contact-sheet.png`);
+  const contactSheet = spawnSync(
+    "ffmpeg",
+    [
+      "-y",
+      "-i", mp4Path,
+      "-vf", `fps=6/${durationSeconds},scale=320:-2:flags=lanczos,tile=3x2`,
+      "-frames:v", "1",
+      contactSheetPath,
+    ],
+    { cwd: root, encoding: "utf8" },
+  );
+  assert.equal(contactSheet.status, 0, contactSheet.stderr || "contact sheet generation failed");
+  const contactSheetFile = await stat(contactSheetPath);
+  assert.ok(contactSheetFile.size > 10_000, `${options.name}: contact sheet is unexpectedly small`);
   await rm(webmPath, { force: true });
-  return metadata;
+  return {
+    ...metadata,
+    contactSheet: {
+      file: `video-contact-sheets/${options.name}-contact-sheet.png`,
+      bytes: contactSheetFile.size,
+    },
+  };
 }
 
 async function runLighthouse(baseUrl, mode) {
@@ -1179,6 +1319,10 @@ async function runLighthouse(baseUrl, mode) {
 }
 
 async function writeBudgetReports(loadPolicy, browserVersion) {
+  const glbMetrics = summarizeGlbResources(loadPolicy.desktop.glbResources);
+  assert.equal(glbMetrics.requestCount, stages.length, "one ResourceTiming entry per GLB");
+  assert.equal(glbMetrics.uniqueRequestCount, stages.length, "four unique GLB resources");
+  assert.deepEqual(glbMetrics.duplicateUrls, [], "no duplicate GLB transfer is budgeted away");
   const glbResourcesByName = new Map(
     loadPolicy.desktop.glbResources.map((entry) => [new URL(entry.name).pathname.split("/").pop(), entry]),
   );
@@ -1187,19 +1331,21 @@ async function writeBudgetReports(loadPolicy, browserVersion) {
       const path = resolve(root, "public", "models", "round-4", `${stage}.glb`);
       const file = await stat(path);
       const resource = glbResourcesByName.get(`${stage}.glb`);
+      assert.ok(resource, `${stage}.glb has a ResourceTiming entry`);
       return {
         stage,
         path: `public/models/round-4/${stage}.glb`,
         bytes: file.size,
-        encodedBodySize: resource?.encodedBodySize || file.size,
-        decodedBodySize: resource?.decodedBodySize || file.size,
-        transferSize: resource?.transferSize || file.size,
+        encodedBodySize: resource.encodedBodySize ?? file.size,
+        decodedBodySize: resource.decodedBodySize ?? file.size,
+        transferSize: resource.transferSize ?? file.size,
       };
     }),
   );
   const totalBytes = assets.reduce((sum, asset) => sum + asset.bytes, 0);
-  const totalEncodedBodySize = assets.reduce((sum, asset) => sum + asset.encodedBodySize, 0);
-  const totalDecodedBodySize = assets.reduce((sum, asset) => sum + asset.decodedBodySize, 0);
+  const totalEncodedBodySize = glbMetrics.totalEncodedBodySize;
+  const totalDecodedBodySize = glbMetrics.totalDecodedBodySize;
+  const totalTransferSize = glbMetrics.totalTransferSize;
   assert.ok(assets.every((asset) => asset.bytes < 1_500_000), "each GLB < 1.5MB");
   assert.ok(totalBytes < 5_000_000, "total GLBs < 5MB");
   assert.equal(loadPolicy.mobile.glbCount, 0, "mobile GLB bytes are zero");
@@ -1225,6 +1371,7 @@ async function writeBudgetReports(loadPolicy, browserVersion) {
     browserVersion,
     limits: { perAssetBytes: 1_500_000, totalBytes: 5_000_000 },
     totalBytes,
+    totalTransferSize,
     totalEncodedBodySize,
     totalDecodedBodySize,
     assets,
@@ -1232,12 +1379,15 @@ async function writeBudgetReports(loadPolicy, browserVersion) {
     failures: [],
   };
   const networkBudget = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     generatedAt,
     browserVersion,
     glb: {
       uniqueDesktopRequests: loadPolicy.desktop.enteredGlbCount,
+      requestCount: glbMetrics.requestCount,
+      duplicateUrls: glbMetrics.duplicateUrls,
       heroRequests: loadPolicy.desktop.heroGlbCount,
+      totalTransferSize,
       totalEncodedBodySize,
       totalDecodedBodySize,
       mobileBytes: 0,
@@ -1260,7 +1410,6 @@ async function writeBudgetReports(loadPolicy, browserVersion) {
 }
 
 const geometry = await runAndValidateGeometry();
-const camera = await writeAndValidateCameraEvidence();
 const port = await getFreePort();
 const baseUrl = `http://127.0.0.1:${port}`;
 const serverProcess = spawn(process.execPath, ["scripts/qa-server.mjs"], {
@@ -1282,6 +1431,9 @@ try {
   browser = await chromium.launch({ headless: true, args: launchArgs });
   const browserVersion = await browser.version();
   const loadPolicy = await verifyLoadPolicy(browser, baseUrl);
+  const desktop = await captureStages(browser, baseUrl);
+  const progressEvidence = await captureProgressFrames(browser, baseUrl);
+  const camera = await writeAndValidateCameraEvidence(progressEvidence.cameraSamples);
   const summary = {
     generatedAt: new Date().toISOString(),
     browserVersion,
@@ -1289,8 +1441,8 @@ try {
     geometry,
     camera,
     loadPolicy,
-    desktop: await captureStages(browser, baseUrl),
-    progressCaptures: await captureProgressFrames(browser, baseUrl),
+    desktop,
+    progressCaptures: progressEvidence.captures,
     progressButtons: await verifyProgressButtons(browser, baseUrl),
     uiStates: await captureUiStates(browser, baseUrl),
     mobile: await verifyFallbackMode(browser, baseUrl, {
@@ -1326,20 +1478,33 @@ try {
     },
   };
   summary.budgets = await writeBudgetReports(loadPolicy, browserVersion);
+  const telemetryCount = (field) =>
+    browserTelemetrySessions.reduce((sum, telemetry) => sum + telemetry[field].length, 0);
+  const consoleErrors = telemetryCount("consoleErrors");
+  const pageErrors = telemetryCount("pageErrors");
+  const failedRequests = telemetryCount("failedRequests");
+  const httpErrors = telemetryCount("failedResponses");
+  const telemetryErrorCount = consoleErrors + pageErrors + failedRequests + httpErrors;
+  assert.equal(telemetryErrorCount, 0, "aggregated browser telemetry remains error-free");
   const browserTelemetry = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     generatedAt: new Date().toISOString(),
     browserVersion,
-    consoleErrors: 0,
-    pageErrors: 0,
-    failedRequests: 0,
-    httpErrors: 0,
+    sessions: browserTelemetrySessions.length,
+    consoleErrors,
+    pageErrors,
+    failedRequests,
+    httpErrors,
+    glbRequestCount: browserTelemetrySessions.reduce(
+      (sum, telemetry) => sum + telemetry.glbRequests.length,
+      0,
+    ),
     viewportCount: viewportMatrix.length,
     progressCaptureCount: summary.progressCaptures.length,
     desktopGlbCount: summary.loadPolicy.desktop.enteredGlbCount,
     mobileGlbCount: summary.loadPolicy.mobile.glbCount,
     reducedMotionGlbCount: summary.loadPolicy.reducedMotion.glbCount,
-    status: "pass",
+    status: telemetryErrorCount === 0 ? "pass" : "fail",
   };
   await writeFile(
     resolve(artifactRoot, "browser-telemetry.json"),

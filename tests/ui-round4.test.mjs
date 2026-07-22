@@ -152,6 +152,22 @@ test("homepage does not promote below-fold project imagery over the Hero LCP", a
   assert.match(showcase, /fetchPriority=\{shouldPrioritize\s*\?\s*["']high["']\s*:\s*["']auto["']\}/);
 });
 
+test("visible Journey and Practice labels remain part of their accessible names", async () => {
+  const [page, progress, styles] = await Promise.all([
+    read("app/page.tsx"),
+    read("app/components/ScrollJourney/JourneyProgress.tsx"),
+    read("app/globals.css"),
+  ]);
+
+  assert.doesNotMatch(page, /aria-label=\{`\$\{item\.titleZh\}：查看对应项目`\}/);
+  assert.doesNotMatch(progress, /aria-label=\{`\$\{stage\.label\}/);
+  assert.match(progress, /className=["']sr-only["'][^>]*>\s*:\s*\{stage\.title\}/);
+  assert.match(
+    styles,
+    /\.journey-progress__item\s*\{[\s\S]*?color:\s*rgba\(17,\s*19,\s*24,\s*0\.62\)/,
+  );
+});
+
 test("Hero and Journey dispose attached and software-fallback textures through one deduplicated path", async () => {
   const [heroScene, journeyScene, disposal] = await Promise.all([
     read("app/scene/createHeroScene.ts"),
@@ -165,4 +181,11 @@ test("Hero and Journey dispose attached and software-fallback textures through o
   assert.doesNotMatch(heroScene, /for\s*\(const texture of loadedTextures\)\s*texture\.dispose/);
   assert.match(journeyScene, /loadedTextures\s*=\s*await applyRound4Textures/);
   assert.match(journeyScene, /disposeScene\(scene,\s*renderer,\s*loadedTextures\)/);
+});
+
+test("QA camera inspection publishes its initial frame before progress changes", async () => {
+  const journeyScene = await read("app/scene/createJourneyScene.ts");
+
+  assert.match(journeyScene, /!Number\.isFinite\(lastCameraInspectionProgress\)/);
+  assert.match(journeyScene, /dataset\.cameraSample\s*=\s*JSON\.stringify/);
 });

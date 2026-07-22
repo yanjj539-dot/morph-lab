@@ -1,12 +1,13 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-22T00:09:37.169Z",
+  "generatedAt": "2026-07-22T02:28:00.663Z",
   "browserVersion": "149.0.7827.55",
   "limits": {
     "perAssetBytes": 1500000,
     "totalBytes": 5000000
   },
   "totalBytes": 1703808,
+  "totalTransferSize": 1705008,
   "totalEncodedBodySize": 1703808,
   "totalDecodedBodySize": 1703808,
   "assets": [

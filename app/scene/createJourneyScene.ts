@@ -37,6 +37,7 @@ import { createRenderer } from "./core/createRenderer";
 import { disposeScene } from "./core/disposeScene";
 import { getQualitySettings } from "./core/qualityManager";
 import { inspectCameraTimeline } from "./debug/cameraPathInspector";
+import { createCameraVisibilityInspector } from "./debug/cameraVisibilityInspector";
 import { createProjectedLabels } from "./interaction/projectedLabels";
 import { createVisibilityController } from "./interaction/visibilityController";
 import { createStudioLightRig } from "./lighting/studioLightRig";
@@ -105,6 +106,11 @@ function getFrozenQaProgress(): number | null {
   return index < 0 ? null : JOURNEY_STAGE_PROGRESS[index];
 }
 
+function isQaCameraInspectionEnabled(): boolean {
+  if (typeof window === "undefined") return false;
+  return new URLSearchParams(window.location.search).has("qaCamera");
+}
+
 function normalizeError(error: unknown): Error {
   return error instanceof Error ? error : new Error(String(error));
 }
@@ -129,6 +135,10 @@ export async function createJourneyScene({
   const cameraWorldPosition = new Vector3();
   const cameraCollision = createCameraCollisionInspector();
   const cameraPathReport = inspectCameraTimeline(cameraTimeline);
+  const qaCameraInspectionEnabled = isQaCameraInspectionEnabled();
+  const cameraVisibilityInspector = qaCameraInspectionEnabled
+    ? createCameraVisibilityInspector()
+    : null;
   scene.userData.cameraPathReport = cameraPathReport;
   scene.add(cameraRig.rig);
   const lightRig = createStudioLightRig(quality);
@@ -175,6 +185,7 @@ export async function createJourneyScene({
   let projectedLabels: ReturnType<typeof createProjectedLabels> | null = null;
   let resizeObserver: ResizeObserver | null = null;
   let loadedTextures: readonly Texture[] = [];
+  let lastCameraInspectionProgress = Number.NaN;
 
   function updateStageBoundary(nextProgress: number): void {
     const nextStage = stageIndexForProgress(nextProgress);
@@ -231,6 +242,16 @@ export async function createJourneyScene({
     );
     routeGeometry.setDrawRange(0, routeCount);
     scene.updateMatrixWorld(true);
+    if (
+      cameraVisibilityInspector &&
+      (!Number.isFinite(lastCameraInspectionProgress) ||
+        Math.abs(progress - lastCameraInspectionProgress) > 1e-6)
+    ) {
+      canvasHost.dataset.cameraSample = JSON.stringify(
+        cameraVisibilityInspector.inspect(scene, cameraRig.camera, progress),
+      );
+      lastCameraInspectionProgress = progress;
+    }
     projectedLabels?.update(progress, cameraRig.camera);
     renderer.render(scene, cameraRig.camera);
 
@@ -273,6 +294,7 @@ export async function createJourneyScene({
     clipController = null;
     disposeScene(scene, renderer, loadedTextures);
     loadedTextures = [];
+    delete canvasHost.dataset.cameraSample;
     scene.clear();
   }
 
@@ -314,6 +336,7 @@ export async function createJourneyScene({
     stageTimelines = createStageTimelines(models);
     stageTimelines.update(progress);
     projectedLabels = createProjectedLabels(labelHost);
+    cameraVisibilityInspector?.refresh(scene);
     resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(canvasHost);
     resize();
