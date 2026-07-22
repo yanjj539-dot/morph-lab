@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-22T04:56:27.199Z",
+  "sourceCommit": "1c2db3c396c8713fa1e5ee75e01baa9d4e5d6be5",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "journeyTimeToSceneMs": 849,
+  "frameSummary": {
+    "sampleCount": 9,
+    "averageFrameTimeMs": 334.51,
+    "averageFps": 2.99,
+    "onePercentLowFps": 2.31,
+    "longFrameCount": 8,
+    "consecutiveBelow25Fps": 8
+  },
+  "renderActivity": {
+    "measurementMs": 3000,
+    "rafCallbacks": 50,
+    "drawCalls": 1760,
+    "trianglesSubmitted": 406180,
+    "longTasks": [
+      {
+        "startTime": 211.20000000018626,
+        "duration": 121
+      },
+      {
+        "startTime": 337,
+        "duration": 53
+      },
+      {
+        "startTime": 942.6000000000931,
+        "duration": 3569
+      },
+      {
+        "startTime": 4513.899999999907,
+        "duration": 646
+      },
+      {
+        "startTime": 5174.100000000093,
+        "duration": 425
+      },
+      {
+        "startTime": 5607.5,
+        "duration": 348
+      },
+      {
+        "startTime": 5977.600000000093,
+        "duration": 378
+      },
+      {
+        "startTime": 6359.799999999814,
+        "duration": 371
+      },
+      {
+        "startTime": 6735.299999999814,
+        "duration": 388
+      },
+      {
+        "startTime": 7125.899999999907,
+        "duration": 313
+      },
+      {
+        "startTime": 7446.5,
+        "duration": 347
+      },
+      {
+        "startTime": 7800.600000000093,
+        "duration": 376
+      },
+      {
+        "startTime": 8179.200000000186,
+        "duration": 371
+      }
+    ]
+  },
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7827.55 Safari/537.36",
+    "deviceMemory": 16,
+    "hardwareConcurrency": 32,
+    "devicePixelRatio": 1,
+    "activeCanvasCount": 2,
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "gpuRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "maxAnisotropy": 16
+  },
+  "resources": [
+    {
+      "name": "http://127.0.0.1:5195/models/round-4/observe.glb",
+      "initiatorType": "fetch",
+      "startTime": 546.5,
+      "duration": 11.799999999813735,
+      "transferSize": 341020,
+      "encodedBodySize": 340720,
+      "decodedBodySize": 340720
+    },
+    {
+      "name": "http://127.0.0.1:5195/models/round-4/prototype.glb",
+      "initiatorType": "fetch",
+      "startTime": 546.7000000001863,
+      "duration": 15.599999999627471,
+      "transferSize": 524988,
+      "encodedBodySize": 524688,
+      "decodedBodySize": 524688
+    },
+    {
+      "name": "http://127.0.0.1:5195/models/round-4/structure.glb",
+      "initiatorType": "fetch",
+      "startTime": 546.7000000001863,
+      "duration": 17.699999999720603,
+      "transferSize": 465552,
+      "encodedBodySize": 465252,
+      "decodedBodySize": 465252
+    },
+    {
+      "name": "http://127.0.0.1:5195/models/round-4/release.glb",
+      "initiatorType": "fetch",
+      "startTime": 546.7999999998137,
+      "duration": 37.10000000009313,
+      "transferSize": 373448,
+      "encodedBodySize": 373148,
+      "decodedBodySize": 373148
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/paper-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.5,
+      "duration": 8.700000000186265,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/plastic-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.5,
+      "duration": 9.100000000093132,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/metal-brushed-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.6000000000931,
+      "duration": 9.699999999720603,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/rubber-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.6000000000931,
+      "duration": 10.399999999906868,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/studio-orm.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.7000000001863,
+      "duration": 15.399999999906868,
+      "transferSize": 88172,
+      "encodedBodySize": 87872,
+      "decodedBodySize": 87872
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/neutral-studio-env.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 704.7999999998137,
+      "duration": 16.200000000186265,
+      "transferSize": 175596,
+      "encodedBodySize": 175296,
+      "decodedBodySize": 175296
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/paper-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5976.100000000093,
+      "duration": 9,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/plastic-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5976.299999999814,
+      "duration": 11.700000000186265,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/metal-brushed-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5976.600000000093,
+      "duration": 12.5,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/rubber-normal.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5976.799999999814,
+      "duration": 13.100000000093132,
+      "transferSize": 88188,
+      "encodedBodySize": 87888,
+      "decodedBodySize": 87888
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/studio-orm.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5977.100000000093,
+      "duration": 13.5,
+      "transferSize": 88172,
+      "encodedBodySize": 87872,
+      "decodedBodySize": 87872
+    },
+    {
+      "name": "http://127.0.0.1:5195/textures/round-3/neutral-studio-env.ktx2",
+      "initiatorType": "fetch",
+      "startTime": 5977.299999999814,
+      "duration": 15.300000000279397,
+      "transferSize": 175596,
+      "encodedBodySize": 175296,
+      "decodedBodySize": 175296
+    }
+  ]
+}
